@@ -69,9 +69,14 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .nav .join{justify-self:end;font-family:var(--serif);font-weight:520;font-size:14.5px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;padding:10px 22px;text-decoration:none;cursor:pointer;transition:transform .12s var(--spring),filter .2s}
 .nav .join:active{transform:scale(.96)}@media(hover:hover){.nav .join:hover{filter:brightness(1.05)}}
 
-/* sections */
+/* sections — authored rhythm: alternating tone for chapter breaks, varied pacing */
 section{position:relative;padding:clamp(86px,13vh,168px) var(--edge);scroll-margin-top:var(--nav)}
 .wrap{max-width:1080px;margin:0 auto}
+.ask-sec{padding-top:clamp(96px,15vh,180px)}            /* opening chapter breathes */
+.starts{padding-top:clamp(120px,18vh,220px)}            /* clear arrival after the hero exit */
+.join{background:var(--paper-deep);padding-top:clamp(100px,15vh,180px)} /* deeper tone before the dark footer */
+.hero-edge{position:absolute;left:0;right:0;bottom:0;height:18vh;pointer-events:none;z-index:1;
+  background:linear-gradient(to bottom, transparent, var(--paper) 92%)}
 .eyebrow{font-family:var(--caps);text-transform:uppercase;letter-spacing:.3em;font-size:12.5px;font-weight:600;color:var(--maroon);display:block;margin-bottom:20px}
 .eyebrow .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
 h1{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;font-size:clamp(38px,6.2vw,74px);line-height:1.05;color:var(--ink);text-wrap:balance;max-width:16ch}
@@ -95,6 +100,9 @@ h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clam
 .who{font-size:10.5px;color:var(--terra);margin:0 0 2px 6px;font-weight:520}
 .bubble{display:inline-block;padding:9px 13px;border-radius:15px 15px 15px 5px;background:var(--paper);border:1px solid var(--line);font-size:13.5px;line-height:1.4;color:var(--ink)}
 .msg.out .bubble{border-radius:15px 15px 5px 15px;background:#E7D8A8}
+.msg.halo{align-self:center;text-align:center;max-width:96%;margin-top:8px}
+.msg.halo .who{color:var(--terra);font-weight:600;font-family:var(--serif);font-size:11px;margin:0 0 3px}
+.msg.halo .bubble{background:var(--terra);color:var(--paper);border-color:var(--terra);border-radius:15px;box-shadow:0 8px 18px -12px rgba(122,46,34,.6)}
 .typing{display:inline-flex;gap:4px;padding:11px 14px;border-radius:15px 15px 15px 5px;background:var(--paper);border:1px solid var(--line)}
 .typing i{width:6px;height:6px;border-radius:50%;background:var(--sand);animation:bl 1.2s infinite both}.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
 @keyframes bl{0%,60%,100%{opacity:.3}30%{opacity:1}}
@@ -326,6 +334,7 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
     </div>
     <a class="hcta" href="#starts">See how it works</a>
   </div>
+  <span class="hero-edge" aria-hidden="true"></span>
 </section>
 
 <!-- HOW HALO STARTS WITH YOU — sticky scrollytelling -->
@@ -548,13 +557,18 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
 
   document.getElementById("brand").addEventListener("click",function(){window.scrollTo({top:0,behavior:reduce?"auto":"smooth"});});
   var nav=document.getElementById("nav"), marks=[].slice.call(document.querySelectorAll(".mark")), ticking=false;
+  var heroSec=document.getElementById("reveal"), heroWrap=heroSec?heroSec.querySelector(".wrap"):null;
   function parallax(){ if(reduce)return; var y=window.scrollY; for(var i=0;i<marks.length;i++){ var sp=+marks[i].getAttribute("data-sp")||0.2; marks[i].style.transform="translateY("+(y*sp - 220*sp)+"px)"; } }
-  window.addEventListener("scroll",function(){ if(!ticking){ requestAnimationFrame(function(){ nav.classList.toggle("stuck",window.scrollY>20); parallax(); ticking=false; }); ticking=true; } },{passive:true});
+  // Apple-style hero exit: as you scroll past the hero, its content calmly releases (lifts + fades)
+  function heroExit(){ if(reduce||!heroWrap)return; var r=heroSec.getBoundingClientRect();
+    var p = r.top<0 ? Math.min(1, (-r.top)/(window.innerHeight*0.72)) : 0;
+    heroWrap.style.opacity=(1 - p*p).toFixed(3); heroWrap.style.transform="translateY("+(-p*46)+"px) scale("+(1 - p*0.02).toFixed(4)+")"; }
+  window.addEventListener("scroll",function(){ if(!ticking){ requestAnimationFrame(function(){ nav.classList.toggle("stuck",window.scrollY>20); parallax(); heroExit(); ticking=false; }); ticking=true; } },{passive:true});
 
-  /* reveals */
+  /* reveals — fire when the block is properly in view, so sections don't rise into the one above */
   if(reduce){ document.querySelectorAll(".reveal").forEach(function(e){e.classList.add("seen");}); }
   else if("IntersectionObserver" in window){
-    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("seen"); io.unobserve(en.target);} }); },{threshold:.14});
+    var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("seen"); io.unobserve(en.target);} }); },{threshold:.18,rootMargin:"0px 0px -14% 0px"});
     document.querySelectorAll(".reveal").forEach(function(e){ io.observe(e); });
   } else { document.querySelectorAll(".reveal").forEach(function(e){e.classList.add("seen");}); }
 
@@ -563,16 +577,13 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
     {who:"Rohit", t:"Good electrician in Gotri? Fan bandh thai gayo 😭"},
     {who:"Meena", out:true, t:"Mara society ma ek aavyo'to, on time aavyo. Sending."},
     {who:"Jay", t:"Pure Jain dabba near Manjalpur? Office lunch maate."},
-    {who:"Jay", t:"Please no “healthy” dabba — 2 rotli ane sadness."},
     {who:"Riya", t:"Quiet café for laptop work near Akota?"},
     {who:"Sanjay", out:true, t:"Quiet means actually quiet ke Instagram quiet? 😄"},
-    {who:"Dev", t:"Laptop repair trustworthy? Last time bill joine j hu hang thai gayo."},
-    {who:"Nisha", t:"Good tutor for 10th maths?"},
-    {who:"Sanjay", out:true, t:"Rupal aunty na group ma puchho — emne badha ne khabar hoy."},
-    {who:"Dev", t:"See — everyone knows someone, but no one knows where to find it later."}
+    {who:"Dev", t:"Everyone knows someone — but no one knows where to find it later."},
+    {who:"ae halo", halo:true, t:"That's exactly what we're here for. 😉"}
   ];
   var feed=document.getElementById("feed"), chatPlayed=false;
-  function mkMsg(m){var d=document.createElement("div");d.className="msg"+(m.out?" out":"");
+  function mkMsg(m){var d=document.createElement("div");d.className="msg"+(m.out?" out":"")+(m.halo?" halo":"");
     d.innerHTML=(m.who?'<div class="who">'+m.who+'</div>':'')+'<div class="bubble">'+m.t+'</div>';return d;}
   function playChat(){
     if(chatPlayed)return; chatPlayed=true;
@@ -586,9 +597,11 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
       setTimeout(function(){
         feed.removeChild(tp);
         var e=mkMsg(m); feed.appendChild(e); requestAnimationFrame(function(){e.classList.add("show");});
-        while(feed.children.length>7) feed.removeChild(feed.children[0]);
-        i++; setTimeout(step, 850);
-      }, 620);
+        while(feed.children.length>6) feed.removeChild(feed.children[0]);
+        i++;
+        // slow, readable cadence; let the closing Halo wink breathe a moment longer
+        setTimeout(step, i===CHAT.length-1 ? 2100 : 1650);
+      }, m.halo ? 820 : 700);
     })();
   }
   if(reduce){ playChat(); }
