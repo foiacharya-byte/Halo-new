@@ -259,21 +259,24 @@ body.gu .voice-by{font-style:normal}
 .switch-min:active{transform:translateX(-50%) scale(.95)}
 .switch-min[hidden]{display:none}
 
-/* cinematic prelude — behaviour, on paper, no glow, no monument */
+/* the opening — the ઓળખાણ engine over the growing trust-network */
 #prelude{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;cursor:pointer;
   background:radial-gradient(120% 100% at 50% 30%, #FFFCF6 0%, var(--paper) 55%, var(--paper-deep) 100%)}
 #prelude[hidden]{display:none}
-.beat{position:absolute;max-width:600px;padding:0 24px;opacity:0;transform:translateY(16px);
-  font-family:var(--serif);font-weight:460;letter-spacing:-.012em;font-size:clamp(25px,6.2vw,40px);line-height:1.34;color:var(--ink)}
-.beat.soul{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(42px,12vw,78px);line-height:1.15}
-.beat.show{animation:beatIn 2.4s var(--expo) both}
-@keyframes beatIn{0%{opacity:0;transform:translateY(18px)}20%,70%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-14px)}}
-.beat.soul.show{animation:soulIn 2.8s var(--expo) both}
-@keyframes soulIn{0%{opacity:0;transform:translateY(20px)}24%,100%{opacity:1;transform:none}}
-/* the thread, drawing itself downward as the city passes a name along */
-.pre-thread{position:absolute;top:18%;left:50%;width:1.5px;height:30%;transform:translateX(-50%);
-  background:linear-gradient(to bottom,transparent,var(--terra));transform-origin:top;animation:threadDraw 6.5s var(--expo) both;opacity:.5}
-@keyframes threadDraw{0%{transform:translateX(-50%) scaleY(0)}40%,100%{transform:translateX(-50%) scaleY(1)}}
+#netCanvas{position:absolute;inset:0;width:100%;height:100%}
+.pre-stage{position:relative;z-index:2;max-width:680px;padding:0 26px}
+.pre-q{font-family:var(--serif);font-size:clamp(18px,4.8vw,25px);color:var(--ink-soft);min-height:1.5em;margin-bottom:16px;
+  opacity:0;transform:translateY(8px);transition:opacity .4s var(--expo),transform .4s var(--expo)}
+.pre-q.on{opacity:1;transform:none}
+.pre-a{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(36px,9.8vw,68px);line-height:1.22;
+  opacity:0;transform:translateY(12px);transition:opacity .7s var(--expo),transform .7s var(--expo)}
+.pre-a.on{opacity:1;transform:none}
+.pre-a.pulse{animation:aPulse .55s var(--spring)}
+@keyframes aPulse{0%{transform:scale(1)}35%{transform:scale(1.04)}100%{transform:scale(1)}}
+.pre-gloss{margin-top:18px;font-family:var(--serif);font-size:clamp(14px,3.7vw,16.5px);color:var(--ink-soft);
+  opacity:0;transition:opacity .9s var(--expo)}
+.pre-gloss.on{opacity:1}
+.pre-gloss em{font-style:italic}
 .prelude-skip{position:fixed;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:41;
   font-family:var(--serif);font-size:14px;color:var(--ink-soft);background:none;border:0;cursor:pointer;opacity:.55;
   padding:10px 16px;text-decoration:underline;text-underline-offset:3px;-webkit-tap-highlight-color:transparent}
@@ -308,8 +311,8 @@ body.gu .field{font-size:16px}
 @media (prefers-reduced-motion: reduce){
   .step.on,.step.on .opt,.reveal.on .mk,.reveal.on .title,.reveal.on .row,
   .end-card.on .gu-title,.end-card.on .title,.end-card.on .sub,.end-card.on .share-line,.end-card.on .share-btn,
-  .end-card.on .to-landing-row,.end-card.on .you-thread,.end-card.on .you-thread .dot.you,.ack,.pre-thread{animation:none}
-  .thread-fill,.thread-head,.opt,.btn,.langbtn,.share-btn,.switch-min{transition:none}
+  .end-card.on .to-landing-row,.end-card.on .you-thread,.end-card.on .you-thread .dot.you,.ack,.pre-a.pulse{animation:none}
+  .thread-fill,.thread-head,.opt,.btn,.langbtn,.share-btn,.switch-min,.pre-q,.pre-a,.pre-gloss,.rot{transition:none}
 }
 /* hover only where a real pointer exists — no sticky tap-hover on phones */
 @media (hover:hover) and (pointer:fine){
@@ -327,12 +330,16 @@ body.gu .field{font-size:16px}
   <div class="thread-head" id="threadHead"></div>
 </div>
 
-<!-- CINEMATIC PRELUDE — how Vadodara actually finds people; mood, no brand name -->
+<!-- THE OPENING — Vadodara's operating system, made visible. No brand name (firewall).
+     The city answers every need with one sentence while the trust-network grows behind it.
+     The network is abstract by design: real feeling, zero fabricated claims. -->
 <section id="prelude" aria-label="Welcome">
-  <span class="pre-thread"></span>
-  <p class="beat" data-beat="0">The right tiffin. The plumber who actually picks up.</p>
-  <p class="beat" data-beat="1">Someone always knew someone.</p>
-  <p class="beat soul" data-beat="2">આપણી માટીનું.</p>
+  <canvas id="netCanvas" aria-hidden="true"></canvas>
+  <div class="pre-stage">
+    <p class="pre-q" id="preQ"></p>
+    <div class="pre-a" id="preA">મારા ઓળખાણમાં છે.</div>
+    <p class="pre-gloss" id="preGloss"><em>mara olkhan ma chhe</em> &mdash; someone always knew someone.</p>
+  </div>
 </section>
 <button class="prelude-skip" id="preludeSkip">Skip</button>
 
@@ -569,7 +576,7 @@ body.gu .field{font-size:16px}
     <p class="ask"><span class="node"></span><span data-en="You're already in the thread. We'll call you first — ae halo." data-gu="તમે તો સાંકળમાં છો જ. ખૂલતાં જ પહેલા તમને કહીશું — એ હાલો.">You're already in the thread. We'll call you first — ae halo.</span></p>
   </div>
 
-  <p class="land-foot">વિશ્વાસ · શોધ · પોતાપણું<span class="sig">ae halo · Vadodara</span></p>
+  <p class="land-foot">આપણી માટીનું.<br>વિશ્વાસ · શોધ · પોતાપણું<span class="sig">ae halo · Vadodara</span></p>
 </section>
 
 </main>
@@ -795,10 +802,12 @@ body.gu .field{font-size:16px}
     try{ console.log("[research]", research); if(contact) console.log("[contact:separate]", contact); }catch(e){}
   }
 
-  /* ---------- cinematic prelude ---------- */
-  var preludeTimer=null;
+  /* ---------- the opening: the ઓળખાણ engine + the growing trust-network ---------- */
+  var preRAF=null, preTimers=[], preEnded=false;
   function endPrelude(){
-    if(preludeTimer){ clearTimeout(preludeTimer); preludeTimer=null; }
+    if(preEnded) return; preEnded=true;
+    if(preRAF){ cancelAnimationFrame(preRAF); preRAF=null; }
+    preTimers.forEach(clearTimeout); preTimers=[];
     document.getElementById("prelude").hidden = true;
     document.getElementById("preludeSkip").hidden = true;
     show("door");
@@ -806,13 +815,96 @@ body.gu .field{font-size:16px}
   function playPrelude(){
     var pre=document.getElementById("prelude");
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if(reduce){ endPrelude(); return; }
-    var beats=pre.querySelectorAll(".beat"), durs=[2400,2400,2800], t=0;
-    beats.forEach(function(b,i){ setTimeout(function(){ b.classList.add("show"); }, t); t += durs[i]-350; });
-    preludeTimer=setTimeout(endPrelude, t+1000);
+    var canvas=document.getElementById("netCanvas"), ctx=canvas.getContext("2d");
+    var qEl=document.getElementById("preQ"), aEl=document.getElementById("preA"), gEl=document.getElementById("preGloss");
+
+    function size(){
+      var d=Math.min(window.devicePixelRatio||1,2);
+      canvas.width=window.innerWidth*d; canvas.height=window.innerHeight*d;
+      ctx.setTransform(d,0,0,d,0,0);
+    }
+    size(); window.addEventListener("resize", size);
+
+    // the network: nodes cluster like societies; edges form between near names.
+    // abstract by design — it carries the feeling, it asserts no data.
+    var W=function(){return window.innerWidth}, H=function(){return window.innerHeight};
+    var clusters=[], nodes=[], LINK=Math.max(64, Math.min(92, W()*0.11));
+    for(var i=0;i<6;i++) clusters.push({x:(.16+.68*Math.random())*W(), y:(.16+.68*Math.random())*H()});
+    function spawn(n){
+      for(var k=0;k<n;k++){
+        var c=clusters[(Math.random()*clusters.length)|0];
+        nodes.push({
+          x:c.x+(Math.random()-.5)*W()*.34, y:c.y+(Math.random()-.5)*H()*.34,
+          vx:(Math.random()-.5)*.08, vy:(Math.random()-.5)*.08,
+          r:1.1+Math.random()*1.7, a:0, tw:Math.random()*6.28, gold:Math.random()<.16
+        });
+      }
+      if(nodes.length>220) nodes.splice(0, nodes.length-220);
+    }
+    function draw(t){
+      ctx.clearRect(0,0,W(),H());
+      var i,j,n,m,dx,dy,d2,L2=LINK*LINK;
+      for(i=0;i<nodes.length;i++){
+        n=nodes[i];
+        if(n.a<1) n.a=Math.min(1,n.a+.02);
+        n.x+=n.vx; n.y+=n.vy;
+        if(n.x<-20)n.x=W()+20; if(n.x>W()+20)n.x=-20;
+        if(n.y<-20)n.y=H()+20; if(n.y>H()+20)n.y=-20;
+      }
+      ctx.lineWidth=1;
+      for(i=0;i<nodes.length;i++){
+        n=nodes[i];
+        for(j=i+1;j<nodes.length;j++){
+          m=nodes[j]; dx=n.x-m.x; dy=n.y-m.y; d2=dx*dx+dy*dy;
+          if(d2<L2){
+            var al=(1-d2/L2)*.13*Math.min(n.a,m.a);
+            ctx.strokeStyle="rgba(122,46,34,"+al.toFixed(3)+")";
+            ctx.beginPath(); ctx.moveTo(n.x,n.y); ctx.lineTo(m.x,m.y); ctx.stroke();
+          }
+        }
+      }
+      for(i=0;i<nodes.length;i++){
+        n=nodes[i];
+        var tw=.62+.38*Math.sin(t*.0011+n.tw);
+        ctx.fillStyle=n.gold ? "rgba(190,154,78,"+(n.a*tw*.85).toFixed(3)+")"
+                             : "rgba(194,83,31,"+(n.a*tw*.8).toFixed(3)+")";
+        ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,6.2832); ctx.fill();
+      }
+    }
+
+    if(reduce){
+      // still scene: the finished network + the sentence. No motion.
+      spawn(150); nodes.forEach(function(n){n.a=1; n.vx=0; n.vy=0;});
+      draw(0);
+      aEl.classList.add("on"); gEl.classList.add("on");
+      preTimers.push(setTimeout(endPrelude, 3200));
+    } else {
+      spawn(28);
+      var beats=["Need a plumber?","Need a tiffin?","Need an electrician?","Need a mehndi artist?"], bi=0;
+      function beat(){
+        if(bi>=beats.length){
+          qEl.classList.remove("on");
+          gEl.classList.add("on");
+          preTimers.push(setTimeout(endPrelude, 2600));
+          return;
+        }
+        qEl.textContent=beats[bi]; qEl.classList.add("on");
+        preTimers.push(setTimeout(function(){
+          if(bi===0){ aEl.classList.add("on"); }
+          else { aEl.classList.remove("pulse"); void aEl.offsetWidth; aEl.classList.add("pulse"); }
+          spawn(26+((Math.random()*12)|0));   // every answer, the network grows
+          preTimers.push(setTimeout(function(){
+            qEl.classList.remove("on");
+            preTimers.push(setTimeout(function(){ bi++; beat(); }, 240));
+          }, 1080));
+        }, 700));
+      }
+      beat();
+      (function loop(t){ draw(t||0); preRAF=requestAnimationFrame(loop); })(0);
+    }
+
     pre.addEventListener("click", endPrelude);
     document.getElementById("preludeSkip").addEventListener("click", function(e){ e.stopPropagation(); endPrelude(); });
-    // keyboard: Enter / Escape skips the prelude
     document.addEventListener("keydown", function onKey(e){ if(!pre.hidden && (e.key==="Enter"||e.key==="Escape"||e.key===" ")){ endPrelude(); document.removeEventListener("keydown", onKey); } });
   }
 
