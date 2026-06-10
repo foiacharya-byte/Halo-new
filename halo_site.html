@@ -49,6 +49,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .iq{margin-top:26px;font-family:var(--serif);font-size:clamp(18px,2.6vw,24px);color:var(--ink);opacity:0;animation:iUp .8s var(--expo) 1.4s forwards}
 .ia{margin-top:6px;font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(26px,5.4vw,42px);opacity:0;animation:iUp .9s var(--expo) 2.2s forwards}
 .isub{margin-top:20px;font-family:var(--serif);font-style:italic;font-size:clamp(14px,1.8vw,16.5px);color:var(--ink-soft);opacity:0;animation:iUp .9s var(--expo) 3.1s forwards}
+.isub2{margin-top:7px;font-family:var(--serif);font-size:clamp(13px,1.6vw,15px);color:var(--ink-soft);opacity:0;animation:iUp .9s var(--expo) 3.5s forwards;max-width:34ch}
 @keyframes iUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .iskip{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:101;font-family:var(--serif);
   font-size:14.5px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;cursor:pointer;padding:11px 30px;opacity:0;animation:iUp .8s var(--expo) 3.7s forwards}
@@ -163,7 +164,7 @@ footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em
 }
 @media (max-width:560px){ :root{--nav:62px} .cards{grid-template-columns:1fr} .vh{font-size:clamp(42px,13vw,60px)} }
 @media (prefers-reduced-motion:reduce){
-  #intro .mk,.iq,.ia,.isub,.iskip,.reveal,.res{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}
+  #intro .mk,.iq,.ia,.isub,.isub2,.iskip,.reveal,.res{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}
   .search .cur{animation:none}.mark{display:none}html{scroll-behavior:auto}
 }
 </style>
@@ -176,6 +177,7 @@ footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em
   <p class="iq">Vadodara, we heard you.</p>
   <p class="ia">વડોદરા, હવે શરૂઆત કરીએ.</p>
   <p class="isub">A homegrown beginning for the city we call our own.</p>
+  <p class="isub2">Vadodara's own city companion — starting with the local trust we already share.</p>
 </div>
 <button class="iskip" id="iskip">Enter</button>
 
