@@ -205,6 +205,15 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opa
 .land-foot{margin-top:96px;text-align:center;font-family:var(--gu);color:var(--maroon);font-size:15.5px;line-height:2.1;padding-bottom:24px}
 .land-foot .sig{font-family:var(--serif);color:var(--ink-soft);font-size:13.5px;letter-spacing:.04em;display:block}
 
+/* the hero rotor — the city's needs, area by area (pattern: text rotate; aesthetic: Halo) */
+.land-hero-h{margin-bottom:4px}
+.rotwrap{height:1.45em;overflow:hidden;font-size:clamp(27px,6.2vw,44px);margin-bottom:18px}
+.rot{display:inline-block;font-family:var(--serif);font-weight:500;font-style:italic;letter-spacing:-.018em;
+  color:var(--terra);line-height:1.3;transition:transform .45s var(--expo),opacity .45s var(--expo)}
+.rot.out{transform:translateY(-115%);opacity:0;transition-duration:.3s}
+.rot.in{transform:translateY(115%);opacity:0;transition:none}
+body.gu .rot{font-family:var(--gu);font-style:normal;font-weight:600;font-size:.88em}
+
 /* section grammar carried from index_v23 — eyebrow with terra dot */
 .sec-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--caps);text-transform:uppercase;letter-spacing:.28em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:18px}
 .sec-eyebrow .d{width:6px;height:6px;border-radius:50%;background:var(--terra);flex:0 0 auto}
@@ -496,8 +505,9 @@ body.gu .field{font-size:16px}
      Living city, not landmarks. All Gujarati here: [GU REVIEW]. -->
 <section class="step landing" data-step="landing" tabindex="-1">
   <div class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></div>
-  <h2 class="title" data-en="Vadodara's own." data-gu="વડોદરાનું પોતાનું.">Vadodara's own.</h2>
-  <p class="sub" data-en="The tiffin that tastes like home. The electrician who turns up. The tailor who gets it right — passed neighbour to neighbour, in one honest place." data-gu="ઘર જેવા સ્વાદનું ટિફિન. સમયસર આવતો ઇલેક્ટ્રિશિયન. માપ બરાબર લેતો દરજી — પાડોશીથી પાડોશી સુધી, એક સાચા ઠેકાણે.">The tiffin that tastes like home. The electrician who turns up. The tailor who gets it right — passed neighbour to neighbour, in one honest place.</p>
+  <h2 class="title land-hero-h" data-en="The ones Baroda already trusts —" data-gu="વડોદરા જેના પર પહેલેથી ભરોસો મૂકે છે —">The ones Baroda already trusts —</h2>
+  <div class="rotwrap" aria-hidden="true"><span class="rot" id="rotSlot">the tiffin in Alkapuri.</span></div>
+  <p class="sub" data-en="Passed neighbour to neighbour — in one honest place." data-gu="પાડોશીથી પાડોશી સુધી — એક સાચા ઠેકાણે.">Passed neighbour to neighbour — in one honest place.</p>
   <p class="land-soul"><span class="gu-s">&ldquo;મારા ઓળખાણમાં છે.&rdquo;</span><span class="gloss" data-en="The sentence this whole city runs on. Halo just gives it a place to live." data-gu="આખું શહેર આ એક વાક્ય પર ચાલે છે. હાલો બસ એને એક ઠેકાણું આપે છે.">The sentence this whole city runs on. Halo just gives it a place to live.</span></p>
 
   <!-- WHY HALO — the lines every Barodian knows (voices carried from index_v23, production copy) -->
@@ -613,6 +623,7 @@ body.gu .field{font-size:16px}
     sl.textContent = (l==="gu") ? "English" : "ગુજરાતી";
     sm.setAttribute("aria-label", l==="gu" ? "Read in English" : "ગુજરાતીમાં વાંચો / Read in Gujarati");
     refreshDynamic();
+    try{ if(steps["landing"].classList.contains("on")) rotSlot.textContent = (ROT[l]||ROT.en)[rotIdx]; }catch(e){}
     research.lang = l;
     try{ localStorage.setItem("halo_lang", l); }catch(e){}
     setCookie("halo_lang", l, 365);
@@ -738,14 +749,42 @@ body.gu .field{font-size:16px}
   });
 
   /* ---------- the landing (post-reveal brand page) ---------- */
+  // the hero rotor: the city's needs, area by area — [GU REVIEW] for the Gujarati items
+  var ROT = {
+    en:["the tiffin in Alkapuri.","the electrician in Gotri.","the tailor near MSU gate.","the plumber in Manjalpur.","the mehndi artist in Karelibaug.","the AC repair in Akota."],
+    gu:["આલકાપુરીનું ટિફિન.","ગોટ્રીનો ઇલેક્ટ્રિશિયન.","MSU પાસેનો દરજી.","માંજલપુરનો પ્લમ્બર.","કારેલીબાગનાં મહેંદીવાળાં.","આકોટાનું AC રિપેર."]
+  };
+  var rotIdx = 0, rotTimer = null, rotSlot = document.getElementById("rotSlot");
+  function rotTick(){
+    var items = ROT[LANG] || ROT.en;
+    rotSlot.classList.add("out");
+    setTimeout(function(){
+      rotIdx = (rotIdx+1) % items.length;
+      rotSlot.textContent = items[rotIdx];
+      rotSlot.classList.remove("out"); rotSlot.classList.add("in");
+      void rotSlot.offsetWidth; // commit the start position, then release
+      rotSlot.classList.remove("in");
+    }, 320);
+  }
+  function startRot(){
+    stopRot();
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    rotSlot.textContent = (ROT[LANG]||ROT.en)[rotIdx];
+    if(reduce) return; // static first item — no motion
+    rotTimer = setInterval(rotTick, 2400);
+  }
+  function stopRot(){ if(rotTimer){ clearInterval(rotTimer); rotTimer=null; } }
+
   document.getElementById("toLanding").addEventListener("click", showLanding);
   function showLanding(){
     show("landing");
     var joined = research.waitlist_join === true;
     document.getElementById("landJoin").hidden = joined;
     document.getElementById("landJoined").hidden = !joined;
+    startRot();
   }
   document.getElementById("landJoinBtn").addEventListener("click", function(){
+    stopRot();
     idx = ORDER.indexOf("s6"); show("s6");
   });
 
