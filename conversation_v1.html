@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Baroda's own — listening</title>
+<meta name="description" content="We're listening to how Baroda finds the people it trusts.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Cormorant+Garamond:wght@500;600&family=Caveat:wght@600;700&family=Noto+Serif+Gujarati:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F8F2E7; --paper-deep:#EBE0CD;
+  --ink:#2A1E11; --ink-soft:#6E5A40;
+  --maroon:#7A2E22; --terra:#C2531F; --gold:#BE9A4E; --sand:#CBB488;
+  --line:#E3D7BF;
+  --serif:"Fraunces",Georgia,serif; --caps:"Cormorant Garamond",Georgia,serif;
+  --script:"Caveat",cursive; --gu:"Noto Serif Gujarati",serif;
+  --expo:cubic-bezier(.16,1,.3,1); --spring:cubic-bezier(.34,1.4,.5,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--serif); color:var(--ink); -webkit-font-smoothing:antialiased;
+  background:radial-gradient(125% 115% at 50% 18%, #FFFCF6 0%, var(--paper) 48%, var(--paper-deep) 100%);
+  min-height:100dvh; display:flex; flex-direction:column; align-items:center;
+  padding:max(20px,env(safe-area-inset-top)) 20px max(24px,env(safe-area-inset-bottom)); position:relative; overflow-x:hidden;
+}
+/* warm grain + gentle vignette (restrained — this is a conversation, not the intro) */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.035;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(78% 70% at 50% 40%, transparent 55%, rgba(60,34,16,.10) 100%)}
+
+/* slim, numberless progress thread */
+.thread{position:fixed;top:0;left:0;height:3px;background:var(--terra);width:0;z-index:60;
+  transition:width .6s var(--expo);border-radius:0 2px 2px 0;opacity:.8}
+
+.stage-wrap{position:relative;z-index:10;width:100%;max-width:560px;margin:auto;display:flex;flex-direction:column;justify-content:center;min-height:80dvh}
+
+.step{display:none}
+.step.on{display:block;animation:rise .7s var(--expo) both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-family:var(--caps);text-transform:uppercase;letter-spacing:.26em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:14px;display:block}
+.gu-title{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(30px,9vw,46px);line-height:1.1;margin-bottom:8px}
+.title{font-family:var(--serif);font-weight:480;letter-spacing:-.02em;font-size:clamp(25px,6.6vw,38px);line-height:1.16;color:var(--ink);margin-bottom:10px}
+.title .em{color:var(--terra);font-style:italic;font-weight:500}
+.sub{font-family:var(--serif);font-size:clamp(15.5px,4.1vw,18px);line-height:1.5;color:var(--ink-soft);margin-bottom:8px}
+.ask{font-family:var(--serif);font-weight:520;font-size:clamp(18px,4.8vw,22px);line-height:1.32;color:var(--ink);margin:18px 0 18px}
+
+.opts{display:flex;flex-direction:column;gap:11px;margin-top:6px}
+.opt{font-family:var(--serif);font-size:clamp(15.5px,4.2vw,17.5px);line-height:1.4;text-align:left;color:var(--ink);
+  background:#FFFDF8;border:1px solid var(--line);border-radius:15px;padding:16px 18px;cursor:pointer;width:100%;
+  box-shadow:0 10px 22px -20px rgba(58,40,20,.5);transition:transform .14s var(--spring),border-color .2s var(--expo),background .2s var(--expo),box-shadow .2s var(--expo);
+  -webkit-tap-highlight-color:transparent;display:flex;align-items:center;gap:12px}
+.opt:hover{border-color:var(--sand)}
+.opt:active{transform:scale(.985)}
+.opt:focus-visible{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.35)}
+.opt.sel{border-color:var(--terra);background:#FBF1E6;box-shadow:0 12px 24px -18px rgba(122,46,34,.5)}
+.opt .q{color:var(--ink-soft);font-style:italic}
+
+.field{width:100%;font-family:var(--serif);font-size:17px;color:var(--ink);background:#FFFDF8;border:1px solid var(--line);
+  border-radius:15px;padding:15px 17px;line-height:1.5;resize:none}
+.field::placeholder{color:#B6A789}
+.field:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.3)}
+
+.row{display:flex;gap:12px;align-items:center;margin-top:18px;flex-wrap:wrap}
+.btn{font-family:var(--serif);font-weight:540;font-size:16.5px;color:var(--paper);background:var(--terra);border:0;
+  border-radius:999px;padding:13px 26px;cursor:pointer;transition:transform .12s var(--spring),filter .2s;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.96)}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(190,154,78,.4)}
+.btn:disabled{filter:grayscale(.4) opacity(.55);cursor:default}
+.ghost{background:none;border:0;color:var(--ink-soft);font-family:var(--serif);font-size:15.5px;cursor:pointer;padding:13px 8px;text-decoration:underline;text-underline-offset:3px;-webkit-tap-highlight-color:transparent}
+.ghost:focus-visible{outline:none;color:var(--maroon)}
+
+.micro{font-family:var(--serif);font-size:14px;color:var(--ink-soft);margin-top:14px;line-height:1.45}
+.micro .gu{font-family:var(--gu)}
+.err{color:var(--maroon);font-size:14px;margin-top:10px;min-height:1.1em}
+
+/* consent */
+.consent{display:flex;gap:11px;align-items:flex-start;margin-top:16px;cursor:pointer}
+.consent input{margin-top:3px;width:18px;height:18px;accent-color:var(--terra);flex:0 0 auto}
+.consent span{font-size:14.5px;color:var(--ink-soft);line-height:1.45}
+
+/* the reveal wordmark — first and only appearance of the brand */
+.mk{font-family:var(--serif);font-weight:470;font-size:clamp(46px,13vw,78px);letter-spacing:-.04em;color:var(--ink);position:relative;display:inline-block;margin-bottom:14px}
+.mk .hae{position:absolute;left:-.02em;top:-.36em;font-family:var(--script);font-size:.42em;line-height:1;color:var(--terra);transform:rotate(-9deg)}
+.mk .end{position:relative;display:inline-block;width:.32em}
+.mk .dot{position:absolute;left:.06em;bottom:.12em;width:.15em;height:.15em;border-radius:50%;background:var(--terra)}
+
+.end-card{text-align:center}
+.end-card .gu-title{margin-bottom:14px}
+
+@media (prefers-reduced-motion: reduce){
+  .step.on{animation:none}
+  .thread{transition:none}
+  .opt,.btn{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="thread" id="thread"></div>
+<main class="stage-wrap" id="wrap">
+
+<!-- STAGE 1 — LANDING (resident_type) — no brand, no name -->
+<section class="step" data-step="s1">
+  <span class="eyebrow">Vadodara · we're listening</span>
+  <div class="gu-title">આવો.</div>
+  <p class="sub">We're listening to how Baroda really finds the people it trusts.</p>
+  <p class="ask">First — is Baroda new to you, or has it always been home?</p>
+  <div class="opts">
+    <button class="opt" data-field="resident_type" data-value="new_to_baroda">New here</button>
+    <button class="opt" data-field="resident_type" data-value="always_home">Born and raised</button>
+    <button class="opt" data-field="resident_type" data-value="returned_nri">Back after years away</button>
+    <button class="opt" data-field="resident_type" data-value="other">Just visiting</button>
+  </div>
+  <p class="micro">No right answer. It just helps us hear you better.</p>
+</section>
+
+<!-- STAGE 2a — last_search_method -->
+<section class="step" data-step="s2a">
+  <span class="eyebrow">Real life</span>
+  <h2 class="title">Let's start with something real.</h2>
+  <p class="sub">The last time you needed someone local — a plumber, a tiffin, a tutor.</p>
+  <p class="ask">What did you actually do?</p>
+  <div class="opts">
+    <button class="opt" data-field="last_search_method" data-value="neighbour_word">Asked a neighbour or friend</button>
+    <button class="opt" data-field="last_search_method" data-value="society_whatsapp">Put it in a society / WhatsApp group</button>
+    <button class="opt" data-field="last_search_method" data-value="google_justdial">Searched Google or JustDial</button>
+    <button class="opt" data-field="last_search_method" data-value="instagram_local">Looked on Instagram</button>
+    <button class="opt" data-field="last_search_method" data-value="known_contact">Already had my person</button>
+    <button class="opt" data-field="last_search_method" data-value="other">Something else</button>
+  </div>
+  <p class="micro">Whatever you really did — no judgement.</p>
+</section>
+
+<!-- STAGE 2b — last_search_outcome -->
+<section class="step" data-step="s2b">
+  <span class="eyebrow">Real life</span>
+  <h2 class="title">And how did it go?</h2>
+  <p class="ask">How did it turn out?</p>
+  <div class="opts">
+    <button class="opt" data-field="last_search_outcome" data-value="smooth">Smooth, no fuss</button>
+    <button class="opt" data-field="last_search_outcome" data-value="minor_hassle">Bit of a hassle</button>
+    <button class="opt" data-field="last_search_outcome" data-value="let_down">Got let down</button>
+    <button class="opt" data-field="last_search_outcome" data-value="gave_up">Gave up on it</button>
+  </div>
+  <p class="micro">We've all had all four.</p>
+</section>
+
+<!-- STAGE 3a — trust_signal_choice (blind, pre-reveal) -->
+<section class="step" data-step="s3a">
+  <span class="eyebrow">Same person · four ways</span>
+  <h2 class="title">Who would you actually call?</h2>
+  <p class="ask">Which one makes you pick up the phone?</p>
+  <div class="opts">
+    <button class="opt" data-field="trust_signal_choice" data-value="named_specific"><span>Meena from Akota: <span class="q">“He fixed my AC in an hour, fair price.”</span></span></button>
+    <button class="opt" data-field="trust_signal_choice" data-value="star_average">4.6 ★ · 212 ratings</button>
+    <button class="opt" data-field="trust_signal_choice" data-value="official_badge">✓ Verified</button>
+    <button class="opt" data-field="trust_signal_choice" data-value="bare_info">Just the name and number</button>
+  </div>
+  <p class="micro">Go with your gut.</p>
+</section>
+
+<!-- STAGE 3b — blemish_choice -->
+<section class="step" data-step="s3b">
+  <span class="eyebrow">One more, honestly</span>
+  <h2 class="title">Two listings. Same work, same area.</h2>
+  <p class="ask">Which would you trust enough to call?</p>
+  <div class="opts">
+    <button class="opt" data-field="blemish_choice" data-value="honest_unverified"><span class="q">“Added by a neighbour — we haven't checked them yet.”</span></button>
+    <button class="opt" data-field="blemish_choice" data-value="asserted_trust"><span class="q">“Trusted ✓”</span></button>
+    <button class="opt" data-field="blemish_choice" data-value="no_difference">Makes no difference to me</button>
+  </div>
+  <p class="micro">There's no catch here.</p>
+</section>
+
+<!-- STAGE 4 — contribution (the gift, optional) -->
+<section class="step" data-step="s4">
+  <span class="eyebrow">The one you'd vouch for</span>
+  <div class="gu-title">તમારું વડોદરા.</div>
+  <p class="sub">Everyone in Baroda has one — the tiffin that tastes like home, the electrician who actually turns up.</p>
+  <p class="ask">Tell us about someone you'd vouch for. Or the one that let you down.</p>
+  <textarea class="field" id="contribField" rows="3" placeholder="A name, an area, why you'd tell a friend…"></textarea>
+  <div class="row">
+    <button class="btn" id="contribNext">Share it</button>
+    <button class="ghost" data-skip="s4">Rather not — keep going</button>
+  </div>
+  <p class="micro">Whatever you share helps the next person find them.</p>
+</section>
+
+<!-- STAGE 5 — REVEAL (brand appears for the first time) -->
+<section class="step" data-step="s5reveal">
+  <div class="mk"><span class="hae">ae</span>halo<span class="end"><span class="dot"></span></span></div>
+  <h2 class="title">So — this is <span class="em">Halo</span>.</h2>
+  <p class="sub">Baroda's always trusted its own, neighbour to neighbour. We're just putting that in one place.</p>
+  <div class="row"><button class="btn" data-next>Go on</button></div>
+</section>
+
+<!-- STAGE 5a — reveal_resonance -->
+<section class="step" data-step="s5a">
+  <span class="eyebrow">ae halo</span>
+  <p class="ask">Which feels more like something you'd want in on?</p>
+  <div class="opts">
+    <button class="opt" data-field="reveal_resonance" data-value="lineage_pulls">Carrying on what Baroda already does — trusting our own.</button>
+    <button class="opt" data-field="reveal_resonance" data-value="plain_pulls">Just a cleaner way to find local people you trust.</button>
+    <button class="opt" data-field="reveal_resonance" data-value="neither">Neither, really</button>
+  </div>
+  <p class="micro">Gut feeling.</p>
+</section>
+
+<!-- STAGE 5b — reveal_alienation (optional) -->
+<section class="step" data-step="s5b">
+  <span class="eyebrow">ae halo</span>
+  <p class="ask">And honestly — how did that land?</p>
+  <div class="opts">
+    <button class="opt" data-field="reveal_alienation" data-value="this_is_for_me">This is for me</button>
+    <button class="opt" data-field="reveal_alienation" data-value="a_bit_much">A bit much</button>
+    <button class="opt" data-field="reveal_alienation" data-value="not_for_me">Not really for me</button>
+    <button class="opt" data-field="reveal_alienation" data-value="neutral">No strong feeling</button>
+  </div>
+  <div class="row"><button class="ghost" data-skip="s5b">Skip</button></div>
+  <p class="micro">Say it straight — that's the helpful part.</p>
+</section>
+
+<!-- STAGE 6 — WAITLIST -->
+<section class="step" data-step="s6">
+  <div class="gu-title">એ હાલો.</div>
+  <p class="sub">Halo's being built slowly, by Barodians. Want to be one of the first in?</p>
+  <p class="ask">Leave a number or email and we'll tell you the moment it opens.</p>
+  <input class="field" id="contactField" type="text" inputmode="email" autocomplete="off" placeholder="WhatsApp number or email">
+  <label class="consent"><input type="checkbox" id="consentBox"><span>Okay to keep this, only to tell you when Halo opens.</span></label>
+  <p class="err" id="contactErr"></p>
+  <div class="row">
+    <button class="btn" id="joinBtn">Count me in</button>
+    <button class="ghost" id="notNow">Not now</button>
+  </div>
+  <p class="micro">We won't spam you. We won't share your number. <span class="gu">આભાર.</span></p>
+</section>
+
+<!-- END -->
+<section class="step end-card" data-step="end">
+  <div class="gu-title" id="endGu">એ હાલો.</div>
+  <h2 class="title" id="endTitle">You're in. You helped start this.</h2>
+  <p class="sub" id="endSub">We'll tell you the moment Halo opens. — ae halo</p>
+</section>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var ORDER = ["s1","s2a","s2b","s3a","s3b","s4","s5reveal","s5a","s5b","s6"];
+  var steps = {};
+  document.querySelectorAll(".step").forEach(function(el){ steps[el.getAttribute("data-step")] = el; });
+
+  // anonymous research row + separate (PII) contact, per the instrumentation spec
+  var sid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : "s"+Date.now()+Math.random().toString(36).slice(2);
+  var research = { session_id: sid, started_at: new Date().toISOString() };
+  var contact = null; // PII — kept separate, only on consented join
+
+  var idx = -1;
+  var thread = document.getElementById("thread");
+
+  function show(stepKey){
+    Object.keys(steps).forEach(function(k){ steps[k].classList.remove("on"); });
+    var el = steps[stepKey]; el.classList.add("on");
+    var pos = ORDER.indexOf(stepKey);
+    research.stage_reached = stepKey;
+    if (pos >= 0){ thread.style.width = ((pos+1)/ORDER.length*100) + "%"; }
+    else { thread.style.width = "100%"; }
+    window.scrollTo(0,0);
+    var f = el.querySelector("button,textarea,input"); if(f){ try{ f.focus({preventScroll:true}); }catch(e){} }
+  }
+  function advance(){ idx++; if(idx >= ORDER.length){ finish(false); return; } show(ORDER[idx]); }
+  function goto(stepKey){ idx = ORDER.indexOf(stepKey); show(stepKey); }
+
+  // option selection (single-tap → store → advance)
+  document.querySelectorAll(".opt").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var field = btn.getAttribute("data-field"), val = btn.getAttribute("data-value");
+      research[field] = val;
+      var sibs = btn.parentElement.querySelectorAll(".opt");
+      sibs.forEach(function(s){ s.classList.remove("sel"); });
+      btn.classList.add("sel");
+      setTimeout(advance, 230);
+    });
+  });
+
+  // plain "next" (reveal continue)
+  document.querySelectorAll("[data-next]").forEach(function(b){ b.addEventListener("click", advance); });
+
+  // skips (optional stages)
+  document.querySelectorAll("[data-skip]").forEach(function(b){ b.addEventListener("click", advance); });
+
+  // Stage 4 — contribution (optional, steered away from phone numbers)
+  document.getElementById("contribNext").addEventListener("click", function(){
+    var t = document.getElementById("contribField").value.trim();
+    research.contribution_text = t;            // NOTE: scrub for third-party PII before any sync
+    research.did_contribute = t.length > 0;
+    advance();
+  });
+
+  // Stage 6 — join
+  var contactErr = document.getElementById("contactErr");
+  document.getElementById("joinBtn").addEventListener("click", function(){
+    var v = document.getElementById("contactField").value.trim();
+    var ok = document.getElementById("consentBox").checked;
+    var looksEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+    var looksPhone = /^[+]?[\d\s-]{7,}$/.test(v);
+    if(!v || (!looksEmail && !looksPhone)){ contactErr.textContent = "Hmm, that doesn't look right — mind checking?"; return; }
+    if(!ok){ contactErr.textContent = "Just tick the box so we can keep it."; return; }
+    contactErr.textContent = "";
+    research.waitlist_join = true;
+    contact = { session_id: sid, value: v, consent: true, at: new Date().toISOString() }; // separate store
+    finish(true);
+  });
+  document.getElementById("notNow").addEventListener("click", function(){
+    research.waitlist_join = false;
+    finish(false);
+  });
+
+  function finish(joined){
+    research.finished_at = new Date().toISOString();
+    if(!joined){
+      document.getElementById("endGu").textContent = "એ હાલો.";
+      document.getElementById("endTitle").textContent = "Thank you for being heard.";
+      document.getElementById("endSub").textContent = "That's how Baroda looks out for Baroda. — ae halo";
+    }
+    show("end");
+    // ---- Persistence happens here, later ----
+    // Research row (anonymous) → Airtable/Supabase research table:
+    //   POST research  (no PII; contribution_text must be scrubbed first)
+    // Contact (PII) → separate, access-controlled table, linked only by session_id if consent allows:
+    //   if (contact) POST contact
+    try{ console.log("[research]", research); if(contact) console.log("[contact:separate]", contact); }catch(e){}
+  }
+
+  advance(); // begin at Stage 1
+})();
+</script>
+</body>
+</html>
