@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Baroda's own</title>
+<meta name="description" content="The people Baroda already trusts — passed neighbour to neighbour.">
+<meta name="theme-color" content="#F8F2E7">
+<!--
+  conversation_final.html — Halo's conversation experience.
+  CREATIVE DIRECTION: hyperlocal Vadodara through living behaviour, not monuments.
+    The signature element is THE THREAD — the line of word-of-mouth the city runs on.
+    No skyline, no glow, no luxury warmth, no Awwwards gimmicks. Restraint + meaning.
+  RESEARCH INTEGRITY: firewall intact (name 'Halo' withheld until Stage 5); trust
+    stimuli (Stage 3) verbatim and neutral; all data fields/values preserved.
+  GUJARATI: every Gujarati line is [GU REVIEW] — verify with a native Barodian
+    before launch (see docs/GUJARATI_REVIEW_CHECKLIST.md). One wrong matra breaks trust.
+
+  ===== DATA MODEL (for later Airtable / Supabase) =====
+  research  (anonymous, no PII):
+    session_id, started_at, finished_at, lang, stage_reached,
+    resident_type, last_search_method, last_search_outcome,
+    trust_signal_choice, blemish_choice,
+    did_contribute, contribution_text (scrub third-party PII before sync),
+    reveal_resonance, reveal_alienation, waitlist_join
+  contact  (PII, SEPARATE table, access-controlled, consent-gated):
+    session_id, value (whatsapp/email), consent, at
+  persistence(): POST research -> research table; if contact, POST contact -> PII table.
+    Stubbed below (console only). No network call, no third-party, until a real
+    endpoint + DPDP review exist.
+  cookies: halo_lang (365d, remember language), halo_sid (session continuity),
+    halo_consent (set only on a consented join). No analytics/tracking cookies.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Cormorant+Garamond:wght@500;600&family=Caveat:wght@600;700&family=Noto+Serif+Gujarati:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F8F2E7; --paper-deep:#EBE0CD;
+  --ink:#2A1E11; --ink-soft:#6E5A40;
+  --maroon:#7A2E22; --terra:#C2531F; --gold:#BE9A4E; --sand:#CBB488;
+  --line:#E3D7BF;
+  --serif:"Fraunces",Georgia,serif; --caps:"Cormorant Garamond",Georgia,serif;
+  --script:"Caveat",cursive; --gu:"Noto Serif Gujarati",serif;
+  --expo:cubic-bezier(.16,1,.3,1); --spring:cubic-bezier(.34,1.4,.5,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--serif); color:var(--ink); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  background:radial-gradient(125% 115% at 50% 14%, #FFFCF6 0%, var(--paper) 50%, var(--paper-deep) 100%);
+  min-height:100dvh; display:flex; flex-direction:column; align-items:center;
+  padding:0 22px; position:relative; overflow-x:hidden;
+}
+/* warm paper grain — texture, not decoration */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.03;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- THE THREAD: word-of-mouth, made into the spine ---------- */
+.thread{position:fixed;top:0;left:0;right:0;height:14px;z-index:62;pointer-events:none}
+.thread-track{position:absolute;top:0;left:0;right:0;height:2.5px;background:rgba(122,46,34,.10)}
+.thread-fill{position:absolute;top:0;left:0;height:2.5px;background:var(--terra);width:0;transition:width .75s var(--expo)}
+.thread-head{position:absolute;top:1.25px;left:0;width:7px;height:7px;border-radius:50%;background:var(--terra);
+  transform:translate(-50%,-50%);box-shadow:0 0 0 4px rgba(194,83,31,.14);transition:left .75s var(--expo);opacity:0}
+.thread-head.live{opacity:1}
+
+.stage-wrap{position:relative;z-index:10;width:100%;max-width:640px;margin:auto;
+  display:flex;flex-direction:column;justify-content:center;min-height:100dvh;
+  padding:64px 0 96px}
+
+.step{display:none}
+.step.on{display:block;animation:rise .8s var(--expo) both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes lineRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* options arrive one by one — like names set down on the table */
+.step.on .opt{animation:lineRise .5s var(--expo) backwards}
+.step.on .opt:nth-child(1){animation-delay:.16s}
+.step.on .opt:nth-child(2){animation-delay:.21s}
+.step.on .opt:nth-child(3){animation-delay:.26s}
+.step.on .opt:nth-child(4){animation-delay:.31s}
+.step.on .opt:nth-child(5){animation-delay:.36s}
+.step.on .opt:nth-child(6){animation-delay:.41s}
+.opts.picked .opt:not(.sel){opacity:.45}
+
+/* breathing type: generous rhythm, calm line-height, editorial scale */
+.eyebrow{font-family:var(--caps);text-transform:uppercase;letter-spacing:.3em;font-size:13px;font-weight:600;color:var(--maroon);margin-bottom:18px;display:block}
+.eyebrow:empty{display:none}
+.gu-title{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(34px,9.5vw,56px);line-height:1.14;margin-bottom:14px}
+.title{font-family:var(--serif);font-weight:470;letter-spacing:-.018em;font-size:clamp(27px,6.2vw,44px);line-height:1.22;color:var(--ink);margin-bottom:14px}
+.title .em{color:var(--terra);font-style:italic;font-weight:500}
+.sub{font-family:var(--serif);font-size:clamp(16px,4vw,19px);line-height:1.62;color:var(--ink-soft);margin-bottom:8px;max-width:34ch}
+.ask{font-family:var(--serif);font-weight:520;font-size:clamp(20px,4.8vw,25px);line-height:1.4;color:var(--ink);margin:34px 0 22px}
+.title,.ask,.gu-title{text-wrap:balance}
+.sub,.micro{text-wrap:pretty}
+
+.opts{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+.opt{font-family:var(--serif);font-size:clamp(16px,4.1vw,18.5px);line-height:1.5;text-align:left;color:var(--ink);
+  background:#FFFDF8;border:1px solid var(--line);border-radius:16px;padding:18px 20px;cursor:pointer;width:100%;
+  box-shadow:0 10px 24px -22px rgba(58,40,20,.55);
+  transition:transform .14s var(--spring),border-color .2s var(--expo),background .2s var(--expo),box-shadow .2s var(--expo),opacity .25s var(--expo);
+  -webkit-tap-highlight-color:transparent;display:flex;align-items:center;gap:12px}
+.opt:active{transform:scale(.985)}
+.opt:focus-visible{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.4)}
+.opt.sel{border-color:var(--terra);background:#FBF1E6;box-shadow:0 12px 26px -18px rgba(122,46,34,.55)}
+.opt .q{color:var(--ink-soft);font-style:italic}
+
+.field{width:100%;font-family:var(--serif);font-size:17px;color:var(--ink);background:#FFFDF8;border:1px solid var(--line);
+  border-radius:16px;padding:16px 18px;line-height:1.55;resize:none}
+.field::placeholder{color:#8F7B57}
+.field:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.32)}
+
+.row{display:flex;gap:14px;align-items:center;margin-top:24px;flex-wrap:wrap}
+.btn{font-family:var(--serif);font-weight:540;font-size:17px;color:var(--paper);background:var(--terra);border:0;
+  border-radius:999px;padding:14px 30px;cursor:pointer;transition:transform .12s var(--spring),filter .2s;-webkit-tap-highlight-color:transparent}
+.btn:active{transform:scale(.96)}
+.btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(190,154,78,.45)}
+.ghost{background:none;border:0;color:var(--ink-soft);font-family:var(--serif);font-size:15.5px;cursor:pointer;padding:14px 8px;text-decoration:underline;text-underline-offset:3px;-webkit-tap-highlight-color:transparent}
+.ghost:focus-visible{outline:none;color:var(--maroon)}
+
+.micro{font-family:var(--serif);font-size:14.5px;color:var(--ink-soft);margin-top:22px;line-height:1.5}
+.err{color:var(--maroon);font-size:14.5px;margin-top:12px;min-height:1.1em}
+
+.consent{display:flex;gap:12px;align-items:flex-start;margin-top:18px;cursor:pointer}
+.consent input{margin-top:3px;width:19px;height:19px;accent-color:var(--terra);flex:0 0 auto}
+.consent span{font-size:15px;color:var(--ink-soft);line-height:1.5}
+
+/* contribution acknowledgement — the gift visibly lands (IKEA effect / journey rule) */
+.ack{display:none;animation:rise .6s var(--expo) both}
+.ack.show{display:block}
+.ack .node{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--terra);margin-right:10px;
+  box-shadow:0 0 0 5px rgba(194,83,31,.14);vertical-align:middle}
+
+/* canonical wordmark — ae halo! */
+.mk{font-family:var(--serif);font-weight:470;font-size:clamp(48px,12vw,90px);letter-spacing:-.04em;color:var(--ink);position:relative;display:inline-block;margin-bottom:20px}
+.mk .hae{position:absolute;left:-.04em;top:-.34em;font-family:var(--script);font-size:.42em;line-height:1;color:var(--terra);transform:rotate(-9deg)}
+.mk .end{position:relative;display:inline-block;width:.34em;height:1em;vertical-align:baseline}
+.mk .bang{position:absolute;left:50%;bottom:.30em;width:.09em;height:.42em;border-radius:.05em;background:var(--terra);transform:translateX(-50%)}
+.mk .dot{position:absolute;left:50%;bottom:.07em;width:.16em;height:.16em;border-radius:50%;background:var(--terra);transform:translateX(-50%)}
+
+/* doorway */
+.door .soul{font-family:var(--serif);font-size:clamp(18px,4.4vw,22px);color:var(--ink-soft);line-height:1.45;margin-bottom:4px}
+.door .soul-gu{font-family:var(--gu);font-size:clamp(16px,4vw,19px);color:var(--terra);margin-bottom:30px}
+.lang-choice{display:flex;gap:14px;flex-wrap:wrap}
+.langbtn{font-family:var(--serif);font-size:18px;font-weight:520;color:var(--ink);background:#FFFDF8;border:1px solid var(--sand);
+  border-radius:999px;padding:15px 32px;cursor:pointer;transition:transform .12s var(--spring),border-color .2s,background .2s;
+  box-shadow:0 10px 24px -22px rgba(58,40,20,.55);-webkit-tap-highlight-color:transparent}
+.langbtn.gu{font-family:var(--gu);font-weight:600}
+.langbtn:active{transform:scale(.96)}
+.langbtn:focus-visible{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.4)}
+.cookie-note{font-family:var(--serif);font-size:13px;color:var(--ink-soft);margin-top:28px;opacity:.85;line-height:1.5}
+
+/* reveal: recognition, nothing explained */
+.reveal{text-align:center}
+.reveal .mk{margin-bottom:14px}
+.reveal .title{font-size:clamp(22px,5.4vw,33px);color:var(--ink-soft);font-weight:460}
+.reveal .row{justify-content:center}
+@keyframes mkRise{from{opacity:0;transform:translateY(14px);filter:blur(8px)}to{opacity:1;transform:none;filter:none}}
+.reveal.on .mk{animation:mkRise 1.05s var(--expo) .15s backwards}
+.reveal.on .title{animation:lineRise .8s var(--expo) .62s backwards}
+.reveal.on .row{animation:lineRise .8s var(--expo) 1.02s backwards}
+
+/* end: you are now in the thread — the payoff, no monument, no glow */
+.end-card{text-align:center}
+.end-card .gu-title{margin-bottom:16px}
+.you-thread{display:flex;align-items:center;justify-content:center;gap:0;margin:0 auto 26px;max-width:240px}
+.you-thread .seg{height:1.5px;flex:1;background:var(--sand);opacity:.7}
+.you-thread .dot{width:8px;height:8px;border-radius:50%;background:var(--sand);flex:0 0 auto}
+.you-thread .dot.you{width:13px;height:13px;background:var(--terra);box-shadow:0 0 0 5px rgba(194,83,31,.16)}
+.end-card.on .you-thread{animation:lineRise .8s var(--expo) .05s backwards}
+.end-card.on .you-thread .dot.you{animation:youPulse 1.4s var(--expo) .9s backwards}
+@keyframes youPulse{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}}
+.end-card.on .gu-title{animation:lineRise .8s var(--expo) .3s backwards}
+.end-card.on .title{animation:lineRise .8s var(--expo) .55s backwards}
+.end-card.on .sub{animation:lineRise .8s var(--expo) .8s backwards}
+.end-card.on .share-line{animation:lineRise .8s var(--expo) 1.1s backwards}
+.end-card.on .share-btn{animation:lineRise .8s var(--expo) 1.25s backwards}
+.share-line{font-family:var(--serif);font-size:15.5px;color:var(--ink-soft);line-height:1.55;margin-top:26px}
+.share-btn{margin-top:14px;display:inline-flex;align-items:center;gap:9px;font-family:var(--serif);font-weight:520;font-size:16px;
+  color:var(--maroon);background:#FFFDF8;border:1px solid var(--sand);border-radius:999px;padding:12px 24px;cursor:pointer;
+  transition:transform .12s var(--spring),border-color .2s;-webkit-tap-highlight-color:transparent}
+.share-btn[hidden]{display:none}
+.share-btn:active{transform:scale(.96)}
+.share-btn:focus-visible{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.4)}
+.share-btn #shareLabel{transition:opacity .15s ease}
+
+/* discreet, persistent language switch — bottom centre */
+.switch-min{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:61;
+  font-family:var(--gu);font-size:14px;font-weight:600;color:var(--ink-soft);background:rgba(255,253,248,.8);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:999px;
+  padding:8px 16px;cursor:pointer;opacity:.72;transition:opacity .2s,transform .12s var(--spring),border-color .2s;-webkit-tap-highlight-color:transparent}
+.switch-min:focus-visible{opacity:1;outline:none;border-color:var(--sand)}
+.switch-min:active{transform:translateX(-50%) scale(.95)}
+.switch-min[hidden]{display:none}
+
+/* cinematic prelude — behaviour, on paper, no glow, no monument */
+#prelude{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;cursor:pointer;
+  background:radial-gradient(120% 100% at 50% 30%, #FFFCF6 0%, var(--paper) 55%, var(--paper-deep) 100%)}
+#prelude[hidden]{display:none}
+.beat{position:absolute;max-width:600px;padding:0 24px;opacity:0;transform:translateY(16px);
+  font-family:var(--serif);font-weight:460;letter-spacing:-.012em;font-size:clamp(25px,6.2vw,40px);line-height:1.34;color:var(--ink)}
+.beat.soul{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(42px,12vw,78px);line-height:1.15}
+.beat.show{animation:beatIn 2.4s var(--expo) both}
+@keyframes beatIn{0%{opacity:0;transform:translateY(18px)}20%,70%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-14px)}}
+.beat.soul.show{animation:soulIn 2.8s var(--expo) both}
+@keyframes soulIn{0%{opacity:0;transform:translateY(20px)}24%,100%{opacity:1;transform:none}}
+/* the thread, drawing itself downward as the city passes a name along */
+.pre-thread{position:absolute;top:18%;left:50%;width:1.5px;height:30%;transform:translateX(-50%);
+  background:linear-gradient(to bottom,transparent,var(--terra));transform-origin:top;animation:threadDraw 6.5s var(--expo) both;opacity:.5}
+@keyframes threadDraw{0%{transform:translateX(-50%) scaleY(0)}40%,100%{transform:translateX(-50%) scaleY(1)}}
+.prelude-skip{position:fixed;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:41;
+  font-family:var(--serif);font-size:14px;color:var(--ink-soft);background:none;border:0;cursor:pointer;opacity:.55;
+  padding:10px 16px;text-decoration:underline;text-underline-offset:3px;-webkit-tap-highlight-color:transparent}
+.prelude-skip:hover,.prelude-skip:focus-visible{opacity:1;outline:none;color:var(--maroon)}
+.prelude-skip[hidden]{display:none}
+
+/* ---------- Gujarati mode ---------- */
+body.gu .eyebrow{font-family:var(--gu);text-transform:none;letter-spacing:.02em;font-size:13.5px}
+body.gu .title{font-family:var(--gu);font-weight:600;font-size:clamp(24px,5.6vw,35px);line-height:1.45}
+body.gu .ask{font-family:var(--gu);font-weight:600;font-size:clamp(19px,4.5vw,23px);line-height:1.55}
+body.gu .sub{font-family:var(--gu);line-height:1.7;font-size:clamp(16px,3.9vw,18px)}
+body.gu .opt{font-family:var(--gu);line-height:1.65;font-size:clamp(16px,4vw,17.5px)}
+body.gu .opt .q{font-style:normal;color:var(--ink-soft)}
+body.gu .micro,body.gu .err,body.gu .consent span,body.gu .field,body.gu .share-line,body.gu .share-btn,body.gu .ack{font-family:var(--gu)}
+body.gu .btn,body.gu .ghost{font-family:var(--gu)}
+body.gu .field{font-size:16px}
+.gu-title{font-family:var(--gu)!important}
+.mk,.mk *{font-family:var(--serif)}
+.mk .hae{font-family:var(--script)}
+
+/* ---------- web / desktop: keep the editorial column, give it air ---------- */
+@media (min-width:768px){
+  .stage-wrap{padding:80px 0 104px;min-height:100dvh}
+  .opts{gap:14px}
+  .opt{padding:20px 24px}
+  .sub{max-width:38ch}
+}
+@media (min-width:1100px){
+  .stage-wrap{max-width:680px}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .step.on,.step.on .opt,.reveal.on .mk,.reveal.on .title,.reveal.on .row,
+  .end-card.on .gu-title,.end-card.on .title,.end-card.on .sub,.end-card.on .share-line,.end-card.on .share-btn,
+  .end-card.on .you-thread,.end-card.on .you-thread .dot.you,.ack,.pre-thread{animation:none}
+  .thread-fill,.thread-head,.opt,.btn,.langbtn,.share-btn,.switch-min{transition:none}
+}
+/* hover only where a real pointer exists — no sticky tap-hover on phones */
+@media (hover:hover) and (pointer:fine){
+  .opt:hover{border-color:var(--sand)}
+  .langbtn:hover{border-color:var(--terra)}
+  .share-btn:hover{border-color:var(--terra)}
+  .switch-min:hover{opacity:1;border-color:var(--sand)}
+}
+</style>
+</head>
+<body>
+<div class="thread" aria-hidden="true">
+  <div class="thread-track"></div>
+  <div class="thread-fill" id="threadFill"></div>
+  <div class="thread-head" id="threadHead"></div>
+</div>
+
+<!-- CINEMATIC PRELUDE — how Vadodara actually finds people; mood, no brand name -->
+<section id="prelude" aria-label="Welcome">
+  <span class="pre-thread"></span>
+  <p class="beat" data-beat="0">The right tiffin. The plumber who picks up. The tutor before exams.</p>
+  <p class="beat" data-beat="1">Someone always knew someone.</p>
+  <p class="beat soul" data-beat="2">આપણી માટીનું.</p>
+</section>
+<button class="prelude-skip" id="preludeSkip">Skip</button>
+
+<main class="stage-wrap" id="wrap">
+
+<!-- DOORWAY — warm welcome + language choice -->
+<section class="step" data-step="door" tabindex="-1">
+  <div class="gu-title">આવો.</div>
+  <p class="soul">Come in — this one's Vadodara's own.</p>
+  <p class="soul-gu">વડોદરાનું પોતાનું.</p>
+  <div class="lang-choice">
+    <button class="langbtn" data-choose="en">English</button>
+    <button class="langbtn gu" data-choose="gu">ગુજરાતી</button>
+  </div>
+  <p class="cookie-note">We keep one small cookie — just your language. No tracking, no ads.</p>
+</section>
+
+<!-- STAGE 1 — LANDING (resident_type) — recognition, not a request -->
+<section class="step" data-step="s1" tabindex="-1">
+  <span class="eyebrow" data-en="how Baroda really works" data-gu="વડોદરા ખરેખર આમ ચાલે છે">how Baroda really works</span>
+  <h2 class="title" data-en="The right person was never on a list. Someone you trusted just knew them." data-gu="સાચો માણસ ક્યારેય લિસ્ટમાં નહોતો મળતો — તમારા ભરોસાના કોઈકને એની ખબર હોય, બસ.">The right person was never on a list. Someone you trusted just knew them.</h2>
+  <p class="ask" data-en="So first — is Baroda new to you, or has it always been home?" data-gu="તો પહેલાં — વડોદરા તમારા માટે નવું છે, કે હંમેશાંથી ઘર રહ્યું છે?">So first — is Baroda new to you, or has it always been home?</p>
+  <div class="opts" role="group" aria-label="Choose one">
+    <button class="opt" data-field="resident_type" data-value="new_to_baroda" data-en="New here — MSU, work, or just moved" data-gu="અહીં નવાં — MSU, નોકરી, કે હમણાં જ આવ્યાં">New here — MSU, work, or just moved</button>
+    <button class="opt" data-field="resident_type" data-value="always_home" data-en="Born and raised" data-gu="જનમ-ઉછેર અહીંનો જ">Born and raised</button>
+    <button class="opt" data-field="resident_type" data-value="returned_nri" data-en="Back after years away" data-gu="વર્ષો પછી પાછાં ફર્યાં">Back after years away</button>
+    <button class="opt" data-field="resident_type" data-value="other" data-en="Just visiting" data-gu="બસ ફરવા આવ્યાં">Just visiting</button>
+  </div>
+  <p class="micro" data-en="No right answer — just so we know who we're talking to." data-gu="કોઈ સાચો-ખોટો જવાબ નથી — બસ અમે જાણીએ કે કોની સાથે વાત કરીએ છીએ.">No right answer — just so we know who we're talking to.</p>
+</section>
+
+<!-- STAGE 2a — last_search_method (research — values unchanged) -->
+<section class="step" data-step="s2a" tabindex="-1">
+  <span class="eyebrow" data-en="Real life" data-gu="સાચી વાત">Real life</span>
+  <h2 class="title" data-en="Let's start with something real." data-gu="ચાલો, કંઈક સાચી વાતથી શરૂ કરીએ.">Let's start with something real.</h2>
+  <p class="sub" data-en="The last time you needed someone — the plumber, the tiffin, the maths tutor before exams." data-gu="છેલ્લે જ્યારે કોઈની જરૂર પડી — પ્લમ્બર, ટિફિન, કે પરીક્ષા પહેલાંના ગણિતના ટ્યુશનવાળા.">The last time you needed someone — the plumber, the tiffin, the maths tutor before exams.</p>
+  <p class="ask" data-en="What did you actually do?" data-gu="તમે ખરેખર શું કર્યું?">What did you actually do?</p>
+  <div class="opts" role="group" aria-label="Choose one">
+    <button class="opt" data-field="last_search_method" data-value="neighbour_word" data-en="Asked a neighbour or friend" data-gu="પાડોશી કે મિત્રને પૂછ્યું">Asked a neighbour or friend</button>
+    <button class="opt" data-field="last_search_method" data-value="society_whatsapp" data-en="Put it in the society / WhatsApp group" data-gu="સોસાયટી / વૉટ્સએપ ગ્રૂપમાં પૂછ્યું">Put it in the society / WhatsApp group</button>
+    <button class="opt" data-field="last_search_method" data-value="google_justdial" data-en="Searched Google or JustDial" data-gu="ગૂગલ કે જસ્ટડાયલ પર શોધ્યું">Searched Google or JustDial</button>
+    <button class="opt" data-field="last_search_method" data-value="instagram_local" data-en="Looked on Instagram" data-gu="ઇન્સ્ટાગ્રામ પર જોયું">Looked on Instagram</button>
+    <button class="opt" data-field="last_search_method" data-value="known_contact" data-en="Already had my person" data-gu="મારો માણસ પહેલેથી જ હતો">Already had my person</button>
+    <button class="opt" data-field="last_search_method" data-value="other" data-en="Something else" data-gu="બીજું કંઈક">Something else</button>
+  </div>
+  <p class="micro" data-en="Whatever you really did — no judgement." data-gu="જે ખરેખર કર્યું એ જ કહો — એમાં કશું ખોટું નથી.">Whatever you really did — no judgement.</p>
+</section>
+
+<!-- STAGE 2b — last_search_outcome (research — values unchanged) -->
+<section class="step" data-step="s2b" tabindex="-1">
+  <span class="eyebrow" data-en="Real life" data-gu="સાચી વાત">Real life</span>
+  <h2 class="title" data-en="And how did it go?" data-gu="અને કેવો અનુભવ રહ્યો?">And how did it go?</h2>
+  <div class="opts" role="group" aria-label="Choose one">
+    <button class="opt" data-field="last_search_outcome" data-value="smooth" data-en="Smooth, no fuss" data-gu="સહેલાઈથી, કોઈ લપ નહીં">Smooth, no fuss</button>
+    <button class="opt" data-field="last_search_outcome" data-value="minor_hassle" data-en="Bit of a hassle" data-gu="થોડી માથાકૂટ થઈ">Bit of a hassle</button>
+    <button class="opt" data-field="last_search_outcome" data-value="let_down" data-en="Got let down" data-gu="નિરાશ થયા">Got let down</button>
+    <button class="opt" data-field="last_search_outcome" data-value="gave_up" data-en="Gave up on it" data-gu="છોડી દીધું">Gave up on it</button>
+  </div>
+  <p class="micro" data-en="We've all had all four." data-gu="આ ચારેય અનુભવ આપણને બધાને થયા છે.">We've all had all four.</p>
+</section>
+
+<!-- STAGE 3a — trust_signal_choice (BLIND research stimulus — verbatim, neutral) -->
+<section class="step" data-step="s3a" tabindex="-1">
+  <h2 class="title" data-en="Same person. Shown four ways." data-gu="એક જ માણસ. ચાર રીતે બતાવ્યો.">Same person. Shown four ways.</h2>
+  <p class="ask" data-en="Which one makes you actually pick up the phone?" data-gu="કયો જોઈને તમે ખરેખર ફોન ઉપાડો?">Which one makes you actually pick up the phone?</p>
+  <div class="opts" role="group" aria-label="Choose one">
+    <button class="opt" data-field="trust_signal_choice" data-value="named_specific" data-en="&lt;span&gt;Meena from Akota: &lt;span class=&quot;q&quot;&gt;&ldquo;He fixed my AC in an hour, fair price.&rdquo;&lt;/span&gt;&lt;/span&gt;" data-gu="&lt;span&gt;આકોટાનાં મીના: &lt;span class=&quot;q&quot;&gt;&ldquo;એક કલાકમાં AC ઠીક કરી દીધું, ભાવ પણ વાજબી.&rdquo;&lt;/span&gt;&lt;/span&gt;"><span>Meena from Akota: <span class="q">&ldquo;He fixed my AC in an hour, fair price.&rdquo;</span></span></button>
+    <button class="opt" data-field="trust_signal_choice" data-value="star_average" data-en="4.6 ★ · 212 ratings" data-gu="4.6 ★ · 212 રેટિંગ">4.6 ★ · 212 ratings</button>
+    <button class="opt" data-field="trust_signal_choice" data-value="official_badge" data-en="✓ Verified" data-gu="✓ ચકાસાયેલ">✓ Verified</button>
+    <button class="opt" data-field="trust_signal_choice" data-value="bare_info" data-en="Just the name and number" data-gu="ફક્ત નામ ને નંબર">Just the name and number</button>
+  </div>
+  <p class="micro" data-en="Go with your gut." data-gu="મન કહે એમ જ.">Go with your gut.</p>
+</section>
+
+<!-- STAGE 3b — blemish_choice (BLIND research stimulus — verbatim, neutral) -->
+<section class="step" data-step="s3b" tabindex="-1">
+  <span class="eyebrow" data-en="One more, honestly" data-gu="બસ એક વધુ, સાચું કહેજો">One more, honestly</span>
+  <h2 class="title" data-en="Two listings. Same work, same area." data-gu="બે લિસ્ટિંગ. એક જ કામ, એક જ વિસ્તાર.">Two listings. Same work, same area.</h2>
+  <p class="ask" data-en="Which would you trust enough to call?" data-gu="કોના પર વિશ્વાસ મૂકીને ફોન કરો?">Which would you trust enough to call?</p>
+  <div class="opts" role="group" aria-label="Choose one">
+    <button class="opt" data-field="blemish_choice" data-value="honest_unverified" data-en="&lt;span class=&quot;q&quot;&gt;&ldquo;Added by a neighbour — we haven&rsquo;t checked them yet.&rdquo;&lt;/span&gt;" data-gu="&lt;span class=&quot;q&quot;&gt;&ldquo;એક પાડોશીએ ઉમેર્યું — અમે હજી એમની ખરાઈ નથી કરી.&rdquo;&lt;/span&gt;"><span class="q">&ldquo;Added by a neighbour — we haven&rsquo;t checked them yet.&rdquo;</span></button>
+    <button class="opt" data-field="blemish_choice" data-value="asserted_trust" data-en="&lt;span class=&quot;q&quot;&gt;&ldquo;Trusted ✓&rdquo;&lt;/span&gt;" data-gu="&lt;span class=&quot;q&quot;&gt;&ldquo;વિશ્વાસપાત્ર ✓&rdquo;&lt;/span&gt;"><span class="q">&ldquo;Trusted ✓&rdquo;</span></button>
+    <button class="opt" data-field="blemish_choice" data-value="no_difference" data-en="Makes no difference to me" data-gu="મને કોઈ ફરક નથી પડતો">Makes no difference to me</button>
+  </div>
+  <p class="micro" data-en="There's no catch here." data-gu="અહીં કોઈ છૂપી રમત નથી.">There's no catch here.</p>
+</section>
+
+<!-- STAGE 4 — contribution (the gift, optional) -->
+<section class="step" data-step="s4" tabindex="-1">
+  <span class="eyebrow" data-en="The one you'd vouch for" data-gu="જેની તમે ભલામણ કરો">The one you'd vouch for</span>
+  <div class="gu-title">તમારું વડોદરા.</div>
+  <p class="sub" data-en="Everyone in Baroda has one — the tiffin that tastes like home, the electrician who actually turns up." data-gu="વડોદરામાં દરેક પાસે એક હોય છે — ઘર જેવા સ્વાદનું ટિફિન, કે જે ખરેખર સમયસર આવે એ ઇલેક્ટ્રિશિયન.">Everyone in Baroda has one — the tiffin that tastes like home, the electrician who actually turns up.</p>
+  <p class="ask" data-en="Tell us about someone you'd vouch for. Or the one that let you down." data-gu="કોઈ એક, જેની તમે ભલામણ કરો. અથવા જેણે નિરાશ કર્યા હોય.">Tell us about someone you'd vouch for. Or the one that let you down.</p>
+  <div id="contribForm">
+    <textarea class="field" id="contribField" rows="3" data-en-ph="A name, an area — Akota, Gotri, MSU — and why you'd tell a friend." data-gu-ph="નામ, વિસ્તાર — આકોટા, ગોટ્રી, MSU — ને કેમ મિત્રને કહેશો." placeholder="A name, an area — Akota, Gotri, MSU — and why you'd tell a friend."></textarea>
+    <div class="row">
+      <button class="btn" id="contribNext" data-en="Share it" data-gu="જણાવો">Share it</button>
+      <button class="ghost" data-skip="s4" data-en="Rather not — keep going" data-gu="રહેવા દો — આગળ વધીએ">Rather not — keep going</button>
+    </div>
+    <p class="micro" data-en="Whatever you share helps the next person find them." data-gu="તમે જે કહેશો, એ બીજા કોઈને એમને શોધવામાં મદદ કરશે.">Whatever you share helps the next person find them.</p>
+  </div>
+  <div class="ack" id="contribAck"><p class="ask"><span class="node"></span><span data-en="Added. The city keeps this one." data-gu="ઉમેરાઈ ગયું. આ એક વડોદરા સાચવી લેશે.">Added. The city keeps this one.</span></p></div>
+</section>
+
+<!-- STAGE 5 — REVEAL · recognition (name appears for the first time) -->
+<section class="step reveal" data-step="s5reveal" tabindex="-1">
+  <div class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></div>
+  <h2 class="title" data-en="You already knew the name." data-gu="નામ તો તમને ખબર જ હતી.">You already knew the name.</h2>
+  <div class="row"><button class="btn" data-next data-en="Go on" data-gu="આગળ">Go on</button></div>
+</section>
+
+<!-- STAGE 5a — reveal_resonance (research — values unchanged) -->
+<section class="step" data-step="s5a" tabindex="-1">
+  <span class="eyebrow">ae halo</span>
+  <p class="ask" data-en="Which feels more like something you'd want in on?" data-gu="કયું તમને વધારે પોતાનું લાગે — જેમાં તમે જોડાવા માગો?">Which feels more like something you'd want in on?</p>
+  <div class="opts" role="group" aria-label="Choose one">
+    <button class="opt" data-field="reveal_resonance" data-value="lineage_pulls" data-en="Carrying on what Baroda already does — trusting our own." data-gu="વડોદરા જે પહેલેથી કરે છે એ જ — પોતાનાં માણસો પર વિશ્વાસ.">Carrying on what Baroda already does — trusting our own.</button>
+    <button class="opt" data-field="reveal_resonance" data-value="plain_pulls" data-en="Just a cleaner way to find local people you trust." data-gu="ભરોસાપાત્ર સ્થાનિક માણસોને શોધવાની એક સહેલી રીત.">Just a cleaner way to find local people you trust.</button>
+    <button class="opt" data-field="reveal_resonance" data-value="neither" data-en="Neither, really" data-gu="ખરેખર, કોઈ નહીં">Neither, really</button>
+  </div>
+  <p class="micro" data-en="Gut feeling." data-gu="મન કહે એ.">Gut feeling.</p>
+</section>
+
+<!-- STAGE 5b — reveal_alienation (research — values unchanged) -->
+<section class="step" data-step="s5b" tabindex="-1">
+  <span class="eyebrow">ae halo</span>
+  <p class="ask" data-en="And honestly — how did that land?" data-gu="અને સાચું કહો — એ કેવું લાગ્યું?">And honestly — how did that land?</p>
+  <div class="opts" role="group" aria-label="Choose one">
+    <button class="opt" data-field="reveal_alienation" data-value="this_is_for_me" data-en="This is for me" data-gu="આ મારા માટે જ છે">This is for me</button>
+    <button class="opt" data-field="reveal_alienation" data-value="a_bit_much" data-en="A bit much" data-gu="થોડું વધારે પડતું">A bit much</button>
+    <button class="opt" data-field="reveal_alienation" data-value="not_for_me" data-en="Not really for me" data-gu="મારા માટે નથી, કદાચ">Not really for me</button>
+    <button class="opt" data-field="reveal_alienation" data-value="neutral" data-en="No strong feeling" data-gu="ખાસ કંઈ નહીં">No strong feeling</button>
+  </div>
+  <div class="row"><button class="ghost" data-skip="s5b" data-en="Skip" data-gu="રહેવા દો">Skip</button></div>
+  <p class="micro" data-en="Say it straight — that's the helpful part." data-gu="સીધેસીધું કહો — એ જ સૌથી મદદરૂપ છે.">Say it straight — that's the helpful part.</p>
+</section>
+
+<!-- STAGE 6 — WAITLIST -->
+<section class="step" data-step="s6" tabindex="-1">
+  <div class="gu-title">એ હાલો.</div>
+  <p class="sub" data-en="We're opening Halo slowly, checking things properly. Want to be one of the first in?" data-gu="અમે હાલો ધીમે ધીમે ખોલી રહ્યા છીએ — બધું બરાબર તપાસીને. પહેલા લોકોમાં રહેવું છે?">We're opening Halo slowly, checking things properly. Want to be one of the first in?</p>
+  <p class="ask" data-en="Leave a number or email and we'll tell you the moment it opens." data-gu="નંબર કે ઈમેલ મૂકો, ને જેવું ખૂલે કે તરત જણાવીશું.">Leave a number or email and we'll tell you the moment it opens.</p>
+  <input class="field" id="contactField" type="text" inputmode="email" autocomplete="off" data-en-ph="WhatsApp number or email" data-gu-ph="વૉટ્સએપ નંબર કે ઈમેલ" placeholder="WhatsApp number or email">
+  <label class="consent"><input type="checkbox" id="consentBox"><span data-en="Okay to keep this, only to tell you when Halo opens." data-gu="આ રાખવાની છૂટ — ફક્ત હાલો ખૂલે ત્યારે જણાવવા માટે.">Okay to keep this, only to tell you when Halo opens.</span></label>
+  <p class="err" id="contactErr" role="alert"></p>
+  <div class="row">
+    <button class="btn" id="joinBtn" data-en="Count me in" data-gu="મને પણ જોડો">Count me in</button>
+    <button class="ghost" id="notNow" data-en="Not now" data-gu="અત્યારે નહીં">Not now</button>
+  </div>
+  <p class="micro" data-en="We won't spam you. We won't share your number. આભાર." data-gu="ન સ્પૅમ કરીશું, ન તમારો નંબર કોઈને આપીશું. આભાર.">We won't spam you. We won't share your number. આભાર.</p>
+</section>
+
+<!-- END — you're in the thread now -->
+<section class="step end-card" data-step="end" tabindex="-1">
+  <div class="you-thread" aria-hidden="true"><span class="dot"></span><span class="seg"></span><span class="dot"></span><span class="seg"></span><span class="dot"></span><span class="seg"></span><span class="dot you"></span></div>
+  <div class="gu-title" id="endGu"></div>
+  <h2 class="title" id="endTitle"></h2>
+  <p class="sub" id="endSub" style="margin-left:auto;margin-right:auto"></p>
+  <p class="share-line" id="shareLine" hidden></p>
+  <button class="share-btn" id="shareBtn" hidden>
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+    <span id="shareLabel"></span>
+  </button>
+</section>
+
+</main>
+
+<button class="switch-min" id="switchMin" hidden aria-label="Switch language"><span id="switchLabel">ગુજરાતી</span></button>
+
+<script>
+(function(){
+  "use strict";
+  var ORDER = ["s1","s2a","s2b","s3a","s3b","s4","s5reveal","s5a","s5b","s6"];
+  var steps = {};
+  document.querySelectorAll(".step").forEach(function(el){ steps[el.getAttribute("data-step")] = el; });
+
+  /* ---------- cookies (language + consent only; no tracking) ---------- */
+  function setCookie(n,v,days){ try{ var d=new Date(); d.setTime(d.getTime()+days*864e5);
+    document.cookie=n+"="+encodeURIComponent(v)+";expires="+d.toUTCString()+";path=/;SameSite=Lax"; }catch(e){} }
+  function getCookie(n){ try{ var m=document.cookie.match("(?:^|; )"+n+"=([^;]*)"); return m?decodeURIComponent(m[1]):null; }catch(e){ return null; } }
+
+  /* ---------- i18n ---------- */
+  var LANG = "en";
+  var STR = {
+    endJoinGu:{en:"આપણું.", gu:"આપણું."},
+    endJoinTitle:{en:"You're in the thread now.", gu:"હવે તમે પણ આ સાંકળમાં છો."},
+    endJoinSub:{en:"When Halo opens, it won't feel new — you're already part of how the city finds its own.", gu:"હાલો ખૂલશે ત્યારે નવું નહીં લાગે — વડોદરા જેમ પોતાનાંને શોધે છે, એમાં તમે પહેલેથી જ છો."},
+    shareLine:{en:"Know a Barodian who'd want this too? Send it their way.", gu:"કોઈ વડોદરાવાસી જેને આ ગમશે? એને મોકલી દો."},
+    shareLabel:{en:"Share with a friend", gu:"મિત્રને મોકલો"},
+    shareCopied:{en:"Copied — go on, send it", gu:"કૉપિ થયું — મોકલી દો"},
+    shareText:{en:"Vadodara's getting its own — the people we actually trust, passed neighbour to neighbour. ae halo.", gu:"વડોદરાનું પોતાનું બની રહ્યું છે — જેના પર આપણે ભરોસો કરીએ, એ બધાં એક ઠેકાણે. ae halo."},
+    endLeftGu:{en:"આભાર.", gu:"આભાર."},
+    endLeftTitle:{en:"That's all we wanted &mdash; to ask properly.", gu:"બસ એટલું જ — સાચી રીતે પૂછવું હતું."},
+    endLeftSub:{en:"That's how Baroda looks out for Baroda. The door stays open.", gu:"વડોદરા આમ જ વડોદરાનું ધ્યાન રાખે છે. દરવાજો ખુલ્લો જ છે."},
+    errInvalid:{en:"Hmm, that doesn't look right — mind checking?", gu:"અરે, કંઈક બરાબર નથી લાગતું — જરા તપાસશો?"},
+    errConsent:{en:"Just tick the box so we can keep it.", gu:"બસ બોક્સ પર ✓ કરો, જેથી અમે રાખી શકીએ."}
+  };
+  var endState = null;
+
+  function decode(s){ var t=document.createElement("textarea"); t.innerHTML=s; return t.value; }
+  function refreshDynamic(){ if(endState) renderEnd(); }
+
+  function applyLang(l){
+    LANG = l;
+    document.querySelectorAll("[data-en]").forEach(function(el){
+      var v = el.getAttribute(l==="gu" ? "data-gu" : "data-en"); if(v!==null) el.innerHTML = decode(v);
+    });
+    document.querySelectorAll("[data-en-ph]").forEach(function(el){
+      var v = el.getAttribute(l==="gu" ? "data-gu-ph" : "data-en-ph"); if(v!==null) el.setAttribute("placeholder", v);
+    });
+    document.body.classList.toggle("gu", l==="gu");
+    document.documentElement.lang = (l==="gu") ? "gu" : "en";
+    var sl=document.getElementById("switchLabel"), sm=document.getElementById("switchMin");
+    sl.textContent = (l==="gu") ? "English" : "ગુજરાતી";
+    sm.setAttribute("aria-label", l==="gu" ? "Read in English" : "ગુજરાતીમાં વાંચો / Read in Gujarati");
+    refreshDynamic();
+    research.lang = l;
+    try{ localStorage.setItem("halo_lang", l); }catch(e){}
+    setCookie("halo_lang", l, 365);
+  }
+
+  /* ---------- data model (instrumentation unchanged) ---------- */
+  var sid = getCookie("halo_sid") || ((window.crypto && crypto.randomUUID) ? crypto.randomUUID() : "s"+Date.now()+Math.random().toString(36).slice(2));
+  setCookie("halo_sid", sid, 1);
+  var research = { session_id: sid, started_at: new Date().toISOString(), lang: LANG };
+  var contact = null;
+
+  /* ---------- engine ---------- */
+  var idx = -1, threadFill = document.getElementById("threadFill"), threadHead = document.getElementById("threadHead"),
+      switchMin = document.getElementById("switchMin");
+  function setThread(stepKey){
+    var pos = ORDER.indexOf(stepKey);
+    var pct = (pos>=0 ? ((pos+1)/ORDER.length*100) : (stepKey==="door"?0:100));
+    threadFill.style.width = pct + "%";
+    threadHead.style.left = pct + "%";
+    threadHead.classList.toggle("live", pos>=0);
+  }
+  function show(stepKey){
+    Object.keys(steps).forEach(function(k){ steps[k].classList.remove("on"); });
+    steps[stepKey].classList.add("on");
+    research.stage_reached = stepKey;
+    setThread(stepKey);
+    switchMin.hidden = (stepKey==="door");
+    refreshDynamic();
+    window.scrollTo(0,0);
+    // focus the screen so screen-readers announce the new question; keyboard users tab into options
+    try{ steps[stepKey].focus({preventScroll:true}); }catch(e){}
+  }
+  function advance(){ idx++; if(idx>=ORDER.length){ finish(false); return; } show(ORDER[idx]); }
+
+  // option selection
+  document.querySelectorAll(".opt").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      research[btn.getAttribute("data-field")] = btn.getAttribute("data-value");
+      btn.parentElement.querySelectorAll(".opt").forEach(function(s){ s.classList.remove("sel"); });
+      btn.classList.add("sel");
+      btn.parentElement.classList.add("picked");
+      setTimeout(advance, 300);
+    });
+  });
+  // keyboard: arrow-key roving within an option group
+  document.querySelectorAll(".opts").forEach(function(grp){
+    grp.addEventListener("keydown", function(e){
+      if(e.key!=="ArrowDown" && e.key!=="ArrowUp") return;
+      e.preventDefault();
+      var items = Array.prototype.slice.call(grp.querySelectorAll(".opt"));
+      var i = items.indexOf(document.activeElement);
+      var n = e.key==="ArrowDown" ? (i+1)%items.length : (i-1+items.length)%items.length;
+      if(i<0) n=0; items[n].focus();
+    });
+  });
+  document.querySelectorAll("[data-next]").forEach(function(b){ b.addEventListener("click", advance); });
+  document.querySelectorAll("[data-skip]").forEach(function(b){ b.addEventListener("click", advance); });
+
+  // doorway: choose language, then enter
+  document.querySelectorAll("[data-choose]").forEach(function(b){
+    b.addEventListener("click", function(){ applyLang(b.getAttribute("data-choose")); advance(); });
+  });
+  switchMin.addEventListener("click", function(){ applyLang(LANG==="gu"?"en":"gu"); });
+
+  // contribution: the gift visibly lands, then advance
+  document.getElementById("contribNext").addEventListener("click", function(){
+    var t = document.getElementById("contribField").value.trim();
+    research.contribution_text = t;            // scrub third-party PII before any sync
+    research.did_contribute = t.length>0;
+    if(t.length>0){
+      document.getElementById("contribForm").style.display="none";
+      document.getElementById("contribAck").classList.add("show");
+      setTimeout(advance, 1400);
+    } else { advance(); }
+  });
+
+  var contactErr = document.getElementById("contactErr");
+  document.getElementById("joinBtn").addEventListener("click", function(){
+    var v = document.getElementById("contactField").value.trim();
+    var ok = document.getElementById("consentBox").checked;
+    var looksEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
+    var looksPhone = /^[+]?[\d\s-]{7,}$/.test(v);
+    if(!v || (!looksEmail && !looksPhone)){ contactErr.innerHTML = decode(STR.errInvalid[LANG]); return; }
+    if(!ok){ contactErr.innerHTML = decode(STR.errConsent[LANG]); return; }
+    contactErr.textContent = "";
+    research.waitlist_join = true;
+    contact = { session_id: sid, value: v, consent: true, at: new Date().toISOString() };
+    setCookie("halo_consent", "1", 365);
+    finish(true);
+  });
+  document.getElementById("notNow").addEventListener("click", function(){ research.waitlist_join=false; finish(false); });
+
+  function renderEnd(){
+    var join = endState==="join";
+    document.getElementById("endGu").innerHTML = decode((join?STR.endJoinGu:STR.endLeftGu)[LANG]);
+    document.getElementById("endTitle").innerHTML = decode((join?STR.endJoinTitle:STR.endLeftTitle)[LANG]);
+    document.getElementById("endSub").innerHTML = decode((join?STR.endJoinSub:STR.endLeftSub)[LANG]);
+    var sl=document.getElementById("shareLine"), sb=document.getElementById("shareBtn");
+    sl.hidden=!join; sb.hidden=!join;
+    if(join){ sl.innerHTML = decode(STR.shareLine[LANG]); document.getElementById("shareLabel").textContent = STR.shareLabel[LANG]; }
+  }
+  function finish(joined){
+    endState = joined ? "join" : "left";
+    research.finished_at = new Date().toISOString();
+    renderEnd();
+    Object.keys(steps).forEach(function(k){ steps[k].classList.remove("on"); });
+    steps["end"].classList.add("on");
+    setThread("end"); switchMin.hidden=false;
+    window.scrollTo(0,0);
+    try{ steps["end"].focus({preventScroll:true}); }catch(e){}
+    persist();
+  }
+
+  // share — generosity, not a funnel
+  document.getElementById("shareBtn").addEventListener("click", function(){
+    var text = STR.shareText[LANG];
+    if(navigator.share){ navigator.share({ text: text, url: location.href }).catch(function(){}); return; }
+    var lbl=document.getElementById("shareLabel");
+    var swap=function(t){ lbl.style.opacity="0"; setTimeout(function(){ lbl.textContent=t; lbl.style.opacity="1"; },150); };
+    var done=function(){ swap(STR.shareCopied[LANG]); setTimeout(function(){ swap(STR.shareLabel[LANG]); }, 2200); };
+    if(navigator.clipboard){ navigator.clipboard.writeText(text+" "+location.href).then(done).catch(done); } else { done(); }
+  });
+
+  /* ---------- persistence stub (Airtable / Supabase later) ---------- */
+  function persist(){
+    // POST research -> research table (anonymous). If contact, POST contact -> PII table (consent-gated).
+    // No network call until a real endpoint + DPDP review exist.
+    try{ console.log("[research]", research); if(contact) console.log("[contact:separate]", contact); }catch(e){}
+  }
+
+  /* ---------- cinematic prelude ---------- */
+  var preludeTimer=null;
+  function endPrelude(){
+    if(preludeTimer){ clearTimeout(preludeTimer); preludeTimer=null; }
+    document.getElementById("prelude").hidden = true;
+    document.getElementById("preludeSkip").hidden = true;
+    show("door");
+  }
+  function playPrelude(){
+    var pre=document.getElementById("prelude");
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(reduce){ endPrelude(); return; }
+    var beats=pre.querySelectorAll(".beat"), durs=[2400,2400,2800], t=0;
+    beats.forEach(function(b,i){ setTimeout(function(){ b.classList.add("show"); }, t); t += durs[i]-350; });
+    preludeTimer=setTimeout(endPrelude, t+1000);
+    pre.addEventListener("click", endPrelude);
+    document.getElementById("preludeSkip").addEventListener("click", function(e){ e.stopPropagation(); endPrelude(); });
+    // keyboard: Enter / Escape skips the prelude
+    document.addEventListener("keydown", function onKey(e){ if(!pre.hidden && (e.key==="Enter"||e.key==="Escape"||e.key===" ")){ endPrelude(); document.removeEventListener("keydown", onKey); } });
+  }
+
+  // init — restore language pref (cookie or storage), then prelude -> doorway
+  try{ var saved = getCookie("halo_lang") || localStorage.getItem("halo_lang"); if(saved==="gu"||saved==="en") applyLang(saved); }catch(e){}
+  playPrelude();
+})();
+</script>
+</body>
+</html>
