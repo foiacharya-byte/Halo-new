@@ -43,6 +43,26 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
 .thread{position:fixed;top:0;left:0;height:3px;background:var(--terra);width:0;z-index:62;
   transition:width .6s var(--expo);border-radius:0 2px 2px 0;opacity:.85}
 
+/* cinematic prelude — the "belong" punch, mood only, NO name (firewall-safe) */
+#prelude{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;cursor:pointer;
+  background:radial-gradient(120% 100% at 50% 32%, #FFFCF6 0%, var(--paper) 55%, var(--paper-deep) 100%)}
+#prelude[hidden]{display:none}
+#prelude .glow{position:absolute;left:50%;bottom:-30%;width:140%;height:80%;transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(60% 100% at 50% 100%, rgba(190,154,78,.30), transparent 70%);opacity:0;animation:dawn 6.5s var(--expo) both}
+@keyframes dawn{0%{opacity:0}30%{opacity:1}100%{opacity:.7}}
+.beat{position:absolute;max-width:580px;opacity:0;transform:translateY(16px);
+  font-family:var(--serif);font-weight:460;letter-spacing:-.01em;font-size:clamp(26px,6.6vw,42px);line-height:1.24;color:var(--ink)}
+.beat.soul{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(40px,12vw,76px)}
+.beat.show{animation:beatIn 2.3s var(--expo) both}
+@keyframes beatIn{0%{opacity:0;transform:translateY(18px)}20%,70%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-14px)}}
+.beat.soul.show{animation:soulIn 2.6s var(--expo) both}
+@keyframes soulIn{0%{opacity:0;transform:translateY(20px)}24%,100%{opacity:1;transform:none}}
+.prelude-skip{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:41;
+  font-family:var(--serif);font-size:14px;color:var(--ink-soft);background:none;border:0;cursor:pointer;opacity:.55;
+  text-decoration:underline;text-underline-offset:3px;-webkit-tap-highlight-color:transparent}
+.prelude-skip:hover,.prelude-skip:focus-visible{opacity:1;outline:none;color:var(--maroon)}
+.prelude-skip[hidden]{display:none}
+
 .stage-wrap{position:relative;z-index:10;width:100%;max-width:600px;margin:auto;
   display:flex;flex-direction:column;justify-content:center;min-height:100dvh;
   padding:56px 0 80px}
@@ -160,6 +180,15 @@ body.gu .field{font-size:16px}
 </head>
 <body>
 <div class="thread" id="thread"></div>
+
+<!-- CINEMATIC PRELUDE — belonging before the conversation; mood, no brand name -->
+<section id="prelude" aria-label="Welcome">
+  <span class="glow"></span>
+  <p class="beat" data-beat="0">This city has always looked after its own.</p>
+  <p class="beat" data-beat="1">Quietly — name to name, door to door.</p>
+  <p class="beat soul" data-beat="2">આપણી માટીનું.</p>
+</section>
+<button class="prelude-skip" id="preludeSkip">Skip</button>
 
 <main class="stage-wrap" id="wrap">
 
@@ -463,9 +492,28 @@ body.gu .field{font-size:16px}
     if(navigator.clipboard){ navigator.clipboard.writeText(text+" "+location.href).then(done).catch(done); } else { done(); }
   });
 
-  // init — restore prior language pref (the door still greets), begin at door
+  /* ---------- cinematic prelude ---------- */
+  var preludeTimer=null;
+  function endPrelude(){
+    if(preludeTimer){ clearTimeout(preludeTimer); preludeTimer=null; }
+    document.getElementById("prelude").hidden = true;
+    document.getElementById("preludeSkip").hidden = true;
+    show("door");
+  }
+  function playPrelude(){
+    var pre=document.getElementById("prelude");
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(reduce){ endPrelude(); return; }
+    var beats=pre.querySelectorAll(".beat"), durs=[2300,2300,2700], t=0;
+    beats.forEach(function(b,i){ setTimeout(function(){ b.classList.add("show"); }, t); t += durs[i]-350; });
+    preludeTimer=setTimeout(endPrelude, t+900);
+    pre.addEventListener("click", endPrelude);
+    document.getElementById("preludeSkip").addEventListener("click", function(e){ e.stopPropagation(); endPrelude(); });
+  }
+
+  // init — restore prior language pref, then the cinematic prelude → doorway
   try{ var saved=localStorage.getItem("halo_lang"); if(saved==="gu"||saved==="en") applyLang(saved); }catch(e){}
-  show("door");
+  playPrelude();
 })();
 </script>
 </body>
