@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ae halo — Vadodara's own</title>
+<meta name="description" content="Vadodara's trusted local word-of-mouth, in one place.">
+<meta name="theme-color" content="#F8F2E7">
+<!--
+  halo_site.html — a real multi-page site (paged, not long-scroll).
+  Pages: Home · How it works · Vision · Join. Locked Halo system only —
+  warm paper, Fraunces / Cormorant / Caveat(ae) / Noto Serif Gujarati, terra.
+  No stock photos, no blue, no SaaS/AI-template content. Components are bespoke
+  and interactive. Demo data illustrative; Gujarati [GU REVIEW].
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Cormorant+Garamond:wght@500;600&family=Caveat:wght@600;700&family=Noto+Serif+Gujarati:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F8F2E7; --paper-deep:#EBE0CD; --paper-hi:#FFFDF8;
+  --ink:#2A1E11; --ink-soft:#6E5A40;
+  --maroon:#7A2E22; --terra:#C2531F; --gold:#BE9A4E; --sand:#CBB488;
+  --line:#E3D7BF;
+  --serif:"Fraunces",Georgia,serif; --caps:"Cormorant Garamond",Georgia,serif;
+  --script:"Caveat",cursive; --gu:"Noto Serif Gujarati",serif;
+  --expo:cubic-bezier(.16,1,.3,1); --spring:cubic-bezier(.34,1.4,.5,1);
+  --nav:74px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:var(--serif);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  background:radial-gradient(135% 90% at 50% 0%, #FFFCF6 0%, var(--paper) 48%, var(--paper-deep) 100%);
+  height:100dvh;overflow:hidden;position:relative}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.035;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- nav (aligned: logo | centered links | join) ---------- */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  padding:0 clamp(18px,3.5vw,36px);background:rgba(248,242,231,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{justify-self:start;display:inline-flex;align-items:center;line-height:0;background:none;border:0;cursor:pointer}
+.mk{font-family:var(--serif);font-weight:470;font-size:26px;letter-spacing:-.04em;color:var(--ink);position:relative;display:inline-block;line-height:1}
+.mk .hae{position:absolute;left:-.04em;top:-.34em;font-family:var(--script);font-size:.42em;line-height:1;color:var(--terra);transform:rotate(-9deg)}
+.mk .end{position:relative;display:inline-block;width:.34em;height:1em;vertical-align:baseline}
+.mk .bang{position:absolute;left:50%;bottom:.30em;width:.09em;height:.42em;border-radius:.05em;background:var(--terra);transform:translateX(-50%)}
+.mk .dot{position:absolute;left:50%;bottom:.07em;width:.16em;height:.16em;border-radius:50%;background:var(--terra);transform:translateX(-50%)}
+.links{justify-self:center;display:flex;gap:clamp(14px,2.4vw,34px);align-items:center}
+.links button{font-family:var(--caps);text-transform:uppercase;letter-spacing:.16em;font-size:12.5px;font-weight:600;color:var(--ink-soft);
+  background:none;border:0;cursor:pointer;padding:6px 2px;position:relative;transition:color .2s}
+.links button::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--terra);transform:scaleX(0);transform-origin:center;transition:transform .3s var(--expo)}
+.links button.on{color:var(--maroon)} .links button.on::after{transform:scaleX(1)}
+@media(hover:hover){.links button:hover{color:var(--maroon)}}
+.join-btn{justify-self:end;font-family:var(--serif);font-weight:520;font-size:14.5px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;padding:10px 22px;cursor:pointer;transition:transform .12s var(--spring),filter .2s}
+.join-btn:active{transform:scale(.96)} @media(hover:hover){.join-btn:hover{filter:brightness(1.05)}}
+
+/* ---------- paged views ---------- */
+.stagewrap{position:fixed;top:var(--nav);left:0;right:0;bottom:0;overflow:hidden}
+.view{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:clamp(20px,4vw,48px);text-align:center;opacity:0;visibility:hidden;transform:translateY(14px);
+  transition:opacity .55s var(--expo),transform .55s var(--expo),visibility .55s;pointer-events:none;overflow:auto}
+.view.on{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+
+.eyebrow{font-family:var(--caps);text-transform:uppercase;letter-spacing:.3em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:16px}
+.eyebrow .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
+h1{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;font-size:clamp(34px,5.6vw,64px);line-height:1.06;color:var(--ink);text-wrap:balance;max-width:15ch}
+h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;height:.8em;border-radius:50%;background:var(--terra);color:var(--paper);margin:0 .05em;transform:translateY(.04em)}
+.ck svg{width:.5em;height:.5em}
+.lede{font-family:var(--serif);font-size:clamp(15.5px,2vw,18.5px);line-height:1.55;color:var(--ink-soft);max-width:46ch;margin:18px auto 0;text-wrap:pretty}
+
+/* ===== HOME: the trusted search ===== */
+.searchwrap{width:100%;max-width:600px;margin:34px auto 0}
+.search{display:flex;align-items:center;gap:13px;padding:15px 18px;border:1.5px solid var(--sand);border-radius:15px;background:var(--paper-hi);text-align:left;box-shadow:0 18px 36px -30px rgba(58,40,20,.6)}
+.search .mag{flex:0 0 auto;color:var(--terra)}
+.search .q{flex:1;font-family:var(--serif);font-size:clamp(16px,2.2vw,19px);color:var(--ink);white-space:nowrap;overflow:hidden}
+.search .cur{display:inline-block;width:2px;height:1.05em;background:var(--terra);margin-left:1px;vertical-align:-3px;animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.search .ent{flex:0 0 auto;font-family:var(--caps);text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;color:var(--ink-soft);border:1px solid var(--line);border-radius:7px;padding:4px 8px}
+.results{display:flex;flex-direction:column;gap:10px;margin-top:14px;text-align:left}
+.res{display:flex;align-items:flex-start;gap:13px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--paper-hi);
+  box-shadow:0 14px 26px -24px rgba(58,40,20,.55);opacity:0;transform:translateY(10px);transition:opacity .5s var(--expo),transform .5s var(--spring)}
+.res.show{opacity:1;transform:none}
+.av{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:#FBF1E6;border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;color:var(--maroon)}
+.ri{flex:1;min-width:0}
+.rn{font-family:var(--serif);font-weight:540;font-size:16.5px;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.chip{font-size:11px;font-weight:520;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.chip.trusted{color:var(--maroon);background:#F4E3CB;border:1px solid var(--sand)} .chip.trusted .tk{color:var(--terra);font-weight:700}
+.chip.nb{color:var(--ink-soft);background:var(--paper);border:1px solid var(--line)}
+.rt{font-size:13px;color:var(--ink-soft);margin:3px 0 6px}
+.rs{font-size:13.5px;color:var(--ink);line-height:1.4}.rs .nm{color:var(--terra);font-style:italic}
+.rcall{flex:0 0 auto;align-self:center;width:36px;height:36px;border-radius:50%;background:var(--terra);display:flex;align-items:center;justify-content:center;color:var(--paper)}
+
+/* ===== HOW IT WORKS: interactive step component + morphing card ===== */
+.how{display:grid;grid-template-columns:minmax(260px,360px) minmax(300px,420px);gap:clamp(28px,5vw,64px);align-items:center;width:100%;max-width:920px;text-align:left}
+.steps{display:flex;flex-direction:column;gap:12px}
+.step{display:flex;gap:15px;align-items:flex-start;padding:14px 16px;border:1px solid transparent;border-radius:16px;cursor:pointer;transition:background .3s var(--expo),border-color .3s}
+.step.on{background:var(--paper-hi);border-color:var(--line);box-shadow:0 16px 30px -26px rgba(58,40,20,.5)}
+.step .sn{flex:0 0 auto;width:30px;height:30px;border-radius:50%;border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;
+  font-family:var(--caps);font-size:13px;color:var(--ink-soft);transition:all .3s}
+.step.on .sn{background:var(--terra);border-color:var(--terra);color:var(--paper)}
+.step h3{font-family:var(--serif);font-weight:540;font-size:17px;color:var(--ink);margin-bottom:3px}
+.step p{font-size:13.5px;color:var(--ink-soft);line-height:1.5;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s var(--expo),opacity .3s,margin .4s}
+.step.on p{max-height:60px;opacity:1;margin-top:4px}
+
+.demo{position:relative;height:300px;display:flex;align-items:center;justify-content:center}
+.dcard{width:100%;max-width:340px;background:var(--paper-hi);border:1px solid var(--line);border-radius:18px;padding:22px;
+  box-shadow:0 40px 70px -45px rgba(58,40,20,.55)}
+.dcard .dhead{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+.dav{width:48px;height:48px;border-radius:14px;background:#FBF1E6;border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:20px;color:var(--maroon)}
+.dname{font-family:var(--serif);font-weight:540;font-size:19px}.dtrade{font-size:13px;color:var(--ink-soft)}
+.dstatus{font-size:13.5px;line-height:1.5;color:var(--ink-soft);min-height:42px}
+.dstatus b{color:var(--maroon);font-weight:540}
+.dbadge{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-size:12.5px;font-weight:520;padding:6px 13px;border-radius:999px;
+  opacity:0;transform:translateY(6px);transition:opacity .4s var(--expo),transform .4s var(--spring)}
+.dbadge.show{opacity:1;transform:none}
+.dbadge.checking{background:var(--paper);border:1px solid var(--line);color:var(--ink-soft)}
+.dbadge.trusted{background:#F4E3CB;border:1px solid var(--sand);color:var(--maroon)} .dbadge.trusted .tk{color:var(--terra);font-weight:700}
+.dbtn{margin-top:16px;width:100%;display:flex;align-items:center;justify-content:center;gap:9px;font-family:var(--serif);font-weight:520;font-size:15px;
+  color:var(--paper);background:var(--terra);border:0;border-radius:12px;padding:12px;opacity:0;transform:translateY(6px);transition:opacity .4s var(--expo),transform .4s var(--spring)}
+.dbtn.show{opacity:1;transform:none}
+.spin{width:15px;height:15px;border:2px solid var(--sand);border-top-color:var(--terra);border-radius:50%;animation:sp .8s linear infinite;display:inline-block}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+/* ===== VISION: three anchors ===== */
+.anchors{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;max-width:920px;margin:34px auto 0}
+.anchor{background:var(--paper-hi);border:1px solid var(--line);border-radius:18px;padding:26px 22px;text-align:left;
+  box-shadow:0 20px 40px -34px rgba(58,40,20,.5);transition:transform .3s var(--spring),border-color .3s}
+@media(hover:hover){.anchor:hover{transform:translateY(-4px);border-color:var(--sand)}}
+.anchor .gw{font-family:var(--gu);font-weight:600;font-size:28px;color:var(--maroon);margin-bottom:6px}
+.anchor .en{font-family:var(--caps);text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--terra);margin-bottom:12px}
+.anchor p{font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+
+/* ===== JOIN ===== */
+.joinform{width:100%;max-width:440px;margin:30px auto 0}
+.field{width:100%;font-family:var(--serif);font-size:17px;color:var(--ink);background:var(--paper-hi);border:1px solid var(--sand);border-radius:14px;padding:15px 17px}
+.field::placeholder{color:#8F7B57}
+.field:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.3)}
+.consent{display:flex;gap:11px;align-items:flex-start;margin:16px 2px;text-align:left;cursor:pointer}
+.consent input{margin-top:3px;width:18px;height:18px;accent-color:var(--terra);flex:0 0 auto}
+.consent span{font-size:14px;color:var(--ink-soft);line-height:1.45}
+.joinbtn{width:100%;font-family:var(--serif);font-weight:540;font-size:16.5px;color:var(--paper);background:var(--terra);border:0;border-radius:14px;padding:15px;cursor:pointer;transition:transform .12s var(--spring),filter .2s}
+.joinbtn:active{transform:scale(.98)}
+.err{color:var(--maroon);font-size:14px;margin-top:10px;min-height:1.1em}
+.joindone{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(26px,4vw,38px);margin-bottom:10px}
+
+/* trust strip used on home + join */
+.strip{display:flex;gap:12px 30px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.strip span{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft)}
+.strip .tk{color:var(--terra);font-weight:700}
+
+@media (max-width:860px){
+  .how{grid-template-columns:1fr;gap:24px;max-width:420px}
+  .demo{height:260px;order:-1}
+  .anchors{grid-template-columns:1fr;max-width:380px;gap:12px}
+  .anchor{padding:18px}
+  .links button{letter-spacing:.1em;font-size:11px}
+}
+@media (max-width:520px){
+  :root{--nav:64px}
+  .links{gap:13px}.join-btn{padding:9px 16px;font-size:13px}
+}
+@media (prefers-reduced-motion:reduce){
+  .view,.res,.dbadge,.dbtn{transition:none!important;animation:none!important}
+  .search .cur,.spin{animation:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <button class="brand" data-view="home" aria-label="ae halo home"><span class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></span></button>
+  <div class="links">
+    <button data-view="home" class="on">Home</button>
+    <button data-view="how">How it works</button>
+    <button data-view="vision">Vision</button>
+  </div>
+  <button class="join-btn" data-view="join">Join</button>
+</nav>
+
+<div class="stagewrap">
+
+  <!-- HOME -->
+  <section class="view on" data-page="home">
+    <span class="eyebrow"><span class="gu">વડોદરાનું પોતાનું</span> · Vadodara's own</span>
+    <h1>Home to the people Vadodara<span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>trusts.</h1>
+    <p class="lede">Search what you need, where you are — and see who your neighbours already vouch for.</p>
+    <div class="searchwrap">
+      <div class="search">
+        <svg class="mag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+        <div class="q" id="q">Try “electrician in Gotri”</div>
+        <span class="ent">Search</span>
+      </div>
+      <div class="results" id="results"></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="view" data-page="how">
+    <div class="how">
+      <div>
+        <span class="eyebrow">How Halo works</span>
+        <div class="steps" id="steps">
+          <div class="step on" data-i="0"><div class="sn">1</div><div><h3>A neighbour adds a place</h3><p>Someone who knows them — or the owner — puts the details in.</p></div></div>
+          <div class="step" data-i="1"><div class="sn">2</div><div><h3>A real person checks it</h3><p>We confirm it's real and get the owner's okay. No guessing.</p></div></div>
+          <div class="step" data-i="2"><div class="sn">3</div><div><h3>It earns Halo Trusted</h3><p>Only then the badge — and we're open about what we checked.</p></div></div>
+          <div class="step" data-i="3"><div class="sn">4</div><div><h3>You reach them direct</h3><p>Find them, call them yourself. No middleman, no commission.</p></div></div>
+        </div>
+      </div>
+      <div class="demo">
+        <div class="dcard">
+          <div class="dhead"><div class="dav">B</div><div><div class="dname">Bharat</div><div class="dtrade">Electrician · Gotri</div></div></div>
+          <div class="dstatus" id="dstatus"></div>
+          <div class="dbadge" id="dbadge"></div>
+          <button class="dbtn" id="dbtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg> Call Bharat</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="view" data-page="vision">
+    <span class="eyebrow">Why we're building it</span>
+    <h1>Vadodara already trusts its own. <span style="color:var(--terra);font-style:italic">We're keeping it honest.</span></h1>
+    <p class="lede">Not a louder listing site. The place Baroda checks first — built by neighbours, and the people on it keep every rupee they earn.</p>
+    <div class="anchors">
+      <div class="anchor"><div class="gw">વિશ્વાસ</div><div class="en">Trust</div><p>We tell you plainly what's checked and what isn't. No fake stars, no paid placement.</p></div>
+      <div class="anchor"><div class="gw">શોધ</div><div class="en">Discovery</div><p>Not more options — the right one. The gem your lane already swears by, easy to find.</p></div>
+      <div class="anchor"><div class="gw">પોતાપણું</div><div class="en">Belonging</div><p>Of Vadodara, on purpose. Added by the people who live here, for the people who live here.</p></div>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section class="view" data-page="join">
+    <div id="joinPre">
+      <span class="eyebrow"><span class="gu">એ હાલો</span> · be one of the first</span>
+      <h1>Help start Vadodara's own.</h1>
+      <p class="lede">We're opening Halo slowly, checking things properly. Leave a number or email and we'll tell you the moment it opens.</p>
+      <div class="joinform">
+        <input class="field" id="contact" type="text" inputmode="email" autocomplete="off" placeholder="WhatsApp number or email">
+        <label class="consent"><input type="checkbox" id="consent"><span>Okay to keep this, only to tell you when Halo opens.</span></label>
+        <p class="err" id="joinErr"></p>
+        <button class="joinbtn" id="joinSubmit">Count me in</button>
+        <div class="strip"><span><span class="tk">✓</span> No spam</span><span><span class="tk">✓</span> No commission, ever</span></div>
+      </div>
+    </div>
+    <div id="joinDone" style="display:none">
+      <div class="joindone">આભાર.</div>
+      <h1>You're in. You helped start this.</h1>
+      <p class="lede">We'll call you first — એ હાલો.</p>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function setCookie(n,v,d){try{var e=new Date();e.setTime(e.getTime()+d*864e5);document.cookie=n+"="+encodeURIComponent(v)+";expires="+e.toUTCString()+";path=/;SameSite=Lax";}catch(x){}}
+
+  /* ---------- router ---------- */
+  var views={}; document.querySelectorAll(".view").forEach(function(v){views[v.getAttribute("data-page")]=v;});
+  var navBtns=document.querySelectorAll("[data-view]");
+  var current="home", timers={};
+  function go(name){
+    if(!views[name]||name===current) { if(name===current) return; }
+    Object.keys(views).forEach(function(k){ views[k].classList.toggle("on", k===name); });
+    document.querySelectorAll(".links button").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-view")===name); });
+    if(timers[current]&&timers[current].stop) timers[current].stop();
+    current=name;
+    if(name==="home") startSearch();
+    if(name==="how") startHow();
+  }
+  navBtns.forEach(function(b){ b.addEventListener("click", function(){ go(b.getAttribute("data-view")); }); });
+
+  /* ---------- HOME: trusted search ---------- */
+  var qEl=document.getElementById("q"), resEl=document.getElementById("results");
+  var QUERIES=[
+    {q:"electrician in Gotri", res:[
+      {av:"B",nm:"Bharat",trade:"Electrician · Gotri",badge:"trusted",say:"“Fixed our AC the same day.”",by:"Meena, Alkapuri"},
+      {av:"S",nm:"Suresh",trade:"Electrician · Gotri to Akota",badge:"nb",say:"“Fair rate, actually turns up.”",by:"Sanjay"}
+    ]},
+    {q:"tiffin in Alkapuri", res:[
+      {av:"ગ",nm:"Gokul Tiffin",trade:"Home tiffin · Alkapuri",badge:"trusted",say:"“Tastes like home.”",by:"Priya-ben"},
+      {av:"A",nm:"Annapurna",trade:"Tiffin · Alkapuri to Sayajigunj",badge:"nb",say:"“Never misses a day.”",by:"Rohit"}
+    ]},
+    {q:"tutor near MSU", res:[
+      {av:"A",nm:"Anjali",trade:"Maths tutor · near MSU",badge:"trusted",say:"“My daughter finally gets it.”",by:"Hemant"},
+      {av:"K",nm:"Kiran",trade:"Physics tutor · Sayajigunj",badge:"nb",say:"“Patient, very clear.”",by:"Nisha"}
+    ]}
+  ];
+  function card(r){var d=document.createElement("div");d.className="res";
+    var chip=r.badge==="trusted"?'<span class="chip trusted"><span class="tk">✓</span> Halo Trusted</span>':'<span class="chip nb">Added by a neighbour</span>';
+    d.innerHTML='<div class="av">'+r.av+'</div><div class="ri"><div class="rn">'+r.nm+' '+chip+'</div><div class="rt">'+r.trade+'</div><div class="rs">'+r.say+' <span class="nm">— '+r.by+'</span></div></div><div class="rcall"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></svg></div>';
+    return d;}
+  function showRes(set){resEl.innerHTML="";set.forEach(function(r,i){var c=card(r);resEl.appendChild(c);
+    if(reduce)c.classList.add("show");else setTimeout(function(){c.classList.add("show");},120+i*150);});}
+  var sT=[], sActive=false, qi=0;
+  function stopSearch(){sActive=false;sT.forEach(clearTimeout);sT=[];}
+  function startSearch(){
+    stopSearch(); sActive=true;
+    if(reduce){qEl.textContent=QUERIES[0].q;showRes(QUERIES[0].res);return;}
+    function run(){
+      if(!sActive)return;
+      var item=QUERIES[qi];
+      qEl.innerHTML='<span id="typed"></span><span class="cur"></span>';
+      var typed=document.getElementById("typed"),s=item.q,i=0;
+      (function type(){ if(!sActive)return;
+        if(i<=s.length){typed.textContent=s.slice(0,i);i++;sT.push(setTimeout(type,52));}
+        else{sT.push(setTimeout(function(){qEl.innerHTML=s;showRes(item.res);},460));}
+      })();
+      sT.push(setTimeout(function(){ if(!sActive)return;
+        Array.prototype.forEach.call(resEl.children,function(c){c.classList.remove("show");});
+        sT.push(setTimeout(function(){qi=(qi+1)%QUERIES.length;run();},600));
+      }, s.length*52+460+2900));
+    }
+    run();
+  }
+  timers.home={stop:stopSearch};
+
+  /* ---------- HOW: morphing trust card ---------- */
+  var STEPS=[
+    {status:'A neighbour just added <b>Bharat</b> — their electrician in Gotri.',badge:null,btn:false},
+    {status:'A real person is checking — confirming he’s real and reaching him for his okay.',badge:{cls:'checking',html:'<span class="spin"></span> Verifying'},btn:false},
+    {status:'Checked, and the neighbours vouch. <b>“Fixed our AC same day.”</b>',badge:{cls:'trusted',html:'<span class="tk">✓</span> Halo Trusted'},btn:false},
+    {status:'Now you can find Bharat — and reach him yourself.',badge:{cls:'trusted',html:'<span class="tk">✓</span> Halo Trusted'},btn:true}
+  ];
+  var hStatus=document.getElementById("dstatus"),hBadge=document.getElementById("dbadge"),hBtn=document.getElementById("dbtn"),
+      stepEls=document.querySelectorAll("#steps .step");
+  var hi=0, hT=null, hPaused=false;
+  function renderStep(i){
+    hi=i; var s=STEPS[i];
+    stepEls.forEach(function(e,j){e.classList.toggle("on",j===i);});
+    hStatus.innerHTML=s.status;
+    hBadge.className="dbadge"; hBtn.classList.remove("show");
+    if(s.badge){ hBadge.innerHTML=s.badge.html; hBadge.classList.add(s.badge.cls); requestAnimationFrame(function(){hBadge.classList.add("show");}); }
+    else { hBadge.innerHTML=""; }
+    if(s.btn) requestAnimationFrame(function(){hBtn.classList.add("show");});
+  }
+  function startHow(){ stopHow(); renderStep(0);
+    if(reduce) return;
+    hT=setInterval(function(){ if(!hPaused) renderStep((hi+1)%STEPS.length); }, 2600);
+  }
+  function stopHow(){ if(hT){clearInterval(hT);hT=null;} }
+  timers.how={stop:stopHow};
+  stepEls.forEach(function(e){
+    e.addEventListener("click",function(){renderStep(+e.getAttribute("data-i"));});
+    e.addEventListener("mouseenter",function(){hPaused=true;});
+    e.addEventListener("mouseleave",function(){hPaused=false;});
+  });
+
+  /* ---------- JOIN ---------- */
+  document.getElementById("joinSubmit").addEventListener("click",function(){
+    var v=document.getElementById("contact").value.trim(), ok=document.getElementById("consent").checked, err=document.getElementById("joinErr");
+    var email=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v), phone=/^[+]?[\d\s-]{7,}$/.test(v);
+    if(!v||(!email&&!phone)){err.textContent="Hmm, that doesn't look right — mind checking?";return;}
+    if(!ok){err.textContent="Just tick the box so we can keep it.";return;}
+    err.textContent=""; setCookie("halo_consent","1",365);
+    try{ console.log("[waitlist]",{contact:v,consent:true,at:new Date().toISOString()}); }catch(x){}
+    document.getElementById("joinPre").style.display="none";
+    document.getElementById("joinDone").style.display="block";
+  });
+
+  // boot
+  startSearch();
+})();
+</script>
+</body>
+</html>
