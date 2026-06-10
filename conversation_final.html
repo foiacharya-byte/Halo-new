@@ -204,7 +204,42 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opa
 .land-honest{font-size:clamp(16.5px,4.2vw,19px);line-height:1.65;color:var(--ink);max-width:42ch}
 .land-foot{margin-top:96px;text-align:center;font-family:var(--gu);color:var(--maroon);font-size:15.5px;line-height:2.1;padding-bottom:24px}
 .land-foot .sig{font-family:var(--serif);color:var(--ink-soft);font-size:13.5px;letter-spacing:.04em;display:block}
-body.gu .land-h,body.gu .land-d,body.gu .land-honest,body.gu .land-soul .gloss,body.gu .land-list strong,body.gu .to-landing{font-family:var(--gu)}
+
+/* section grammar carried from index_v23 — eyebrow with terra dot */
+.sec-eyebrow{display:inline-flex;align-items:center;gap:9px;font-family:var(--caps);text-transform:uppercase;letter-spacing:.28em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:18px}
+.sec-eyebrow .d{width:6px;height:6px;border-radius:50%;background:var(--terra);flex:0 0 auto}
+.land-h2{font-family:var(--serif);font-weight:500;font-size:clamp(22px,5.6vw,30px);line-height:1.28;margin-bottom:26px;letter-spacing:-.015em;text-wrap:balance}
+
+/* the voices — the lines every Barodian knows */
+.voices{display:grid;grid-template-columns:1fr;gap:14px}
+.voice{background:#FFFDF8;border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:0 10px 24px -22px rgba(58,40,20,.55)}
+.voice-q{font-family:var(--gu);font-weight:600;font-size:clamp(17px,4.4vw,20px);color:var(--maroon);line-height:1.5;margin-bottom:8px}
+.voice-en{font-size:15px;color:var(--ink);line-height:1.5}
+.voice-by{font-size:13.5px;color:var(--ink-soft);font-style:italic;margin-top:6px}
+.ph-turn{margin-top:32px}
+.ph-turn .t1{font-family:var(--gu);font-weight:600;font-size:clamp(22px,6vw,30px);color:var(--terra);margin-bottom:10px}
+.ph-turn .t2{font-size:clamp(15.5px,4vw,17.5px);color:var(--ink-soft);line-height:1.62;max-width:44ch}
+.wh-line{margin-top:24px;font-family:var(--serif);font-weight:520;font-size:clamp(18px,4.8vw,22px);line-height:1.4}
+.wh-line em{color:var(--terra);font-style:italic}
+
+/* the 4-step trust flow */
+.flow{list-style:none;display:flex;flex-direction:column;gap:28px;margin-top:4px}
+.flow-step{display:flex;gap:16px;align-items:flex-start}
+.flow-medal{width:46px;height:46px;border-radius:50%;flex:0 0 auto;display:flex;align-items:center;justify-content:center;background:#FFFDF8;border:1px solid var(--sand);color:var(--terra)}
+.flow-medal svg{width:22px;height:22px}
+.flow-num{font-family:var(--caps);font-size:12px;letter-spacing:.2em;color:var(--gold);font-weight:600;display:block;margin-bottom:3px}
+.flow-txt h4{font-family:var(--serif);font-weight:540;font-size:clamp(17px,4.4vw,19px);margin-bottom:5px;color:var(--ink)}
+.flow-txt p{color:var(--ink-soft);font-size:15.5px;line-height:1.62;max-width:46ch}
+.ht-pledge{margin-top:32px;display:flex;gap:13px;align-items:flex-start;background:#FBF1E6;border:1px solid var(--line);border-radius:16px;padding:18px 20px;color:var(--maroon)}
+.ht-pledge svg{flex:0 0 auto;margin-top:2px}
+.ht-pledge p{font-size:14.5px;line-height:1.62;color:var(--ink)}
+
+@media(min-width:768px){.voices{grid-template-columns:1fr 1fr}}
+body.gu .land-h,body.gu .land-d,body.gu .land-honest,body.gu .land-soul .gloss,body.gu .land-list strong,body.gu .to-landing,
+body.gu .land-h2,body.gu .ph-turn .t2,body.gu .wh-line,body.gu .flow-txt h4,body.gu .flow-txt p,body.gu .ht-pledge p{font-family:var(--gu)}
+body.gu .sec-eyebrow{font-family:var(--gu);text-transform:none;letter-spacing:.02em}
+body.gu .voice-en{display:none}
+body.gu .voice-by{font-style:normal}
 
 /* discreet, persistent language switch — bottom centre */
 .switch-min{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:61;
@@ -465,17 +500,55 @@ body.gu .field{font-size:16px}
   <p class="sub" data-en="The tiffin that tastes like home. The electrician who turns up. The tailor who gets it right — passed neighbour to neighbour, in one honest place." data-gu="ઘર જેવા સ્વાદનું ટિફિન. સમયસર આવતો ઇલેક્ટ્રિશિયન. માપ બરાબર લેતો દરજી — પાડોશીથી પાડોશી સુધી, એક સાચા ઠેકાણે.">The tiffin that tastes like home. The electrician who turns up. The tailor who gets it right — passed neighbour to neighbour, in one honest place.</p>
   <p class="land-soul"><span class="gu-s">&ldquo;મારા ઓળખાણમાં છે.&rdquo;</span><span class="gloss" data-en="The sentence this whole city runs on. Halo just gives it a place to live." data-gu="આખું શહેર આ એક વાક્ય પર ચાલે છે. હાલો બસ એને એક ઠેકાણું આપે છે.">The sentence this whole city runs on. Halo just gives it a place to live.</span></p>
 
+  <!-- WHY HALO — the lines every Barodian knows (voices carried from index_v23, production copy) -->
   <div class="land-block">
-    <h3 class="land-h" data-en="How it works" data-gu="કેવી રીતે ચાલે છે">How it works</h3>
-    <ul class="land-list">
-      <li><span class="node"></span><div><strong data-en="Added by a neighbour." data-gu="પાડોશીએ ઉમેર્યું.">Added by a neighbour.</strong><span class="land-d" data-en="Someone who lives here puts a name in — their plumber, their tiffin, their society's electrician." data-gu="અહીં રહેતું કોઈક નામ આપે છે — એમનો પ્લમ્બર, એમનું ટિફિન, એમની સોસાયટીનો ઇલેક્ટ્રિશિયન.">Someone who lives here puts a name in — their plumber, their tiffin, their society's electrician.</span></div></li>
-      <li><span class="node"></span><div><strong data-en="Checked properly." data-gu="બરાબર તપાસેલું.">Checked properly.</strong><span class="land-d" data-en="We tell you plainly what's verified and what isn't. No guessing." data-gu="શું ચકાસેલું છે ને શું નહીં — અમે સાફ કહીએ છીએ. કોઈ અટકળ નહીં.">We tell you plainly what's verified and what isn't. No guessing.</span></div></li>
-      <li><span class="node"></span><div><strong data-en="Passed along." data-gu="આગળ અપાયેલું.">Passed along.</strong><span class="land-d" data-en="Neighbour to neighbour, ઓળખાણ to ઓળખાણ — the way Baroda always has." data-gu="પાડોશીથી પાડોશી, ઓળખાણથી ઓળખાણ — વડોદરા હંમેશાં આમ જ કરતું આવ્યું છે.">Neighbour to neighbour, ઓળખાણ to ઓળખાણ — the way Baroda always has.</span></div></li>
-    </ul>
+    <span class="sec-eyebrow"><span class="d"></span><span data-en="Why Halo" data-gu="હાલો કેમ">Why Halo</span></span>
+    <h3 class="land-h2" data-en="The lines every Barodian knows." data-gu="આ વાક્યો દરેક વડોદરાવાસી જાણે છે.">The lines every Barodian knows.</h3>
+    <div class="voices">
+      <article class="voice"><div class="voice-q">કાલે પાક્કું આવી જઈશ.</div><div class="voice-en">I&rsquo;ll come tomorrow, for sure.</div><div class="voice-by" data-en="&mdash; and then three Tuesdays pass" data-gu="&mdash; ને પછી ત્રણ મંગળવાર નીકળી જાય">&mdash; and then three Tuesdays pass</div></article>
+      <article class="voice"><div class="voice-q">અડધું કામ કરીને ગાયબ.</div><div class="voice-en">Half the work done &mdash; then vanished.</div><div class="voice-by" data-en="&mdash; advance taken, calls unanswered" data-gu="&mdash; એડવાન્સ લઈ લીધો, ફોન ઉપાડે નહીં">&mdash; advance taken, calls unanswered</div></article>
+      <article class="voice"><div class="voice-q">નંબર તો મળ્યો, પણ રિવ્યૂ સાચો છે?</div><div class="voice-en">Got the number &mdash; but is that review even real?</div><div class="voice-by" data-en="&mdash; the question with no answer" data-gu="&mdash; જેનો જવાબ કોઈ પાસે નથી">&mdash; the question with no answer</div></article>
+      <article class="voice"><div class="voice-q">સારી ટિફિનવાળી ક્યાંક હશે, પણ કોઈને ખબર નથી.</div><div class="voice-en">The best tiffin in the area &mdash; and nobody knows her.</div><div class="voice-by" data-en="&mdash; the gem no one can find" data-gu="&mdash; કોઈને ખબર જ નથી">&mdash; the gem no one can find</div></article>
+    </div>
+    <div class="ph-turn">
+      <div class="t1">હા, આ તો રોજનું છે.</div>
+      <p class="t2" data-en="On Halo, you hear from the neighbours who actually used them &mdash; before you make the call." data-gu="હાલો પર તમે એ પાડોશીઓ પાસેથી સાંભળો છો જેમણે ખરેખર કામ કરાવ્યું છે &mdash; ફોન કરતાં પહેલાં.">On Halo, you hear from the neighbours who actually used them &mdash; before you make the call.</p>
+    </div>
   </div>
 
+  <!-- WHAT HALO IS -->
   <div class="land-block">
-    <p class="land-honest" data-en="No fake stars. No paid placement. And the people listed keep every rupee they earn — no commission, ever." data-gu="ન ખોટા સ્ટાર, ન પૈસા લઈને આગળ મૂકવાનું. ને જે લોકો અહીં છે, એમની કમાણીનો દરેક રૂપિયો એમનો જ — કોઈ કમિશન નહીં, ક્યારેય નહીં.">No fake stars. No paid placement. And the people listed keep every rupee they earn — no commission, ever.</p>
+    <span class="sec-eyebrow"><span class="d"></span><span data-en="What Halo is" data-gu="હાલો શું છે">What Halo is</span></span>
+    <p class="land-honest" data-en="Halo brings that scattered trust into one clean place &mdash; local people with proper profiles, real service areas, and reviews that are checked before they go public." data-gu="હાલો એ વેરવિખેર ભરોસાને એક સાફ ઠેકાણે લાવે છે &mdash; સાચી પ્રોફાઇલ, સાચા વિસ્તાર, ને જાહેર થતા પહેલાં તપાસેલા રિવ્યૂ સાથેના આપણા જ માણસો.">Halo brings that scattered trust into one clean place &mdash; local people with proper profiles, real service areas, and reviews that are checked before they go public.</p>
+    <div class="wh-line" data-en="Halo makes Vadodara&rsquo;s word of mouth &lt;em&gt;searchable.&lt;/em&gt;" data-gu="વડોદરાની મોઢામોઢની વાત &mdash; હવે &lt;em&gt;શોધી શકાય&lt;/em&gt; એવી.">Halo makes Vadodara&rsquo;s word of mouth <em>searchable.</em></div>
+  </div>
+
+  <!-- HOW HALO WORKS — the canonical 4-step trust flow from index_v23 -->
+  <div class="land-block">
+    <span class="sec-eyebrow"><span class="d"></span><span data-en="How Halo works" data-gu="હાલો કેવી રીતે ચાલે છે">How Halo works</span></span>
+    <h3 class="land-h2" data-en="From a neighbour&rsquo;s tip to someone you can trust" data-gu="પાડોશીની ભલામણથી ભરોસાના માણસ સુધી">From a neighbour&rsquo;s tip to someone you can trust</h3>
+    <ol class="flow">
+      <li class="flow-step">
+        <div class="flow-medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.6 20a5.4 5.4 0 0 1 10.8 0"/><path d="M19 8v6M22 11h-6"/></svg></div>
+        <div class="flow-txt"><span class="flow-num">01</span><h4 data-en="A neighbour adds a place" data-gu="પાડોશી નામ ઉમેરે છે">A neighbour adds a place</h4><p data-en="Someone who knows it &mdash; or the owner themselves &mdash; shares the details. Nothing is added behind anyone&rsquo;s back." data-gu="જે જાણે છે એ &mdash; કે માલિક પોતે &mdash; વિગતો આપે છે. કોઈની પીઠ પાછળ કંઈ ઉમેરાતું નથી.">Someone who knows it &mdash; or the owner themselves &mdash; shares the details. Nothing is added behind anyone&rsquo;s back.</p></div>
+      </li>
+      <li class="flow-step">
+        <div class="flow-medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20.5 20.5-3-3"/><path d="m8.4 11 2 2 3.6-3.6"/></svg></div>
+        <div class="flow-txt"><span class="flow-num">02</span><h4 data-en="A real person checks it" data-gu="સાચો માણસ તપાસે છે">A real person checks it</h4><p data-en="We confirm it exists, reach the owner for their okay, and look up official records where they apply." data-gu="અમે ખાતરી કરીએ છીએ કે એ છે, માલિકની હા લઈએ છીએ, ને જ્યાં લાગુ પડે ત્યાં સત્તાવાર રેકોર્ડ જોઈએ છીએ.">We confirm it exists, reach the owner for their okay, and look up official records where they apply.</p></div>
+      </li>
+      <li class="flow-step">
+        <div class="flow-medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div class="flow-txt"><span class="flow-num">03</span><h4 data-en="It earns Halo Trusted" data-gu="પછી જ &lsquo;Halo Trusted&rsquo; મળે છે">It earns Halo Trusted</h4><p data-en="Only verified places get the badge &mdash; and we&rsquo;re open about what we checked and what we didn&rsquo;t." data-gu="બેજ ફક્ત ચકાસેલાંને જ &mdash; ને શું તપાસ્યું ને શું નહીં, એ અમે ખુલ્લું કહીએ છીએ.">Only verified places get the badge &mdash; and we&rsquo;re open about what we checked and what we didn&rsquo;t.</p></div>
+      </li>
+      <li class="flow-step">
+        <div class="flow-medal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-4 4V5a2 2 0 0 1 2-2h13a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="flow-txt"><span class="flow-num">04</span><h4 data-en="You find them, reach out direct" data-gu="તમે શોધો, સીધો સંપર્ક કરો">You find them, reach out direct</h4><p data-en="Search, spot the badge, and contact them yourself. No middleman, no spam, no paid spots." data-gu="શોધો, બેજ જુઓ, ને જાતે વાત કરો. વચ્ચે કોઈ નહીં, સ્પૅમ નહીં, પૈસા આપીને જગ્યા નહીં.">Search, spot the badge, and contact them yourself. No middleman, no spam, no paid spots.</p></div>
+      </li>
+    </ol>
+    <div class="ht-pledge">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg>
+      <p data-en="&lt;b&gt;Our promise:&lt;/b&gt; no paid listings, no spam, no numbers added without the owner&rsquo;s say-so. And the people listed keep every rupee they earn &mdash; no commission, ever." data-gu="&lt;b&gt;અમારું વચન:&lt;/b&gt; ન પૈસા લઈને લિસ્ટિંગ, ન સ્પૅમ, ન માલિકની હા વગર નંબર. ને જે અહીં છે, એમની કમાણીનો દરેક રૂપિયો એમનો જ &mdash; કોઈ કમિશન નહીં, ક્યારેય નહીં."><b>Our promise:</b> no paid listings, no spam, no numbers added without the owner&rsquo;s say-so. And the people listed keep every rupee they earn &mdash; no commission, ever.</p>
+    </div>
   </div>
 
   <div class="land-block" id="landJoin">
