@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>ae halo — Vadodara's own</title>
-<meta name="description" content="Vadodara's own city companion. The trusted local world the city already knows — brought into one place.">
+<title>ae halo — Vadodara's own local companion</title>
+<meta name="description" content="Vadodara's own local companion. Ask what the city already knows; share the people and places worth knowing.">
 <meta name="theme-color" content="#F8F2E7">
 <!--
-  halo_site.html — the canonical Halo site. ONE scrolling experience:
-  intro -> the city asks (pain) -> hero (search) -> what Halo does -> our vision -> join.
-  Positioning: Vadodara's own city companion / homegrown local trust layer (NOT a
-  directory/contact-finder/super-app; bigness comes from emotion, never a roadmap).
-  Locked Halo system. Demo data illustrative. Gujarati [GU REVIEW] (chat bubbles
-  intentionally quote real spoken/Gujlish group-chat behaviour).
+  halo_site.html — Vadodara's own city companion (NOT a directory/contact-finder).
+  Flow: intro -> the city asks (alive chat) -> Halo reveal -> how Halo starts with you
+        -> share a trusted local (contribution) -> vision -> join.
+  Contribution = sharing a recommendation, never "submitting a listing". Trust
+  language is community-led, not absolute promises. Locked Halo system.
+  Chat uses authentic Gujlish + 2 emojis on purpose. Gujarati [GU REVIEW].
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Cormorant+Garamond:wght@500;600&family=Caveat:wght@600;700&family=Noto+Serif+Gujarati:wght@500;600&display=swap" rel="stylesheet">
@@ -40,73 +40,72 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .mk .bang{position:absolute;left:50%;bottom:.30em;width:.09em;height:.42em;border-radius:.05em;background:var(--terra);transform:translateX(-50%)}
 .mk .dot{position:absolute;left:50%;bottom:.07em;width:.16em;height:.16em;border-radius:50%;background:var(--terra);transform:translateX(-50%)}
 
-/* ---------- intro ---------- */
-#intro{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;
-  background:radial-gradient(125% 100% at 50% 32%, #FFFCF6, var(--paper) 56%, var(--paper-deep));transition:opacity .9s var(--expo),visibility .9s}
+/* intro */
+#intro{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(125% 100% at 50% 32%, #FFFCF6, var(--paper) 56%, var(--paper-deep));transition:opacity .9s var(--expo),visibility .9s}
 #intro.gone{opacity:0;visibility:hidden;pointer-events:none}
 #intro .mk{font-size:clamp(52px,12vw,108px);opacity:0;animation:iMk 1.1s var(--expo) .2s forwards}
 @keyframes iMk{from{opacity:0;transform:translateY(12px);filter:blur(7px)}to{opacity:1;transform:none;filter:none}}
 .iq{margin-top:26px;font-family:var(--serif);font-size:clamp(18px,2.6vw,24px);color:var(--ink);opacity:0;animation:iUp .8s var(--expo) 1.4s forwards}
 .ia{margin-top:6px;font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(26px,5.4vw,42px);opacity:0;animation:iUp .9s var(--expo) 2.2s forwards}
 .isub{margin-top:20px;font-family:var(--serif);font-style:italic;font-size:clamp(14px,1.8vw,16.5px);color:var(--ink-soft);opacity:0;animation:iUp .9s var(--expo) 3.1s forwards}
-.isub2{margin-top:7px;font-family:var(--serif);font-size:clamp(13px,1.6vw,15px);color:var(--ink-soft);opacity:0;animation:iUp .9s var(--expo) 3.5s forwards;max-width:34ch}
 @keyframes iUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.iskip{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:101;font-family:var(--serif);
-  font-size:14.5px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;cursor:pointer;padding:11px 30px;opacity:0;animation:iUp .8s var(--expo) 3.7s forwards}
+.iskip{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:101;font-family:var(--serif);font-size:14.5px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;cursor:pointer;padding:11px 30px;opacity:0;animation:iUp .8s var(--expo) 3.6s forwards}
 .iskip[hidden]{display:none}
 
-/* ---------- nav ---------- */
-.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:60;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--edge);
-  background:rgba(248,242,231,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s;opacity:0}
-.nav.show{opacity:1;transition:opacity .8s var(--expo)}
-.nav.stuck{border-color:var(--line)}
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:60;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--edge);background:rgba(248,242,231,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s;opacity:0}
+.nav.show{opacity:1;transition:opacity .8s var(--expo)}.nav.stuck{border-color:var(--line)}
 .nav .brand{justify-self:start;background:none;border:0;cursor:pointer;line-height:0}.nav .brand .mk{font-size:25px}
-.nav .links{justify-self:center;display:flex;gap:clamp(16px,2.4vw,34px)}
+.nav .links{justify-self:center;display:flex;gap:clamp(16px,2.4vw,32px)}
 .nav .links a{font-family:var(--caps);text-transform:uppercase;letter-spacing:.16em;font-size:12.5px;font-weight:600;color:var(--ink-soft);text-decoration:none;transition:color .2s}
 @media(hover:hover){.nav .links a:hover{color:var(--maroon)}}
 .nav .join{justify-self:end;font-family:var(--serif);font-weight:520;font-size:14.5px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;padding:10px 22px;text-decoration:none;cursor:pointer;transition:transform .12s var(--spring),filter .2s}
 .nav .join:active{transform:scale(.96)}@media(hover:hover){.nav .join:hover{filter:brightness(1.05)}}
 
-/* ---------- sections ---------- */
+/* sections */
 section{position:relative;padding:clamp(86px,13vh,168px) var(--edge);scroll-margin-top:var(--nav)}
 .wrap{max-width:1080px;margin:0 auto}
 .eyebrow{font-family:var(--caps);text-transform:uppercase;letter-spacing:.3em;font-size:12.5px;font-weight:600;color:var(--maroon);display:block;margin-bottom:20px}
 .eyebrow .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
-h1{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;font-size:clamp(38px,6.4vw,76px);line-height:1.04;color:var(--ink);text-wrap:balance;max-width:15ch}
-h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;height:.8em;border-radius:50%;background:var(--terra);color:var(--paper);margin:0 .05em;transform:translateY(.04em)}.ck svg{width:.5em;height:.5em}
+h1{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;font-size:clamp(38px,6.2vw,74px);line-height:1.05;color:var(--ink);text-wrap:balance;max-width:16ch}
 h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clamp(30px,4.6vw,52px);line-height:1.1;color:var(--ink);text-wrap:balance;max-width:18ch}
 .lede{font-family:var(--serif);font-size:clamp(16px,2vw,19px);line-height:1.62;color:var(--ink-soft);max-width:48ch;margin-top:22px;text-wrap:pretty}
-
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--expo),transform .8s var(--expo)}
 .reveal.seen{opacity:1;transform:none}
 .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
 
-/* ===== THE CITY ASKS (pain) ===== */
-.ask{display:grid;grid-template-columns:minmax(280px,420px) 1fr;gap:clamp(36px,6vw,80px);align-items:center}
-.chatpanel{background:var(--paper-hi);border:1px solid var(--line);border-radius:22px;padding:20px 18px;box-shadow:0 40px 80px -50px rgba(58,40,20,.55)}
-.chatpanel .ph{display:flex;align-items:center;gap:11px;padding:0 4px 14px;border-bottom:1px solid var(--line);margin-bottom:14px}
-.chatpanel .pav{width:32px;height:32px;border-radius:50%;background:var(--maroon);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:14px}
-.chatpanel .pt{font-family:var(--serif);font-weight:540;font-size:14px;color:var(--ink)}.chatpanel .ps{font-size:11px;color:var(--ink-soft)}
-.feed{display:flex;flex-direction:column;gap:9px}
-.pb{max-width:86%;font-size:14px;line-height:1.4;padding:10px 14px;border-radius:15px 15px 15px 5px;background:var(--paper);border:1px solid var(--line);color:var(--ink);align-self:flex-start;
-  transition-delay:calc(var(--bi,0)*.08s)}
-.pb.r{align-self:flex-end;border-radius:15px 15px 5px 15px;background:#FBF1E6;border-color:var(--sand)}
-.askmsg h2{margin-bottom:10px}
+/* THE CITY ASKS — alive group chat */
+.ask{display:grid;grid-template-columns:minmax(300px,440px) 1fr;gap:clamp(36px,6vw,80px);align-items:center}
+.chatcard{background:var(--paper-hi);border:1px solid var(--line);border-radius:24px;box-shadow:0 50px 90px -54px rgba(58,40,20,.6);overflow:hidden}
+.chatcard .ph{display:flex;align-items:center;gap:11px;padding:16px 18px;background:#EFE4CC;border-bottom:1px solid rgba(122,46,34,.1)}
+.chatcard .pav{width:34px;height:34px;border-radius:50%;background:var(--maroon);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:15px}
+.chatcard .pt{font-family:var(--serif);font-weight:540;font-size:14.5px;color:var(--ink)}.chatcard .ps{font-size:11.5px;color:var(--ink-soft)}
+.feed{height:392px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 11%);mask-image:linear-gradient(to bottom,transparent,#000 11%)}
+.msg{max-width:86%;opacity:0;transform:translateY(9px) scale(.98);transition:opacity .4s var(--expo),transform .45s var(--spring)}
+.msg.show{opacity:1;transform:none}
+.msg.out{align-self:flex-end}
+.who{font-size:10.5px;color:var(--terra);margin:0 0 2px 6px;font-weight:520}
+.bubble{display:inline-block;padding:9px 13px;border-radius:15px 15px 15px 5px;background:var(--paper);border:1px solid var(--line);font-size:13.5px;line-height:1.4;color:var(--ink)}
+.msg.out .bubble{border-radius:15px 15px 5px 15px;background:#E7D8A8}
+.typing{display:inline-flex;gap:4px;padding:11px 14px;border-radius:15px 15px 15px 5px;background:var(--paper);border:1px solid var(--line)}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--sand);animation:bl 1.2s infinite both}.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,60%,100%{opacity:.3}30%{opacity:1}}
 .askmsg .soul{font-family:var(--gu);font-weight:600;color:var(--terra);font-size:clamp(18px,2.4vw,23px);margin-top:18px;line-height:1.4}
 .askmsg .bridge{font-family:var(--serif);font-size:clamp(15px,1.7vw,17px);color:var(--ink);margin-top:22px;max-width:42ch;line-height:1.55}
 
-/* ===== HERO ===== */
+/* HERO / REVEAL */
 .hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;text-align:center;align-items:center;padding-top:calc(var(--nav) + 24px);overflow:hidden}
 .hero .wrap{position:relative;z-index:2}.hero h1{margin:0 auto}.hero .lede{margin-left:auto;margin-right:auto}
 .marks{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
 .mark{position:absolute;font-family:var(--serif);font-size:clamp(13px,1.4vw,15px);color:var(--ink);background:var(--paper-hi);border:1px solid var(--line);border-radius:12px;padding:9px 13px;white-space:nowrap;box-shadow:0 12px 22px -20px rgba(58,40,20,.5);opacity:.5;will-change:transform}
 .mark.gu{font-family:var(--gu)}.mark .a{color:var(--terra);font-style:italic}
-.searchwrap{width:100%;max-width:580px;margin:clamp(34px,6vh,52px) auto 0}
+.searchwrap{width:100%;max-width:580px;margin:clamp(32px,5vh,48px) auto 0}
 .search{display:flex;align-items:center;gap:13px;padding:15px 18px;border:1.5px solid var(--sand);border-radius:15px;background:var(--paper-hi);text-align:left;box-shadow:0 24px 44px -34px rgba(58,40,20,.6)}
 .search .mag{flex:0 0 auto;color:var(--terra)}.search .q{flex:1;font-family:var(--serif);font-size:clamp(16px,2.2vw,19px);color:var(--ink);white-space:nowrap;overflow:hidden}
 .search .cur{display:inline-block;width:2px;height:1.05em;background:var(--terra);margin-left:1px;vertical-align:-3px;animation:blink 1s step-end infinite}@keyframes blink{50%{opacity:0}}
 .search .ent{flex:0 0 auto;font-family:var(--caps);text-transform:uppercase;letter-spacing:.14em;font-size:10.5px;color:var(--ink-soft);border:1px solid var(--line);border-radius:7px;padding:4px 8px}
-.results{display:flex;flex-direction:column;gap:10px;margin-top:14px;text-align:left;min-height:160px}
+.results{display:flex;flex-direction:column;gap:10px;margin-top:14px;text-align:left;min-height:150px}
 .res{display:flex;align-items:flex-start;gap:13px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--paper-hi);box-shadow:0 16px 30px -26px rgba(58,40,20,.55);opacity:0;transform:translateY(10px);transition:opacity .5s var(--expo),transform .5s var(--spring)}
 .res.show{opacity:1;transform:none}
 .av{flex:0 0 auto;width:42px;height:42px;border-radius:12px;background:#FBF1E6;border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;color:var(--maroon)}
@@ -116,19 +115,37 @@ h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clam
 .chip.nb{color:var(--ink-soft);background:var(--paper);border:1px solid var(--line)}
 .rt{font-size:13px;color:var(--ink-soft);margin:3px 0 6px}.rs{font-size:13.5px;color:var(--ink);line-height:1.4}.rs .nm{color:var(--terra);font-style:italic}
 .rcall{flex:0 0 auto;align-self:center;width:36px;height:36px;border-radius:50%;background:var(--terra);display:flex;align-items:center;justify-content:center;color:var(--paper)}
-.hcta{display:inline-block;margin-top:clamp(30px,5vh,46px);font-family:var(--caps);text-transform:uppercase;letter-spacing:.18em;font-size:12px;font-weight:600;color:var(--maroon);text-decoration:none;border-bottom:1.5px solid var(--terra);padding-bottom:3px}
+.hcta{display:inline-block;margin-top:clamp(28px,4vh,42px);font-family:var(--caps);text-transform:uppercase;letter-spacing:.18em;font-size:12px;font-weight:600;color:var(--maroon);text-decoration:none;border-bottom:1.5px solid var(--terra);padding-bottom:3px}
 
-/* ===== WHAT HALO DOES ===== */
-.does{background:var(--paper-deep)}
-.does .head{text-align:center;margin:0 auto 60px;max-width:640px}.does .head .lede{margin:18px auto 0}
+/* HOW HALO STARTS */
+.starts{background:var(--paper-deep)}
+.starts .head{text-align:center;margin:0 auto 56px;max-width:640px}.starts .head .lede{margin:16px auto 0}
 .cards{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
 .card{background:var(--paper-hi);border:1px solid var(--line);border-radius:18px;padding:24px 20px;box-shadow:0 24px 44px -38px rgba(58,40,20,.5)}
-.card .n{font-family:var(--caps);font-size:13px;letter-spacing:.14em;color:var(--gold);font-weight:600;margin-bottom:14px}
+.card .n{font-family:var(--caps);font-size:13px;letter-spacing:.14em;color:var(--gold);font-weight:600;margin-bottom:13px}
 .card h3{font-family:var(--serif);font-weight:540;font-size:16.5px;color:var(--ink);margin-bottom:8px;line-height:1.2}
-.card p{font-size:13px;color:var(--ink-soft);line-height:1.5}
-.pledge{margin-top:42px;text-align:center;font-family:var(--serif);font-size:clamp(16px,2vw,19px);color:var(--maroon)}.pledge b{color:var(--ink)}
+.card p{font-size:13px;color:var(--ink-soft);line-height:1.5}.card p em{font-style:italic;color:var(--ink)}
+.pledge{margin-top:42px;text-align:center;font-family:var(--serif);font-size:clamp(15px,1.9vw,18px);color:var(--maroon)}.pledge b{color:var(--ink);font-weight:540}
 
-/* ===== VISION ===== */
+/* SHARE A TRUSTED LOCAL (contribution) */
+.share .wrap{max-width:620px;text-align:center}
+.share .lede{margin:20px auto 0}
+.cform{margin-top:36px;background:var(--paper-hi);border:1px solid var(--line);border-radius:22px;padding:clamp(22px,4vw,34px);text-align:left;box-shadow:0 40px 80px -54px rgba(58,40,20,.55)}
+.fl{font-family:var(--caps);text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--ink-soft);display:block;margin:0 0 8px 2px}
+.cfield{width:100%;font-family:var(--serif);font-size:16px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:18px}
+.cfield::placeholder{color:#9C8A6A}.cfield:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.28)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.catchip{font-family:var(--serif);font-size:13.5px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:8px 15px;cursor:pointer;transition:all .2s var(--expo);-webkit-tap-highlight-color:transparent}
+.catchip.on{color:var(--paper);background:var(--terra);border-color:var(--terra)}
+@media(hover:hover){.catchip:not(.on):hover{border-color:var(--sand)}}
+.csubmit{width:100%;font-family:var(--serif);font-weight:540;font-size:16px;color:var(--paper);background:var(--terra);border:0;border-radius:13px;padding:15px;cursor:pointer;transition:transform .12s var(--spring),filter .2s}.csubmit:active{transform:scale(.98)}
+.cmicro{font-size:13px;color:var(--ink-soft);text-align:center;margin-top:14px;line-height:1.5}
+.creward{margin-top:18px;text-align:center;font-family:var(--serif);font-style:italic;font-size:14.5px;color:var(--maroon)}
+.cerr{color:var(--maroon);font-size:13.5px;margin-bottom:8px;min-height:1.1em}
+.cdone{text-align:center;padding:18px 0}.cdone .gw{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(24px,3.4vw,32px);margin-bottom:12px}
+.cdone p{font-size:15.5px;color:var(--ink-soft);line-height:1.55;max-width:38ch;margin:0 auto}
+
+/* VISION */
 .editorial{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,72px);align-items:start}
 .kicker{font-family:var(--caps);text-transform:uppercase;letter-spacing:.32em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:20px}
 .kicker .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
@@ -137,11 +154,10 @@ h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clam
 .ed-body .lead::first-letter{float:left;font-family:var(--serif);font-weight:560;font-size:3.4em;line-height:.72;color:var(--terra);margin:6px 12px 0 0}
 .ed-body .pullquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(21px,2.7vw,28px);line-height:1.26;color:var(--maroon);margin:18px 0}
 .ed-body .nots{color:var(--ink-soft);font-style:italic}
-.ed-body .ed-close{color:var(--ink)}.ed-body .ed-close b{font-weight:560}
+.ed-body .ed-close{color:var(--ink)}
 
-/* ===== JOIN ===== */
-.join{text-align:center}.join .wrap{max-width:480px}
-.joinform{margin-top:28px}
+/* JOIN */
+.join{text-align:center}.join .wrap{max-width:480px}.joinform{margin-top:28px}
 .field{width:100%;font-family:var(--serif);font-size:17px;color:var(--ink);background:var(--paper-hi);border:1px solid var(--sand);border-radius:14px;padding:15px 17px}
 .field::placeholder{color:#8F7B57}.field:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.3)}
 .consent{display:flex;gap:11px;align-items:flex-start;margin:16px 2px;text-align:left;cursor:pointer}
@@ -149,23 +165,17 @@ h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clam
 .joinbtn{width:100%;font-family:var(--serif);font-weight:540;font-size:16.5px;color:var(--paper);background:var(--terra);border:0;border-radius:14px;padding:15px;cursor:pointer;transition:transform .12s var(--spring)}.joinbtn:active{transform:scale(.98)}
 .err{color:var(--maroon);font-size:14px;margin-top:10px;min-height:1.1em}
 .joindone{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(26px,4vw,38px);margin-bottom:10px}
-.strip{display:flex;gap:12px 28px;justify-content:center;flex-wrap:wrap;margin-top:26px}.strip span{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft)}.strip .tk{color:var(--terra);font-weight:700}
+.jnote{font-size:13.5px;color:var(--ink-soft);margin-top:22px;font-style:italic}
 
-footer{background:var(--ink);color:var(--paper);text-align:center;padding:64px var(--edge)}
+footer{background:var(--ink);color:var(--paper);text-align:center;padding:60px var(--edge)}
 footer .mk{color:var(--paper);font-size:34px;margin-bottom:18px}footer .mk .bang,footer .mk .dot{background:var(--gold)}
-footer .anchors{font-family:var(--gu);color:var(--gold);font-size:16px;letter-spacing:.02em}
-footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em;font-size:11.5px;color:rgba(248,242,231,.6);margin-top:10px;display:block}
+footer .anchors{font-family:var(--gu);color:var(--gold);font-size:16px}footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em;font-size:11.5px;color:rgba(248,242,231,.6);margin-top:10px;display:block}
 
-@media (max-width:900px){
-  .ask{grid-template-columns:1fr;gap:32px}
-  .cards{grid-template-columns:1fr 1fr}
-  .editorial{grid-template-columns:1fr;gap:18px}
-  .nav .links{display:none}
-}
-@media (max-width:560px){ :root{--nav:62px} .cards{grid-template-columns:1fr} .vh{font-size:clamp(42px,13vw,60px)} }
+@media (max-width:900px){.ask{grid-template-columns:1fr;gap:30px}.cards{grid-template-columns:1fr 1fr}.editorial{grid-template-columns:1fr;gap:18px}.nav .links{display:none}}
+@media (max-width:560px){ :root{--nav:62px} .cards{grid-template-columns:1fr} .vh{font-size:clamp(42px,13vw,60px)} .feed{height:340px} }
 @media (prefers-reduced-motion:reduce){
-  #intro .mk,.iq,.ia,.isub,.isub2,.iskip,.reveal,.res{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}
-  .search .cur{animation:none}.mark{display:none}html{scroll-behavior:auto}
+  #intro .mk,.iq,.ia,.isub,.iskip,.reveal,.res,.msg{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}
+  .search .cur,.typing i{animation:none}.mark{display:none}html{scroll-behavior:auto}
 }
 </style>
 </head>
@@ -177,56 +187,46 @@ footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em
   <p class="iq">Vadodara, we heard you.</p>
   <p class="ia">વડોદરા, હવે શરૂઆત કરીએ.</p>
   <p class="isub">A homegrown beginning for the city we call our own.</p>
-  <p class="isub2">Vadodara's own city companion — starting with the local trust we already share.</p>
 </div>
 <button class="iskip" id="iskip">Enter</button>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
   <button class="brand" id="brand" aria-label="ae halo"><span class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></span></button>
-  <div class="links"><a href="#hero">Home</a><a href="#does">What it does</a><a href="#vision">Our vision</a></div>
+  <div class="links"><a href="#reveal">Home</a><a href="#starts">How it works</a><a href="#share">Share a local</a><a href="#vision">Our vision</a></div>
   <a class="join" href="#join">Join</a>
 </nav>
 
-<!-- THE CITY ASKS (pain, before the hero) -->
+<!-- THE CITY ASKS -->
 <section class="ask-sec" id="ask">
   <div class="wrap ask">
-    <div class="chatpanel reveal">
+    <div class="chatcard reveal">
       <div class="ph"><div class="pav">વ</div><div><div class="pt">Vadodara, every day</div><div class="ps">how the city already asks</div></div></div>
-      <div class="feed">
-        <div class="pb reveal" style="--bi:0">Good tiffin near Gotri?</div>
-        <div class="pb r reveal" style="--bi:1">Electrician no number che?</div>
-        <div class="pb reveal" style="--bi:2">Any quiet café to work?</div>
-        <div class="pb r reveal" style="--bi:3">Pure Jain dabba near Manjalpur?</div>
-        <div class="pb reveal" style="--bi:4">Trusted tutor for 10th maths?</div>
-        <div class="pb r reveal" style="--bi:5">Local makers fair kyare che?</div>
-        <div class="pb reveal" style="--bi:6">Reliable PG food near MSU?</div>
-        <div class="pb r reveal" style="--bi:7">Who's doing pop-ups this weekend?</div>
-      </div>
+      <div class="feed" id="feed"></div>
     </div>
     <div class="askmsg">
       <span class="eyebrow reveal">Every day, Vadodara asks</span>
       <h2 class="reveal d1">The answers are already here. They're just scattered.</h2>
       <p class="soul reveal d2">જવાબો પણ અહીં છે. લોકો પણ અહીં છે. બસ બધું એક જગ્યાએ નથી.</p>
-      <p class="bridge reveal d3">Ae Halo brings Vadodara's trusted local world into one place — starting with the recommendations people already rely on.</p>
+      <p class="bridge reveal d3">Ae Halo brings these trusted local answers into one clean place — starting with the recommendations people already rely on.</p>
     </div>
   </div>
 </section>
 
-<!-- HERO (introduce Halo + search; no contact form) -->
-<section class="hero" id="hero">
+<!-- HALO REVEAL -->
+<section class="hero" id="reveal">
   <div class="marks" id="marks" aria-hidden="true">
     <div class="mark" data-sp="0.18" style="left:7%;top:18%">tiffin in <span class="a">Alkapuri</span></div>
     <div class="mark" data-sp="0.30" style="left:11%;top:66%">quiet café near <span class="a">Akota</span></div>
     <div class="mark" data-sp="0.24" style="right:8%;top:22%">electrician in <span class="a">Gotri</span></div>
     <div class="mark gu" data-sp="0.14" style="right:11%;top:64%">આકોટાનો દરજી</div>
-    <div class="mark" data-sp="0.34" style="left:31%;top:84%">trusted tutor in <span class="a">Karelibaug</span></div>
+    <div class="mark" data-sp="0.34" style="left:31%;top:84%">tutor in <span class="a">Karelibaug</span></div>
     <div class="mark" data-sp="0.2" style="right:27%;top:82%">Jain food near <span class="a">Manjalpur</span></div>
   </div>
   <div class="wrap">
     <span class="eyebrow"><span class="gu">વડોદરાનું પોતાનું</span> · Vadodara's own</span>
-    <h1>Home to the people Vadodara<span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>trusts.</h1>
-    <p class="lede">Search what Vadodara actually asks — and find answers shaped by real local trust, not paid listings or random noise.</p>
+    <h1>Vadodara's own local companion.</h1>
+    <p class="lede">Ask what the city already knows. Find people, places, and recommendations shaped by real local trust.</p>
     <div class="searchwrap">
       <div class="search">
         <svg class="mag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
@@ -234,30 +234,60 @@ footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em
       </div>
       <div class="results" id="results"></div>
     </div>
-    <a class="hcta" href="#does">See how it works</a>
+    <a class="hcta" href="#starts">See how it works</a>
   </div>
 </section>
 
-<!-- WHAT HALO DOES -->
-<section class="does" id="does">
+<!-- HOW HALO STARTS WITH YOU -->
+<section class="starts" id="starts">
   <div class="wrap">
     <div class="head reveal">
-      <span class="eyebrow">What Halo does</span>
-      <h2 style="margin:0 auto">Search, and trust the answer.</h2>
-      <p class="lede">Halo brings local recommendations, useful contacts, and city knowledge into one clean place — with consent, context, and trust signals that actually mean something.</p>
+      <span class="eyebrow">How Halo starts with you</span>
+      <h2 style="margin:0 auto">One useful recommendation can save someone else hours of doubt.</h2>
     </div>
     <div class="cards">
-      <div class="card reveal d1"><div class="n">01</div><h3>A local need is asked</h3><p>Someone in the city is looking for a person, place, service, or answer.</p></div>
-      <div class="card reveal d2"><div class="n">02</div><h3>A trusted recommendation is added</h3><p>A neighbour, customer, friend, or local user contributes what they know.</p></div>
-      <div class="card reveal d3"><div class="n">03</div><h3>Halo checks the context</h3><p>No random public dumping. No fake praise. Nothing goes live without basic checks and consent.</p></div>
-      <div class="card reveal d4"><div class="n">04</div><h3>Trust becomes visible</h3><p>You see why something is recommended, who it helps, and what has actually been verified.</p></div>
-      <div class="card reveal d4"><div class="n">05</div><h3>You reach them directly</h3><p>No middleman. No commission. No paid ranking pretending to be trust.</p></div>
+      <div class="card reveal d1"><div class="n">01</div><h3>Someone asks</h3><p><em>“Good electrician in Gotri?” “Pure Jain dabba near Manjalpur?” “Quiet café to work from?”</em> These questions already happen every day.</p></div>
+      <div class="card reveal d2"><div class="n">02</div><h3>You remember someone good</h3><p>A person, shop, café, tutor, home cook, repair guy, local maker, or business that actually helped you.</p></div>
+      <div class="card reveal d3"><div class="n">03</div><h3>You add the basics</h3><p>Name, area, contact if you have it, and why you trusted them. Less than a minute.</p></div>
+      <div class="card reveal d4"><div class="n">04</div><h3>Halo checks before showing</h3><p>We look for consent, context, duplicates, and obvious spam before anything becomes useful to others.</p></div>
+      <div class="card reveal d4"><div class="n">05</div><h3>The next person decides better</h3><p>Not because of paid ranking. Because someone local shared something real.</p></div>
     </div>
-    <p class="pledge reveal"><b>No paid listings. No fake reviews. No commission, ever.</b></p>
+    <p class="pledge reveal"><b>Built around real local trust.</b> Trust before promotion — useful information first, noise later never.</p>
   </div>
 </section>
 
-<!-- OUR VISION -->
+<!-- SHARE A TRUSTED LOCAL -->
+<section class="share" id="share">
+  <div class="wrap reveal">
+    <span class="eyebrow">Share someone worth knowing</span>
+    <h2 style="margin:0 auto">Had a good local experience recently?</h2>
+    <p class="lede">If someone showed up, helped properly, charged fairly, made great food, taught well, fixed something, or simply did good work — add them. Someone else in Vadodara may be looking for exactly that.</p>
+    <div class="cform" id="cform">
+      <div id="cpre">
+        <p class="cerr" id="cErr"></p>
+        <label class="fl">Who helped you?</label>
+        <input class="cfield" id="cWho" type="text" placeholder="Name / shop / service person">
+        <label class="fl">What did they help with?</label>
+        <div class="chips" id="cChips"></div>
+        <label class="fl">Area</label>
+        <input class="cfield" id="cArea" type="text" placeholder="Gotri, Alkapuri, Akota, Manjalpur, Karelibaug, Mandvi…">
+        <label class="fl">Contact, if you have it</label>
+        <input class="cfield" id="cContact" type="text" placeholder="Phone / Instagram / shop name">
+        <label class="fl">Why do you trust them?</label>
+        <input class="cfield" id="cWhy" type="text" placeholder="Came on time, fair price, good food, clean work, didn't overcharge…">
+        <button class="csubmit" id="cSubmit">Share a trusted local</button>
+        <p class="cmicro">Takes less than a minute. We check before anything goes public.</p>
+        <p class="creward">Earn early contributor status when your recommendation helps the city.</p>
+      </div>
+      <div class="cdone" id="cDone" style="display:none">
+        <div class="gw">આભાર.</div>
+        <p>Added. You're now an early contributor — your recommendation will help the next person in Vadodara choose better.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
 <section class="vision" id="vision">
   <div class="wrap editorial">
     <div class="reveal">
@@ -265,12 +295,11 @@ footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em
       <h2 class="vh">Vadodara<br>already<br>knows<span class="p">.</span></h2>
     </div>
     <div class="ed-body reveal d1">
-      <p class="lead">It knows the tiffin worth trying, the café worth visiting, the tutor worth calling, the shop worth trusting, and the people who quietly keep the city running.</p>
+      <p class="lead">Vadodara already knows the tiffin worth trying, the café worth visiting, the tutor worth calling, the shop worth trusting, and the people who quietly keep the city running.</p>
       <p class="pullquote">The problem was never knowledge.</p>
       <p>The problem is that this knowledge is scattered — across WhatsApp groups, saved numbers, neighbours, relatives, Instagram pages, and word-of-mouth that disappears before the next person needs it.</p>
-      <p>Ae Halo brings that trust out into the open. <span class="nots">Not a noisy directory. Not paid rankings. Not another place full of fake reviews.</span></p>
-      <p>As Vadodara's own trusted local layer — built around trust, discovery, and belonging.</p>
-      <p class="ed-close">This is only the beginning. <b>Back this, and we build what Vadodara has been ready for.</b></p>
+      <p>Ae Halo brings that trust into one shared local layer. <span class="nots">Not a noisy directory. Not random ratings. Not paid noise.</span></p>
+      <p class="ed-close">As a homegrown beginning for the city we call our own.</p>
     </div>
   </div>
 </section>
@@ -280,14 +309,14 @@ footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em
   <div class="wrap reveal">
     <div id="joinPre">
       <span class="eyebrow"><span class="gu">એ હાલો</span> · be one of the first</span>
-      <h2 style="margin:0 auto">Help start Vadodara's own.</h2>
-      <p class="lede" style="margin:18px auto 0">Whether you're looking for trusted local answers, or you're someone the city should know about — join the first list and we'll tell you when Halo opens.</p>
+      <h2 style="margin:0 auto">Be one of the first to shape Halo.</h2>
+      <p class="lede" style="margin:18px auto 0">Join early, share what Vadodara should know, and help build the city's trusted local companion from the beginning.</p>
       <div class="joinform">
         <input class="field" id="contact" type="text" inputmode="email" autocomplete="off" placeholder="WhatsApp number or email">
-        <label class="consent"><input type="checkbox" id="consent"><span>Okay to contact me only about Ae Halo.</span></label>
+        <label class="consent"><input type="checkbox" id="consent"><span>Only contact me about Ae Halo.</span></label>
         <p class="err" id="joinErr"></p>
         <button class="joinbtn" id="joinSubmit">Count me in</button>
-        <div class="strip"><span><span class="tk">✓</span> No spam</span><span><span class="tk">✓</span> No commission. Ever.</span></div>
+        <p class="jnote">Early contributors get first access and community recognition.</p>
       </div>
     </div>
     <div id="joinDone" style="display:none">
@@ -316,18 +345,58 @@ footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em
     document.body.classList.remove("lock"); document.getElementById("iskip").hidden=true; document.getElementById("nav").classList.add("show"); startSearch(); }
   document.getElementById("iskip").addEventListener("click",enter);
   document.addEventListener("keydown",function(e){ if(!intro.classList.contains("gone")&&(e.key==="Enter"||e.key==="Escape")) enter(); });
-  if(reduce){ enter(); } else { setTimeout(enter, 5200); }
+  if(reduce){ enter(); } else { setTimeout(enter, 5000); }
 
   document.getElementById("brand").addEventListener("click",function(){window.scrollTo({top:0,behavior:reduce?"auto":"smooth"});});
   var nav=document.getElementById("nav"), marks=[].slice.call(document.querySelectorAll(".mark")), ticking=false;
   function parallax(){ if(reduce)return; var y=window.scrollY; for(var i=0;i<marks.length;i++){ var sp=+marks[i].getAttribute("data-sp")||0.2; marks[i].style.transform="translateY("+(y*sp - 220*sp)+"px)"; } }
   window.addEventListener("scroll",function(){ if(!ticking){ requestAnimationFrame(function(){ nav.classList.toggle("stuck",window.scrollY>20); parallax(); ticking=false; }); ticking=true; } },{passive:true});
 
+  /* reveals */
   if(reduce){ document.querySelectorAll(".reveal").forEach(function(e){e.classList.add("seen");}); }
   else if("IntersectionObserver" in window){
     var io=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add("seen"); io.unobserve(en.target);} }); },{threshold:.14});
     document.querySelectorAll(".reveal").forEach(function(e){ io.observe(e); });
   } else { document.querySelectorAll(".reveal").forEach(function(e){e.classList.add("seen");}); }
+
+  /* ---------- alive group chat (plays when it scrolls into view) ---------- */
+  var CHAT=[
+    {who:"Rohit", t:"Good electrician in Gotri? Fan bandh thai gayo 😭"},
+    {who:"Meena", out:true, t:"Mara society ma ek aavyo'to, on time aavyo. Sending."},
+    {who:"Jay", t:"Pure Jain dabba near Manjalpur? Office lunch maate."},
+    {who:"Jay", t:"Please no “healthy” dabba — 2 rotli ane sadness."},
+    {who:"Riya", t:"Quiet café for laptop work near Akota?"},
+    {who:"Sanjay", out:true, t:"Quiet means actually quiet ke Instagram quiet? 😄"},
+    {who:"Dev", t:"Laptop repair trustworthy? Last time bill joine j hu hang thai gayo."},
+    {who:"Nisha", t:"Good tutor for 10th maths?"},
+    {who:"Sanjay", out:true, t:"Rupal aunty na group ma puchho — emne badha ne khabar hoy."},
+    {who:"Dev", t:"See — everyone knows someone, but no one knows where to find it later."}
+  ];
+  var feed=document.getElementById("feed"), chatPlayed=false;
+  function mkMsg(m){var d=document.createElement("div");d.className="msg"+(m.out?" out":"");
+    d.innerHTML=(m.who?'<div class="who">'+m.who+'</div>':'')+'<div class="bubble">'+m.t+'</div>';return d;}
+  function playChat(){
+    if(chatPlayed)return; chatPlayed=true;
+    if(reduce){ CHAT.forEach(function(m){var e=mkMsg(m);e.classList.add("show");feed.appendChild(e);}); return; }
+    var i=0;
+    (function step(){
+      if(i>=CHAT.length)return;
+      var m=CHAT[i];
+      var tp=document.createElement("div"); tp.className="msg"+(m.out?" out":""); tp.innerHTML='<div class="typing"><i></i><i></i><i></i></div>';
+      feed.appendChild(tp); requestAnimationFrame(function(){tp.classList.add("show");});
+      setTimeout(function(){
+        feed.removeChild(tp);
+        var e=mkMsg(m); feed.appendChild(e); requestAnimationFrame(function(){e.classList.add("show");});
+        while(feed.children.length>7) feed.removeChild(feed.children[0]);
+        i++; setTimeout(step, 850);
+      }, 620);
+    })();
+  }
+  if(reduce){ playChat(); }
+  else if("IntersectionObserver" in window){
+    var cio=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ playChat(); cio.disconnect(); } }); },{threshold:.3});
+    cio.observe(feed);
+  } else playChat();
 
   /* hero search */
   var qEl=document.getElementById("q"), resEl=document.getElementById("results");
@@ -336,17 +405,13 @@ footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em
       {av:"ગ",nm:"Gokul Tiffin",trade:"Pure Jain · Alkapuri",badge:"trusted",say:"“No onion, no garlic. Finally a dabba I trust.”",by:"Priya-ben"},
       {av:"અ",nm:"Annapurna",trade:"Home tiffin · Alkapuri",badge:"nb",say:"“Never misses a day, even in monsoon.”",by:"Rohit"}
     ]},
-    {q:"electrician in Gotri", res:[
-      {av:"B",nm:"Bharat",trade:"Electrician · Gotri",badge:"trusted",say:"“Came same day — didn’t vanish with the advance.”",by:"Meena, Alkapuri"},
-      {av:"S",nm:"Suresh",trade:"Electrician · Gotri to Akota",badge:"nb",say:"“Fair rate, didn’t inflate it halfway.”",by:"Sanjay"}
-    ]},
     {q:"quiet café near Akota", res:[
       {av:"R",nm:"The Reading Room",trade:"Café · Akota",badge:"trusted",say:"“Actually quiet, plug points, they don’t rush you.”",by:"Riya"},
       {av:"K",nm:"Kaapi Corner",trade:"Café · Akota",badge:"nb",say:"“Calm mornings, good filter coffee.”",by:"Dev"}
     ]},
-    {q:"trusted tutor in Karelibaug", res:[
-      {av:"A",nm:"Anjali",trade:"Maths tutor · Karelibaug",badge:"trusted",say:"“My daughter finally gets it.”",by:"Hemant"},
-      {av:"K",nm:"Kiran",trade:"Science tutor · Karelibaug",badge:"nb",say:"“Patient, very clear.”",by:"Nisha"}
+    {q:"electrician in Gotri", res:[
+      {av:"B",nm:"Bharat",trade:"Electrician · Gotri",badge:"trusted",say:"“Came same day — didn’t vanish with the advance.”",by:"Meena, Alkapuri"},
+      {av:"S",nm:"Suresh",trade:"Electrician · Gotri to Akota",badge:"nb",say:"“Fair rate, didn’t inflate it halfway.”",by:"Sanjay"}
     ]}
   ];
   function card(r){var d=document.createElement("div");d.className="res";
@@ -363,6 +428,23 @@ footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em
       sT.push(setTimeout(function(){ Array.prototype.forEach.call(resEl.children,function(c){c.classList.remove("show");}); sT.push(setTimeout(function(){qi=(qi+1)%QUERIES.length;run();},600)); }, s.length*52+460+3000));
     } run();
   }
+
+  /* ---------- contribution form ---------- */
+  var CATS=["Tiffin","Electrician","Tutor","Café","Repair","Home food","Tailor","Doctor","Salon","Local shop","Other"];
+  var chipsWrap=document.getElementById("cChips"), chosenCat="";
+  CATS.forEach(function(c){ var b=document.createElement("button"); b.type="button"; b.className="catchip"; b.textContent=c;
+    b.addEventListener("click",function(){ chosenCat= chosenCat===c?"":c; Array.prototype.forEach.call(chipsWrap.children,function(x){x.classList.toggle("on",x.textContent===chosenCat);}); });
+    chipsWrap.appendChild(b); });
+  document.getElementById("cSubmit").addEventListener("click",function(){
+    var who=document.getElementById("cWho").value.trim(), why=document.getElementById("cWhy").value.trim(),
+        area=document.getElementById("cArea").value.trim(), contact=document.getElementById("cContact").value.trim(), err=document.getElementById("cErr");
+    if(!who){err.textContent="Just their name or shop — that's the one thing we need.";return;}
+    if(!chosenCat){err.textContent="Pick what they helped with.";return;}
+    err.textContent="";
+    // recommendation row (anonymous-ish). PII (contact) handled with consent + checks before public.
+    try{console.log("[recommendation]",{who:who,category:chosenCat,area:area,contact:contact,why:why,at:new Date().toISOString()});}catch(x){}
+    document.getElementById("cpre").style.display="none"; document.getElementById("cDone").style.display="block";
+  });
 
   /* join */
   document.getElementById("joinSubmit").addEventListener("click",function(){
