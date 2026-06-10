@@ -1,241 +1,163 @@
 ---
 name: halo-product-vision
-description: The product vision skill for Halo (ae halo), Vadodara's hyperlocal platform. Invoke before any product, scope, roadmap, or feature-prioritisation decision — when deciding what to build, what to reject, or why something matters. Defines vision, mission, what Halo is/isn't, why directory-first, what comes after, the product/community/business/AI/trust principles, the feature-decision framework, and success metrics. Core truth: Halo starts as a directory but aims to become Vadodara's go-to digital platform — the place you open to decide, discover, trust, ask, book, compare, or connect locally.
+description: Internal product-direction skill for Halo (ae halo), Vadodara's hyperlocal platform. Invoke before product, scope, or feature decisions to stay aligned with Halo's direction and principles. This file is intentionally protected — it guides decisions through principles and a decision framework, NOT a detailed roadmap or named future features. Core stance: Halo begins with a directory but is not limited by it; the first layer is trust, the larger ambition is local usefulness — becoming the place Vadodara instinctively checks before making a local decision.
 ---
 
-# Halo Product Vision — *વડોદરાનું પોતાનું*
+# Halo Product Vision — *internal direction (protected)*
 
-What Halo is building, and why. If a scope or feature decision conflicts with
-this file, this file wins. Pair it with `HALO_DESIGN_SYSTEM.md` (the look) and
-`HALO_BRAND_VOICE.md` (the words) — this is the *what and why*.
+This is an **internal** product-direction file. It exists to keep decisions
+aligned, not to document strategy in a copyable way. Guide by **principles**,
+not by exposing the plan.
 
----
+> **Build publicly with emotion. Protect privately with discipline.**
 
-## 0. The core truth
-
-> **Halo is not stopping at a directory. The directory is only the starting point.**
-
-Halo's long-term goal is to become **Vadodara's go-to digital platform** — the
-place a Barodian opens when they need to **decide, discover, trust, ask, book,
-compare, or connect** locally. The directory is how we earn that right: it is
-the **first trust layer**, not the destination.
+Read alongside `HALO_DESIGN_SYSTEM.md` (look) and `HALO_BRAND_VOICE.md` (words).
+Where those are public-facing craft, this one stays private.
 
 ---
 
-## 1. Vision
+## 1. Protected vision
 
-**Vadodara's own digital home** — the first place anyone in the city opens for
-anything local, because it's the place they trust to help them decide.
+> **Halo begins with a directory, but it is not limited by the directory.**
+> **The first layer is trust. The larger ambition is local usefulness.**
 
-Not "a better listing site." A living, community-maintained **local trust
-system** that makes Vadodara's word of mouth searchable, dependable, and proud —
-and grows, over time, into the city's everyday decision layer.
+Halo's direction is to become **the trusted local digital habit for Vadodara** —
+**the place Vadodara instinctively checks before making a local decision.**
 
----
+The directory is the **first doorway, not the full destination.** Beyond it lie
+**future local utility layers** — held as direction, not declared as a feature
+list. We state the *ambition* openly and emotionally; we keep the *mechanics*
+private and disciplined.
 
-## 2. Mission
-
-**Help every Barodian decide with confidence, and help every good local
-business be found — without hype, without commission, without losing what makes
-the city *ours*.**
-
-We do this by turning scattered trust (WhatsApp forwards, neighbour tips,
-Instagram pages, random Google listings) into one clean, honest, beautiful place
-that the city builds together.
+**Handling rule:** describe the vision in terms of trust, habit, and local
+usefulness. Do **not** spell out specific future products, sequencing, or
+timelines in this file or anywhere copyable.
 
 ---
 
-## 3. What Halo is
+## 2. What Halo is
 
-- A **premium hyperlocal platform** for Vadodara, beginning with a verified directory.
-- A **decision-confidence engine** — built so you can *choose the right one*, not just see a list.
-- A **community product** — added to and vouched for by people who actually live here.
-- A **trust system** — transparent about what's verified and what isn't.
-- **Vadodara's own** — local in soul, not a generic template pointed at a city.
-- A platform where **businesses keep every rupee** — no commission, ever.
+- A **premium hyperlocal platform** for Vadodara that begins with a verified directory.
+- A **trust layer** for local decisions — honest about what's checked and what isn't.
+- A **community-built local system** — added to and vouched for by people who live here.
+- **Vadodara's own** — local in soul, specific by design.
+- A platform where **local businesses keep every rupee** — no commission.
+- A **habit in the making** — built to become the city's instinctive first check.
 
-## 4. What Halo is not
+## 3. What Halo is not
 
-- ❌ **Not Justdial / Sulekha** — not a pay-to-rank, lead-selling, spammy listing dump.
-- ❌ **Not Google Maps** — not a global, impersonal pin-and-review utility with no local soul or curation.
-- ❌ **Not a generic AI startup** — AI is not the pitch; trust and belonging are. No "AI-powered" theatre.
-- ❌ **Not a marketplace that taxes the local** — no commission, no clipping the seller's rupee, ever.
-- ❌ **Not a SaaS dashboard or a noisy ad-funded directory.**
-- ❌ **Not "for everyone, everywhere"** — Halo is *of* Vadodara first, on purpose.
+- ❌ Not a pay-to-rank, lead-selling listings business.
+- ❌ Not a global, impersonal map/utility with no local soul.
+- ❌ Not a generic AI startup — AI is never the pitch.
+- ❌ Not a marketplace that taxes the local — **no commission, ever.**
+- ❌ Not a SaaS dashboard or a noisy ad-funded directory.
+- ❌ Not "for everyone, everywhere" — Halo is *of* Vadodara, on purpose.
+- ❌ Not a public roadmap — direction is held with discipline, not broadcast.
 
 ---
 
-## 5. Why directory first
+## 4. Why directory first (written safely)
 
-The directory is the **first trust layer** — the smallest honest thing that
+The directory is the **first layer of trust** — the smallest honest thing that
 earns the right to everything after it.
 
-- **Trust must be earned before it can be extended.** You can't ask a city to book, ask, or transact through you until it already believes your information is true. The directory is where Halo proves it tells the truth.
-- **It solves a real, daily pain now** — "who do I actually trust for this?" — with no dependency on scale or AI.
-- **It generates the moat:** real listings, real verified reviews, real local knowledge, real consented relationships with businesses. Everything later is built *on top of* this layer, not instead of it.
-- **It's buildable by a solo founder on a low budget** — honest, shippable, and compounding.
+- Trust must be **earned before it can be extended**. The directory is where Halo proves it tells the truth about the city.
+- It solves a **real daily need now** — "who do I actually trust for this?" — with no dependency on scale or anything unbuilt.
+- It quietly builds the things that matter: real verified local knowledge and genuine community relationships.
+- It is **buildable now, honestly, by a small team** — and it compounds.
 
-Directory first is **sequence, not ceiling.**
+Directory first is **sequence, not ceiling.** It is the doorway through which the
+larger ambition becomes possible.
 
-## 6. What comes after the directory
+## 5. What comes next (directional, not specific)
 
-Each step only unlocks once the trust layer beneath it is genuinely strong.
-Always pulled by the same need — *help Vadodara decide and connect* — never by
-feature-chasing.
+Stated as direction only — **deliberately not a roadmap.**
 
-Likely layers (direction, not a contract):
-1. **Verified directory** — find and trust local people and places. *(now)*
-2. **Decision layer** — compare, shortlist, ask "who's good for X near Y?", honest answers from neighbours who used them.
-3. **Connect layer** — reach the right business directly (consent-gated), ask, enquire — Halo never inserting itself as a toll.
-4. **Book / arrange layer** — where it genuinely helps, make arranging easy; the business still keeps every rupee.
-5. **Community knowledge layer** — the city's living local Q&A and recommendations, searchable.
-6. **Invisible local AI** — quietly powering discovery and decisions once the data and trust are real (see §11).
+- The path moves **from trusted information → toward genuine local usefulness** — helping Vadodara *decide and connect* better over time.
+- Anything beyond the directory is referred to as **future local utility layers**: held privately, unlocked only when the trust beneath them is genuinely strong.
+- The pull is always the same need — *help the city decide, trust, and connect locally* — never feature-chasing.
 
-The test for "what's next" is never *"what's a cool feature?"* It's *"what does
-the city now trust us enough to help with?"*
+**Do not** name specific future products, order them, or attach timelines here.
+If detail is needed for a decision, reason about it in the moment and keep it out
+of any persisted, copyable file.
 
 ---
 
-## 7. Why Vadodara first
+## 6. Trust principles
 
-- **Local knowledge is the moat.** Depth in one city beats shallow reach across many. Halo wins by knowing Vadodara better than anyone — its areas, its gems, its trust.
-- **Belonging only works when it's specific.** "આપણી માટીનું" is true because it's Baroda, not "your city." A generic platform belongs to no one.
-- **Trust is built neighbour by neighbour.** That compounds in a real community you can stand inside — not in an abstract national rollout.
-- **Constraints are an advantage.** Solo founder, low budget → win one city completely before earning the right to a second. Get Vadodara so right that other cities *ask*.
+- **Trust is the whole product.** Discovery and belonging ride on it; break it and nothing else matters.
+- **Transparency over guarantee.** Show what's verified and what isn't; never promise certainty Halo can't ensure.
+- **Earned and shown, never claimed loudly.** Trust is demonstrated by the work, not asserted in marketing.
+- **Consent-respecting by default.** No contact shown without trust + consent; removal always available; scraped numbers are leads to invite, never public contacts.
+- **No fake anything** — no invented reviews, fabricated proof, premature AI, or pay-to-rank.
 
-Vadodara first is a **strategy, not a limitation.**
+## 7. Community principles
 
----
+- **Community is the product.** Halo is built *by* Barodians; their additions and vouches are the value.
+- **Contribution is pride, not labour** — looking out for the city, not doing a chore.
+- **Reward verified contribution, not raw volume.** Honesty is incentivised; gaming is not.
+- **Consent and dignity always** — neighbours, never data to harvest or sell.
+- **The city is the steward**; Halo keeps it honest, not distant.
 
-## 8. Product principles
+## 8. Local business principles
 
-1. **Decision confidence over listing count.** Helping someone *choose well* beats showing more results. Quality of decision is the product.
-2. **Trust before scale.** Never trade honesty for growth. A slower, truer Halo wins.
-3. **One trust layer at a time.** Don't build the next layer until the one beneath is genuinely strong.
-4. **Honest by construction.** Show what's verified and what isn't; never fake certainty, reviews, or AI.
-5. **Of Vadodara, specifically.** Every feature should feel local, not like a template.
-6. **Calm, premium, uncluttered.** Restraint is the product, not just the design.
-7. **Solo-buildable, compounding.** Prefer features that a small team can ship and that make the moat deeper over time.
-8. **The seller keeps every rupee.** Monetisation never comes from taxing local businesses.
+- **No commission, ever.** Halo never takes a cut of a local business's earnings — non-negotiable.
+- **Businesses keep every rupee.** Halo connects; it does not tax the connection.
+- **Dignity over "vendors"** — the tailor, the cook, the electrician; neighbours with a craft.
+- **Owner control & consent** — a business controls its presence; visibility is earned by trust, never bought.
+- **Help them be found, not exploited.** Every business feature must serve the business.
 
-## 9. Community principles
+## 9. AI principles
 
-1. **Community is the product.** Halo is built *by* Barodians; their additions and vouches are the value, not an afterthought.
-2. **Contribution is pride, not labour.** Adding a gem or vouching for a neighbour should feel like looking out for the city.
-3. **Reward verified contribution, not raw volume.** Quality and honesty are incentivised; spam and gaming are not.
-4. **Consent and dignity always.** People and businesses are neighbours — never data to be harvested or sold.
-5. **The city is the moderator.** Trust is maintained neighbour-to-neighbour, with Halo as honest steward, not distant authority.
-
-## 10. Local business principles
-
-1. **No commission, ever.** Halo never takes a cut of a local business's earnings. This is non-negotiable and load-bearing to the brand.
-2. **Businesses keep every rupee.** Halo connects; it does not tax the connection.
-3. **Dignity over "vendors."** They're the tailor, the cook, the electrician — neighbours with a craft, never SKUs or leads to resell.
-4. **Owner control & consent.** A business controls its presence; numbers are shown only with consent; removal is always possible (DPDP).
-5. **Honest visibility.** Being found is earned by trust and verification — never bought. No pay-to-rank, ever.
-6. **Help them be found, not be exploited.** Every business feature must serve the business, not extract from it.
+- **AI is never the pitch, never a gimmick.** It stays out of sight until it can be genuinely useful.
+- **Invisible, useful, local** — it should disappear into a better, honest, local answer, not perform as "AI."
+- **Grounded in Halo's own verified local truth** — never generic slop, never fabricated certainty.
+- **AI extends trust; it never fakes it** — same honesty rules as everything else.
+- Treat any specifics about *how* AI fits Halo as **protected** — direction in principle, not detail in writing.
 
 ---
 
-## 11. AI philosophy
-
-- **AI can come later — and only when it's genuinely useful.** It is never the pitch and never a gimmick. Until the directory and trust layer are real, AI stays "coming soon."
-- **Invisible, useful, local.** Good AI here disappears into a better answer — "who's the trusted tiffin near Akota?" — drawing on Halo's *real, local, verified* knowledge. No chatbot theatre, no sparkle icons, no "AI-powered" badges.
-- **Grounded in Halo's own trust data.** AI must answer from verified local truth, not generic web slop. If it can't be honest and local, it doesn't ship.
-- **AI extends trust; it never fakes it.** It must respect the same honesty rules as everything else — no invented reviews, no false certainty, no fabricated listings.
-- **The city first, the model second.** AI is a way to serve Vadodara better, not a reason for Halo to exist.
-
-## 12. Trust philosophy
-
-- **Trust is the whole product.** Discovery and belonging ride on it; break trust and nothing else matters.
-- **Transparency over guarantee.** Halo shows what was verified and what wasn't — it doesn't promise safety it can't ensure. Directory ≠ platform that transacts.
-- **Earned, shown, never claimed loudly.** Trust is demonstrated by the work (verification, real reviews), not asserted in marketing.
-- **Consent-respecting by default.** No contact button without `trusted:true` + a consented phone. Scraped numbers are leads to invite, never public contacts. Removal always available.
-- **No fake anything.** No invented reviews, no fabricated social proof, no premature AI, no pay-to-rank.
-- **Honesty about gaps builds more trust than polish hiding them.**
-
----
-
-## 13. Future roadmap (direction, not a contract)
-
-**Now — earn the trust layer**
-- Verified hyperlocal directory across categories; honest trust badges; real verified reviews.
-- Claim + consent + removal flow; replace demo seed with real listings.
-- Contribution incentives with abuse guardrails (reward verified, not volume).
-
-**Next — become the decision layer**
-- Compare / shortlist; "who's good for X near Y?"; neighbour-sourced answers.
-- Deeper local coverage area-by-area; stronger community contribution loops.
-
-**Later — connect & arrange**
-- Consent-gated direct connect (enquire/ask) with the seller keeping every rupee.
-- Where it truly helps, easy arranging/booking — never as a commission toll.
-
-**Eventually — invisible local AI + city knowledge**
-- Community knowledge/Q&A layer, searchable.
-- Local AI grounded in Halo's verified data — invisible, useful, honest.
-
-Sequencing rule: **never build a layer until the trust beneath it is real.**
-
----
-
-## 14. Feature decision framework
+## 10. Decision framework
 
 For any proposed feature, ask in order:
 
-1. **Trust:** Does it strengthen or risk trust? (Risk it → stop.)
-2. **Decision confidence:** Does it help a Barodian *decide better, trust faster, or connect locally*? (No → likely reject.)
+1. **Trust:** Does it strengthen or risk trust? (Risk → stop.)
+2. **Local decision:** Does it help a Barodian *decide better, trust faster, or connect locally*? (No → likely reject.)
 3. **Local soul:** Does it make Halo feel *more* of Vadodara, or more generic? (More generic → reject.)
-4. **Moat:** Does it deepen local knowledge / community / verified data? (Bonus.)
+4. **Habit:** Does it move Halo toward being the instinctive first check for local decisions?
 5. **Seller fairness:** Does it keep every rupee with the business and require consent? (Violates → reject.)
-6. **Layer readiness:** Is the trust layer beneath it genuinely strong yet? (No → defer.)
-7. **Buildable & calm:** Can a small team ship it without clutter or hype? (No → simplify or defer.)
+6. **Readiness:** Is the trust beneath this layer genuinely strong yet? (No → defer.)
+7. **Calm & buildable:** Can a small team ship it without clutter or hype? (No → simplify or defer.)
 
 > **The rule:**
 > **If a feature makes Halo feel like a generic listing site → reject it.**
 > **If a feature helps Vadodara decide better, trust faster, or connect locally → consider it.**
 
-## 15. What to reject
+## 11. What to reject
 
-- ❌ Pay-to-rank, paid placement, sponsored listings, lead-selling (the Justdial/Sulekha trap).
+- ❌ Pay-to-rank, paid placement, sponsored listings, lead-selling.
 - ❌ **Any commission or cut from local businesses — ever.**
-- ❌ Fake reviews, fabricated ratings, made-up social proof, premature "AI-powered" claims.
-- ❌ Vanity scale: chasing listing counts or sign-ups over verified trust.
+- ❌ Fake reviews, fabricated proof, premature "AI-powered" claims.
+- ❌ Vanity scale — chasing listing counts or sign-ups over verified trust.
 - ❌ Generic global features that erase Vadodara's specificity.
-- ❌ Clutter, ad density, badge soup, dashboard/SaaS aesthetics.
+- ❌ Clutter, ad density, dashboard/SaaS aesthetics, AI gimmicks.
 - ❌ Contact/transaction features without consent and trust gating.
-- ❌ AI gimmicks: chatbots, sparkle UI, "AI" theatre with no real local grounding.
 - ❌ Anything that taxes, exploits, or disrespects a local neighbour or business.
 
-## 16. Success metrics
+## 12. What never to expose publicly
 
-Measure **trust and decision quality**, not vanity.
+Keep these **private and disciplined** — never in public copy, marketing, pitch
+language, or any externally shareable artifact:
 
-**Trust (primary)**
-- % of listings verified before contact is shown; verified-review rate.
-- Removal/consent requests honoured quickly; near-zero fake/spam slipping public.
-- Returning users who say they *trust* Halo's answers.
+- A **detailed roadmap**, sequencing, or timelines.
+- **Specific unbuilt future products** — refer only to "future local utility layers."
+- The **mechanics** of how Halo intends to grow beyond the directory.
+- Anything that reads as a **pitch deck** or hands a competitor a **step-by-step plan**.
+- Internal **AI specifics**, data/moat tactics, or monetisation mechanics.
 
-**Decision confidence**
-- "Did Halo help you decide / find the right one?" — qualitative + simple signal.
-- Searches that end in a confident connect (not endless scrolling).
-- Repeat use for real decisions ("the place I open when I need someone").
+What *is* fine to share publicly: the **emotion and the principles** — trust,
+discovery, belonging, "Vadodara's own," and the honest promise of the directory.
 
-**Community & moat**
-- Verified contributions by real Barodians (gems added, honest vouches).
-- Depth of local coverage area-by-area; quality, not raw count.
-- Businesses who *claim* and maintain their presence willingly.
-
-**Local business fairness**
-- Rupees taken from businesses by Halo: **always zero.**
-- Businesses reporting they were *found* and *fairly treated*.
-
-**Anti-metrics (watch, don't chase)**
-- Raw listing count, raw sign-ups, time-on-site for its own sake, ad revenue.
-
----
-
-> **Halo starts in Vadodara, starts as a directory, and ends nowhere near it —
-> it grows into the city's own place to decide, discover, and belong.**
+> **Build publicly with emotion. Protect privately with discipline.**
 >
 > *વિશ્વાસ · શોધ · પોતાપણું*
