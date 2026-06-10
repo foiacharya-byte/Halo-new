@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Baroda's own — listening</title>
 <meta name="description" content="We're listening to how Baroda finds the people it trusts.">
+<!--
+  conversation_v1.html — the 9-touch journey, EN + Gujarati.
+  GUJARATI STATUS: [GU REVIEW] — every Gujarati line below translates the *feeling*,
+  but per halo-gujarati-rules it must be verified by a native Vadodara speaker
+  before launch. One wrong matra breaks trust. Do not ship GU unread.
+-->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Cormorant+Garamond:wght@500;600&family=Caveat:wght@600;700&family=Noto+Serif+Gujarati:wght@500;600&display=swap" rel="stylesheet">
 <style>
@@ -23,33 +29,47 @@ body{
   font-family:var(--serif); color:var(--ink); -webkit-font-smoothing:antialiased;
   background:radial-gradient(125% 115% at 50% 18%, #FFFCF6 0%, var(--paper) 48%, var(--paper-deep) 100%);
   min-height:100dvh; display:flex; flex-direction:column; align-items:center;
-  padding:max(20px,env(safe-area-inset-top)) 20px max(24px,env(safe-area-inset-bottom)); position:relative; overflow-x:hidden;
+  padding:0 20px max(24px,env(safe-area-inset-bottom)); position:relative; overflow-x:hidden;
 }
-/* warm grain + gentle vignette (restrained — this is a conversation, not the intro) */
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.035;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
   background:radial-gradient(78% 70% at 50% 40%, transparent 55%, rgba(60,34,16,.10) 100%)}
 
 /* slim, numberless progress thread */
-.thread{position:fixed;top:0;left:0;height:3px;background:var(--terra);width:0;z-index:60;
-  transition:width .6s var(--expo);border-radius:0 2px 2px 0;opacity:.8}
+.thread{position:fixed;top:0;left:0;height:3px;background:var(--terra);width:0;z-index:62;
+  transition:width .6s var(--expo);border-radius:0 2px 2px 0;opacity:.85}
 
-.stage-wrap{position:relative;z-index:10;width:100%;max-width:560px;margin:auto;display:flex;flex-direction:column;justify-content:center;min-height:80dvh}
+/* top bar — language toggle, present on every screen (no brand here: firewall-safe) */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:61;display:flex;justify-content:flex-end;
+  padding:max(12px,env(safe-area-inset-top)) max(16px,env(safe-area-inset-right)) 0 16px;pointer-events:none}
+.langtoggle{pointer-events:auto;font-family:var(--gu);font-size:15px;font-weight:600;color:var(--maroon);
+  background:rgba(255,253,248,.82);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  border:1px solid var(--line);border-radius:999px;padding:7px 15px;cursor:pointer;line-height:1;
+  display:inline-flex;align-items:center;gap:7px;box-shadow:0 8px 20px -16px rgba(58,40,20,.7);
+  transition:transform .12s var(--spring),border-color .2s,background .2s;-webkit-tap-highlight-color:transparent}
+.langtoggle:active{transform:scale(.95)}
+.langtoggle:hover{border-color:var(--sand)}
+.langtoggle:focus-visible{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.35)}
+.langtoggle .globe{width:14px;height:14px;flex:0 0 auto;opacity:.85}
+
+.stage-wrap{position:relative;z-index:10;width:100%;max-width:600px;margin:auto;
+  display:flex;flex-direction:column;justify-content:center;min-height:100dvh;
+  padding:72px 0 24px}
 
 .step{display:none}
 .step.on{display:block;animation:rise .7s var(--expo) both}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-.eyebrow{font-family:var(--caps);text-transform:uppercase;letter-spacing:.26em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:14px;display:block}
-.gu-title{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(30px,9vw,46px);line-height:1.1;margin-bottom:8px}
-.title{font-family:var(--serif);font-weight:480;letter-spacing:-.02em;font-size:clamp(25px,6.6vw,38px);line-height:1.16;color:var(--ink);margin-bottom:10px}
+.eyebrow{font-family:var(--caps);text-transform:uppercase;letter-spacing:.26em;font-size:13px;font-weight:600;color:var(--maroon);margin-bottom:14px;display:block}
+.gu-title{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(32px,9vw,52px);line-height:1.12;margin-bottom:10px}
+.title{font-family:var(--serif);font-weight:480;letter-spacing:-.02em;font-size:clamp(26px,6.4vw,42px);line-height:1.16;color:var(--ink);margin-bottom:10px}
 .title .em{color:var(--terra);font-style:italic;font-weight:500}
-.sub{font-family:var(--serif);font-size:clamp(15.5px,4.1vw,18px);line-height:1.5;color:var(--ink-soft);margin-bottom:8px}
-.ask{font-family:var(--serif);font-weight:520;font-size:clamp(18px,4.8vw,22px);line-height:1.32;color:var(--ink);margin:18px 0 18px}
+.sub{font-family:var(--serif);font-size:clamp(16px,4.1vw,19px);line-height:1.5;color:var(--ink-soft);margin-bottom:8px}
+.ask{font-family:var(--serif);font-weight:520;font-size:clamp(19px,4.8vw,24px);line-height:1.32;color:var(--ink);margin:20px 0 20px}
 
 .opts{display:flex;flex-direction:column;gap:11px;margin-top:6px}
-.opt{font-family:var(--serif);font-size:clamp(15.5px,4.2vw,17.5px);line-height:1.4;text-align:left;color:var(--ink);
+.opt{font-family:var(--serif);font-size:clamp(16px,4.2vw,18.5px);line-height:1.4;text-align:left;color:var(--ink);
   background:#FFFDF8;border:1px solid var(--line);border-radius:15px;padding:16px 18px;cursor:pointer;width:100%;
   box-shadow:0 10px 22px -20px rgba(58,40,20,.5);transition:transform .14s var(--spring),border-color .2s var(--expo),background .2s var(--expo),box-shadow .2s var(--expo);
   -webkit-tap-highlight-color:transparent;display:flex;align-items:center;gap:12px}
@@ -64,185 +84,210 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
 .field::placeholder{color:#B6A789}
 .field:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.3)}
 
-.row{display:flex;gap:12px;align-items:center;margin-top:18px;flex-wrap:wrap}
+.row{display:flex;gap:12px;align-items:center;margin-top:20px;flex-wrap:wrap}
 .btn{font-family:var(--serif);font-weight:540;font-size:16.5px;color:var(--paper);background:var(--terra);border:0;
-  border-radius:999px;padding:13px 26px;cursor:pointer;transition:transform .12s var(--spring),filter .2s;-webkit-tap-highlight-color:transparent}
+  border-radius:999px;padding:13px 28px;cursor:pointer;transition:transform .12s var(--spring),filter .2s;-webkit-tap-highlight-color:transparent}
 .btn:active{transform:scale(.96)}
 .btn:focus-visible{outline:none;box-shadow:0 0 0 3px rgba(190,154,78,.4)}
-.btn:disabled{filter:grayscale(.4) opacity(.55);cursor:default}
 .ghost{background:none;border:0;color:var(--ink-soft);font-family:var(--serif);font-size:15.5px;cursor:pointer;padding:13px 8px;text-decoration:underline;text-underline-offset:3px;-webkit-tap-highlight-color:transparent}
 .ghost:focus-visible{outline:none;color:var(--maroon)}
 
-.micro{font-family:var(--serif);font-size:14px;color:var(--ink-soft);margin-top:14px;line-height:1.45}
-.micro .gu{font-family:var(--gu)}
-.err{color:var(--maroon);font-size:14px;margin-top:10px;min-height:1.1em}
+.micro{font-family:var(--serif);font-size:14.5px;color:var(--ink-soft);margin-top:16px;line-height:1.45}
+.err{color:var(--maroon);font-size:14.5px;margin-top:10px;min-height:1.1em}
 
-/* consent */
 .consent{display:flex;gap:11px;align-items:flex-start;margin-top:16px;cursor:pointer}
 .consent input{margin-top:3px;width:18px;height:18px;accent-color:var(--terra);flex:0 0 auto}
-.consent span{font-size:14.5px;color:var(--ink-soft);line-height:1.45}
+.consent span{font-size:15px;color:var(--ink-soft);line-height:1.45}
 
-/* the reveal wordmark — first and only appearance of the brand */
-.mk{font-family:var(--serif);font-weight:470;font-size:clamp(46px,13vw,78px);letter-spacing:-.04em;color:var(--ink);position:relative;display:inline-block;margin-bottom:14px}
-.mk .hae{position:absolute;left:-.02em;top:-.36em;font-family:var(--script);font-size:.42em;line-height:1;color:var(--terra);transform:rotate(-9deg)}
-.mk .end{position:relative;display:inline-block;width:.32em}
-.mk .dot{position:absolute;left:.06em;bottom:.12em;width:.15em;height:.15em;border-radius:50%;background:var(--terra)}
+/* the canonical wordmark — ae halo! (bang + dot) — first and only brand appearance */
+.mk{font-family:var(--serif);font-weight:470;font-size:clamp(46px,12vw,86px);letter-spacing:-.04em;color:var(--ink);position:relative;display:inline-block;margin-bottom:16px}
+.mk .hae{position:absolute;left:-.04em;top:-.34em;font-family:var(--script);font-size:.42em;line-height:1;color:var(--terra);transform:rotate(-9deg)}
+.mk .end{position:relative;display:inline-block;width:.34em;height:1em;vertical-align:baseline}
+.mk .bang{position:absolute;left:50%;bottom:.30em;width:.09em;height:.42em;border-radius:.05em;background:var(--terra);transform:translateX(-50%)}
+.mk .dot{position:absolute;left:50%;bottom:.07em;width:.16em;height:.16em;border-radius:50%;background:var(--terra);transform:translateX(-50%)}
 
 .end-card{text-align:center}
 .end-card .gu-title{margin-bottom:14px}
 
+/* ---- Gujarati mode: switch text to Noto Serif Gujarati, ease the scale ---- */
+body.gu .eyebrow{font-family:var(--gu);text-transform:none;letter-spacing:.02em;font-size:13.5px}
+body.gu .title{font-family:var(--gu);font-weight:600;font-size:clamp(23px,5.7vw,34px);line-height:1.4}
+body.gu .ask{font-family:var(--gu);font-weight:600;font-size:clamp(18px,4.5vw,22px);line-height:1.48}
+body.gu .sub{font-family:var(--gu);line-height:1.62;font-size:clamp(15.5px,3.9vw,18px)}
+body.gu .opt{font-family:var(--gu);line-height:1.55;font-size:clamp(15.5px,4vw,17.5px)}
+body.gu .opt .q{font-style:normal;color:var(--ink-soft)}
+body.gu .micro,body.gu .err,body.gu .consent span,body.gu .field{font-family:var(--gu)}
+body.gu .btn,body.gu .ghost{font-family:var(--gu)}
+body.gu .field{font-size:16px}
+/* the anchor word + the wordmark never change font */
+.gu-title{font-family:var(--gu)!important}
+.mk,.mk *{font-family:var(--serif)}
+.mk .hae{font-family:var(--script)}
+
+@media (min-width:760px){
+  .stage-wrap{padding:88px 0 32px}
+  .opts{gap:13px}
+  .opt{padding:18px 22px}
+}
+
 @media (prefers-reduced-motion: reduce){
   .step.on{animation:none}
-  .thread{transition:none}
-  .opt,.btn{transition:none}
+  .thread,.opt,.btn,.langtoggle{transition:none}
 }
 </style>
 </head>
 <body>
 <div class="thread" id="thread"></div>
+<div class="topbar">
+  <button class="langtoggle" id="langBtn" aria-pressed="false" aria-label="ગુજરાતીમાં વાંચો / Read in Gujarati">
+    <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15.4 0 18M12 3c-2.5 2.6-2.5 15.4 0 18"/></svg>
+    <span id="langLabel">ગુજરાતી</span>
+  </button>
+</div>
+
 <main class="stage-wrap" id="wrap">
 
 <!-- STAGE 1 — LANDING (resident_type) — no brand, no name -->
 <section class="step" data-step="s1">
-  <span class="eyebrow">Vadodara · we're listening</span>
+  <span class="eyebrow" data-en="Vadodara · we're listening" data-gu="વડોદરા · અમે સાંભળીએ છીએ">Vadodara · we're listening</span>
   <div class="gu-title">આવો.</div>
-  <p class="sub">We're listening to how Baroda really finds the people it trusts.</p>
-  <p class="ask">First — is Baroda new to you, or has it always been home?</p>
+  <p class="sub" data-en="We're listening to how Baroda really finds the people it trusts." data-gu="વડોદરા જેના પર વિશ્વાસ મૂકે છે, એવા માણસોને ખરેખર કેવી રીતે શોધે છે — અમે એ સાંભળી રહ્યા છીએ.">We're listening to how Baroda really finds the people it trusts.</p>
+  <p class="ask" data-en="First — is Baroda new to you, or has it always been home?" data-gu="પહેલાં એક વાત — વડોદરા તમારા માટે નવું છે, કે હંમેશાંથી ઘર રહ્યું છે?">First — is Baroda new to you, or has it always been home?</p>
   <div class="opts">
-    <button class="opt" data-field="resident_type" data-value="new_to_baroda">New here</button>
-    <button class="opt" data-field="resident_type" data-value="always_home">Born and raised</button>
-    <button class="opt" data-field="resident_type" data-value="returned_nri">Back after years away</button>
-    <button class="opt" data-field="resident_type" data-value="other">Just visiting</button>
+    <button class="opt" data-field="resident_type" data-value="new_to_baroda" data-en="New here" data-gu="અહીં નવાં છીએ">New here</button>
+    <button class="opt" data-field="resident_type" data-value="always_home" data-en="Born and raised" data-gu="જનમ-ઉછેર અહીંનો જ">Born and raised</button>
+    <button class="opt" data-field="resident_type" data-value="returned_nri" data-en="Back after years away" data-gu="વર્ષો પછી પાછાં ફર્યાં">Back after years away</button>
+    <button class="opt" data-field="resident_type" data-value="other" data-en="Just visiting" data-gu="બસ ફરવા આવ્યાં">Just visiting</button>
   </div>
-  <p class="micro">No right answer. It just helps us hear you better.</p>
+  <p class="micro" data-en="No right answer. It just helps us hear you better." data-gu="કોઈ સાચો-ખોટો જવાબ નથી. બસ તમને વધુ સારી રીતે સાંભળવામાં મદદ મળે છે.">No right answer. It just helps us hear you better.</p>
 </section>
 
 <!-- STAGE 2a — last_search_method -->
 <section class="step" data-step="s2a">
-  <span class="eyebrow">Real life</span>
-  <h2 class="title">Let's start with something real.</h2>
-  <p class="sub">The last time you needed someone local — a plumber, a tiffin, a tutor.</p>
-  <p class="ask">What did you actually do?</p>
+  <span class="eyebrow" data-en="Real life" data-gu="સાચી વાત">Real life</span>
+  <h2 class="title" data-en="Let's start with something real." data-gu="ચાલો, કંઈક સાચી વાતથી શરૂ કરીએ.">Let's start with something real.</h2>
+  <p class="sub" data-en="The last time you needed someone local — a plumber, a tiffin, a tutor." data-gu="છેલ્લે જ્યારે કોઈ આપણા વિસ્તારના માણસની જરૂર પડી — પ્લમ્બર, ટિફિન, કે ટ્યુશનવાળા.">The last time you needed someone local — a plumber, a tiffin, a tutor.</p>
+  <p class="ask" data-en="What did you actually do?" data-gu="તમે ખરેખર શું કર્યું?">What did you actually do?</p>
   <div class="opts">
-    <button class="opt" data-field="last_search_method" data-value="neighbour_word">Asked a neighbour or friend</button>
-    <button class="opt" data-field="last_search_method" data-value="society_whatsapp">Put it in a society / WhatsApp group</button>
-    <button class="opt" data-field="last_search_method" data-value="google_justdial">Searched Google or JustDial</button>
-    <button class="opt" data-field="last_search_method" data-value="instagram_local">Looked on Instagram</button>
-    <button class="opt" data-field="last_search_method" data-value="known_contact">Already had my person</button>
-    <button class="opt" data-field="last_search_method" data-value="other">Something else</button>
+    <button class="opt" data-field="last_search_method" data-value="neighbour_word" data-en="Asked a neighbour or friend" data-gu="પાડોશી કે મિત્રને પૂછ્યું">Asked a neighbour or friend</button>
+    <button class="opt" data-field="last_search_method" data-value="society_whatsapp" data-en="Put it in a society / WhatsApp group" data-gu="સોસાયટી / વૉટ્સએપ ગ્રૂપમાં પૂછ્યું">Put it in a society / WhatsApp group</button>
+    <button class="opt" data-field="last_search_method" data-value="google_justdial" data-en="Searched Google or JustDial" data-gu="ગૂગલ કે જસ્ટડાયલ પર શોધ્યું">Searched Google or JustDial</button>
+    <button class="opt" data-field="last_search_method" data-value="instagram_local" data-en="Looked on Instagram" data-gu="ઇન્સ્ટાગ્રામ પર જોયું">Looked on Instagram</button>
+    <button class="opt" data-field="last_search_method" data-value="known_contact" data-en="Already had my person" data-gu="મારો માણસ પહેલેથી જ હતો">Already had my person</button>
+    <button class="opt" data-field="last_search_method" data-value="other" data-en="Something else" data-gu="બીજું કંઈક">Something else</button>
   </div>
-  <p class="micro">Whatever you really did — no judgement.</p>
+  <p class="micro" data-en="Whatever you really did — no judgement." data-gu="જે ખરેખર કર્યું એ જ કહો — એમાં કશું ખોટું નથી.">Whatever you really did — no judgement.</p>
 </section>
 
 <!-- STAGE 2b — last_search_outcome -->
 <section class="step" data-step="s2b">
-  <span class="eyebrow">Real life</span>
-  <h2 class="title">And how did it go?</h2>
-  <p class="ask">How did it turn out?</p>
+  <span class="eyebrow" data-en="Real life" data-gu="સાચી વાત">Real life</span>
+  <h2 class="title" data-en="And how did it go?" data-gu="અને કેવો અનુભવ રહ્યો?">And how did it go?</h2>
+  <p class="ask" data-en="How did it turn out?" data-gu="છેવટે કેવું રહ્યું?">How did it turn out?</p>
   <div class="opts">
-    <button class="opt" data-field="last_search_outcome" data-value="smooth">Smooth, no fuss</button>
-    <button class="opt" data-field="last_search_outcome" data-value="minor_hassle">Bit of a hassle</button>
-    <button class="opt" data-field="last_search_outcome" data-value="let_down">Got let down</button>
-    <button class="opt" data-field="last_search_outcome" data-value="gave_up">Gave up on it</button>
+    <button class="opt" data-field="last_search_outcome" data-value="smooth" data-en="Smooth, no fuss" data-gu="સહેલાઈથી, કોઈ લપ નહીં">Smooth, no fuss</button>
+    <button class="opt" data-field="last_search_outcome" data-value="minor_hassle" data-en="Bit of a hassle" data-gu="થોડી માથાકૂટ થઈ">Bit of a hassle</button>
+    <button class="opt" data-field="last_search_outcome" data-value="let_down" data-en="Got let down" data-gu="નિરાશ થયા">Got let down</button>
+    <button class="opt" data-field="last_search_outcome" data-value="gave_up" data-en="Gave up on it" data-gu="છોડી દીધું">Gave up on it</button>
   </div>
-  <p class="micro">We've all had all four.</p>
+  <p class="micro" data-en="We've all had all four." data-gu="આ ચારેય અનુભવ આપણને બધાને થયા છે.">We've all had all four.</p>
 </section>
 
 <!-- STAGE 3a — trust_signal_choice (blind, pre-reveal) -->
 <section class="step" data-step="s3a">
-  <span class="eyebrow">Same person · four ways</span>
-  <h2 class="title">Who would you actually call?</h2>
-  <p class="ask">Which one makes you pick up the phone?</p>
+  <span class="eyebrow" data-en="Same person · four ways" data-gu="એક જ માણસ · ચાર રીતે">Same person · four ways</span>
+  <h2 class="title" data-en="Same person. Shown four ways." data-gu="એક જ માણસ. ચાર રીતે બતાવ્યો.">Same person. Shown four ways.</h2>
+  <p class="ask" data-en="Which one makes you actually pick up the phone?" data-gu="કયો જોઈને તમે ખરેખર ફોન ઉપાડો?">Which one makes you actually pick up the phone?</p>
   <div class="opts">
-    <button class="opt" data-field="trust_signal_choice" data-value="named_specific"><span>Meena from Akota: <span class="q">“He fixed my AC in an hour, fair price.”</span></span></button>
-    <button class="opt" data-field="trust_signal_choice" data-value="star_average">4.6 ★ · 212 ratings</button>
-    <button class="opt" data-field="trust_signal_choice" data-value="official_badge">✓ Verified</button>
-    <button class="opt" data-field="trust_signal_choice" data-value="bare_info">Just the name and number</button>
+    <button class="opt" data-field="trust_signal_choice" data-value="named_specific" data-en="&lt;span&gt;Meena from Akota: &lt;span class=&quot;q&quot;&gt;&ldquo;He fixed my AC in an hour, fair price.&rdquo;&lt;/span&gt;&lt;/span&gt;" data-gu="&lt;span&gt;આકોટાનાં મીના: &lt;span class=&quot;q&quot;&gt;&ldquo;એક કલાકમાં AC ઠીક કરી દીધું, ભાવ પણ વાજબી.&rdquo;&lt;/span&gt;&lt;/span&gt;"><span>Meena from Akota: <span class="q">&ldquo;He fixed my AC in an hour, fair price.&rdquo;</span></span></button>
+    <button class="opt" data-field="trust_signal_choice" data-value="star_average" data-en="4.6 ★ · 212 ratings" data-gu="4.6 ★ · 212 રેટિંગ">4.6 ★ · 212 ratings</button>
+    <button class="opt" data-field="trust_signal_choice" data-value="official_badge" data-en="✓ Verified" data-gu="✓ ચકાસાયેલ">✓ Verified</button>
+    <button class="opt" data-field="trust_signal_choice" data-value="bare_info" data-en="Just the name and number" data-gu="ફક્ત નામ ને નંબર">Just the name and number</button>
   </div>
-  <p class="micro">Go with your gut.</p>
+  <p class="micro" data-en="Go with your gut." data-gu="મન કહે એમ જ.">Go with your gut.</p>
 </section>
 
 <!-- STAGE 3b — blemish_choice -->
 <section class="step" data-step="s3b">
-  <span class="eyebrow">One more, honestly</span>
-  <h2 class="title">Two listings. Same work, same area.</h2>
-  <p class="ask">Which would you trust enough to call?</p>
+  <span class="eyebrow" data-en="One more, honestly" data-gu="બસ એક વધુ, સાચું કહેજો">One more, honestly</span>
+  <h2 class="title" data-en="Two listings. Same work, same area." data-gu="બે લિસ્ટિંગ. એક જ કામ, એક જ વિસ્તાર.">Two listings. Same work, same area.</h2>
+  <p class="ask" data-en="Which would you trust enough to call?" data-gu="કોના પર વિશ્વાસ મૂકીને ફોન કરો?">Which would you trust enough to call?</p>
   <div class="opts">
-    <button class="opt" data-field="blemish_choice" data-value="honest_unverified"><span class="q">“Added by a neighbour — we haven't checked them yet.”</span></button>
-    <button class="opt" data-field="blemish_choice" data-value="asserted_trust"><span class="q">“Trusted ✓”</span></button>
-    <button class="opt" data-field="blemish_choice" data-value="no_difference">Makes no difference to me</button>
+    <button class="opt" data-field="blemish_choice" data-value="honest_unverified" data-en="&lt;span class=&quot;q&quot;&gt;&ldquo;Added by a neighbour — we haven&rsquo;t checked them yet.&rdquo;&lt;/span&gt;" data-gu="&lt;span class=&quot;q&quot;&gt;&ldquo;એક પાડોશીએ ઉમેર્યું — અમે હજી એમની ખરાઈ નથી કરી.&rdquo;&lt;/span&gt;"><span class="q">&ldquo;Added by a neighbour — we haven&rsquo;t checked them yet.&rdquo;</span></button>
+    <button class="opt" data-field="blemish_choice" data-value="asserted_trust" data-en="&lt;span class=&quot;q&quot;&gt;&ldquo;Trusted ✓&rdquo;&lt;/span&gt;" data-gu="&lt;span class=&quot;q&quot;&gt;&ldquo;વિશ્વાસપાત્ર ✓&rdquo;&lt;/span&gt;"><span class="q">&ldquo;Trusted ✓&rdquo;</span></button>
+    <button class="opt" data-field="blemish_choice" data-value="no_difference" data-en="Makes no difference to me" data-gu="મને કોઈ ફરક નથી પડતો">Makes no difference to me</button>
   </div>
-  <p class="micro">There's no catch here.</p>
+  <p class="micro" data-en="There's no catch here." data-gu="અહીં કોઈ છૂપી રમત નથી.">There's no catch here.</p>
 </section>
 
 <!-- STAGE 4 — contribution (the gift, optional) -->
 <section class="step" data-step="s4">
-  <span class="eyebrow">The one you'd vouch for</span>
+  <span class="eyebrow" data-en="The one you'd vouch for" data-gu="જેની તમે ભલામણ કરો">The one you'd vouch for</span>
   <div class="gu-title">તમારું વડોદરા.</div>
-  <p class="sub">Everyone in Baroda has one — the tiffin that tastes like home, the electrician who actually turns up.</p>
-  <p class="ask">Tell us about someone you'd vouch for. Or the one that let you down.</p>
-  <textarea class="field" id="contribField" rows="3" placeholder="A name, an area, why you'd tell a friend…"></textarea>
+  <p class="sub" data-en="Everyone in Baroda has one — the tiffin that tastes like home, the electrician who actually turns up." data-gu="વડોદરામાં દરેક પાસે એક હોય છે — ઘર જેવા સ્વાદનું ટિફિન, કે જે ખરેખર સમયસર આવે એ ઇલેક્ટ્રિશિયન.">Everyone in Baroda has one — the tiffin that tastes like home, the electrician who actually turns up.</p>
+  <p class="ask" data-en="Tell us about someone you'd vouch for. Or the one that let you down." data-gu="કોઈ એક, જેની તમે ભલામણ કરો. અથવા જેણે નિરાશ કર્યા હોય.">Tell us about someone you'd vouch for. Or the one that let you down.</p>
+  <textarea class="field" id="contribField" rows="3" data-en-ph="A name, an area, why you'd tell a friend…" data-gu-ph="નામ, વિસ્તાર, ને કેમ મિત્રને કહેશો…" placeholder="A name, an area, why you'd tell a friend…"></textarea>
   <div class="row">
-    <button class="btn" id="contribNext">Share it</button>
-    <button class="ghost" data-skip="s4">Rather not — keep going</button>
+    <button class="btn" id="contribNext" data-en="Share it" data-gu="જણાવો">Share it</button>
+    <button class="ghost" data-skip="s4" data-en="Rather not — keep going" data-gu="રહેવા દો — આગળ વધીએ">Rather not — keep going</button>
   </div>
-  <p class="micro">Whatever you share helps the next person find them.</p>
+  <p class="micro" data-en="Whatever you share helps the next person find them." data-gu="તમે જે કહેશો, એ બીજા કોઈને એમને શોધવામાં મદદ કરશે.">Whatever you share helps the next person find them.</p>
 </section>
 
 <!-- STAGE 5 — REVEAL (brand appears for the first time) -->
 <section class="step" data-step="s5reveal">
-  <div class="mk"><span class="hae">ae</span>halo<span class="end"><span class="dot"></span></span></div>
-  <h2 class="title">So — this is <span class="em">Halo</span>.</h2>
-  <p class="sub">Baroda's always trusted its own, neighbour to neighbour. We're just putting that in one place.</p>
-  <div class="row"><button class="btn" data-next>Go on</button></div>
+  <div class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></div>
+  <h2 class="title" data-en="So &mdash; this is &lt;span class=&quot;em&quot;&gt;Halo&lt;/span&gt;." data-gu="તો &mdash; આ છે &lt;span class=&quot;em&quot;&gt;હાલો&lt;/span&gt;.">So &mdash; this is <span class="em">Halo</span>.</h2>
+  <p class="sub" data-en="Baroda's always trusted its own, neighbour to neighbour. We're just putting that in one place." data-gu="વડોદરા હંમેશાં પોતાનાં માણસો પર વિશ્વાસ મૂકતું આવ્યું છે — પાડોશીથી પાડોશી સુધી. અમે બસ એ બધું એક જગ્યાએ લાવી રહ્યા છીએ.">Baroda's always trusted its own, neighbour to neighbour. We're just putting that in one place.</p>
+  <div class="row"><button class="btn" data-next data-en="Go on" data-gu="આગળ">Go on</button></div>
 </section>
 
 <!-- STAGE 5a — reveal_resonance -->
 <section class="step" data-step="s5a">
   <span class="eyebrow">ae halo</span>
-  <p class="ask">Which feels more like something you'd want in on?</p>
+  <p class="ask" data-en="Which feels more like something you'd want in on?" data-gu="કયું તમને વધારે પોતાનું લાગે — જેમાં તમે જોડાવા માગો?">Which feels more like something you'd want in on?</p>
   <div class="opts">
-    <button class="opt" data-field="reveal_resonance" data-value="lineage_pulls">Carrying on what Baroda already does — trusting our own.</button>
-    <button class="opt" data-field="reveal_resonance" data-value="plain_pulls">Just a cleaner way to find local people you trust.</button>
-    <button class="opt" data-field="reveal_resonance" data-value="neither">Neither, really</button>
+    <button class="opt" data-field="reveal_resonance" data-value="lineage_pulls" data-en="Carrying on what Baroda already does — trusting our own." data-gu="વડોદરા જે પહેલેથી કરે છે એ જ — પોતાનાં માણસો પર વિશ્વાસ.">Carrying on what Baroda already does — trusting our own.</button>
+    <button class="opt" data-field="reveal_resonance" data-value="plain_pulls" data-en="Just a cleaner way to find local people you trust." data-gu="ભરોસાપાત્ર સ્થાનિક માણસોને શોધવાની એક સહેલી રીત.">Just a cleaner way to find local people you trust.</button>
+    <button class="opt" data-field="reveal_resonance" data-value="neither" data-en="Neither, really" data-gu="ખરેખર, કોઈ નહીં">Neither, really</button>
   </div>
-  <p class="micro">Gut feeling.</p>
+  <p class="micro" data-en="Gut feeling." data-gu="મન કહે એ.">Gut feeling.</p>
 </section>
 
 <!-- STAGE 5b — reveal_alienation (optional) -->
 <section class="step" data-step="s5b">
   <span class="eyebrow">ae halo</span>
-  <p class="ask">And honestly — how did that land?</p>
+  <p class="ask" data-en="And honestly — how did that land?" data-gu="અને સાચું કહો — એ કેવું લાગ્યું?">And honestly — how did that land?</p>
   <div class="opts">
-    <button class="opt" data-field="reveal_alienation" data-value="this_is_for_me">This is for me</button>
-    <button class="opt" data-field="reveal_alienation" data-value="a_bit_much">A bit much</button>
-    <button class="opt" data-field="reveal_alienation" data-value="not_for_me">Not really for me</button>
-    <button class="opt" data-field="reveal_alienation" data-value="neutral">No strong feeling</button>
+    <button class="opt" data-field="reveal_alienation" data-value="this_is_for_me" data-en="This is for me" data-gu="આ મારા માટે જ છે">This is for me</button>
+    <button class="opt" data-field="reveal_alienation" data-value="a_bit_much" data-en="A bit much" data-gu="થોડું વધારે પડતું">A bit much</button>
+    <button class="opt" data-field="reveal_alienation" data-value="not_for_me" data-en="Not really for me" data-gu="મારા માટે નથી, કદાચ">Not really for me</button>
+    <button class="opt" data-field="reveal_alienation" data-value="neutral" data-en="No strong feeling" data-gu="ખાસ કંઈ નહીં">No strong feeling</button>
   </div>
-  <div class="row"><button class="ghost" data-skip="s5b">Skip</button></div>
-  <p class="micro">Say it straight — that's the helpful part.</p>
+  <div class="row"><button class="ghost" data-skip="s5b" data-en="Skip" data-gu="રહેવા દો">Skip</button></div>
+  <p class="micro" data-en="Say it straight — that's the helpful part." data-gu="સીધેસીધું કહો — એ જ સૌથી મદદરૂપ છે.">Say it straight — that's the helpful part.</p>
 </section>
 
 <!-- STAGE 6 — WAITLIST -->
 <section class="step" data-step="s6">
   <div class="gu-title">એ હાલો.</div>
-  <p class="sub">Halo's being built slowly, by Barodians. Want to be one of the first in?</p>
-  <p class="ask">Leave a number or email and we'll tell you the moment it opens.</p>
-  <input class="field" id="contactField" type="text" inputmode="email" autocomplete="off" placeholder="WhatsApp number or email">
-  <label class="consent"><input type="checkbox" id="consentBox"><span>Okay to keep this, only to tell you when Halo opens.</span></label>
+  <p class="sub" data-en="Halo's being built slowly, by Barodians. Want to be one of the first in?" data-gu="હાલો ધીમે ધીમે બની રહ્યું છે — વડોદરાવાસીઓના હાથે. પહેલા લોકોમાં જોડાવું છે?">Halo's being built slowly, by Barodians. Want to be one of the first in?</p>
+  <p class="ask" data-en="Leave a number or email and we'll tell you the moment it opens." data-gu="નંબર કે ઈમેલ મૂકો, ને જેવું ખૂલે કે તરત જણાવીશું.">Leave a number or email and we'll tell you the moment it opens.</p>
+  <input class="field" id="contactField" type="text" inputmode="email" autocomplete="off" data-en-ph="WhatsApp number or email" data-gu-ph="વૉટ્સએપ નંબર કે ઈમેલ" placeholder="WhatsApp number or email">
+  <label class="consent"><input type="checkbox" id="consentBox"><span data-en="Okay to keep this, only to tell you when Halo opens." data-gu="આ રાખવાની છૂટ — ફક્ત હાલો ખૂલે ત્યારે જણાવવા માટે.">Okay to keep this, only to tell you when Halo opens.</span></label>
   <p class="err" id="contactErr"></p>
   <div class="row">
-    <button class="btn" id="joinBtn">Count me in</button>
-    <button class="ghost" id="notNow">Not now</button>
+    <button class="btn" id="joinBtn" data-en="Count me in" data-gu="મને પણ જોડો">Count me in</button>
+    <button class="ghost" id="notNow" data-en="Not now" data-gu="અત્યારે નહીં">Not now</button>
   </div>
-  <p class="micro">We won't spam you. We won't share your number. <span class="gu">આભાર.</span></p>
+  <p class="micro" data-en="We won't spam you. We won't share your number. આભાર." data-gu="ન સ્પૅમ કરીશું, ન તમારો નંબર કોઈને આપીશું. આભાર.">We won't spam you. We won't share your number. આભાર.</p>
 </section>
 
 <!-- END -->
 <section class="step end-card" data-step="end">
-  <div class="gu-title" id="endGu">એ હાલો.</div>
-  <h2 class="title" id="endTitle">You're in. You helped start this.</h2>
-  <p class="sub" id="endSub">We'll tell you the moment Halo opens. — ae halo</p>
+  <div class="gu-title">એ હાલો.</div>
+  <h2 class="title" id="endTitle"></h2>
+  <p class="sub" id="endSub"></p>
 </section>
 
 </main>
@@ -254,89 +299,122 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
   var steps = {};
   document.querySelectorAll(".step").forEach(function(el){ steps[el.getAttribute("data-step")] = el; });
 
-  // anonymous research row + separate (PII) contact, per the instrumentation spec
+  /* ---------- i18n ---------- */
+  var LANG = "en";
+  // JS-injected strings (end screen + validation) — [GU REVIEW]
+  var STR = {
+    endJoinTitle:{en:"You're in. You helped start this.", gu:"તમે જોડાઈ ગયા. આની શરૂઆતમાં તમારો હાથ છે."},
+    endJoinSub:{en:"We'll tell you the moment Halo opens. &mdash; ae halo", gu:"હાલો ખૂલતાં જ તમને જણાવીશું. &mdash; ae halo"},
+    endLeftTitle:{en:"Thank you for being heard.", gu:"તમને સાંભળ્યા — આભાર."},
+    endLeftSub:{en:"That's how Baroda looks out for Baroda. &mdash; ae halo", gu:"વડોદરા આમ જ વડોદરાનું ધ્યાન રાખે છે. &mdash; ae halo"},
+    errInvalid:{en:"Hmm, that doesn't look right — mind checking?", gu:"અરે, કંઈક બરાબર નથી લાગતું — જરા તપાસશો?"},
+    errConsent:{en:"Just tick the box so we can keep it.", gu:"બસ બોક્સ પર ✓ કરો, જેથી અમે રાખી શકીએ."}
+  };
+  var endState = null; // null | "join" | "left"
+
+  function decode(s){ var t=document.createElement("textarea"); t.innerHTML=s; return t.value; }
+
+  function applyLang(l){
+    LANG = l;
+    document.querySelectorAll("[data-en]").forEach(function(el){
+      var v = el.getAttribute(l==="gu" ? "data-gu" : "data-en");
+      if(v!==null) el.innerHTML = decode(v);
+    });
+    document.querySelectorAll("[data-en-ph]").forEach(function(el){
+      var v = el.getAttribute(l==="gu" ? "data-gu-ph" : "data-en-ph");
+      if(v!==null) el.setAttribute("placeholder", v);
+    });
+    document.body.classList.toggle("gu", l==="gu");
+    document.documentElement.lang = (l==="gu") ? "gu" : "en";
+    var btn=document.getElementById("langBtn"), lab=document.getElementById("langLabel");
+    lab.textContent = (l==="gu") ? "English" : "ગુજરાતી";
+    btn.setAttribute("aria-pressed", l==="gu" ? "true":"false");
+    btn.setAttribute("aria-label", l==="gu" ? "Read in English / અંગ્રેજીમાં વાંચો" : "ગુજરાતીમાં વાંચો / Read in Gujarati");
+    if(endState) renderEnd();
+    try{ localStorage.setItem("halo_lang", l); }catch(e){}
+  }
+  document.getElementById("langBtn").addEventListener("click", function(){
+    applyLang(LANG==="gu" ? "en" : "gu");
+  });
+
+  /* ---------- data ---------- */
   var sid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : "s"+Date.now()+Math.random().toString(36).slice(2);
-  var research = { session_id: sid, started_at: new Date().toISOString() };
-  var contact = null; // PII — kept separate, only on consented join
+  var research = { session_id: sid, started_at: new Date().toISOString(), lang: LANG };
+  var contact = null;
 
-  var idx = -1;
-  var thread = document.getElementById("thread");
-
+  /* ---------- engine ---------- */
+  var idx = -1, thread = document.getElementById("thread");
   function show(stepKey){
     Object.keys(steps).forEach(function(k){ steps[k].classList.remove("on"); });
-    var el = steps[stepKey]; el.classList.add("on");
+    steps[stepKey].classList.add("on");
     var pos = ORDER.indexOf(stepKey);
     research.stage_reached = stepKey;
-    if (pos >= 0){ thread.style.width = ((pos+1)/ORDER.length*100) + "%"; }
-    else { thread.style.width = "100%"; }
+    thread.style.width = (pos>=0 ? ((pos+1)/ORDER.length*100) : 100) + "%";
     window.scrollTo(0,0);
-    var f = el.querySelector("button,textarea,input"); if(f){ try{ f.focus({preventScroll:true}); }catch(e){} }
+    var f = steps[stepKey].querySelector("button,textarea,input"); if(f){ try{ f.focus({preventScroll:true}); }catch(e){} }
   }
-  function advance(){ idx++; if(idx >= ORDER.length){ finish(false); return; } show(ORDER[idx]); }
-  function goto(stepKey){ idx = ORDER.indexOf(stepKey); show(stepKey); }
+  function advance(){ idx++; if(idx>=ORDER.length){ finish(false); return; } show(ORDER[idx]); }
 
-  // option selection (single-tap → store → advance)
   document.querySelectorAll(".opt").forEach(function(btn){
     btn.addEventListener("click", function(){
-      var field = btn.getAttribute("data-field"), val = btn.getAttribute("data-value");
-      research[field] = val;
-      var sibs = btn.parentElement.querySelectorAll(".opt");
-      sibs.forEach(function(s){ s.classList.remove("sel"); });
+      research[btn.getAttribute("data-field")] = btn.getAttribute("data-value");
+      btn.parentElement.querySelectorAll(".opt").forEach(function(s){ s.classList.remove("sel"); });
       btn.classList.add("sel");
       setTimeout(advance, 230);
     });
   });
-
-  // plain "next" (reveal continue)
   document.querySelectorAll("[data-next]").forEach(function(b){ b.addEventListener("click", advance); });
-
-  // skips (optional stages)
   document.querySelectorAll("[data-skip]").forEach(function(b){ b.addEventListener("click", advance); });
 
-  // Stage 4 — contribution (optional, steered away from phone numbers)
   document.getElementById("contribNext").addEventListener("click", function(){
     var t = document.getElementById("contribField").value.trim();
-    research.contribution_text = t;            // NOTE: scrub for third-party PII before any sync
-    research.did_contribute = t.length > 0;
+    research.contribution_text = t;            // scrub for third-party PII before any sync
+    research.did_contribute = t.length>0;
     advance();
   });
 
-  // Stage 6 — join
   var contactErr = document.getElementById("contactErr");
   document.getElementById("joinBtn").addEventListener("click", function(){
     var v = document.getElementById("contactField").value.trim();
     var ok = document.getElementById("consentBox").checked;
     var looksEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v);
     var looksPhone = /^[+]?[\d\s-]{7,}$/.test(v);
-    if(!v || (!looksEmail && !looksPhone)){ contactErr.textContent = "Hmm, that doesn't look right — mind checking?"; return; }
-    if(!ok){ contactErr.textContent = "Just tick the box so we can keep it."; return; }
+    if(!v || (!looksEmail && !looksPhone)){ contactErr.innerHTML = decode(STR.errInvalid[LANG]); return; }
+    if(!ok){ contactErr.innerHTML = decode(STR.errConsent[LANG]); return; }
     contactErr.textContent = "";
     research.waitlist_join = true;
-    contact = { session_id: sid, value: v, consent: true, at: new Date().toISOString() }; // separate store
+    contact = { session_id: sid, value: v, consent: true, at: new Date().toISOString() };
     finish(true);
   });
-  document.getElementById("notNow").addEventListener("click", function(){
-    research.waitlist_join = false;
-    finish(false);
-  });
+  document.getElementById("notNow").addEventListener("click", function(){ research.waitlist_join=false; finish(false); });
 
-  function finish(joined){
-    research.finished_at = new Date().toISOString();
-    if(!joined){
-      document.getElementById("endGu").textContent = "એ હાલો.";
-      document.getElementById("endTitle").textContent = "Thank you for being heard.";
-      document.getElementById("endSub").textContent = "That's how Baroda looks out for Baroda. — ae halo";
+  function renderEnd(){
+    if(endState==="join"){
+      document.getElementById("endTitle").innerHTML = decode(STR.endJoinTitle[LANG]);
+      document.getElementById("endSub").innerHTML = decode(STR.endJoinSub[LANG]);
+    } else {
+      document.getElementById("endTitle").innerHTML = decode(STR.endLeftTitle[LANG]);
+      document.getElementById("endSub").innerHTML = decode(STR.endLeftSub[LANG]);
     }
-    show("end");
-    // ---- Persistence happens here, later ----
-    // Research row (anonymous) → Airtable/Supabase research table:
-    //   POST research  (no PII; contribution_text must be scrubbed first)
-    // Contact (PII) → separate, access-controlled table, linked only by session_id if consent allows:
-    //   if (contact) POST contact
+  }
+  function finish(joined){
+    endState = joined ? "join" : "left";
+    research.finished_at = new Date().toISOString();
+    research.lang = LANG;
+    renderEnd();
+    Object.keys(steps).forEach(function(k){ steps[k].classList.remove("on"); });
+    steps["end"].classList.add("on");
+    thread.style.width = "100%";
+    window.scrollTo(0,0);
+    // ---- Persistence (later): anonymous research row + separate consented contact ----
+    //   POST research   (no PII; scrub contribution_text first)
+    //   if (contact) POST contact   (PII, access-controlled, linked by session_id)
     try{ console.log("[research]", research); if(contact) console.log("[contact:separate]", contact); }catch(e){}
   }
 
-  advance(); // begin at Stage 1
+  // init: restore saved language, then begin
+  try{ var saved=localStorage.getItem("halo_lang"); if(saved==="gu"||saved==="en") applyLang(saved); }catch(e){}
+  advance();
 })();
 </script>
 </body>
