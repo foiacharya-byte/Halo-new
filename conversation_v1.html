@@ -110,6 +110,10 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
 .langbtn:active{transform:scale(.96)}
 .langbtn:focus-visible{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.35)}
 
+.reveal{text-align:center}
+.reveal .mk{margin-bottom:12px}
+.reveal .title{font-size:clamp(22px,5.6vw,32px);color:var(--ink-soft);font-weight:460}
+.reveal .row{justify-content:center}
 .end-card{text-align:center}
 .end-card .gu-title{margin-bottom:14px}
 .share-line{font-family:var(--serif);font-size:15.5px;color:var(--ink-soft);line-height:1.5;margin-top:24px}
@@ -173,7 +177,7 @@ body.gu .field{font-size:16px}
 <!-- STAGE 1 — LANDING (resident_type) — recognition, not a request -->
 <section class="step" data-step="s1">
   <span class="eyebrow" data-en="how Baroda really works" data-gu="વડોદરા ખરેખર આમ ચાલે છે">how Baroda really works</span>
-  <h2 class="title" data-en="The right person was never on a list. Someone you trusted just knew them." data-gu="સાચો માણસ ક્યારેય કોઈ લિસ્ટમાં નહોતો. તમે જેના પર વિશ્વાસ કરતા, એ જ એને ઓળખતા.">The right person was never on a list. Someone you trusted just knew them.</h2>
+  <h2 class="title" data-en="The right person was never on a list. Someone you trusted just knew them." data-gu="સાચો માણસ ક્યારેય લિસ્ટમાં નહોતો મળતો — તમારા ભરોસાના કોઈકને એની ખબર હોય, બસ.">The right person was never on a list. Someone you trusted just knew them.</h2>
   <p class="ask" data-en="So first — is Baroda new to you, or has it always been home?" data-gu="તો પહેલાં — વડોદરા તમારા માટે નવું છે, કે હંમેશાંથી ઘર રહ્યું છે?">So first — is Baroda new to you, or has it always been home?</p>
   <div class="opts">
     <button class="opt" data-field="resident_type" data-value="new_to_baroda" data-en="New here" data-gu="અહીં નવાં છીએ">New here</button>
@@ -256,12 +260,10 @@ body.gu .field{font-size:16px}
   <p class="micro" data-en="Whatever you share helps the next person find them." data-gu="તમે જે કહેશો, એ બીજા કોઈને એમને શોધવામાં મદદ કરશે.">Whatever you share helps the next person find them.</p>
 </section>
 
-<!-- STAGE 5 — REVEAL · the feeling of the call (name appears for the first time) -->
-<section class="step" data-step="s5reveal">
-  <span class="eyebrow" id="revealEyebrow"></span>
+<!-- STAGE 5 — REVEAL · recognition, nothing explained (name appears for the first time) -->
+<section class="step reveal" data-step="s5reveal">
   <div class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></div>
-  <h2 class="title" data-en="You've called out like this your whole life. &lt;span class=&quot;em&quot;&gt;Ae, halo!&lt;/span&gt;" data-gu="આખી જિંદગી તમે આમ જ બોલાવ્યું છે. &lt;span class=&quot;em&quot;&gt;એ, હાલો!&lt;/span&gt;">You've called out like this your whole life. <span class="em">Ae, halo!</span></h2>
-  <p class="sub" data-en="To a neighbour, to a friend across the city. That's all this is — Baroda calling its own." data-gu="પાડોશીને, શહેરની સામે પારના મિત્રને. બસ આટલું જ છે — વડોદરા પોતાનાંને બોલાવે છે.">To a neighbour, to a friend across the city. That's all this is — Baroda calling its own.</p>
+  <h2 class="title" data-en="You already knew the name." data-gu="નામ તો તમને ખબર જ હતી.">You already knew the name.</h2>
   <div class="row"><button class="btn" data-next data-en="Go on" data-gu="આગળ">Go on</button></div>
 </section>
 
@@ -333,16 +335,15 @@ body.gu .field{font-size:16px}
   var LANG = "en";
   var STR = {
     endJoinGu:{en:"આપણું.", gu:"આપણું."},
-    endJoinTitle:{en:"You're not on a waitlist. You're one of the first in.", gu:"આ કોઈ વેઇટલિસ્ટ નથી. તમે પહેલા લોકોમાંના એક છો."},
-    endJoinSub:{en:"When Halo opens, you won't be joining something new &mdash; you'll be coming home to it.", gu:"હાલો ખૂલશે ત્યારે તમે કંઈ નવામાં જોડાશો નહીં — તમે ઘરે જ પાછા આવશો."},
-    shareLine:{en:"Know someone you'd vouch for? Pass it on &mdash; that's how Baroda finds its own.", gu:"કોઈ એવું છે જેની તમે ભલામણ કરો? એમને મોકલો — વડોદરા આમ જ પોતાનાંને શોધે છે."},
-    shareLabel:{en:"Share with a neighbour", gu:"પાડોશીને મોકલો"},
-    shareCopied:{en:"Copied — go on, share it", gu:"કૉપિ થયું — મોકલી દો"},
-    shareText:{en:"Baroda's getting its own — the people we actually trust, in one place. ae halo.", gu:"વડોદરાને એનું પોતાનું મળી રહ્યું છે — જેના પર આપણે ખરેખર વિશ્વાસ કરીએ, એ બધાં એક જગ્યાએ. ae halo."},
+    endJoinTitle:{en:"You're not on a waitlist. You're one of the first in.", gu:"આ વેઇટલિસ્ટ નથી. તમે તો ઘરના માણસ."},
+    endJoinSub:{en:"When Halo opens, you won't be joining something new &mdash; you'll be coming home to it.", gu:"હાલો ખૂલશે ત્યારે કંઈ નવું નહીં લાગે — ઘરે પાછા આવ્યા જેવું લાગશે."},
+    shareLine:{en:"Know a Barodian who'd want this too? Send it their way.", gu:"કોઈ વડોદરાવાસી જેને આ ગમશે? એને મોકલી દો."},
+    shareLabel:{en:"Share with a friend", gu:"મિત્રને મોકલો"},
+    shareCopied:{en:"Copied — go on, send it", gu:"કૉપિ થયું — મોકલી દો"},
+    shareText:{en:"Vadodara's getting its own — the people we actually trust, all in one place. ae halo.", gu:"વડોદરાનું પોતાનું બની રહ્યું છે — જેના પર આપણે ભરોસો કરીએ, એ બધાં એક ઠેકાણે. ae halo."},
     endLeftGu:{en:"આભાર.", gu:"આભાર."},
     endLeftTitle:{en:"Thank you — for being heard.", gu:"આભાર — તમને સાંભળ્યા."},
     endLeftSub:{en:"That's how Baroda looks out for Baroda. The door stays open.", gu:"વડોદરા આમ જ વડોદરાનું ધ્યાન રાખે છે. દરવાજો ખુલ્લો જ છે."},
-    revealContributed:{en:"you just named one of them", gu:"તમે હમણાં એમાંના એકનું નામ આપ્યું"},
     errInvalid:{en:"Hmm, that doesn't look right — mind checking?", gu:"અરે, કંઈક બરાબર નથી લાગતું — જરા તપાસશો?"},
     errConsent:{en:"Just tick the box so we can keep it.", gu:"બસ બોક્સ પર ✓ કરો, જેથી અમે રાખી શકીએ."}
   };
@@ -350,14 +351,7 @@ body.gu .field{font-size:16px}
 
   function decode(s){ var t=document.createElement("textarea"); t.innerHTML=s; return t.value; }
 
-  function refreshDynamic(){
-    // reveal eyebrow (acknowledge a contribution)
-    var re=document.getElementById("revealEyebrow");
-    if(steps.s5reveal.classList.contains("on")){
-      re.innerHTML = research.did_contribute ? decode(STR.revealContributed[LANG]) : "";
-    }
-    if(endState) renderEnd();
-  }
+  function refreshDynamic(){ if(endState) renderEnd(); }
 
   function applyLang(l){
     LANG = l;
