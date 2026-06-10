@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ae halo — the people Vadodara trusts, in one place</title>
+<meta name="description" content="Vadodara's trusted local word-of-mouth, in one place. The tiffin, the electrician, the tutor — the ones your neighbours already vouch for.">
+<meta name="theme-color" content="#F8F2E7">
+<!--
+  halo_landing.html — the wow landing (Superlist-style product mock).
+  The media panel is a LIVE society-WhatsApp thread: the city's word-of-mouth,
+  happening inside the product. Locked Halo system; no gradient/glow/graph slop.
+  Chat names + Gujarati lines are illustrative demo content. Gujarati [GU REVIEW].
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Cormorant+Garamond:wght@500;600&family=Caveat:wght@600;700&family=Noto+Serif+Gujarati:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F8F2E7; --paper-deep:#EBE0CD; --paper-hi:#FFFDF8;
+  --ink:#2A1E11; --ink-soft:#6E5A40;
+  --maroon:#7A2E22; --terra:#C2531F; --gold:#BE9A4E; --sand:#CBB488;
+  --line:#E3D7BF;
+  --serif:"Fraunces",Georgia,serif; --caps:"Cormorant Garamond",Georgia,serif;
+  --script:"Caveat",cursive; --gu:"Noto Serif Gujarati",serif;
+  --expo:cubic-bezier(.16,1,.3,1); --spring:cubic-bezier(.34,1.4,.5,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);color:var(--ink);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  background:radial-gradient(130% 90% at 50% 0%, #FFFCF6 0%, var(--paper) 46%, var(--paper-deep) 100%);
+  min-height:100dvh;position:relative;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:80;opacity:.035;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* nav */
+.nav{position:relative;z-index:10;display:flex;align-items:center;justify-content:space-between;
+  max-width:1180px;margin:0 auto;padding:24px clamp(20px,4vw,40px)}
+.mk{font-family:var(--serif);font-weight:470;font-size:clamp(26px,3.4vw,34px);letter-spacing:-.04em;color:var(--ink);position:relative;display:inline-block;line-height:1}
+.mk .hae{position:absolute;left:-.04em;top:-.34em;font-family:var(--script);font-size:.42em;line-height:1;color:var(--terra);transform:rotate(-9deg)}
+.mk .end{position:relative;display:inline-block;width:.34em;height:1em}
+.mk .bang{position:absolute;left:50%;bottom:.30em;width:.09em;height:.42em;border-radius:.05em;background:var(--terra);transform:translateX(-50%)}
+.mk .dot{position:absolute;left:50%;bottom:.07em;width:.16em;height:.16em;border-radius:50%;background:var(--terra);transform:translateX(-50%)}
+.nav-cta{font-family:var(--serif);font-weight:520;font-size:15px;color:var(--paper);background:var(--terra);border-radius:999px;
+  padding:10px 22px;text-decoration:none;transition:transform .12s var(--spring),filter .2s}
+.nav-cta:active{transform:scale(.96)}
+@media(hover:hover){.nav-cta:hover{filter:brightness(1.05)}}
+
+/* hero */
+.hero{position:relative;z-index:10;max-width:1180px;margin:0 auto;padding:clamp(28px,5vw,56px) clamp(20px,4vw,40px) 60px;text-align:center}
+.eyebrow{font-family:var(--caps);text-transform:uppercase;letter-spacing:.32em;font-size:13px;font-weight:600;color:var(--maroon);margin-bottom:20px}
+.eyebrow .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
+h1{font-family:var(--serif);font-weight:500;letter-spacing:-.025em;font-size:clamp(38px,7.4vw,82px);line-height:1.04;color:var(--ink);text-wrap:balance;max-width:14ch;margin:0 auto}
+h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.82em;height:.82em;border-radius:50%;background:var(--terra);color:var(--paper);margin:0 .08em;transform:translateY(.04em)}
+.ck svg{width:.5em;height:.5em}
+.lede{font-family:var(--serif);font-size:clamp(16px,2.3vw,20px);line-height:1.55;color:var(--ink-soft);max-width:46ch;margin:22px auto 0;text-wrap:pretty}
+.pills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:30px auto 0}
+.pill{font-family:var(--serif);font-size:14.5px;color:var(--ink-soft);background:var(--paper-hi);border:1px solid var(--line);
+  border-radius:999px;padding:9px 18px;cursor:pointer;transition:border-color .2s,color .2s,background .2s;-webkit-tap-highlight-color:transparent}
+.pill.on{color:var(--paper);background:var(--maroon);border-color:var(--maroon)}
+@media(hover:hover){.pill:not(.on):hover{border-color:var(--sand)}}
+
+/* ---------- the product mock (Superlist-style window) ---------- */
+.stage{position:relative;z-index:10;max-width:1040px;margin:48px auto 0;padding:0 clamp(16px,4vw,40px)}
+.window{background:var(--paper-hi);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  box-shadow:0 50px 90px -50px rgba(58,40,20,.5),0 16px 40px -28px rgba(58,40,20,.4);
+  opacity:0;transform:translateY(26px) scale(.98);animation:rise 1.1s var(--expo) .25s forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+.winbar{display:flex;align-items:center;gap:7px;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--paper)}
+.winbar i{width:10px;height:10px;border-radius:50%;background:var(--sand);opacity:.7}
+.winbar .wt{margin-left:10px;font-family:var(--caps);text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--ink-soft)}
+.win-body{display:grid;grid-template-columns:170px 1fr 322px;min-height:438px}
+
+/* sidebar: the directory */
+.rail{border-right:1px solid var(--line);padding:18px 12px;background:var(--paper)}
+.rail h4{font-family:var(--caps);text-transform:uppercase;letter-spacing:.16em;font-size:10.5px;color:var(--ink-soft);margin:0 8px 12px}
+.rail a{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:10px;font-size:14px;color:var(--ink);text-decoration:none;margin-bottom:2px}
+.rail a .ic{width:7px;height:7px;border-radius:2px;background:var(--sand)}
+.rail a.on{background:#FBF1E6;color:var(--maroon);font-weight:520}
+.rail a.on .ic{background:var(--terra);border-radius:50%}
+
+/* main: the trusted listing */
+.main{padding:26px 28px;border-right:1px solid var(--line);text-align:left}
+.main .nm{font-family:var(--serif);font-weight:540;font-size:clamp(24px,3vw,30px);letter-spacing:-.01em}
+.main .nm span{color:var(--ink-soft);font-weight:400;font-size:.62em;font-style:italic}
+.main .loc{color:var(--ink-soft);font-size:14.5px;margin-top:5px}
+.badges{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0 22px}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:13px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--paper-hi);color:var(--ink-soft)}
+.badge.trusted{color:var(--maroon);border-color:var(--sand);background:#FBF1E6;font-weight:520}
+.badge.trusted .tk{color:var(--terra);font-weight:700}
+.says{font-family:var(--caps);text-transform:uppercase;letter-spacing:.16em;font-size:10.5px;color:var(--ink-soft);margin-bottom:11px}
+.quote{font-size:15px;line-height:1.45;color:var(--ink);padding:11px 14px;background:var(--paper);border:1px solid var(--line);border-radius:12px;margin-bottom:9px}
+.quote b{font-weight:520;color:var(--maroon)}
+.vouch{margin-top:20px;font-size:13.5px;color:var(--ink-soft)}
+.vouch b{color:var(--terra)}
+
+/* media panel: the LIVE society WhatsApp thread */
+.chat{background:#F1E7D2;display:flex;flex-direction:column}
+.chat-h{display:flex;align-items:center;gap:11px;padding:14px 16px;border-bottom:1px solid rgba(122,46,34,.12);background:#EFE4CC}
+.chat-h .av{width:34px;height:34px;border-radius:50%;background:var(--maroon);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:15px}
+.chat-h .t{font-family:var(--serif);font-weight:540;font-size:15px;color:var(--ink);line-height:1.1}
+.chat-h .s{font-size:11.5px;color:var(--ink-soft);margin-top:1px}
+.chat-feed{flex:1;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:9px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 12%);mask-image:linear-gradient(to bottom,transparent,#000 12%)}
+.msg{opacity:0;transform:translateY(10px) scale(.98);transition:opacity .45s var(--expo),transform .5s var(--spring);max-width:84%}
+.msg.show{opacity:1;transform:none}
+.msg.out{align-self:flex-end;text-align:right}
+.who{font-size:11px;color:var(--terra);margin:0 0 3px 5px;font-weight:520}
+.bubble{display:inline-block;padding:9px 13px;border-radius:15px 15px 15px 5px;background:var(--paper-hi);
+  border:1px solid rgba(122,46,34,.1);font-size:13.5px;line-height:1.4;color:var(--ink);text-align:left;box-shadow:0 4px 10px -8px rgba(58,40,20,.5)}
+.msg.out .bubble{border-radius:15px 15px 5px 15px;background:#E7D8A8}
+.msg.gu .bubble{font-family:var(--gu)}
+.typing{display:inline-flex;gap:4px;padding:11px 14px;border-radius:15px 15px 15px 5px;background:var(--paper-hi);border:1px solid rgba(122,46,34,.1)}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--sand);animation:blink 1.2s infinite both}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+
+/* trust strip + footer */
+.strip{position:relative;z-index:10;max-width:1040px;margin:46px auto 0;padding:0 clamp(20px,4vw,40px);
+  display:flex;gap:14px 40px;justify-content:center;flex-wrap:wrap}
+.strip span{display:inline-flex;align-items:center;gap:9px;font-size:15px;color:var(--ink-soft)}
+.strip .tk{color:var(--terra);font-weight:700}
+.foot{position:relative;z-index:10;text-align:center;padding:80px 22px 40px;font-family:var(--gu);color:var(--maroon);font-size:16px;line-height:2}
+.foot .anchors{letter-spacing:.02em}
+.foot .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em;color:var(--ink-soft);font-size:12px;display:block;margin-top:6px}
+
+@media (max-width:920px){
+  .win-body{grid-template-columns:1fr 322px}
+  .rail{display:none}
+}
+@media (max-width:720px){
+  .win-body{grid-template-columns:1fr}
+  .main{border-right:0;border-bottom:1px solid var(--line)}
+  .chat{min-height:340px}
+  .chat-feed{justify-content:flex-end}
+}
+@media (prefers-reduced-motion:reduce){
+  .window,.msg{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}
+  .typing i{animation:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></span>
+  <a class="nav-cta" href="conversation_final.html">Join the waitlist</a>
+</nav>
+
+<header class="hero">
+  <span class="eyebrow"><span class="gu">વડોદરાનું પોતાનું</span> · Vadodara's own</span>
+  <h1>Home to the people Vadodara<span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>trusts.</h1>
+  <p class="lede">The tiffin, the electrician, the tutor — the ones your neighbours already vouch for, finally in one place.</p>
+  <div class="pills">
+    <button class="pill on">Home &amp; repair</button>
+    <button class="pill">Tiffin &amp; food</button>
+    <button class="pill">Tutors &amp; care</button>
+    <button class="pill">Everything local</button>
+  </div>
+</header>
+
+<section class="stage" aria-label="A trusted listing, built from word of mouth">
+  <div class="window">
+    <div class="winbar"><i></i><i></i><i></i><span class="wt">ae halo · Gotri</span></div>
+    <div class="win-body">
+      <!-- the directory -->
+      <aside class="rail">
+        <h4>Near you</h4>
+        <a class="on"><span class="ic"></span>Electrician</a>
+        <a><span class="ic"></span>Tiffin</a>
+        <a><span class="ic"></span>Tutor</a>
+        <a><span class="ic"></span>Tailor</a>
+        <a><span class="ic"></span>AC repair</a>
+        <a><span class="ic"></span>Mehndi</a>
+        <a><span class="ic"></span>Plumber</a>
+      </aside>
+
+      <!-- the trusted person -->
+      <div class="main">
+        <div class="nm">Bharat <span>· Electrician</span></div>
+        <div class="loc">Gotri · works MSU to Manjalpur</div>
+        <div class="badges">
+          <span class="badge trusted"><span class="tk">✓</span> Halo Trusted</span>
+          <span class="badge">Added by a neighbour</span>
+        </div>
+        <div class="says">What the society says</div>
+        <div class="quote"><b>Meena, Alkapuri:</b> Fixed our AC the same day.</div>
+        <div class="quote"><b>Sanjay:</b> Fair rate, actually turns up.</div>
+        <div class="vouch">Vouched for by <b>3 neighbours</b> · checked by a real person</div>
+      </div>
+
+      <!-- the live society WhatsApp thread (the picture area) -->
+      <div class="chat">
+        <div class="chat-h">
+          <div class="av">આ</div>
+          <div><div class="t">Alkapuri Society</div><div class="s">how Bharat got here</div></div>
+        </div>
+        <div class="chat-feed" id="feed"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="strip">
+  <span><span class="tk">✓</span> Added by neighbours</span>
+  <span><span class="tk">✓</span> Checked by a real person</span>
+  <span><span class="tk">✓</span> No commission, ever</span>
+</section>
+
+<footer class="foot">
+  <div class="anchors">આપણી માટીનું · વિશ્વાસ · શોધ · પોતાપણું</div>
+  <span class="sig">ae halo · Vadodara</span>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var feed=document.getElementById("feed");
+  // illustrative society-group thread (demo content). [GU REVIEW] on the Gujarati line.
+  var THREAD=[
+    {who:"Meena", t:"Anyone know a good electrician?"},
+    {who:"Sanjay", t:"Try Bharat bhai — Gotri side"},
+    {out:true, t:"Yes! He fixed ours same day"},
+    {who:"Priya-ben", t:"Doesn't overcharge"},
+    {out:true, t:"Sending his number"},
+    {who:"Sanjay", t:"મારા ઓળખાણમાં છે", gu:true}
+  ];
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function el(m){
+    var d=document.createElement("div");
+    d.className="msg"+(m.out?" out":"")+(m.gu?" gu":"");
+    d.innerHTML=(m.who?'<div class="who">'+m.who+'</div>':'')+'<div class="bubble">'+m.t+'</div>';
+    return d;
+  }
+  if(reduce){ THREAD.forEach(function(m){ var e=el(m); e.classList.add("show"); feed.appendChild(e); }); return; }
+
+  var timers=[];
+  function clearAll(){ timers.forEach(clearTimeout); timers=[]; feed.innerHTML=""; }
+  function typing(){ var t=document.createElement("div"); t.className="msg"; t.innerHTML='<div class="typing"><i></i><i></i><i></i></div>'; return t; }
+
+  function run(){
+    clearAll();
+    var t=0;
+    THREAD.forEach(function(m,idx){
+      // show a typing dot before each incoming line, then the message
+      if(!m.out){
+        timers.push(setTimeout(function(){
+          var tp=typing(); feed.appendChild(tp); requestAnimationFrame(function(){tp.classList.add("show");});
+          timers.push(setTimeout(function(){ feed.removeChild(tp); place(m); }, 650));
+        }, t));
+        t+=650+850;
+      } else {
+        timers.push(setTimeout(function(){ place(m); }, t));
+        t+=850;
+      }
+    });
+    function place(m){
+      var e=el(m); feed.appendChild(e); requestAnimationFrame(function(){ e.classList.add("show"); });
+      while(feed.children.length>6) feed.removeChild(feed.children[0]);
+    }
+    // hold, then loop
+    timers.push(setTimeout(run, t+2600));
+  }
+  // start once the window has settled in
+  setTimeout(run, 1300);
+})();
+</script>
+</body>
+</html>
