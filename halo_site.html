@@ -60,7 +60,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .iskip[hidden]{display:none}
 
 /* nav */
-.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:60;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--edge);background:rgba(248,242,231,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s;opacity:0}
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:60;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 max(var(--edge), calc((100% - 1080px)/2));background:rgba(248,242,231,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s;opacity:0}
 .nav.show{opacity:1;transition:opacity .8s var(--expo)}.nav.stuck{border-color:var(--line)}
 .nav .brand{justify-self:start;background:none;border:0;cursor:pointer;line-height:0}.nav .brand .mk{font-size:25px}
 .nav .links{justify-self:center;display:flex;gap:clamp(16px,2.4vw,32px)}
@@ -182,19 +182,49 @@ h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clam
 @keyframes vIn{from{opacity:0}to{opacity:1}}
 .vclose{position:fixed;top:max(20px,env(safe-area-inset-top));left:var(--edge);z-index:2;font-family:var(--caps);text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:600;color:var(--ink-soft);background:none;border:0;cursor:pointer;padding:8px 4px;transition:color .2s}
 @media(hover:hover){.vclose:hover{color:var(--maroon)}}
-.vinner{max-width:760px;margin:0 auto;text-align:left}
-.vinner .kicker{font-family:var(--caps);text-transform:uppercase;letter-spacing:.32em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:24px}
+.vthread{position:fixed;left:clamp(12px,3.4vw,46px);top:0;width:1.5px;height:0;background:var(--terra);opacity:.5;z-index:2;will-change:height}
+.vinner{max-width:1000px;margin:0 auto;text-align:left;padding-bottom:30px}
+.vinner .kicker{font-family:var(--caps);text-transform:uppercase;letter-spacing:.32em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:26px}
 .vinner .kicker .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
-.vbig{font-family:var(--serif);font-weight:560;font-size:clamp(40px,7vw,82px);line-height:.98;letter-spacing:-.03em;color:var(--ink);margin-bottom:clamp(28px,5vh,48px);text-wrap:balance}
-.vbig .em{font-style:italic;color:var(--terra);font-weight:500}
-.vcopy{max-width:60ch}
-.vcopy p{font-family:var(--serif);font-size:clamp(16px,1.9vw,19.5px);line-height:1.62;color:var(--ink-soft);margin-bottom:18px}
-.vcopy .vlead{color:var(--ink);font-size:clamp(17px,2.1vw,21px);line-height:1.55}
-.vcopy .vbelief{color:var(--ink);font-weight:500;font-size:clamp(17px,2.1vw,21px);line-height:1.5}
-.vcopy .vnots{font-style:italic;color:var(--maroon)}
-.vcopy .vclosing{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.3vw,23px);color:var(--ink);margin-top:6px}
-.vcta{margin-top:clamp(34px,5vh,52px);font-family:var(--serif);font-weight:540;font-size:17px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;padding:15px 34px;cursor:pointer;transition:transform .12s var(--spring),filter .2s}
+/* hero */
+.vhero{position:relative;padding-bottom:clamp(40px,8vh,96px)}
+.vfloat{position:absolute;inset:-30px 0 0;z-index:0;pointer-events:none}
+.vf{position:absolute;font-family:var(--serif);font-size:clamp(12px,1.2vw,14px);color:var(--ink);background:var(--paper-hi);border:1px solid var(--line);border-radius:11px;padding:7px 12px;white-space:nowrap;opacity:.42;box-shadow:0 12px 22px -20px rgba(58,40,20,.5)}
+.vf i{color:var(--terra);font-style:italic}.vf b{color:var(--terra);font-weight:700}.vf.vgu{font-family:var(--gu)}
+.vtitle{position:relative;z-index:2;font-family:var(--serif);font-weight:560;font-size:clamp(46px,8.4vw,112px);line-height:.92;letter-spacing:-.035em;color:var(--ink);max-width:12ch;margin-bottom:clamp(34px,6vh,64px);text-wrap:balance}
+.vtitle .em{font-style:italic;color:var(--terra);font-weight:500}
+.vopen{position:relative;z-index:2;font-family:var(--serif);font-weight:500;font-size:clamp(22px,3vw,34px);line-height:1.18;letter-spacing:-.012em;color:var(--ink);margin-bottom:26px;max-width:18ch}
+.vlist{position:relative;z-index:2;list-style:none;margin:0 0 30px}
+.vlist li{font-family:var(--serif);font-size:clamp(19px,2.5vw,30px);line-height:1.42;color:var(--ink);letter-spacing:-.012em}
+.vlist.sm li{font-size:clamp(17px,2.1vw,23px);line-height:1.46;color:var(--ink)}
+.vp{position:relative;z-index:2;font-family:var(--serif);font-size:clamp(16px,1.8vw,19px);line-height:1.62;color:var(--ink-soft);max-width:54ch;margin-bottom:16px}
+.vp-strong{color:var(--ink);font-weight:500;font-size:clamp(17px,2vw,21px);line-height:1.5}
+/* sections — editorial, hanging index */
+.vsec{position:relative;padding:clamp(48px,8vh,104px) 0 clamp(8px,2vh,20px) clamp(0px,9vw,128px);border-top:1px solid var(--line)}
+.vsec .vn{position:absolute;left:0;top:clamp(48px,8vh,104px);font-family:var(--serif);font-weight:500;font-size:clamp(30px,3.6vw,56px);color:var(--sand);line-height:1}
+.vsec h2{font-family:var(--serif);font-weight:520;font-size:clamp(29px,4.6vw,56px);line-height:1.06;letter-spacing:-.028em;color:var(--ink);max-width:17ch;margin-bottom:24px;text-wrap:balance}
+.vsec h2 .em{font-style:italic;color:var(--terra);font-weight:500}
+.vquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(24px,3.6vw,42px);line-height:1.16;letter-spacing:-.018em;color:var(--terra);margin:24px 0;max-width:17ch}
+.vq{list-style:none;margin:18px 0 8px;display:grid;gap:7px}
+.vq li{font-family:var(--serif);font-size:clamp(16px,2vw,21px);color:var(--ink);line-height:1.4}
+/* manifesto */
+.vmani{text-align:center;padding:clamp(60px,10vh,130px) 0 clamp(30px,5vh,56px);border-top:1px solid var(--line);margin-top:clamp(40px,6vh,72px)}
+.vmanifesto{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5.2vw,66px);line-height:1.14;letter-spacing:-.028em;color:var(--ink);margin-bottom:clamp(30px,5vh,52px)}
+.vmanifesto .em{font-style:italic;color:var(--terra)}
+.vgrow{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.4vw,27px);line-height:1.4;color:var(--ink-soft);margin-bottom:clamp(34px,5vh,50px)}
+.vctas{display:flex;gap:20px;justify-content:center;align-items:center;flex-wrap:wrap}
+.vcta{font-family:var(--serif);font-weight:540;font-size:17px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;padding:15px 34px;cursor:pointer;transition:transform .12s var(--spring),filter .2s}
 .vcta:active{transform:scale(.97)}@media(hover:hover){.vcta:hover{filter:brightness(1.05)}}
+.vback2{font-family:var(--serif);font-size:16px;color:var(--ink-soft);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+@media(hover:hover){.vback2:hover{color:var(--maroon)}}
+/* reveal-on-scroll within the vision page */
+.vrise{opacity:0;transform:translateY(30px);transition:opacity .9s var(--expo),transform .9s var(--expo)}
+.vrise.seen{opacity:1;transform:none}
+@media(max-width:760px){
+  .vsec{padding-left:0}.vsec .vn{position:static;display:block;margin-bottom:10px}
+  .vfloat{display:none}.vthread{display:none}
+}
+@media(prefers-reduced-motion:reduce){.vrise{transition:none;opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.vpage{animation:none}}
 
 /* (legacy editorial — unused) */
@@ -382,20 +412,116 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
 
 <!-- OUR VISION — a separate full screen -->
 <div class="vpage" id="visionPage" hidden>
-  <button class="vclose" id="vClose">&larr; Back</button>
+  <span class="vthread" id="vthread" aria-hidden="true"></span>
+  <button class="vclose" id="vClose">&larr; Back to home</button>
   <div class="vinner">
-    <div class="kicker"><span class="gu">આપણી માટીનું</span> · Our Vision</div>
-    <h1 class="vbig">Vadodara is <span class="em">already ready</span>.</h1>
-    <div class="vcopy">
-      <p class="vlead">Vadodara already has the people, places, talent, businesses, food, culture, events, makers, services, and local trust.</p>
-      <p>The problem is not that the city lacks anything.</p>
-      <p>The problem is that everything is scattered — across WhatsApp groups, saved numbers, neighbours, relatives, Instagram pages, society circles, and word-of-mouth.</p>
-      <p>Ae Halo starts by bringing trusted local discovery into one place.</p>
-      <p class="vbelief">But the belief is bigger: Vadodara deserves its own homegrown city companion — a place to ask, find, trust, support, participate, and belong.</p>
-      <p class="vnots">Not a noisy directory. Not another generic platform.</p>
-      <p class="vclosing">A local layer built from inside the city, for the city.</p>
-    </div>
-    <button class="vcta" id="vCta">Join the beginning</button>
+
+    <header class="vhero vrise">
+      <div class="vfloat" aria-hidden="true">
+        <span class="vf" style="left:2%;top:14%">tiffin in <i>Alkapuri</i></span>
+        <span class="vf" style="right:3%;top:22%">electrician in <i>Gotri</i></span>
+        <span class="vf vgu" style="left:5%;top:64%">મારા ઓળખાણમાં છે</span>
+        <span class="vf" style="right:6%;top:58%"><b>✓</b> trusted</span>
+        <span class="vf" style="left:24%;top:86%">a maker in <i>Karelibaug</i></span>
+        <span class="vf" style="right:22%;top:84%">someone people return to</span>
+      </div>
+      <div class="kicker"><span class="gu">આપણી માટીનું</span> · Our Vision</div>
+      <h1 class="vtitle">Vadodara is ready for <span class="em">its own</span>.</h1>
+      <p class="vopen">Vadodara already has everything.</p>
+      <ul class="vlist">
+        <li>The good food.</li>
+        <li>The right people.</li>
+        <li>The trusted shops.</li>
+        <li>The skilled makers.</li>
+        <li>The helpful neighbours.</li>
+        <li>The services that actually show up.</li>
+        <li>The places people return to.</li>
+        <li>The things happening quietly across the city.</li>
+      </ul>
+      <p class="vp">But most of it is still hidden — in WhatsApp groups, saved numbers, Instagram pages, society circles, relatives, neighbours, and word-of-mouth.</p>
+      <p class="vp vp-strong">Ae Halo is here to bring that local trust into one shared place.</p>
+    </header>
+
+    <section class="vsec vrise">
+      <span class="vn">01</span>
+      <h2>A city companion, starting with trust.</h2>
+      <p class="vp">Ae Halo begins with trusted local discovery.</p>
+      <ul class="vlist sm">
+        <li>The tiffin someone recommends.</li>
+        <li>The electrician who actually shows up.</li>
+        <li>The tutor parents trust.</li>
+        <li>The café people return to.</li>
+        <li>The home business worth knowing.</li>
+        <li>The local maker doing good work.</li>
+        <li>The service person someone would happily call again.</li>
+      </ul>
+      <p class="vp">That is where Halo starts.</p>
+      <p class="vp vp-strong">Not by showing more noise — but by helping Vadodara find what people already trust.</p>
+    </section>
+
+    <section class="vsec vrise">
+      <span class="vn">02</span>
+      <h2>The city was never missing anything.</h2>
+      <p class="vp">Vadodara does not need to be told what it has.</p>
+      <ul class="vlist sm">
+        <li>The people are here.</li>
+        <li>The talent is here.</li>
+        <li>The businesses are here.</li>
+        <li>The culture is here.</li>
+        <li>The food is here.</li>
+        <li>The trust is here.</li>
+      </ul>
+      <p class="vp vp-strong">What has been missing is one trusted place where all of it can be found, supported, and shared.</p>
+    </section>
+
+    <section class="vsec vrise">
+      <span class="vn">03</span>
+      <h2>Not more options. <span class="em">Better confidence.</span></h2>
+      <p class="vp">Most platforms give people endless options.</p>
+      <p class="vquote">Ae Halo is built for something different. Less doubt.</p>
+      <ul class="vq">
+        <li>Who is actually trusted?</li>
+        <li>Why do people recommend them?</li>
+        <li>Which area are they useful for?</li>
+        <li>Did they show up?</li>
+        <li>Was the experience good?</li>
+        <li>Would someone call them again?</li>
+      </ul>
+      <p class="vp vp-strong">That is the kind of local confidence Halo wants to make visible.</p>
+    </section>
+
+    <section class="vsec vrise">
+      <span class="vn">04</span>
+      <h2>Built from inside Vadodara.</h2>
+      <p class="vp">Vadodara should not have to depend only on platforms built far away, designed for every city in the same way.</p>
+      <p class="vp">Halo is being built with Vadodara's habits, language, neighbourhoods, warmth, pace, people, and ambition in mind.</p>
+      <p class="vquote">This is not about making Vadodara modern. Vadodara already is.</p>
+      <p class="vp vp-strong">This is about giving the city a platform it can call its own.</p>
+    </section>
+
+    <section class="vsec vrise">
+      <span class="vn">05</span>
+      <h2>The bigger belief.</h2>
+      <p class="vp">Ae Halo starts with discovery. But the deeper vision is to become Vadodara's trusted local companion — a place that helps the city ask better, find faster, trust easier, support local better, and feel more connected to what is happening around it.</p>
+      <ul class="vlist sm">
+        <li>A place for the city's people.</li>
+        <li>A place for its local businesses.</li>
+        <li>A place for its makers.</li>
+        <li>A place for its neighbourhoods.</li>
+        <li>A place for its everyday questions.</li>
+        <li>A place for its shared trust.</li>
+      </ul>
+    </section>
+
+    <section class="vmani vrise">
+      <p class="vmanifesto">A place to ask.<br>A place to find.<br>A place to trust.<br>A place to support.<br>A place to <span class="em">belong</span>.</p>
+      <p class="vgrow">Ae Halo starts with Vadodara.<br>And grows with Vadodara.</p>
+      <div class="vctas">
+        <button class="vcta" id="vCta">Join the beginning</button>
+        <button class="vback2" id="vClose2">Back to home</button>
+      </div>
+    </section>
+
   </div>
 </div>
 
@@ -473,12 +599,22 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
 
   /* ---------- Our Vision: separate screen ---------- */
   var vpage=document.getElementById("visionPage");
-  function openVision(e){ if(e)e.preventDefault(); vpage.hidden=false; document.body.classList.add("lock"); vpage.scrollTop=0; }
+  var vthread=document.getElementById("vthread"), vrises=vpage.querySelectorAll(".vrise"), vio=null;
+  function openVision(e){ if(e)e.preventDefault(); vpage.hidden=false; document.body.classList.add("lock"); vpage.scrollTop=0; vthread.style.height="0px";
+    if(reduce){ vrises.forEach(function(el){el.classList.add("seen");}); return; }
+    if(vio) vio.disconnect();
+    vio=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting) en.target.classList.add("seen"); }); },{root:vpage,threshold:.12,rootMargin:"0px 0px -8% 0px"});
+    vrises.forEach(function(el){ vio.observe(el); });
+  }
   function closeVision(){ vpage.hidden=true; document.body.classList.remove("lock"); }
   document.querySelectorAll("[data-vision]").forEach(function(el){ el.addEventListener("click",openVision); });
   document.getElementById("vClose").addEventListener("click",closeVision);
+  var vc2=document.getElementById("vClose2"); if(vc2) vc2.addEventListener("click",closeVision);
   document.getElementById("vCta").addEventListener("click",function(){ closeVision(); var j=document.getElementById("join"); if(j) j.scrollIntoView({behavior:reduce?"auto":"smooth"}); });
   document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!vpage.hidden) closeVision(); });
+  // the connecting thread grows with scroll — scattered into one shared layer
+  vpage.addEventListener("scroll",function(){ if(reduce)return; var max=vpage.scrollHeight-vpage.clientHeight;
+    var prog=max>0?Math.min(1,vpage.scrollTop/max):0; vthread.style.height=(prog*window.innerHeight)+"px"; },{passive:true});
 
   /* ---------- sticky scrollytelling: How Halo starts ---------- */
   var svCard=document.getElementById("svCard"), svStatus=document.getElementById("svStatus"), svBadge=document.getElementById("svBadge"),
