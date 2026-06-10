@@ -58,6 +58,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
   padding:clamp(20px,4vw,48px);text-align:center;opacity:0;visibility:hidden;transform:translateY(14px);
   transition:opacity .55s var(--expo),transform .55s var(--expo),visibility .55s;pointer-events:none;overflow:auto}
 .view.on{opacity:1;visibility:visible;transform:none;pointer-events:auto}
+/* each page composes in, line by line, when you navigate to it */
+@keyframes vin{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.view.on>*,.view.on #joinPre>*{animation:vin .6s var(--expo) backwards}
+.view.on>*:nth-child(1),.view.on #joinPre>*:nth-child(1){animation-delay:.08s}
+.view.on>*:nth-child(2),.view.on #joinPre>*:nth-child(2){animation-delay:.18s}
+.view.on>*:nth-child(3),.view.on #joinPre>*:nth-child(3){animation-delay:.30s}
+.view.on>*:nth-child(4),.view.on #joinPre>*:nth-child(4){animation-delay:.42s}
 
 .eyebrow{font-family:var(--caps);text-transform:uppercase;letter-spacing:.3em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:16px}
 .eyebrow .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
@@ -111,7 +118,7 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
 .dbadge{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-size:12.5px;font-weight:520;padding:6px 13px;border-radius:999px;
   opacity:0;transform:translateY(6px);transition:opacity .4s var(--expo),transform .4s var(--spring)}
 .dbadge.show{opacity:1;transform:none}
-.dbadge.checking{background:var(--paper);border:1px solid var(--line);color:var(--ink-soft)}
+.dbadge.checking,.dbadge.nb{background:var(--paper);border:1px solid var(--line);color:var(--ink-soft)}
 .dbadge.trusted{background:#F4E3CB;border:1px solid var(--sand);color:var(--maroon)} .dbadge.trusted .tk{color:var(--terra);font-weight:700}
 .dbtn{margin-top:16px;width:100%;display:flex;align-items:center;justify-content:center;gap:9px;font-family:var(--serif);font-weight:520;font-size:15px;
   color:var(--paper);background:var(--terra);border:0;border-radius:12px;padding:12px;opacity:0;transform:translateY(6px);transition:opacity .4s var(--expo),transform .4s var(--spring)}
@@ -158,7 +165,7 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
   .links{gap:13px}.join-btn{padding:9px 16px;font-size:13px}
 }
 @media (prefers-reduced-motion:reduce){
-  .view,.res,.dbadge,.dbtn{transition:none!important;animation:none!important}
+  .view,.view.on>*,.res,.dbadge,.dbtn{transition:none!important;animation:none!important}
   .search .cur,.spin{animation:none}
 }
 </style>
@@ -181,7 +188,7 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
   <section class="view on" data-page="home">
     <span class="eyebrow"><span class="gu">વડોદરાનું પોતાનું</span> · Vadodara's own</span>
     <h1>Home to the people Vadodara<span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>trusts.</h1>
-    <p class="lede">Search what you need, where you are — and see who your neighbours already vouch for.</p>
+    <p class="lede">The pure-Jain dabba, the electrician who won't vanish, the PG near Nilamber — search what Baroda actually asks, and see who the city already trusts.</p>
     <div class="searchwrap">
       <div class="search">
         <svg class="mag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
@@ -198,10 +205,11 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
       <div>
         <span class="eyebrow">How Halo works</span>
         <div class="steps" id="steps">
-          <div class="step on" data-i="0"><div class="sn">1</div><div><h3>A neighbour adds a place</h3><p>Someone who knows them — or the owner — puts the details in.</p></div></div>
-          <div class="step" data-i="1"><div class="sn">2</div><div><h3>A real person checks it</h3><p>We confirm it's real and get the owner's okay. No guessing.</p></div></div>
-          <div class="step" data-i="2"><div class="sn">3</div><div><h3>It earns Halo Trusted</h3><p>Only then the badge — and we're open about what we checked.</p></div></div>
-          <div class="step" data-i="3"><div class="sn">4</div><div><h3>You reach them direct</h3><p>Find them, call them yourself. No middleman, no commission.</p></div></div>
+          <div class="step on" data-i="0"><div class="sn">1</div><div><h3>A neighbour adds them</h3><p>Someone who knows them — or the owner — puts the details in. Marked "added by a neighbour," not yet checked.</p></div></div>
+          <div class="step" data-i="1"><div class="sn">2</div><div><h3>Halo checks, with consent</h3><p>We confirm they're real and get the owner's okay. No number goes public without consent.</p></div></div>
+          <div class="step" data-i="2"><div class="sn">3</div><div><h3>Only real users vouch</h3><p>Only Barodians who actually used them. No paid stars, no fake praise, no anonymous spam.</p></div></div>
+          <div class="step" data-i="3"><div class="sn">4</div><div><h3>It earns Halo Trusted</h3><p>Verified, consented, genuinely vouched — and we say what we checked and what we didn't.</p></div></div>
+          <div class="step" data-i="4"><div class="sn">5</div><div><h3>You reach them direct</h3><p>Call them yourself. No middleman, no commission — they keep every rupee.</p></div></div>
         </div>
       </div>
       <div class="demo">
@@ -219,7 +227,7 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
   <section class="view" data-page="vision">
     <span class="eyebrow">Why we're building it</span>
     <h1>Vadodara already trusts its own. <span style="color:var(--terra);font-style:italic">We're keeping it honest.</span></h1>
-    <p class="lede">Not a louder listing site. The place Baroda checks first — built by neighbours, and the people on it keep every rupee they earn.</p>
+    <p class="lede">From a flat near Nilamber to a pure-Jain dabba to the electrician who actually turns up — whatever Baroda asks, answered by the people who live here. The place the city checks first.</p>
     <div class="anchors">
       <div class="anchor"><div class="gw">વિશ્વાસ</div><div class="en">Trust</div><p>We tell you plainly what's checked and what isn't. No fake stars, no paid placement.</p></div>
       <div class="anchor"><div class="gw">શોધ</div><div class="en">Discovery</div><p>Not more options — the right one. The gem your lane already swears by, easy to find.</p></div>
@@ -275,16 +283,16 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
   var qEl=document.getElementById("q"), resEl=document.getElementById("results");
   var QUERIES=[
     {q:"electrician in Gotri", res:[
-      {av:"B",nm:"Bharat",trade:"Electrician · Gotri",badge:"trusted",say:"“Fixed our AC the same day.”",by:"Meena, Alkapuri"},
-      {av:"S",nm:"Suresh",trade:"Electrician · Gotri to Akota",badge:"nb",say:"“Fair rate, actually turns up.”",by:"Sanjay"}
+      {av:"B",nm:"Bharat",trade:"Electrician · Gotri",badge:"trusted",say:"“Came same day — and didn’t vanish with the advance.”",by:"Meena, Alkapuri"},
+      {av:"S",nm:"Suresh",trade:"Electrician · Gotri to Akota",badge:"nb",say:"“Fair rate, didn’t inflate it halfway.”",by:"Sanjay"}
     ]},
-    {q:"tiffin in Alkapuri", res:[
-      {av:"ગ",nm:"Gokul Tiffin",trade:"Home tiffin · Alkapuri",badge:"trusted",say:"“Tastes like home.”",by:"Priya-ben"},
-      {av:"A",nm:"Annapurna",trade:"Tiffin · Alkapuri to Sayajigunj",badge:"nb",say:"“Never misses a day.”",by:"Rohit"}
+    {q:"pure Jain tiffin", res:[
+      {av:"ગ",nm:"Gokul Tiffin",trade:"Pure Jain · Alkapuri",badge:"trusted",say:"“No onion, no garlic. Finally a dabba I trust.”",by:"Priya-ben"},
+      {av:"અ",nm:"Annapurna",trade:"Jain tiffin · Sayajigunj",badge:"nb",say:"“Never misses a day, even in monsoon.”",by:"Rohit"}
     ]},
-    {q:"tutor near MSU", res:[
-      {av:"A",nm:"Anjali",trade:"Maths tutor · near MSU",badge:"trusted",say:"“My daughter finally gets it.”",by:"Hemant"},
-      {av:"K",nm:"Kiran",trade:"Physics tutor · Sayajigunj",badge:"nb",say:"“Patient, very clear.”",by:"Nisha"}
+    {q:"PG near Nilamber", res:[
+      {av:"શ",nm:"Shanti Niwas",trade:"Girls' PG · near Nilamber Park",badge:"trusted",say:"“Found it before I even moved — owner actually replied.”",by:"Anjali, new to Baroda"},
+      {av:"દ",nm:"Devansh PG",trade:"PG · near Bhayli",badge:"nb",say:"“Fair rent, no hidden charges.”",by:"Karan"}
     ]}
   ];
   function card(r){var d=document.createElement("div");d.className="res";
@@ -318,10 +326,11 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
 
   /* ---------- HOW: morphing trust card ---------- */
   var STEPS=[
-    {status:'A neighbour just added <b>Bharat</b> — their electrician in Gotri.',badge:null,btn:false},
-    {status:'A real person is checking — confirming he’s real and reaching him for his okay.',badge:{cls:'checking',html:'<span class="spin"></span> Verifying'},btn:false},
-    {status:'Checked, and the neighbours vouch. <b>“Fixed our AC same day.”</b>',badge:{cls:'trusted',html:'<span class="tk">✓</span> Halo Trusted'},btn:false},
-    {status:'Now you can find Bharat — and reach him yourself.',badge:{cls:'trusted',html:'<span class="tk">✓</span> Halo Trusted'},btn:true}
+    {status:'A neighbour just added <b>Bharat</b> — their electrician in Gotri.',badge:{cls:'nb',html:'Added by a neighbour'},btn:false},
+    {status:'Halo confirms he’s real and gets his okay — no number goes public without consent.',badge:{cls:'checking',html:'<span class="spin"></span> Verifying'},btn:false},
+    {status:'Only Barodians who actually used him can vouch. <b>No paid stars, no fake praise.</b>',badge:{cls:'nb',html:'3 neighbours vouched · real users only'},btn:false},
+    {status:'Verified, consented, genuinely vouched. We say what we checked.',badge:{cls:'trusted',html:'<span class="tk">✓</span> Halo Trusted'},btn:false},
+    {status:'Now you find Bharat — and call him yourself. No middleman, no commission.',badge:{cls:'trusted',html:'<span class="tk">✓</span> Halo Trusted'},btn:true}
   ];
   var hStatus=document.getElementById("dstatus"),hBadge=document.getElementById("dbadge"),hBtn=document.getElementById("dbtn"),
       stepEls=document.querySelectorAll("#steps .step");
