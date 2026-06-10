@@ -65,6 +65,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .view.on>*:nth-child(2),.view.on #joinPre>*:nth-child(2){animation-delay:.18s}
 .view.on>*:nth-child(3),.view.on #joinPre>*:nth-child(3){animation-delay:.30s}
 .view.on>*:nth-child(4),.view.on #joinPre>*:nth-child(4){animation-delay:.42s}
+.view.on>*:nth-child(5){animation-delay:.52s}
+.view.on>*:nth-child(6){animation-delay:.62s}
 
 .eyebrow{font-family:var(--caps);text-transform:uppercase;letter-spacing:.3em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:16px}
 .eyebrow .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
@@ -126,7 +128,19 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
 .spin{width:15px;height:15px;border:2px solid var(--sand);border-top-color:var(--terra);border-radius:50%;animation:sp .8s linear infinite;display:inline-block}
 @keyframes sp{to{transform:rotate(360deg)}}
 
-/* ===== VISION: three anchors ===== */
+/* ===== VISION: manifesto + makers ===== */
+h1 .em-i{color:var(--terra);font-style:italic;font-weight:500}
+.vision-more{font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.9vw,17.5px);color:var(--ink);max-width:42ch;margin:14px auto 0}
+.makers{margin:26px auto 0;max-width:520px;background:var(--paper-hi);border:1px solid var(--line);border-radius:18px;padding:22px 24px;text-align:center;box-shadow:0 22px 42px -34px rgba(58,40,20,.5)}
+.makers .mk-h{font-family:var(--serif);font-weight:540;font-size:18px;color:var(--maroon);margin-bottom:6px}
+.makers p{font-size:14.5px;color:var(--ink-soft);line-height:1.55}.makers p b{color:var(--ink)}
+.mk-cta{display:flex;gap:12px;justify-content:center;align-items:center;margin-top:16px;flex-wrap:wrap}
+.btn-primary{font-family:var(--serif);font-weight:520;font-size:15px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;padding:11px 24px;cursor:pointer;transition:transform .12s var(--spring),filter .2s}
+.btn-primary:active{transform:scale(.96)}@media(hover:hover){.btn-primary:hover{filter:brightness(1.05)}}
+.btn-ghost{font-family:var(--serif);font-size:15px;color:var(--maroon);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:11px 6px}
+.anchorline{font-family:var(--gu);color:var(--terra);font-size:16px;margin-top:24px;letter-spacing:.02em}
+
+/* (legacy) three anchors */
 .anchors{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;width:100%;max-width:920px;margin:34px auto 0}
 .anchor{background:var(--paper-hi);border:1px solid var(--line);border-radius:18px;padding:26px 22px;text-align:left;
   box-shadow:0 20px 40px -34px rgba(58,40,20,.5);transition:transform .3s var(--spring),border-color .3s}
@@ -188,7 +202,7 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
   <section class="view on" data-page="home">
     <span class="eyebrow"><span class="gu">વડોદરાનું પોતાનું</span> · Vadodara's own</span>
     <h1>Home to the people Vadodara<span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>trusts.</h1>
-    <p class="lede">The pure-Jain dabba, the electrician who won't vanish, the PG near Nilamber — search what Baroda actually asks, and see who the city already trusts.</p>
+    <p class="lede">The pure-Jain dabba, the electrician who won't vanish, the PG near Nilamber — search what Vadodara actually asks, and see who the city already trusts.</p>
     <div class="searchwrap">
       <div class="search">
         <svg class="mag" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
@@ -207,7 +221,7 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
         <div class="steps" id="steps">
           <div class="step on" data-i="0"><div class="sn">1</div><div><h3>A neighbour adds them</h3><p>Someone who knows them — or the owner — puts the details in. Marked "added by a neighbour," not yet checked.</p></div></div>
           <div class="step" data-i="1"><div class="sn">2</div><div><h3>Halo checks, with consent</h3><p>We confirm they're real and get the owner's okay. No number goes public without consent.</p></div></div>
-          <div class="step" data-i="2"><div class="sn">3</div><div><h3>Only real users vouch</h3><p>Only Barodians who actually used them. No paid stars, no fake praise, no anonymous spam.</p></div></div>
+          <div class="step" data-i="2"><div class="sn">3</div><div><h3>Only real users vouch</h3><p>Only neighbours who actually used them. No paid stars, no fake praise, no anonymous spam.</p></div></div>
           <div class="step" data-i="3"><div class="sn">4</div><div><h3>It earns Halo Trusted</h3><p>Verified, consented, genuinely vouched — and we say what we checked and what we didn't.</p></div></div>
           <div class="step" data-i="4"><div class="sn">5</div><div><h3>You reach them direct</h3><p>Call them yourself. No middleman, no commission — they keep every rupee.</p></div></div>
         </div>
@@ -225,14 +239,19 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
 
   <!-- VISION -->
   <section class="view" data-page="vision">
-    <span class="eyebrow">Why we're building it</span>
-    <h1>Vadodara already trusts its own. <span style="color:var(--terra);font-style:italic">We're keeping it honest.</span></h1>
-    <p class="lede">From a flat near Nilamber to a pure-Jain dabba to the electrician who actually turns up — whatever Baroda asks, answered by the people who live here. The place the city checks first.</p>
-    <div class="anchors">
-      <div class="anchor"><div class="gw">વિશ્વાસ</div><div class="en">Trust</div><p>We tell you plainly what's checked and what isn't. No fake stars, no paid placement.</p></div>
-      <div class="anchor"><div class="gw">શોધ</div><div class="en">Discovery</div><p>Not more options — the right one. The gem your lane already swears by, easy to find.</p></div>
-      <div class="anchor"><div class="gw">પોતાપણું</div><div class="en">Belonging</div><p>Of Vadodara, on purpose. Added by the people who live here, for the people who live here.</p></div>
+    <span class="eyebrow"><span class="gu">આપણી માટીનું</span> · homegrown</span>
+    <h1>A city this talented shouldn't have to <span class="em-i">guess who to trust</span>.</h1>
+    <p class="lede">Vadodara already knows everything — the best dabba, the electrician who turns up, the PG that's actually safe. It's just locked inside society groups and saved numbers. Halo puts the city's own knowledge in one honest place that belongs to it.</p>
+    <p class="vision-more">This is only the start. Stand with us early — there's a lot more we believe Vadodara is ready for.</p>
+    <div class="makers">
+      <div class="mk-h">Run a service in Vadodara?</div>
+      <p>List yourself, or claim your listing — <b>free</b>. No commission, ever. Every rupee you earn stays yours.</p>
+      <div class="mk-cta">
+        <button class="btn-primary" data-view="join">List your work</button>
+        <button class="btn-ghost" data-view="join">Join the waitlist</button>
+      </div>
     </div>
+    <div class="anchorline">વિશ્વાસ · શોધ · પોતાપણું</div>
   </section>
 
   <!-- JOIN -->
@@ -240,7 +259,7 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
     <div id="joinPre">
       <span class="eyebrow"><span class="gu">એ હાલો</span> · be one of the first</span>
       <h1>Help start Vadodara's own.</h1>
-      <p class="lede">We're opening Halo slowly, checking things properly. Leave a number or email and we'll tell you the moment it opens.</p>
+      <p class="lede">Whether you're looking, or you do the work yourself — leave a number or email and we'll tell you the moment it opens.</p>
       <div class="joinform">
         <input class="field" id="contact" type="text" inputmode="email" autocomplete="off" placeholder="WhatsApp number or email">
         <label class="consent"><input type="checkbox" id="consent"><span>Okay to keep this, only to tell you when Halo opens.</span></label>
@@ -291,7 +310,7 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
       {av:"અ",nm:"Annapurna",trade:"Jain tiffin · Sayajigunj",badge:"nb",say:"“Never misses a day, even in monsoon.”",by:"Rohit"}
     ]},
     {q:"PG near Nilamber", res:[
-      {av:"શ",nm:"Shanti Niwas",trade:"Girls' PG · near Nilamber Park",badge:"trusted",say:"“Found it before I even moved — owner actually replied.”",by:"Anjali, new to Baroda"},
+      {av:"શ",nm:"Shanti Niwas",trade:"Girls' PG · near Nilamber Park",badge:"trusted",say:"“Found it before I even moved — owner actually replied.”",by:"Anjali, new to Vadodara"},
       {av:"દ",nm:"Devansh PG",trade:"PG · near Bhayli",badge:"nb",say:"“Fair rent, no hidden charges.”",by:"Karan"}
     ]}
   ];
@@ -328,7 +347,7 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
   var STEPS=[
     {status:'A neighbour just added <b>Bharat</b> — their electrician in Gotri.',badge:{cls:'nb',html:'Added by a neighbour'},btn:false},
     {status:'Halo confirms he’s real and gets his okay — no number goes public without consent.',badge:{cls:'checking',html:'<span class="spin"></span> Verifying'},btn:false},
-    {status:'Only Barodians who actually used him can vouch. <b>No paid stars, no fake praise.</b>',badge:{cls:'nb',html:'3 neighbours vouched · real users only'},btn:false},
+    {status:'Only neighbours who actually used him can vouch. <b>No paid stars, no fake praise.</b>',badge:{cls:'nb',html:'3 neighbours vouched · real users only'},btn:false},
     {status:'Verified, consented, genuinely vouched. We say what we checked.',badge:{cls:'trusted',html:'<span class="tk">✓</span> Halo Trusted'},btn:false},
     {status:'Now you find Bharat — and call him yourself. No middleman, no commission.',badge:{cls:'trusted',html:'<span class="tk">✓</span> Halo Trusted'},btn:true}
   ];
