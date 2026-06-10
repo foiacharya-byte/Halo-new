@@ -145,7 +145,35 @@ h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clam
 .cdone{text-align:center;padding:18px 0}.cdone .gw{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(24px,3.4vw,32px);margin-bottom:12px}
 .cdone p{font-size:15.5px;color:var(--ink-soft);line-height:1.55;max-width:38ch;margin:0 auto}
 
-/* VISION */
+/* VISION LINK BAND (on the homepage) */
+.visionlink{text-align:center;padding:clamp(64px,9vh,110px) var(--edge)}
+.vreadlink{display:inline-block;font-family:var(--serif);font-weight:500;font-size:clamp(22px,3.2vw,34px);letter-spacing:-.02em;color:var(--maroon);text-decoration:none;border-bottom:1.5px solid var(--terra);padding-bottom:5px;transition:color .2s}
+.vreadlink span{color:var(--terra);transition:transform .25s var(--expo);display:inline-block}
+@media(hover:hover){.vreadlink:hover span{transform:translateX(4px)}}
+
+/* OUR VISION — separate screen */
+.vpage{position:fixed;inset:0;z-index:95;overflow-y:auto;overflow-x:hidden;padding:clamp(64px,12vh,120px) var(--edge) clamp(48px,8vh,80px);
+  background:radial-gradient(125% 90% at 50% 0%, #FFFCF6, var(--paper) 52%, var(--paper-deep));animation:vIn .6s var(--expo) both}
+.vpage[hidden]{display:none}
+@keyframes vIn{from{opacity:0}to{opacity:1}}
+.vclose{position:fixed;top:max(20px,env(safe-area-inset-top));left:var(--edge);z-index:2;font-family:var(--caps);text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:600;color:var(--ink-soft);background:none;border:0;cursor:pointer;padding:8px 4px;transition:color .2s}
+@media(hover:hover){.vclose:hover{color:var(--maroon)}}
+.vinner{max-width:760px;margin:0 auto;text-align:left}
+.vinner .kicker{font-family:var(--caps);text-transform:uppercase;letter-spacing:.32em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:24px}
+.vinner .kicker .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
+.vbig{font-family:var(--serif);font-weight:560;font-size:clamp(40px,7vw,82px);line-height:.98;letter-spacing:-.03em;color:var(--ink);margin-bottom:clamp(28px,5vh,48px);text-wrap:balance}
+.vbig .em{font-style:italic;color:var(--terra);font-weight:500}
+.vcopy{max-width:60ch}
+.vcopy p{font-family:var(--serif);font-size:clamp(16px,1.9vw,19.5px);line-height:1.62;color:var(--ink-soft);margin-bottom:18px}
+.vcopy .vlead{color:var(--ink);font-size:clamp(17px,2.1vw,21px);line-height:1.55}
+.vcopy .vbelief{color:var(--ink);font-weight:500;font-size:clamp(17px,2.1vw,21px);line-height:1.5}
+.vcopy .vnots{font-style:italic;color:var(--maroon)}
+.vcopy .vclosing{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.3vw,23px);color:var(--ink);margin-top:6px}
+.vcta{margin-top:clamp(34px,5vh,52px);font-family:var(--serif);font-weight:540;font-size:17px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;padding:15px 34px;cursor:pointer;transition:transform .12s var(--spring),filter .2s}
+.vcta:active{transform:scale(.97)}@media(hover:hover){.vcta:hover{filter:brightness(1.05)}}
+@media (prefers-reduced-motion:reduce){.vpage{animation:none}}
+
+/* (legacy editorial — unused) */
 .editorial{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,72px);align-items:start}
 .kicker{font-family:var(--caps);text-transform:uppercase;letter-spacing:.32em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:20px}
 .kicker .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
@@ -193,7 +221,7 @@ footer .anchors{font-family:var(--gu);color:var(--gold);font-size:16px}footer .s
 <!-- NAV -->
 <nav class="nav" id="nav">
   <button class="brand" id="brand" aria-label="ae halo"><span class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></span></button>
-  <div class="links"><a href="#reveal">Home</a><a href="#starts">How it works</a><a href="#share">Share a local</a><a href="#vision">Our vision</a></div>
+  <div class="links"><a href="#reveal">Home</a><a href="#starts">How it works</a><a href="#share">Share a local</a><a href="#" data-vision>Our vision</a></div>
   <a class="join" href="#join">Join</a>
 </nav>
 
@@ -287,20 +315,11 @@ footer .anchors{font-family:var(--gu);color:var(--gold);font-size:16px}footer .s
   </div>
 </section>
 
-<!-- VISION -->
-<section class="vision" id="vision">
-  <div class="wrap editorial">
-    <div class="reveal">
-      <div class="kicker"><span class="gu">આપણી માટીનું</span> · Our Vision</div>
-      <h2 class="vh">Vadodara<br>already<br>knows<span class="p">.</span></h2>
-    </div>
-    <div class="ed-body reveal d1">
-      <p class="lead">Vadodara already knows the tiffin worth trying, the café worth visiting, the tutor worth calling, the shop worth trusting, and the people who quietly keep the city running.</p>
-      <p class="pullquote">The problem was never knowledge.</p>
-      <p>The problem is that this knowledge is scattered — across WhatsApp groups, saved numbers, neighbours, relatives, Instagram pages, and word-of-mouth that disappears before the next person needs it.</p>
-      <p>Ae Halo brings that trust into one shared local layer. <span class="nots">Not a noisy directory. Not random ratings. Not paid noise.</span></p>
-      <p class="ed-close">As a homegrown beginning for the city we call our own.</p>
-    </div>
+<!-- VISION LINK (Our Vision lives on its own screen, not in the scroll) -->
+<section class="visionlink" id="vision">
+  <div class="wrap reveal">
+    <span class="eyebrow"><span class="gu">આપણી માટીનું</span> · Our Vision</span>
+    <a class="vreadlink" href="#" data-vision>Read our vision <span aria-hidden="true">→</span></a>
   </div>
 </section>
 
@@ -326,6 +345,25 @@ footer .anchors{font-family:var(--gu);color:var(--gold);font-size:16px}footer .s
     </div>
   </div>
 </section>
+
+<!-- OUR VISION — a separate full screen -->
+<div class="vpage" id="visionPage" hidden>
+  <button class="vclose" id="vClose">&larr; Back</button>
+  <div class="vinner">
+    <div class="kicker"><span class="gu">આપણી માટીનું</span> · Our Vision</div>
+    <h1 class="vbig">Vadodara is <span class="em">already ready</span>.</h1>
+    <div class="vcopy">
+      <p class="vlead">Vadodara already has the people, places, talent, businesses, food, culture, events, makers, services, and local trust.</p>
+      <p>The problem is not that the city lacks anything.</p>
+      <p>The problem is that everything is scattered — across WhatsApp groups, saved numbers, neighbours, relatives, Instagram pages, society circles, and word-of-mouth.</p>
+      <p>Ae Halo starts by bringing trusted local discovery into one place.</p>
+      <p class="vbelief">But the belief is bigger: Vadodara deserves its own homegrown city companion — a place to ask, find, trust, support, participate, and belong.</p>
+      <p class="vnots">Not a noisy directory. Not another generic platform.</p>
+      <p class="vclosing">A local layer built from inside the city, for the city.</p>
+    </div>
+    <button class="vcta" id="vCta">Join the beginning</button>
+  </div>
+</div>
 
 <footer>
   <span class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></span>
@@ -397,6 +435,15 @@ footer .anchors{font-family:var(--gu);color:var(--gold);font-size:16px}footer .s
     var cio=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ playChat(); cio.disconnect(); } }); },{threshold:.3});
     cio.observe(feed);
   } else playChat();
+
+  /* ---------- Our Vision: separate screen ---------- */
+  var vpage=document.getElementById("visionPage");
+  function openVision(e){ if(e)e.preventDefault(); vpage.hidden=false; document.body.classList.add("lock"); vpage.scrollTop=0; }
+  function closeVision(){ vpage.hidden=true; document.body.classList.remove("lock"); }
+  document.querySelectorAll("[data-vision]").forEach(function(el){ el.addEventListener("click",openVision); });
+  document.getElementById("vClose").addEventListener("click",closeVision);
+  document.getElementById("vCta").addEventListener("click",function(){ closeVision(); var j=document.getElementById("join"); if(j) j.scrollIntoView({behavior:reduce?"auto":"smooth"}); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!vpage.hidden) closeVision(); });
 
   /* hero search */
   var qEl=document.getElementById("q"), resEl=document.getElementById("results");
