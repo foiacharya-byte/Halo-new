@@ -124,15 +124,32 @@ h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clam
 .rcall{flex:0 0 auto;align-self:center;width:36px;height:36px;border-radius:50%;background:var(--terra);display:flex;align-items:center;justify-content:center;color:var(--paper)}
 .hcta{display:inline-block;margin-top:clamp(28px,4vh,42px);font-family:var(--caps);text-transform:uppercase;letter-spacing:.18em;font-size:12px;font-weight:600;color:var(--maroon);text-decoration:none;border-bottom:1.5px solid var(--terra);padding-bottom:3px}
 
-/* HOW HALO STARTS */
+/* HOW HALO STARTS — sticky scrollytelling */
 .starts{background:var(--paper-deep)}
-.starts .head{text-align:center;margin:0 auto 56px;max-width:640px}.starts .head .lede{margin:16px auto 0}
-.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-.card{background:var(--paper-hi);border:1px solid var(--line);border-radius:18px;padding:24px 20px;box-shadow:0 24px 44px -38px rgba(58,40,20,.5)}
-.card .n{font-family:var(--caps);font-size:13px;letter-spacing:.14em;color:var(--gold);font-weight:600;margin-bottom:13px}
-.card h3{font-family:var(--serif);font-weight:540;font-size:16.5px;color:var(--ink);margin-bottom:8px;line-height:1.2}
-.card p{font-size:13px;color:var(--ink-soft);line-height:1.5}.card p em{font-style:italic;color:var(--ink)}
-.pledge{margin-top:42px;text-align:center;font-family:var(--serif);font-size:clamp(15px,1.9vw,18px);color:var(--maroon)}.pledge b{color:var(--ink);font-weight:540}
+.scrolly{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px);align-items:start}
+.scrolly-visual{position:sticky;top:calc(var(--nav) + 7vh);height:min(74vh,540px);display:flex;align-items:center;justify-content:center}
+.sv-card{width:100%;max-width:360px;min-height:300px;background:var(--paper-hi);border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 50px 90px -54px rgba(58,40,20,.55);display:flex;flex-direction:column;justify-content:center}
+.sv-ask{display:none}.sv-card.mode-ask .sv-ask{display:block}.sv-card.mode-ask .sv-rec{display:none}
+.sv-bubble{display:inline-block;font-size:clamp(17px,2.2vw,21px);font-family:var(--serif);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:16px 16px 16px 5px;padding:14px 18px;line-height:1.4}
+.sv-rec{}
+.sv-head{display:flex;align-items:center;gap:13px;margin-bottom:16px}
+.sv-av{width:46px;height:46px;border-radius:13px;background:#FBF1E6;border:1px solid var(--sand);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:19px;color:var(--maroon)}
+.sv-name{font-family:var(--serif);font-weight:540;font-size:19px}.sv-trade{font-size:13px;color:var(--ink-soft)}
+.sv-status{font-size:14.5px;line-height:1.5;color:var(--ink-soft);min-height:44px}.sv-status b{color:var(--maroon);font-weight:540}
+.sv-badge{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-size:12.5px;font-weight:520;padding:6px 13px;border-radius:999px;opacity:0;transform:translateY(6px);transition:opacity .4s var(--expo),transform .4s var(--spring)}
+.sv-badge.show{opacity:1;transform:none}
+.sv-badge.nb{background:var(--paper);border:1px solid var(--line);color:var(--ink-soft)}
+.sv-badge.trusted{background:#F4E3CB;border:1px solid var(--sand);color:var(--maroon)}.sv-badge.trusted .tk{color:var(--terra);font-weight:700}
+.sv-call{margin-top:16px;width:100%;display:none;align-items:center;justify-content:center;gap:9px;font-family:var(--serif);font-weight:520;font-size:15px;color:var(--paper);background:var(--terra);border:0;border-radius:12px;padding:12px;cursor:pointer}
+.sv-card.show-call .sv-call{display:flex}
+.sv-spin{width:14px;height:14px;border:2px solid var(--sand);border-top-color:var(--terra);border-radius:50%;animation:sp .8s linear infinite;display:inline-block}@keyframes sp{to{transform:rotate(360deg)}}
+.scrolly-steps .head{margin-bottom:6vh}.scrolly-steps .head .eyebrow{margin-bottom:14px}
+.sstep{min-height:60vh;display:flex;flex-direction:column;justify-content:center;opacity:.3;transition:opacity .45s var(--expo)}
+.sstep.active{opacity:1}
+.sstep .n{font-family:var(--caps);font-size:13px;letter-spacing:.16em;color:var(--gold);font-weight:600;margin-bottom:10px}
+.sstep h3{font-family:var(--serif);font-weight:540;font-size:clamp(22px,3vw,30px);color:var(--ink);margin-bottom:12px;line-height:1.15}
+.sstep p{font-size:clamp(15px,1.8vw,17.5px);color:var(--ink-soft);line-height:1.6;max-width:42ch}.sstep p em{font-style:italic;color:var(--ink)}
+.pledge{margin-top:8vh;text-align:center;font-family:var(--serif);font-size:clamp(15px,1.9vw,18px);color:var(--maroon)}.pledge b{color:var(--ink);font-weight:540}
 
 /* SHARE A TRUSTED LOCAL (contribution) */
 .share .wrap{max-width:620px;text-align:center}
@@ -208,11 +225,17 @@ footer .anchors{font-family:var(--gu);color:var(--gold);font-size:16px}footer .s
 footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;font-weight:600;color:rgba(248,242,231,.78);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:3px}
 @media(hover:hover){footer .footlink:hover{color:var(--paper)}}
 
-@media (max-width:900px){.ask{grid-template-columns:1fr;gap:30px}.cards{grid-template-columns:1fr 1fr}.editorial{grid-template-columns:1fr;gap:18px}.nav .links{display:none}}
-@media (max-width:560px){ :root{--nav:62px} .cards{grid-template-columns:1fr} .vh{font-size:clamp(42px,13vw,60px)} .feed{height:340px} }
+@media (max-width:900px){
+  .ask{grid-template-columns:1fr;gap:30px}.editorial{grid-template-columns:1fr;gap:18px}.nav .links{display:none}
+  .scrolly{grid-template-columns:1fr;gap:8px}
+  .scrolly-visual{position:static;height:auto;margin-bottom:28px}
+  .sstep{min-height:auto;opacity:1;padding:14px 0}
+}
+@media (max-width:560px){ :root{--nav:62px} .vh{font-size:clamp(42px,13vw,60px)} .feed{height:340px} }
 @media (prefers-reduced-motion:reduce){
-  #intro .mk,.iq,.ia,.isub,.iskip,.reveal,.res,.msg{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}
-  .search .cur,.typing i{animation:none}.mark{display:none}html{scroll-behavior:auto}
+  #intro .mk,.iq,.ia,.isub,.iskip,.reveal,.res,.msg,.sstep{animation:none!important;transition:none!important;opacity:1!important;transform:none!important}
+  .search .cur,.typing i,.sv-spin{animation:none}.mark{display:none}html{scroll-behavior:auto}
+  .scrolly-visual{position:static;height:auto}.sstep{min-height:auto}
 }
 </style>
 </head>
@@ -275,22 +298,30 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
   </div>
 </section>
 
-<!-- HOW HALO STARTS WITH YOU -->
+<!-- HOW HALO STARTS WITH YOU — sticky scrollytelling -->
 <section class="starts" id="starts">
-  <div class="wrap">
-    <div class="head reveal">
-      <span class="eyebrow">How Halo starts with you</span>
-      <h2 style="margin:0 auto">One useful recommendation can save someone else hours of doubt.</h2>
+  <div class="wrap scrolly">
+    <div class="scrolly-visual">
+      <div class="sv-card" id="svCard">
+        <div class="sv-ask" id="svAsk"><div class="sv-bubble">Good electrician in Gotri?</div></div>
+        <div class="sv-rec" id="svRec">
+          <div class="sv-head"><div class="sv-av">B</div><div><div class="sv-name">Bharat</div><div class="sv-trade">Electrician · Gotri</div></div></div>
+          <div class="sv-status" id="svStatus"></div>
+          <div class="sv-badge" id="svBadge"></div>
+          <button class="sv-call" id="svCall"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5l2.7.6a2 2 0 0 1 1.7 2z"/></svg> Call Bharat</button>
+        </div>
+      </div>
     </div>
-    <div class="cards">
-      <div class="card reveal d1"><div class="n">01</div><h3>Someone asks</h3><p><em>“Good electrician in Gotri?” “Pure Jain dabba near Manjalpur?” “Quiet café to work from?”</em> These questions already happen every day.</p></div>
-      <div class="card reveal d2"><div class="n">02</div><h3>You remember someone good</h3><p>A person, shop, café, tutor, home cook, repair guy, local maker, or business that actually helped you.</p></div>
-      <div class="card reveal d3"><div class="n">03</div><h3>You add the basics</h3><p>Name, area, contact if you have it, and why you trusted them. Less than a minute.</p></div>
-      <div class="card reveal d4"><div class="n">04</div><h3>Halo checks before showing</h3><p>We look for consent, context, duplicates, and obvious spam before anything becomes useful to others.</p></div>
-      <div class="card reveal d4"><div class="n">05</div><h3>The next person decides better</h3><p>Not because of paid ranking. Because someone local shared something real.</p></div>
+    <div class="scrolly-steps">
+      <div class="head reveal"><span class="eyebrow">How Halo starts with you</span><h2>One useful recommendation can save someone else hours of doubt.</h2></div>
+      <div class="sstep" data-i="0"><div class="n">01</div><h3>Someone asks</h3><p><em>“Good electrician in Gotri?” “Pure Jain dabba near Manjalpur?” “Quiet café to work from?”</em> These questions already happen every day.</p></div>
+      <div class="sstep" data-i="1"><div class="n">02</div><h3>You remember someone good</h3><p>A person, shop, café, tutor, home cook, repair guy, local maker, or business that actually helped you.</p></div>
+      <div class="sstep" data-i="2"><div class="n">03</div><h3>You add the basics</h3><p>Name, area, contact if you have it, and why you trusted them. Less than a minute.</p></div>
+      <div class="sstep" data-i="3"><div class="n">04</div><h3>Halo checks before showing</h3><p>We look for consent, context, duplicates, and obvious spam before anything becomes useful to others.</p></div>
+      <div class="sstep" data-i="4"><div class="n">05</div><h3>The next person decides better</h3><p>Not because of paid ranking. Because someone local shared something real.</p></div>
     </div>
-    <p class="pledge reveal"><b>Built around real local trust.</b> Trust before promotion — useful information first, noise later never.</p>
   </div>
+  <p class="pledge reveal"><b>Built around real local trust.</b> Trust before promotion — useful information first, noise later never.</p>
 </section>
 
 <!-- SHARE A TRUSTED LOCAL -->
@@ -448,6 +479,29 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
   document.getElementById("vClose").addEventListener("click",closeVision);
   document.getElementById("vCta").addEventListener("click",function(){ closeVision(); var j=document.getElementById("join"); if(j) j.scrollIntoView({behavior:reduce?"auto":"smooth"}); });
   document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&!vpage.hidden) closeVision(); });
+
+  /* ---------- sticky scrollytelling: How Halo starts ---------- */
+  var svCard=document.getElementById("svCard"), svStatus=document.getElementById("svStatus"), svBadge=document.getElementById("svBadge"),
+      ssteps=document.querySelectorAll(".sstep");
+  var SV=[
+    {mode:"ask"},
+    {mode:"rec", status:"You remember — he came on time, didn't overcharge.", badge:null},
+    {mode:"rec", status:"You add the basics: name, area, and why you trusted him.", badge:{cls:"nb",html:"Added by you"}},
+    {mode:"rec", status:"Halo checks — consent, context, duplicates, spam.", badge:{cls:"nb",html:'<span class="sv-spin"></span> Verifying'}},
+    {mode:"rec", status:"Trusted. The next person finds Bharat and calls direct.", badge:{cls:"trusted",html:'<span class="tk">✓</span> Halo Trusted'}, call:true}
+  ];
+  function renderSV(i){
+    var s=SV[i]; svCard.classList.toggle("mode-ask", s.mode==="ask"); svCard.classList.toggle("show-call", !!s.call);
+    if(s.mode!=="ask"){ svStatus.innerHTML=s.status||"";
+      svBadge.className="sv-badge"; if(s.badge){ svBadge.innerHTML=s.badge.html; svBadge.classList.add(s.badge.cls); requestAnimationFrame(function(){svBadge.classList.add("show");}); } else svBadge.innerHTML=""; }
+  }
+  var scrolly = window.matchMedia && window.matchMedia("(min-width:900px)").matches && !reduce;
+  if(scrolly && "IntersectionObserver" in window){
+    renderSV(0); if(ssteps[0]) ssteps[0].classList.add("active");
+    var sio=new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ var i=+en.target.getAttribute("data-i");
+      ssteps.forEach(function(st){st.classList.toggle("active",st===en.target);}); renderSV(i); } }); },{rootMargin:"-45% 0px -45% 0px",threshold:0});
+    ssteps.forEach(function(s){ sio.observe(s); });
+  } else { renderSV(4); ssteps.forEach(function(s){s.classList.add("active");}); }
 
   /* hero search */
   var qEl=document.getElementById("q"), resEl=document.getElementById("results");
