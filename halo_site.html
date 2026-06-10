@@ -198,6 +198,8 @@ h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clam
 footer{background:var(--ink);color:var(--paper);text-align:center;padding:60px var(--edge)}
 footer .mk{color:var(--paper);font-size:34px;margin-bottom:18px}footer .mk .bang,footer .mk .dot{background:var(--gold)}
 footer .anchors{font-family:var(--gu);color:var(--gold);font-size:16px}footer .sig{font-family:var(--caps);text-transform:uppercase;letter-spacing:.2em;font-size:11.5px;color:rgba(248,242,231,.6);margin-top:10px;display:block}
+footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;font-weight:600;color:rgba(248,242,231,.78);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:3px}
+@media(hover:hover){footer .footlink:hover{color:var(--paper)}}
 
 @media (max-width:900px){.ask{grid-template-columns:1fr;gap:30px}.cards{grid-template-columns:1fr 1fr}.editorial{grid-template-columns:1fr;gap:18px}.nav .links{display:none}}
 @media (max-width:560px){ :root{--nav:62px} .cards{grid-template-columns:1fr} .vh{font-size:clamp(42px,13vw,60px)} .feed{height:340px} }
@@ -315,13 +317,7 @@ footer .anchors{font-family:var(--gu);color:var(--gold);font-size:16px}footer .s
   </div>
 </section>
 
-<!-- VISION LINK (Our Vision lives on its own screen, not in the scroll) -->
-<section class="visionlink" id="vision">
-  <div class="wrap reveal">
-    <span class="eyebrow"><span class="gu">આપણી માટીનું</span> · Our Vision</span>
-    <a class="vreadlink" href="#" data-vision>Read our vision <span aria-hidden="true">→</span></a>
-  </div>
-</section>
+<!-- (Our Vision is NOT a homepage section — it lives on its own screen, reached from the nav + footer) -->
 
 <!-- JOIN -->
 <section class="join" id="join">
@@ -368,6 +364,7 @@ footer .anchors{font-family:var(--gu);color:var(--gold);font-size:16px}footer .s
 <footer>
   <span class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></span>
   <div class="anchors">આપણી માટીનું · વિશ્વાસ · શોધ · પોતાપણું</div>
+  <a class="footlink" href="#" data-vision>Read our vision</a>
   <span class="sig">Vadodara's own</span>
 </footer>
 
