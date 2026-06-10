@@ -128,9 +128,20 @@ h1 .ck{display:inline-flex;align-items:center;justify-content:center;width:.8em;
 .spin{width:15px;height:15px;border:2px solid var(--sand);border-top-color:var(--terra);border-radius:50%;animation:sp .8s linear infinite;display:inline-block}
 @keyframes sp{to{transform:rotate(360deg)}}
 
-/* ===== VISION: manifesto + makers ===== */
-h1 .em-i{color:var(--terra);font-style:italic;font-weight:500}
-.vision-more{font-family:var(--serif);font-style:italic;font-size:clamp(15px,1.9vw,17.5px);color:var(--ink);max-width:42ch;margin:14px auto 0}
+/* ===== VISION: magazine editorial + makers ===== */
+.vision-ed{justify-content:center;gap:0}
+.editorial{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,68px);max-width:1060px;width:100%;text-align:left;align-items:start}
+.kicker{font-family:var(--caps);text-transform:uppercase;letter-spacing:.32em;font-size:12.5px;font-weight:600;color:var(--maroon);margin-bottom:20px}
+.kicker .gu{font-family:var(--gu);text-transform:none;letter-spacing:0;color:var(--terra)}
+.vh{font-family:var(--serif);font-weight:560;font-size:clamp(46px,7.4vw,94px);line-height:.94;letter-spacing:-.03em;color:var(--ink)}
+.vh .p{color:var(--terra)}
+.ed-body{max-width:56ch}
+.ed-body p{font-family:var(--serif);font-size:clamp(15.5px,1.65vw,18px);line-height:1.62;color:var(--ink-soft);margin-bottom:15px}
+.ed-body .lead::first-letter{float:left;font-family:var(--serif);font-weight:560;font-size:3.4em;line-height:.72;color:var(--terra);margin:6px 12px 0 0}
+.ed-body .pullquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(21px,2.7vw,28px);line-height:1.26;color:var(--maroon);margin:20px 0}
+.ed-body .ed-close{color:var(--ink)}.ed-body .ed-close b{font-weight:560;color:var(--ink)}
+@media(max-width:860px){.editorial{grid-template-columns:1fr;gap:18px}.vh{font-size:clamp(40px,12vw,62px);line-height:.98}}
+.vision-ed .makers{margin-top:clamp(28px,4vw,40px)}
 .makers{margin:26px auto 0;max-width:520px;background:var(--paper-hi);border:1px solid var(--line);border-radius:18px;padding:22px 24px;text-align:center;box-shadow:0 22px 42px -34px rgba(58,40,20,.5)}
 .makers .mk-h{font-family:var(--serif);font-weight:540;font-size:18px;color:var(--maroon);margin-bottom:6px}
 .makers p{font-size:14.5px;color:var(--ink-soft);line-height:1.55}.makers p b{color:var(--ink)}
@@ -238,11 +249,20 @@ h1 .em-i{color:var(--terra);font-style:italic;font-weight:500}
   </section>
 
   <!-- VISION -->
-  <section class="view" data-page="vision">
-    <span class="eyebrow"><span class="gu">આપણી માટીનું</span> · homegrown</span>
-    <h1>A city this talented shouldn't have to <span class="em-i">guess who to trust</span>.</h1>
-    <p class="lede">Vadodara already knows everything — the best dabba, the electrician who turns up, the PG that's actually safe. It's just locked inside society groups and saved numbers. Halo puts the city's own knowledge in one honest place that belongs to it.</p>
-    <p class="vision-more">This is only the start. Stand with us early — there's a lot more we believe Vadodara is ready for.</p>
+  <section class="view vision-ed" data-page="vision">
+    <div class="editorial">
+      <div class="ed-head">
+        <div class="kicker"><span class="gu">આપણી માટીનું</span> · The Vision</div>
+        <h2 class="vh">Vadodara<br>already<br>knows<span class="p">.</span></h2>
+      </div>
+      <div class="ed-body">
+        <p class="lead">It knows the tiffin worth trying, the café worth visiting, the tutor worth calling, the shop worth trusting — and the people who quietly keep the city running.</p>
+        <p>The knowledge was never missing. It's just scattered — across WhatsApp groups, saved numbers, neighbours, relatives, Instagram pages, and word-of-mouth that disappears before the next person needs it.</p>
+        <p class="pullquote">The problem was never knowledge.</p>
+        <p>Ae Halo brings that trust out into the open. Not a noisy directory — homegrown, built around trust, discovery, and belonging.</p>
+        <p class="ed-close">This is only the beginning. <b>Back this, and we build what Vadodara has been ready for.</b></p>
+      </div>
+    </div>
     <div class="makers">
       <div class="mk-h">Run a service in Vadodara?</div>
       <p>List yourself, or claim your listing — <b>free</b>. No commission, ever. Every rupee you earn stays yours.</p>
