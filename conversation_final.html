@@ -48,7 +48,7 @@ html,body{height:100%}
 body{
   font-family:var(--serif); color:var(--ink); -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
   background:radial-gradient(125% 115% at 50% 14%, #FFFCF6 0%, var(--paper) 50%, var(--paper-deep) 100%);
-  min-height:100dvh; display:flex; flex-direction:column; align-items:center;
+  min-height:100dvh; display:block;
   padding:0 22px; position:relative; overflow-x:hidden;
 }
 /* warm paper grain — texture, not decoration */
@@ -63,7 +63,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opa
   transform:translate(-50%,-50%);box-shadow:0 0 0 4px rgba(194,83,31,.14);transition:left .75s var(--expo);opacity:0}
 .thread-head.live{opacity:1}
 
-.stage-wrap{position:relative;z-index:10;width:100%;max-width:640px;margin:auto;
+.stage-wrap{position:relative;z-index:10;width:100%;max-width:560px;margin:0 auto;
   display:flex;flex-direction:column;justify-content:center;min-height:100dvh;
   padding:64px 0 96px}
 /* long flowing pages (the landing) start from the top — no flex-centre clipping */
