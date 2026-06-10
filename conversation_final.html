@@ -66,8 +66,12 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opa
 .stage-wrap{position:relative;z-index:10;width:100%;max-width:640px;margin:auto;
   display:flex;flex-direction:column;justify-content:center;min-height:100dvh;
   padding:64px 0 96px}
+/* long flowing pages (the landing) start from the top — no flex-centre clipping */
+.stage-wrap.flow{justify-content:flex-start}
 
 .step{display:none}
+.step:not(.on){display:none!important}
+.step:focus{outline:none}
 .step.on{display:block;animation:rise .8s var(--expo) both}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes lineRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
@@ -127,7 +131,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opa
 /* contribution acknowledgement — the gift visibly lands (IKEA effect / journey rule) */
 .ack{display:none;animation:rise .6s var(--expo) both}
 .ack.show{display:block}
-.ack .node{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--terra);margin-right:10px;
+.node{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--terra);margin-right:10px;
   box-shadow:0 0 0 5px rgba(194,83,31,.14);vertical-align:middle}
 
 /* canonical wordmark — ae halo! */
@@ -182,6 +186,25 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opa
 .share-btn:active{transform:scale(.96)}
 .share-btn:focus-visible{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(190,154,78,.4)}
 .share-btn #shareLabel{transition:opacity .15s ease}
+.end-card.on .to-landing-row{animation:lineRise .8s var(--expo) 1.45s backwards}
+
+/* ---------- THE LANDING — post-reveal brand page, living city, no landmarks ---------- */
+.landing{text-align:left}
+.landing .mk{font-size:clamp(38px,9vw,60px);margin-bottom:18px}
+.land-soul{margin-top:38px;line-height:1.5}
+.land-soul .gu-s{font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(22px,5.6vw,30px)}
+.land-soul .gloss{display:block;font-size:15px;color:var(--ink-soft);margin-top:10px}
+.land-block{margin-top:72px}
+.land-h{font-family:var(--serif);font-weight:520;font-size:clamp(20px,5vw,24px);margin-bottom:24px;color:var(--ink)}
+.land-list{list-style:none;display:flex;flex-direction:column;gap:26px}
+.land-list li{display:flex;gap:15px;align-items:flex-start}
+.land-list .node{margin-top:7px;flex:0 0 auto}
+.land-list strong{font-weight:540;display:block;margin-bottom:5px;font-size:clamp(17px,4.4vw,19px)}
+.land-d{color:var(--ink-soft);font-size:15.5px;line-height:1.6;display:block;max-width:46ch}
+.land-honest{font-size:clamp(16.5px,4.2vw,19px);line-height:1.65;color:var(--ink);max-width:42ch}
+.land-foot{margin-top:96px;text-align:center;font-family:var(--gu);color:var(--maroon);font-size:15.5px;line-height:2.1;padding-bottom:24px}
+.land-foot .sig{font-family:var(--serif);color:var(--ink-soft);font-size:13.5px;letter-spacing:.04em;display:block}
+body.gu .land-h,body.gu .land-d,body.gu .land-honest,body.gu .land-soul .gloss,body.gu .land-list strong,body.gu .to-landing{font-family:var(--gu)}
 
 /* discreet, persistent language switch — bottom centre */
 .switch-min{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:61;
@@ -241,7 +264,7 @@ body.gu .field{font-size:16px}
 @media (prefers-reduced-motion: reduce){
   .step.on,.step.on .opt,.reveal.on .mk,.reveal.on .title,.reveal.on .row,
   .end-card.on .gu-title,.end-card.on .title,.end-card.on .sub,.end-card.on .share-line,.end-card.on .share-btn,
-  .end-card.on .you-thread,.end-card.on .you-thread .dot.you,.ack,.pre-thread{animation:none}
+  .end-card.on .to-landing-row,.end-card.on .you-thread,.end-card.on .you-thread .dot.you,.ack,.pre-thread{animation:none}
   .thread-fill,.thread-head,.opt,.btn,.langbtn,.share-btn,.switch-min{transition:none}
 }
 /* hover only where a real pointer exists — no sticky tap-hover on phones */
@@ -263,7 +286,7 @@ body.gu .field{font-size:16px}
 <!-- CINEMATIC PRELUDE — how Vadodara actually finds people; mood, no brand name -->
 <section id="prelude" aria-label="Welcome">
   <span class="pre-thread"></span>
-  <p class="beat" data-beat="0">The right tiffin. The plumber who picks up. The tutor before exams.</p>
+  <p class="beat" data-beat="0">The right tiffin. The plumber who actually picks up.</p>
   <p class="beat" data-beat="1">Someone always knew someone.</p>
   <p class="beat soul" data-beat="2">આપણી માટીનું.</p>
 </section>
@@ -301,14 +324,14 @@ body.gu .field{font-size:16px}
 <section class="step" data-step="s2a" tabindex="-1">
   <span class="eyebrow" data-en="Real life" data-gu="સાચી વાત">Real life</span>
   <h2 class="title" data-en="Let's start with something real." data-gu="ચાલો, કંઈક સાચી વાતથી શરૂ કરીએ.">Let's start with something real.</h2>
-  <p class="sub" data-en="The last time you needed someone — the plumber, the tiffin, the maths tutor before exams." data-gu="છેલ્લે જ્યારે કોઈની જરૂર પડી — પ્લમ્બર, ટિફિન, કે પરીક્ષા પહેલાંના ગણિતના ટ્યુશનવાળા.">The last time you needed someone — the plumber, the tiffin, the maths tutor before exams.</p>
+  <p class="sub" data-en="The last time you needed someone — the plumber, the tiffin, the electrician." data-gu="છેલ્લે જ્યારે કોઈની જરૂર પડી — પ્લમ્બર, ટિફિન, કે ઇલેક્ટ્રિશિયન.">The last time you needed someone — the plumber, the tiffin, the electrician.</p>
   <p class="ask" data-en="What did you actually do?" data-gu="તમે ખરેખર શું કર્યું?">What did you actually do?</p>
   <div class="opts" role="group" aria-label="Choose one">
     <button class="opt" data-field="last_search_method" data-value="neighbour_word" data-en="Asked a neighbour or friend" data-gu="પાડોશી કે મિત્રને પૂછ્યું">Asked a neighbour or friend</button>
     <button class="opt" data-field="last_search_method" data-value="society_whatsapp" data-en="Put it in the society / WhatsApp group" data-gu="સોસાયટી / વૉટ્સએપ ગ્રૂપમાં પૂછ્યું">Put it in the society / WhatsApp group</button>
     <button class="opt" data-field="last_search_method" data-value="google_justdial" data-en="Searched Google or JustDial" data-gu="ગૂગલ કે જસ્ટડાયલ પર શોધ્યું">Searched Google or JustDial</button>
     <button class="opt" data-field="last_search_method" data-value="instagram_local" data-en="Looked on Instagram" data-gu="ઇન્સ્ટાગ્રામ પર જોયું">Looked on Instagram</button>
-    <button class="opt" data-field="last_search_method" data-value="known_contact" data-en="Already had my person" data-gu="મારો માણસ પહેલેથી જ હતો">Already had my person</button>
+    <button class="opt" data-field="last_search_method" data-value="known_contact" data-en="Already had my person" data-gu="મારા ઓળખાણમાં જ હતા">Already had my person</button>
     <button class="opt" data-field="last_search_method" data-value="other" data-en="Something else" data-gu="બીજું કંઈક">Something else</button>
   </div>
   <p class="micro" data-en="Whatever you really did — no judgement." data-gu="જે ખરેખર કર્યું એ જ કહો — એમાં કશું ખોટું નથી.">Whatever you really did — no judgement.</p>
@@ -429,6 +452,41 @@ body.gu .field{font-size:16px}
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
     <span id="shareLabel"></span>
   </button>
+  <div class="row to-landing-row" style="justify-content:center">
+    <button class="ghost to-landing" id="toLanding" data-en="See what we're building" data-gu="જુઓ, શું બની રહ્યું છે">See what we're building</button>
+  </div>
+</section>
+
+<!-- THE LANDING — Halo's page, shown after the reveal (firewall-safe: post-Stage-5 only).
+     Living city, not landmarks. All Gujarati here: [GU REVIEW]. -->
+<section class="step landing" data-step="landing" tabindex="-1">
+  <div class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></div>
+  <h2 class="title" data-en="Vadodara's own." data-gu="વડોદરાનું પોતાનું.">Vadodara's own.</h2>
+  <p class="sub" data-en="The tiffin that tastes like home. The electrician who turns up. The tailor who gets it right — passed neighbour to neighbour, in one honest place." data-gu="ઘર જેવા સ્વાદનું ટિફિન. સમયસર આવતો ઇલેક્ટ્રિશિયન. માપ બરાબર લેતો દરજી — પાડોશીથી પાડોશી સુધી, એક સાચા ઠેકાણે.">The tiffin that tastes like home. The electrician who turns up. The tailor who gets it right — passed neighbour to neighbour, in one honest place.</p>
+  <p class="land-soul"><span class="gu-s">&ldquo;મારા ઓળખાણમાં છે.&rdquo;</span><span class="gloss" data-en="The sentence this whole city runs on. Halo just gives it a place to live." data-gu="આખું શહેર આ એક વાક્ય પર ચાલે છે. હાલો બસ એને એક ઠેકાણું આપે છે.">The sentence this whole city runs on. Halo just gives it a place to live.</span></p>
+
+  <div class="land-block">
+    <h3 class="land-h" data-en="How it works" data-gu="કેવી રીતે ચાલે છે">How it works</h3>
+    <ul class="land-list">
+      <li><span class="node"></span><div><strong data-en="Added by a neighbour." data-gu="પાડોશીએ ઉમેર્યું.">Added by a neighbour.</strong><span class="land-d" data-en="Someone who lives here puts a name in — their plumber, their tiffin, their society's electrician." data-gu="અહીં રહેતું કોઈક નામ આપે છે — એમનો પ્લમ્બર, એમનું ટિફિન, એમની સોસાયટીનો ઇલેક્ટ્રિશિયન.">Someone who lives here puts a name in — their plumber, their tiffin, their society's electrician.</span></div></li>
+      <li><span class="node"></span><div><strong data-en="Checked properly." data-gu="બરાબર તપાસેલું.">Checked properly.</strong><span class="land-d" data-en="We tell you plainly what's verified and what isn't. No guessing." data-gu="શું ચકાસેલું છે ને શું નહીં — અમે સાફ કહીએ છીએ. કોઈ અટકળ નહીં.">We tell you plainly what's verified and what isn't. No guessing.</span></div></li>
+      <li><span class="node"></span><div><strong data-en="Passed along." data-gu="આગળ અપાયેલું.">Passed along.</strong><span class="land-d" data-en="Neighbour to neighbour, ઓળખાણ to ઓળખાણ — the way Baroda always has." data-gu="પાડોશીથી પાડોશી, ઓળખાણથી ઓળખાણ — વડોદરા હંમેશાં આમ જ કરતું આવ્યું છે.">Neighbour to neighbour, ઓળખાણ to ઓળખાણ — the way Baroda always has.</span></div></li>
+    </ul>
+  </div>
+
+  <div class="land-block">
+    <p class="land-honest" data-en="No fake stars. No paid placement. And the people listed keep every rupee they earn — no commission, ever." data-gu="ન ખોટા સ્ટાર, ન પૈસા લઈને આગળ મૂકવાનું. ને જે લોકો અહીં છે, એમની કમાણીનો દરેક રૂપિયો એમનો જ — કોઈ કમિશન નહીં, ક્યારેય નહીં.">No fake stars. No paid placement. And the people listed keep every rupee they earn — no commission, ever.</p>
+  </div>
+
+  <div class="land-block" id="landJoin">
+    <p class="ask" data-en="Be one of the first in." data-gu="પહેલા લોકોમાં જોડાઓ.">Be one of the first in.</p>
+    <div class="row" style="margin-top:8px"><button class="btn" id="landJoinBtn" data-en="Count me in" data-gu="મને પણ જોડો">Count me in</button></div>
+  </div>
+  <div class="land-block" id="landJoined" hidden>
+    <p class="ask"><span class="node"></span><span data-en="You're already in the thread. We'll call you first — ae halo." data-gu="તમે તો સાંકળમાં છો જ. ખૂલતાં જ પહેલા તમને કહીશું — એ હાલો.">You're already in the thread. We'll call you first — ae halo.</span></p>
+  </div>
+
+  <p class="land-foot">વિશ્વાસ · શોધ · પોતાપણું<span class="sig">ae halo · Vadodara</span></p>
 </section>
 
 </main>
@@ -506,6 +564,7 @@ body.gu .field{font-size:16px}
   function show(stepKey){
     Object.keys(steps).forEach(function(k){ steps[k].classList.remove("on"); });
     steps[stepKey].classList.add("on");
+    document.getElementById("wrap").classList.toggle("flow", stepKey==="landing");
     research.stage_reached = stepKey;
     setThread(stepKey);
     switchMin.hidden = (stepKey==="door");
@@ -603,6 +662,18 @@ body.gu .field{font-size:16px}
     var swap=function(t){ lbl.style.opacity="0"; setTimeout(function(){ lbl.textContent=t; lbl.style.opacity="1"; },150); };
     var done=function(){ swap(STR.shareCopied[LANG]); setTimeout(function(){ swap(STR.shareLabel[LANG]); }, 2200); };
     if(navigator.clipboard){ navigator.clipboard.writeText(text+" "+location.href).then(done).catch(done); } else { done(); }
+  });
+
+  /* ---------- the landing (post-reveal brand page) ---------- */
+  document.getElementById("toLanding").addEventListener("click", showLanding);
+  function showLanding(){
+    show("landing");
+    var joined = research.waitlist_join === true;
+    document.getElementById("landJoin").hidden = joined;
+    document.getElementById("landJoined").hidden = !joined;
+  }
+  document.getElementById("landJoinBtn").addEventListener("click", function(){
+    idx = ORDER.indexOf("s6"); show("s6");
   });
 
   /* ---------- persistence stub (Airtable / Supabase later) ---------- */
