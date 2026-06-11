@@ -60,13 +60,13 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .ia{margin-top:6px;font-family:var(--gu);font-weight:600;color:var(--maroon);font-size:clamp(26px,5.4vw,42px);opacity:0;animation:iUp .9s var(--expo) 2.55s forwards}
 .isub{margin-top:20px;font-family:var(--serif);font-style:italic;font-size:clamp(14px,1.8vw,16.5px);color:var(--ink-soft);opacity:0;animation:iUp .9s var(--expo) 3.2s forwards}
 @keyframes iUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-.iskip{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);z-index:101;font-family:var(--serif);font-size:14.5px;color:var(--paper);background:var(--terra);border:0;border-radius:999px;cursor:pointer;padding:12px 34px;opacity:0;animation:iUp .8s var(--expo) 3.7s forwards;transition:transform .12s var(--spring),filter .2s}
-.iskip:active{transform:translateX(-50%) scale(.96)}
-@media(hover:hover){.iskip:hover{filter:brightness(1.06)}}
+.iskip{margin-top:40px;font-family:var(--serif);font-size:14.5px;letter-spacing:.01em;color:var(--paper);background:var(--terra);border:0;border-radius:999px;cursor:pointer;padding:13px 42px;opacity:0;animation:iUp .8s var(--expo) 3.7s forwards;transition:transform .14s var(--spring),filter .2s,box-shadow .3s;box-shadow:0 18px 42px -22px rgba(194,83,31,.95)}
+.iskip:active{transform:scale(.96)}
+@media(hover:hover){.iskip:hover{filter:brightness(1.05);transform:translateY(-2px);box-shadow:0 24px 48px -20px rgba(194,83,31,1)}}
 .iskip[hidden]{display:none}
 
 /* enter loader — heritage funnel (recoloured Kantner spinner; never blue) */
-#enterload{position:fixed;inset:0;z-index:95;background:radial-gradient(120% 90% at 50% 46%, #FFFCF6, var(--paper) 60%, var(--paper-deep));display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .6s var(--expo)}
+#enterload{position:fixed;inset:0;z-index:95;background:radial-gradient(120% 90% at 50% 46%, #FFFCF6, var(--paper) 60%, var(--paper-deep));display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .8s var(--expo)}
 #enterload.on{opacity:1}
 #enterload[hidden]{display:none}
 .hfunnel{position:relative;width:200px;height:200px;perspective:1000px;transform-style:preserve-3d}
@@ -141,7 +141,7 @@ h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clam
 .hero{min-height:100dvh;display:flex;flex-direction:column;justify-content:center;text-align:center;align-items:center;padding-top:calc(var(--nav) + 24px);overflow:hidden}
 .hero .wrap{position:relative;z-index:2}.hero h1{margin:0 auto}.hero .lede{margin-left:auto;margin-right:auto}
 .marks{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
-.mark{position:absolute;font-family:var(--serif);font-size:clamp(13px,1.4vw,15px);color:var(--ink);background:var(--paper-hi);border:1px solid var(--line);border-radius:12px;padding:9px 13px;white-space:nowrap;box-shadow:0 12px 22px -20px rgba(58,40,20,.5);opacity:.5;will-change:transform}
+.mark{position:absolute;font-family:var(--serif);font-style:italic;font-size:clamp(12.5px,1.3vw,14.5px);color:var(--ink-soft);background:rgba(255,252,246,.42);backdrop-filter:blur(9px) saturate(1.05);-webkit-backdrop-filter:blur(9px) saturate(1.05);border:1px solid rgba(122,46,34,.07);border-radius:999px;padding:7px 16px;white-space:nowrap;box-shadow:0 22px 48px -32px rgba(58,40,20,.55),inset 0 1px 0 rgba(255,255,255,.4);opacity:.66;will-change:transform}
 .mark.gu{font-family:var(--gu)}.mark .a{color:var(--terra);font-style:italic}
 .searchwrap{width:100%;max-width:580px;margin:clamp(32px,5vh,48px) auto 0}
 .search{display:flex;align-items:center;gap:13px;padding:15px 18px;border:1.5px solid var(--sand);border-radius:15px;background:var(--paper-hi);text-align:left;box-shadow:0 24px 44px -34px rgba(58,40,20,.6)}
@@ -313,8 +313,8 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
   <p class="iq">Vadodara, we heard you.</p>
   <p class="ia">વડોદરા, હવે શરૂઆત કરીએ.</p>
   <p class="isub">A homegrown beginning for the city we call our own.</p>
+  <button class="iskip" id="iskip">Enter</button>
 </div>
-<button class="iskip" id="iskip">Enter</button>
 
 <!-- ENTER LOADER (heritage funnel) -->
 <div id="enterload" hidden><div class="hfunnel" id="hfunnel" aria-hidden="true"></div></div>
@@ -330,7 +330,7 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
 <section class="ask-sec" id="ask">
   <div class="wrap ask">
     <div class="chatcard reveal">
-      <div class="ph"><div class="pav">વ</div><div><div class="pt">Vadodara</div><div class="ps"><span class="live"></span>online · always talking</div></div></div>
+      <div class="ph"><div class="pav">વ</div><div><div class="pt">Vadodara</div><div class="ps"><span class="live"></span>the whole city's here</div></div></div>
       <div class="feed" id="feed"></div>
     </div>
     <div class="askmsg">
@@ -609,7 +609,7 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
     if(reduce || !load){ reveal(); return; }
     load.hidden=false; requestAnimationFrame(function(){ load.classList.add("on"); });
     setTimeout(function(){ reveal(); load.classList.remove("on");
-      setTimeout(function(){ load.hidden=true; },650); },1500);
+      setTimeout(function(){ load.hidden=true; },850); },1800);
   }
   document.getElementById("iskip").addEventListener("click",enter);
   document.addEventListener("keydown",function(e){ if(!intro.classList.contains("gone")&&(e.key==="Enter"||e.key==="Escape")) enter(); });
@@ -659,9 +659,9 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
         var e=mkMsg(m); feed.appendChild(e); requestAnimationFrame(function(){e.classList.add("show");});
         while(feed.children.length>6) feed.removeChild(feed.children[0]);
         i++;
-        // slow, readable cadence; let the closing Halo wink breathe a moment longer
-        setTimeout(step, i===CHAT.length-1 ? 2100 : 1650);
-      }, m.halo ? 820 : 700);
+        // let every pain point land and breathe; the closing Halo wink lingers longest
+        setTimeout(step, i===CHAT.length-1 ? 3200 : 2600);
+      }, m.halo ? 1150 : 1000);
     })();
   }
   if(reduce){ playChat(); }
