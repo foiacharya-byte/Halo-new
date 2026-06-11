@@ -47,7 +47,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 .mk .dot{position:absolute;left:50%;bottom:.07em;width:.16em;height:.16em;border-radius:50%;background:var(--terra);transform:translateX(-50%)}
 
 /* intro */
-#intro{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(125% 100% at 50% 32%, #FFFCF6, var(--paper) 56%, var(--paper-deep));transition:opacity .9s var(--expo),visibility .9s}
+#intro{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;cursor:pointer;background:radial-gradient(125% 100% at 50% 32%, #FFFCF6, var(--paper) 56%, var(--paper-deep));transition:opacity .9s var(--expo),visibility .9s}
 #intro.gone{opacity:0;visibility:hidden;pointer-events:none}
 #intro .mk{font-size:clamp(52px,12vw,108px);opacity:0;transform-origin:center;backface-visibility:hidden;animation:mkTurn 1.6s cubic-bezier(.18,.85,.22,1) .25s both}
 @keyframes mkTurn{
@@ -347,7 +347,7 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
   <p class="iq">Vadodara, we heard you.</p>
   <p class="ia">વડોદરા, હવે શરૂઆત કરીએ.</p>
   <p class="isub">A homegrown beginning for the city we call our own.</p>
-  <button class="iskip" id="iskip">Enter</button>
+  <button class="iskip" id="iskip" type="button">Enter</button>
 </div>
 
 <!-- ENTER LOADER (heritage funnel) -->
@@ -656,6 +656,9 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
       setTimeout(function(){ load.hidden=true; },850); },1800);
   }
   document.getElementById("iskip").addEventListener("click",enter);
+  // robust fallback: a tap anywhere on the intro enters too (enter() is idempotent)
+  intro.addEventListener("click",enter);
+  intro.addEventListener("touchend",function(e){ e.preventDefault(); enter(); },{passive:false});
   document.addEventListener("keydown",function(e){ if(!intro.classList.contains("gone")&&(e.key==="Enter"||e.key==="Escape")) enter(); });
   // intro waits for the user — no auto-enter.
 
