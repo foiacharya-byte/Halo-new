@@ -65,6 +65,26 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:90;opa
 @media(hover:hover){.iskip:hover{filter:brightness(1.06)}}
 .iskip[hidden]{display:none}
 
+/* enter loader — heritage funnel (recoloured Kantner spinner; never blue) */
+#enterload{position:fixed;inset:0;z-index:95;background:radial-gradient(120% 90% at 50% 46%, #FFFCF6, var(--paper) 60%, var(--paper-deep));display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .6s var(--expo)}
+#enterload.on{opacity:1}
+#enterload[hidden]{display:none}
+.hfunnel{position:relative;width:200px;height:200px;perspective:1000px;transform-style:preserve-3d}
+.hdots{position:absolute;inset:0;perspective:200px;transform-style:preserve-3d}
+.hdots:nth-child(1){animation:hf1 10s linear infinite}
+.hdots:nth-child(2){animation:hf2 10s linear infinite}
+.hdots:nth-child(3){animation:hf3 10s linear infinite}
+.hdots:nth-child(4){animation:hf4 10s linear infinite}
+.hdots:nth-child(5){animation:hf5 10s linear infinite}
+.hdots:nth-child(6){animation:hf6 10s linear infinite}
+.hdot{position:absolute;top:50%;left:50%;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;transform-style:preserve-3d}
+@keyframes hf1{0%{transform:rotateX(30deg) rotateZ(0) translateZ(-50px)}50%{transform:rotateX(60deg) rotateZ(5760deg) translateZ(-100px)}100%{transform:rotateX(30deg) rotateZ(11520deg) translateZ(-50px)}}
+@keyframes hf2{0%{transform:rotateX(30deg) rotateZ(0) translateZ(-36px)}50%{transform:rotateX(60deg) rotateZ(2880deg) translateZ(-72px)}100%{transform:rotateX(30deg) rotateZ(5760deg) translateZ(-36px)}}
+@keyframes hf3{0%{transform:rotateX(30deg) rotateZ(0) translateZ(-24px)}50%{transform:rotateX(60deg) rotateZ(1440deg) translateZ(-48px)}100%{transform:rotateX(30deg) rotateZ(2880deg) translateZ(-24px)}}
+@keyframes hf4{0%{transform:rotateX(30deg) rotateZ(0) translateZ(-14px)}50%{transform:rotateX(60deg) rotateZ(720deg) translateZ(-28px)}100%{transform:rotateX(30deg) rotateZ(1440deg) translateZ(-14px)}}
+@keyframes hf5{0%{transform:rotateX(30deg) rotateZ(0) translateZ(-6px)}50%{transform:rotateX(60deg) rotateZ(360deg) translateZ(-12px)}100%{transform:rotateX(30deg) rotateZ(720deg) translateZ(-6px)}}
+@keyframes hf6{0%{transform:rotateX(30deg) rotateZ(0) translateZ(0)}50%{transform:rotateX(60deg) rotateZ(180deg) translateZ(-3px)}100%{transform:rotateX(30deg) rotateZ(360deg) translateZ(0)}}
+
 /* nav */
 .nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:60;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 max(var(--edge), calc((100% - 1080px)/2));background:rgba(248,242,231,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .3s;opacity:0}
 .nav.show{opacity:1;transition:opacity .8s var(--expo)}.nav.stuck{border-color:var(--line)}
@@ -97,7 +117,9 @@ h2{font-family:var(--serif);font-weight:500;letter-spacing:-.02em;font-size:clam
 .chatcard{background:var(--paper-hi);border:1px solid var(--line);border-radius:24px;box-shadow:0 50px 90px -54px rgba(58,40,20,.6);overflow:hidden}
 .chatcard .ph{display:flex;align-items:center;gap:11px;padding:16px 18px;background:#EFE4CC;border-bottom:1px solid rgba(122,46,34,.1)}
 .chatcard .pav{width:34px;height:34px;border-radius:50%;background:var(--maroon);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:15px}
-.chatcard .pt{font-family:var(--serif);font-weight:540;font-size:14.5px;color:var(--ink)}.chatcard .ps{font-size:11.5px;color:var(--ink-soft)}
+.chatcard .pt{font-family:var(--serif);font-weight:540;font-size:14.5px;color:var(--ink)}.chatcard .ps{font-size:11.5px;color:var(--ink-soft);display:flex;align-items:center;gap:6px}
+.chatcard .live{width:6px;height:6px;border-radius:50%;background:#3f9d5a;box-shadow:0 0 0 0 rgba(63,157,90,.45);animation:livePulse 2.4s ease-out infinite}
+@keyframes livePulse{0%{box-shadow:0 0 0 0 rgba(63,157,90,.45)}70%{box-shadow:0 0 0 5px rgba(63,157,90,0)}100%{box-shadow:0 0 0 0 rgba(63,157,90,0)}}
 .feed{height:392px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;overflow:hidden;
   -webkit-mask-image:linear-gradient(to bottom,transparent,#000 11%);mask-image:linear-gradient(to bottom,transparent,#000 11%)}
 .msg{max-width:86%;opacity:0;transform:translateY(9px) scale(.98);transition:opacity .4s var(--expo),transform .45s var(--spring)}
@@ -294,6 +316,9 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
 </div>
 <button class="iskip" id="iskip">Enter</button>
 
+<!-- ENTER LOADER (heritage funnel) -->
+<div id="enterload" hidden><div class="hfunnel" id="hfunnel" aria-hidden="true"></div></div>
+
 <!-- NAV -->
 <nav class="nav" id="nav">
   <button class="brand" id="brand" aria-label="ae halo"><span class="mk"><span class="hae">ae</span>halo<span class="end"><span class="bang"></span><span class="dot"></span></span></span></button>
@@ -305,7 +330,7 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
 <section class="ask-sec" id="ask">
   <div class="wrap ask">
     <div class="chatcard reveal">
-      <div class="ph"><div class="pav">વ</div><div><div class="pt">Vadodara, every day</div><div class="ps">how the city already asks</div></div></div>
+      <div class="ph"><div class="pav">વ</div><div><div class="pt">Vadodara</div><div class="ps"><span class="live"></span>online · always talking</div></div></div>
       <div class="feed" id="feed"></div>
     </div>
     <div class="askmsg">
@@ -555,8 +580,37 @@ footer .footlink{display:inline-block;margin-top:16px;font-family:var(--caps);te
 
   /* intro */
   var intro=document.getElementById("intro");
+  /* build the heritage funnel loader: 6 rings, light gold centre -> deep maroon rim */
+  (function buildFunnel(){
+    var host=document.getElementById("hfunnel"); if(!host)return;
+    var rings=[
+      {n:4, ty:-10, step:90, z:140, c:"#CBB488"},
+      {n:8, ty:-22, step:45, z:120, c:"#BE9A4E"},
+      {n:12,ty:-34, step:30, z:100, c:"#C2531F"},
+      {n:18,ty:-46, step:20, z:80,  c:"#B0461E"},
+      {n:24,ty:-58, step:15, z:40,  c:"#94371F"},
+      {n:36,ty:-70, step:10, z:20,  c:"#7A2E22"}
+    ];
+    rings.forEach(function(r){
+      var ring=document.createElement("div"); ring.className="hdots";
+      for(var i=1;i<=r.n;i++){
+        var d=document.createElement("div"); d.className="hdot"; d.style.background=r.c;
+        var t="rotateZ("+((i-1)*r.step)+"deg) translateY("+r.ty+"px)";
+        if(i%2===0) t+=" translateZ(-"+r.z+"px)";
+        d.style.transform=t; ring.appendChild(d);
+      }
+      host.appendChild(ring);
+    });
+  })();
   function enter(){ if(intro.classList.contains("gone"))return; intro.classList.add("gone");
-    document.body.classList.remove("lock"); document.getElementById("iskip").hidden=true; document.getElementById("nav").classList.add("show"); startSearch(); }
+    document.getElementById("iskip").hidden=true;
+    var load=document.getElementById("enterload");
+    function reveal(){ document.body.classList.remove("lock"); document.getElementById("nav").classList.add("show"); startSearch(); }
+    if(reduce || !load){ reveal(); return; }
+    load.hidden=false; requestAnimationFrame(function(){ load.classList.add("on"); });
+    setTimeout(function(){ reveal(); load.classList.remove("on");
+      setTimeout(function(){ load.hidden=true; },650); },1500);
+  }
   document.getElementById("iskip").addEventListener("click",enter);
   document.addEventListener("keydown",function(e){ if(!intro.classList.contains("gone")&&(e.key==="Enter"||e.key==="Escape")) enter(); });
   // intro waits for the user — no auto-enter.
