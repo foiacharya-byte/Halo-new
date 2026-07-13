@@ -1,4 +1,12 @@
 import Link from "next/link";
+import { SocialLinks } from "@/components/ui/social-links";
+
+const haloSocials = [
+  { name: "Instagram", image: "/social/instagram.svg" },
+  { name: "X", image: "/social/x.svg" },
+  { name: "WhatsApp", image: "/social/whatsapp.svg" },
+  { name: "LinkedIn", image: "/social/linkedin.svg" },
+];
 
 export function HaloFooter() {
   return (
@@ -16,6 +24,7 @@ export function HaloFooter() {
               A simple local directory for Vadodara, strengthened by real experiences from people
               who have used these services.
             </p>
+            <SocialLinks socials={haloSocials} className="mt-6 justify-start" />
           </div>
 
           <nav className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm" aria-label="Footer">

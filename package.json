@@ -12,9 +12,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.42.2",
     "next": "15.1.6",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "tailwind-merge": "^3.6.0",
     "zod": "3.24.1"
   },
   "devDependencies": {
