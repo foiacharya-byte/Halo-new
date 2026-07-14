@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "knowledge:list": "tsx scripts/knowledge/audit-source.ts --list",
+    "knowledge:audit": "tsx scripts/knowledge/audit-source.ts"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -27,6 +29,7 @@
     "autoprefixer": "10.4.20",
     "postcss": "8.5.1",
     "tailwindcss": "3.4.17",
+    "tsx": "^4.23.1",
     "typescript": "5.7.3",
     "vitest": "2.1.8"
   }
