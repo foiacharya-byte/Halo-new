@@ -2,7 +2,8 @@
 
 Gathers **structured, attributable** information about Vadodara from a small set
 of registered official/open sources — with provenance, licensing and dates as
-first-class concerns. It does **not** scrape the open internet.
+first-class concerns. It performs **source ingestion and public-data indexing
+from registered sources only**; the open internet is out of scope.
 
 > Status: **foundation only.** Registry, schemas, audit tooling and a database
 > migration *proposal* exist. **No source extractor is implemented yet** — each
@@ -18,7 +19,7 @@ first-class concerns. It does **not** scrape the open internet.
 4. **Never copy government/tourism images** without confirmed reuse rights.
    `imageReuse` defaults to `prohibited`/`unknown`.
 5. **Never bypass CAPTCHAs or auth.** A `401/403` is a hard stop in the fetcher.
-6. **Never scrape prohibited directories** (Google Maps, Justdial, Sulekha, …).
+6. **Never ingest from prohibited directories** (Google Maps, Justdial, Sulekha, …).
    `assertNoProhibited()` fails the build if one is ever registered.
 7. **Do not invent missing fields.** Absent data stays absent.
 8. **Do not merge conflicting records silently.** Divergent values become a

@@ -1,7 +1,7 @@
 /**
  * Source audit — the mandatory gate before any extractor is written.
  *
- * The audit is READ-ONLY reconnaissance. It never scrapes content. It records:
+ * The audit is READ-ONLY reconnaissance. It never collects content. It records:
  *  - robots.txt: reachable? does it allow our agent on the base path? crawl-delay?
  *  - terms & licence pages: reachable? (licence is confirmed by a human, not here)
  *  - access probe: for API/open-data sources, a SINGLE metadata request
