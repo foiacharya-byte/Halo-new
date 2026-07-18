@@ -1,10 +1,9 @@
 import { Reveal } from "./Reveal";
 
-const BUBBLES: { file: string; text: string; className: string }[] = [
-  { file: "message_bubble_01.svg", text: "Any good AC technician?", className: "left-0 top-0" },
-  { file: "message_bubble_02.svg", text: "Does anyone know a reliable maid?", className: "left-8 top-20 sm:left-16" },
-  { file: "message_bubble_03.svg", text: "Need a gym in Akota under ₹20k", className: "left-2 top-40 sm:left-4" },
-  { file: "message_bubble_04.svg", text: "Ask in the society group.", className: "left-12 top-60 sm:left-20" },
+const BUBBLES: { file: string; text: string; time: string; className: string }[] = [
+  { file: "message_bubble_01.svg", text: "Any good AC technician?", time: "10:32 AM", className: "left-0 top-0" },
+  { file: "message_bubble_02.svg", text: "Does anyone know a reliable maid?", time: "11:05 AM", className: "left-8 top-24 sm:left-16" },
+  { file: "message_bubble_03.svg", text: "Need a gym in Akota under ₹20k", time: "11:19 AM", className: "left-2 top-48 sm:left-4" },
 ];
 
 export function SceneReality() {
@@ -17,16 +16,17 @@ export function SceneReality() {
               Today, answers are everywhere.{" "}
               <span className="text-coral">But not always reliable.</span>
             </h2>
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-ink-soft">
-              People ask. Wait. Hope. And still aren&rsquo;t sure. Useful local knowledge already lives in
-              conversations and phones — Halo helps stop it from getting lost.
+            <p className="mt-4 max-w-sm text-[15px] leading-relaxed text-ink-soft">
+              People ask. Wait. Hope.
+              <br />
+              And still aren&rsquo;t sure.
             </p>
           </div>
         </Reveal>
 
-        <div className="relative h-[320px] sm:h-[360px]">
+        <div className="relative h-[380px] sm:h-[420px]">
           {BUBBLES.map((b) => (
-            <div key={b.file} className={`absolute w-64 ${b.className}`}>
+            <div key={b.file} className={`absolute w-60 ${b.className}`}>
               <div className="relative">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`/assets/halo/matched/02_scene_reality/${b.file}`} alt="" className="w-full" aria-hidden />
@@ -37,8 +37,20 @@ export function SceneReality() {
                   {b.text}
                 </p>
               </div>
+              <span className="mt-1 block text-right text-[11px] text-ink-faint">{b.time}</span>
             </div>
           ))}
+
+          {/* The "answer" — visually distinct from the scattered questions
+              above it, coded (no matching SVG variant exists for this one). */}
+          <div className="absolute left-16 top-[280px] w-60 sm:left-24">
+            <p className="flex w-fit items-center gap-2 rounded-full bg-accent px-4 py-2.5 text-[13px] text-white shadow-card">
+              <span aria-hidden>📱</span>
+              I have one number, I&rsquo;ll share.
+            </p>
+            <span className="mt-1 block text-[11px] text-ink-faint">11:21 AM</span>
+          </div>
+
           <div className="absolute bottom-0 right-0 h-28 w-28">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/assets/halo/matched/02_scene_reality/halo_convergence_orb.svg" alt="" className="h-full w-full" aria-hidden />

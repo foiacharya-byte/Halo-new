@@ -208,11 +208,14 @@ export interface SeedCandidate {
 }
 
 export type EarlyAccessReason = "need_help" | "know_trusted_people" | "both";
-export type CommunicationPreference = "email_only" | "email_and_call";
+export type CommunicationPreference = "email_only" | "email_and_call" | "whatsapp_only";
 
 export interface EarlyAccessRecord {
   id: string;
-  email: string;
+  // At least one of email/phone is always present (enforced in
+  // app/actions.ts) — the inline "WhatsApp number or email" capture bar
+  // (SceneJoin) only collects one of the two.
+  email?: string;
   phone?: string;
   reason: EarlyAccessReason;
   communicationPreference: CommunicationPreference;

@@ -569,7 +569,7 @@ export function addClaim(input: Omit<ProviderClaim, "id" | "status" | "submitted
 }
 
 export interface AddEarlyAccessInput {
-  email: string;
+  email?: string;
   phone?: string;
   reason: EarlyAccessReason;
   communicationPreference: CommunicationPreference;
@@ -578,10 +578,15 @@ export interface AddEarlyAccessInput {
   interests?: string[];
 }
 
-// De-duplicates by email — re-submitting just updates the existing record
-// rather than inflating a count anywhere the product might one day show.
+// De-duplicates by whichever contact method was given — re-submitting just
+// updates the existing record rather than inflating a count anywhere the
+// product might one day show.
 export function addEarlyAccess(input: AddEarlyAccessInput): EarlyAccessRecord {
-  const existing = db.earlyAccess.find((e) => e.email.toLowerCase() === input.email.toLowerCase());
+  const existing = db.earlyAccess.find(
+    (e) =>
+      (input.email && e.email?.toLowerCase() === input.email.toLowerCase()) ||
+      (input.phone && e.phone === input.phone)
+  );
   if (existing) {
     existing.phone = input.phone;
     existing.reason = input.reason;

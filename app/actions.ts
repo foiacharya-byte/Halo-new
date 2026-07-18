@@ -225,11 +225,15 @@ export async function submitBusinessAction(raw: unknown): Promise<ActionResult> 
 }
 
 // --- Early access / waitlist -------------------------------------------------
+// email is optional so the inline "WhatsApp number or email" capture bar
+// (SceneJoin) can submit a phone-only signup — but at least one of
+// email/phone must be present (checked below, not by the schema, since zod
+// doesn't validate cross-field XOR cleanly here).
 const earlyAccessSchema = z.object({
-  email: z.string().email(),
+  email: z.string().email().optional(),
   phone: z.string().optional(),
   reason: z.enum(["need_help", "know_trusted_people", "both"]),
-  communicationPreference: z.enum(["email_only", "email_and_call"]),
+  communicationPreference: z.enum(["email_only", "email_and_call", "whatsapp_only"]),
   name: z.string().max(80).optional(),
   areaId: z.string().optional(),
   interests: z.array(z.string()).max(12).optional(),
@@ -237,17 +241,20 @@ const earlyAccessSchema = z.object({
 
 export async function submitEarlyAccessAction(raw: unknown): Promise<ActionResult> {
   const parsed = earlyAccessSchema.safeParse(raw);
-  if (!parsed.success) return { ok: false, error: "Enter a valid email to join early access." };
+  if (!parsed.success) return { ok: false, error: "Enter a valid email or WhatsApp number." };
   const e = parsed.data;
 
   let phone: string | undefined;
-  if (e.communicationPreference === "email_and_call") {
+  if (e.communicationPreference !== "email_only") {
     phone = e.phone ? normalizeIndianPhone(e.phone) ?? undefined : undefined;
-    if (!phone) return { ok: false, error: "Enter a valid phone number, or switch to email only." };
+    if (!phone) return { ok: false, error: "Enter a valid WhatsApp number, or switch to email only." };
+  }
+  if (!e.email && !phone) {
+    return { ok: false, error: "Enter a valid WhatsApp number or email." };
   }
 
   addEarlyAccess({
-    email: e.email.trim().toLowerCase(),
+    email: e.email?.trim().toLowerCase(),
     phone,
     reason: e.reason,
     communicationPreference: e.communicationPreference,
