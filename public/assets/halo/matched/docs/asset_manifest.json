@@ -1,0 +1,81 @@
+{
+  "design_reference": "00_reference/halo_scroll_story_reference.png",
+  "landmark_policy": "Exact verified photographs only; no generated architecture.",
+  "photo_assets": [
+    {
+      "name": "Laxmi Vilas Palace",
+      "file": "10_verified_vadodara_photos/laxmi_vilas_palace_verified.webp",
+      "dimensions": [
+        2048,
+        1356
+      ],
+      "treatment": "Exact photograph; no redraw, no sharpening, no perspective manipulation."
+    },
+    {
+      "name": "Mandvi Gate",
+      "file": "10_verified_vadodara_photos/mandvi_gate_verified.webp",
+      "dimensions": [
+        5184,
+        3456
+      ],
+      "treatment": "Exact photograph; no redraw, no sharpening, no perspective manipulation."
+    },
+    {
+      "name": "Baroda Museum and Picture Gallery",
+      "file": "10_verified_vadodara_photos/baroda_museum_verified.webp",
+      "dimensions": [
+        3264,
+        2448
+      ],
+      "treatment": "Exact photograph; no redraw, no sharpening, no perspective manipulation."
+    },
+    {
+      "name": "Kirti Mandir",
+      "file": "10_verified_vadodara_photos/kirti_mandir_verified.webp",
+      "dimensions": [
+        5184,
+        3456
+      ],
+      "treatment": "Exact photograph; no redraw, no sharpening, no perspective manipulation."
+    },
+    {
+      "name": "Nyay Mandir",
+      "file": "10_verified_vadodara_photos/nyay_mandir_verified.webp",
+      "dimensions": [
+        7440,
+        2804
+      ],
+      "treatment": "Exact photograph; no redraw, no sharpening, no perspective manipulation."
+    },
+    {
+      "name": "Sursagar Lake and Shiva statue",
+      "file": "10_verified_vadodara_photos/sursagar_lake_verified.webp",
+      "dimensions": [
+        2048,
+        1536
+      ],
+      "treatment": "Exact photograph; no redraw, no sharpening, no perspective manipulation."
+    }
+  ],
+  "scene_folders": {
+    "hero": "01_scene_hero",
+    "reality": "02_scene_reality",
+    "search": "03_scene_search_or_request",
+    "pass": "04_scene_pass_it_on",
+    "trust": "05_scene_trust",
+    "how": "06_scene_how_it_works",
+    "points": "07_scene_halo_points",
+    "join": "08_scene_join",
+    "footer": "09_scene_footer"
+  },
+  "coded_not_image": [
+    "navigation",
+    "search field",
+    "search results",
+    "request form",
+    "provider trust card",
+    "points counter",
+    "join form",
+    "activity text"
+  ]
+}
