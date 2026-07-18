@@ -5,8 +5,7 @@
 :root {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia,
-    "Times New Roman", serif;
+  /* --font-serif is supplied by next/font (Fraunces) on <html> in app/layout.tsx. */
 }
 
 html {

@@ -13,7 +13,7 @@ type ButtonProps = {
   href?: string;
   onClick?: () => void;
   type?: "button" | "submit";
-  variant?: "primary" | "secondary" | "ghost";
+  variant?: "primary" | "secondary" | "ghost" | "coral";
   size?: "sm" | "md";
   disabled?: boolean;
   className?: string;
@@ -27,6 +27,8 @@ const buttonVariants: Record<string, string> = {
   primary: "bg-accent text-white hover:bg-accent-ink",
   secondary: "bg-surface text-ink border border-border hover:bg-paper",
   ghost: "text-ink-soft hover:text-ink hover:bg-paper",
+  // Reserved for active-request / no-result moments (docs/HALO_ASSET_AUDIT.md §2).
+  coral: "bg-coral text-white hover:bg-coral/90",
 };
 
 const buttonSizes: Record<string, string> = {

@@ -23,6 +23,14 @@ const config: Config = {
         "good-soft": "#E6F0EA",
         warn: "#8A6D1F",
         "warn-soft": "#F3ECD8",
+        // Pre-launch experience additions (docs/HALO_ASSET_AUDIT.md §2) —
+        // additive only; nothing above this line changes meaning.
+        forest: "#1F3D30", // deep trust tone, used sparingly alongside ink
+        marigold: "#C98A1F", // contribution / Halo Points
+        "marigold-soft": "#F6E9CF",
+        coral: "#C24E3A", // active requests / no-result moments
+        "coral-soft": "#F5E1DB",
+        lilac: "#6E63A6", // rare discovery accent — never paired with coral/marigold in one section
       },
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],

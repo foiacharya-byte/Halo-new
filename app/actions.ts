@@ -6,6 +6,7 @@ import {
   addVouch,
   addSubmission,
   addClaim,
+  addEarlyAccess,
   findPossibleDuplicates,
   revealPublicNumber,
   moderateVouch,
@@ -220,6 +221,35 @@ export async function submitBusinessAction(raw: unknown): Promise<ActionResult> 
   });
 
   revalidatePath("/admin");
+  return { ok: true };
+}
+
+// --- Early access (homepage Scene 8) ----------------------------------------
+const earlyAccessSchema = z.object({
+  email: z.string().email(),
+  phone: z.string().optional(),
+  reason: z.enum(["need_help", "know_trusted_people", "both"]),
+  communicationPreference: z.enum(["email_only", "email_and_call"]),
+});
+
+export async function submitEarlyAccessAction(raw: unknown): Promise<ActionResult> {
+  const parsed = earlyAccessSchema.safeParse(raw);
+  if (!parsed.success) return { ok: false, error: "Enter a valid email to join early access." };
+  const e = parsed.data;
+
+  let phone: string | undefined;
+  if (e.communicationPreference === "email_and_call") {
+    phone = e.phone ? normalizeIndianPhone(e.phone) ?? undefined : undefined;
+    if (!phone) return { ok: false, error: "Enter a valid phone number, or switch to email only." };
+  }
+
+  addEarlyAccess({
+    email: e.email.trim().toLowerCase(),
+    phone,
+    reason: e.reason,
+    communicationPreference: e.communicationPreference,
+  });
+
   return { ok: true };
 }
 

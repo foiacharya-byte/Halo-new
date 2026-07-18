@@ -12,6 +12,9 @@ import { AREAS, ALL_VADODARA, getAreaById } from "./areas";
 import { CATEGORIES, getCategoryById } from "./categories";
 import { SEED_CANDIDATES, SEED_LISTINGS, SEED_MATRIX, SEED_VOUCHES } from "./seed";
 import type {
+  CommunicationPreference,
+  EarlyAccessReason,
+  EarlyAccessRecord,
   ExperienceSignals,
   Listing,
   ListingSubmission,
@@ -32,6 +35,7 @@ const db = {
   searchLogs: [] as SearchLog[],
   seedMatrix: [...SEED_MATRIX],
   seedCandidates: [...SEED_CANDIDATES],
+  earlyAccess: [] as EarlyAccessRecord[],
 };
 
 let idCounter = 1000;
@@ -562,6 +566,35 @@ export function addClaim(input: Omit<ProviderClaim, "id" | "status" | "submitted
   };
   db.claims.push(c);
   return c;
+}
+
+export interface AddEarlyAccessInput {
+  email: string;
+  phone?: string;
+  reason: EarlyAccessReason;
+  communicationPreference: CommunicationPreference;
+}
+
+// De-duplicates by email — re-submitting just updates the existing record
+// rather than inflating a count anywhere the product might one day show.
+export function addEarlyAccess(input: AddEarlyAccessInput): EarlyAccessRecord {
+  const existing = db.earlyAccess.find((e) => e.email.toLowerCase() === input.email.toLowerCase());
+  if (existing) {
+    existing.phone = input.phone;
+    existing.reason = input.reason;
+    existing.communicationPreference = input.communicationPreference;
+    return existing;
+  }
+  const e: EarlyAccessRecord = {
+    id: nextId("early"),
+    email: input.email,
+    phone: input.phone,
+    reason: input.reason,
+    communicationPreference: input.communicationPreference,
+    submittedAt: new Date().toISOString(),
+  };
+  db.earlyAccess.push(e);
+  return e;
 }
 
 // --- Admin / moderation ----------------------------------------------------

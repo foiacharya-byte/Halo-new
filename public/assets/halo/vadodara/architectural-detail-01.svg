@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="Placeholder — approved architectural detail crop not yet supplied">
+  <!-- PLACEHOLDER ONLY. Reserved path for one small, cropped architectural
+       detail from an approved, source-attributed Vadodara asset (per the
+       master prompt's "tiny cropped details later" guidance) — not an
+       invented motif. See ASSET_SOURCES.md in this folder. -->
+  <rect width="400" height="400" fill="none"/>
+  <text x="200" y="200" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" fill="#948A7E">
+    Placeholder — architectural detail 01
+  </text>
+</svg>

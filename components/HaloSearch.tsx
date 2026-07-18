@@ -1,21 +1,38 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // One intelligent search surface. Submitting routes to /search?q=... where the
-// server-side deterministic parser takes over.
+// server-side deterministic parser takes over. This is the one search
+// mechanism in the product — every scene/flow that needs search calls into
+// this component and the /search pipeline behind it; nothing forks it.
 
 export function HaloSearch({
   size = "hero",
   initialQuery = "",
+  rotatingPlaceholders,
 }: {
   size?: "hero" | "compact";
   initialQuery?: string;
+  /** Optional set of example queries cycled through the placeholder (hero only). Purely cosmetic — never affects submitted behavior. */
+  rotatingPlaceholders?: string[];
 }) {
   const router = useRouter();
   const [q, setQ] = useState(initialQuery);
   const [loading, setLoading] = useState(false);
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
+  const isHero = size === "hero";
+  const cyclePlaceholders = isHero && rotatingPlaceholders && rotatingPlaceholders.length > 1;
+
+  useEffect(() => {
+    if (!cyclePlaceholders) return;
+    const id = setInterval(() => {
+      setPlaceholderIndex((i) => (i + 1) % rotatingPlaceholders!.length);
+    }, 2800);
+    return () => clearInterval(id);
+  }, [cyclePlaceholders, rotatingPlaceholders]);
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -25,7 +42,9 @@ export function HaloSearch({
     router.push(`/search?q=${encodeURIComponent(query)}`);
   }
 
-  const isHero = size === "hero";
+  const placeholder = cyclePlaceholders
+    ? `Try “${rotatingPlaceholders![placeholderIndex]}”`
+    : "Try ‘electrician in Gotri’ or paste a number";
 
   return (
     <form onSubmit={submit} role="search" className="w-full">
@@ -51,7 +70,7 @@ export function HaloSearch({
           autoComplete="off"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Try &lsquo;electrician in Gotri&rsquo; or paste a number"
+          placeholder={placeholder}
           className={
             "min-w-0 flex-1 bg-transparent text-ink placeholder:text-ink-faint focus:outline-none " +
             (isHero ? "px-1 py-2 text-base" : "px-1 py-1.5 text-[15px]")

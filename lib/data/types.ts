@@ -207,6 +207,18 @@ export interface SeedCandidate {
   status: "pending" | "approved" | "rejected" | "hold";
 }
 
+export type EarlyAccessReason = "need_help" | "know_trusted_people" | "both";
+export type CommunicationPreference = "email_only" | "email_and_call";
+
+export interface EarlyAccessRecord {
+  id: string;
+  email: string;
+  phone?: string;
+  reason: EarlyAccessReason;
+  communicationPreference: CommunicationPreference;
+  submittedAt: string;
+}
+
 export interface SearchLog {
   id: string;
   normalizedQuery: string;
