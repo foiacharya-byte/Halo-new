@@ -573,6 +573,9 @@ export interface AddEarlyAccessInput {
   phone?: string;
   reason: EarlyAccessReason;
   communicationPreference: CommunicationPreference;
+  name?: string;
+  areaId?: string;
+  interests?: string[];
 }
 
 // De-duplicates by email — re-submitting just updates the existing record
@@ -583,6 +586,9 @@ export function addEarlyAccess(input: AddEarlyAccessInput): EarlyAccessRecord {
     existing.phone = input.phone;
     existing.reason = input.reason;
     existing.communicationPreference = input.communicationPreference;
+    existing.name = input.name;
+    existing.areaId = input.areaId;
+    existing.interests = input.interests;
     return existing;
   }
   const e: EarlyAccessRecord = {
@@ -591,6 +597,9 @@ export function addEarlyAccess(input: AddEarlyAccessInput): EarlyAccessRecord {
     phone: input.phone,
     reason: input.reason,
     communicationPreference: input.communicationPreference,
+    name: input.name,
+    areaId: input.areaId,
+    interests: input.interests,
     submittedAt: new Date().toISOString(),
   };
   db.earlyAccess.push(e);

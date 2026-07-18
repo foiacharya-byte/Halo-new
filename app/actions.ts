@@ -224,12 +224,15 @@ export async function submitBusinessAction(raw: unknown): Promise<ActionResult> 
   return { ok: true };
 }
 
-// --- Early access (homepage Scene 8) ----------------------------------------
+// --- Early access / waitlist -------------------------------------------------
 const earlyAccessSchema = z.object({
   email: z.string().email(),
   phone: z.string().optional(),
   reason: z.enum(["need_help", "know_trusted_people", "both"]),
   communicationPreference: z.enum(["email_only", "email_and_call"]),
+  name: z.string().max(80).optional(),
+  areaId: z.string().optional(),
+  interests: z.array(z.string()).max(12).optional(),
 });
 
 export async function submitEarlyAccessAction(raw: unknown): Promise<ActionResult> {
@@ -248,6 +251,9 @@ export async function submitEarlyAccessAction(raw: unknown): Promise<ActionResul
     phone,
     reason: e.reason,
     communicationPreference: e.communicationPreference,
+    name: e.name?.trim() || undefined,
+    areaId: e.areaId,
+    interests: e.interests,
   });
 
   return { ok: true };

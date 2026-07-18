@@ -5,26 +5,57 @@
 :root {
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  /* --font-serif is supplied by next/font (Fraunces) on <html> in app/layout.tsx. */
+  /* --font-serif, --font-display, --font-script, --font-gu are supplied by
+     next/font on <html> in app/layout.tsx. */
 }
 
 html {
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #f8f2e7;
-  color: #2a1e11;
+  background-color: #0c0804;
+  color: #f0e4cc;
   font-family: var(--font-sans);
+}
+
+::selection {
+  background: #c2531f;
+  color: #fff4e8;
 }
 
 /* Focus visibility — every interactive element gets a clear ring. */
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(194, 83, 31, 0.25);
+  box-shadow: 0 0 0 3px rgba(194, 83, 31, 0.4);
   border-radius: 8px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes spinCarousel {
+  to {
+    transform: rotateY(-360deg);
+  }
+}
+
+@keyframes heroDrift {
+  0% {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.14) translate3d(-1.6%, -1.1%, 0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,33 +1,32 @@
-import { SceneNeed } from "@/components/home/SceneNeed";
-import { SceneReality } from "@/components/home/SceneReality";
-import { SceneSearchFirst } from "@/components/home/SceneSearchFirst";
-import { ScenePassItOn } from "@/components/home/ScenePassItOn";
-import { SceneTrust } from "@/components/home/SceneTrust";
-import { SceneHowItWorks } from "@/components/home/SceneHowItWorks";
-import { ScenePoints } from "@/components/home/ScenePoints";
-import { SceneEarlyAccess } from "@/components/home/SceneEarlyAccess";
-import { SceneLivingCity } from "@/components/home/SceneLivingCity";
+import { SceneHero } from "@/components/home/SceneHero";
+import { Ticker } from "@/components/home/Ticker";
+import { SceneWhy } from "@/components/home/SceneWhy";
+import { SceneStepwell } from "@/components/home/SceneStepwell";
+import { SceneVision } from "@/components/home/SceneVision";
+import { SceneWork } from "@/components/home/SceneWork";
+import { SceneWaitlistCTA } from "@/components/home/SceneWaitlistCTA";
+import { SceneGallery } from "@/components/home/SceneGallery";
 
-// The homepage is a scroll story (docs/HALO_PRELAUNCH_IMPLEMENTATION_PLAN.md,
-// Phase 1), not a features grid. Scene 3 wraps the real, unmodified search
-// pipeline (HaloSearch -> /search -> lib/search/parser.ts) rather than
-// forking it — see SceneNeed and SceneSearchFirst.
+// The homepage, rebuilt against the product owner's own reference build
+// (docs/HALO_ASSET_AUDIT.md, public/assets/halo/vadodara/ASSET_SOURCES.md).
+// Scrollography: Hero -> Ticker -> Why (For Barodians) -> Stepwell interlude
+// -> Vision -> Work (For Sellers) -> Waitlist CTA -> Heritage gallery.
+// Search itself is untouched: the hero embeds the real HaloSearch -> /search
+// -> lib/search/parser.ts pipeline, not a re-implementation. WaitlistProvider
+// wraps the whole app (app/layout.tsx) so header/footer CTAs can open the
+// modal too, not just this page's own scenes.
 
 export default function HomePage() {
   return (
     <>
-      <div className="mx-auto max-w-content px-4 sm:px-6">
-        <SceneNeed />
-      </div>
-
-      <SceneReality />
-      <SceneSearchFirst />
-      <ScenePassItOn />
-      <SceneTrust />
-      <SceneHowItWorks />
-      <ScenePoints />
-      <SceneEarlyAccess />
-      <SceneLivingCity />
+      <SceneHero />
+      <Ticker />
+      <SceneWhy />
+      <SceneStepwell />
+      <SceneVision />
+      <SceneWork />
+      <SceneWaitlistCTA />
+      <SceneGallery />
     </>
   );
 }

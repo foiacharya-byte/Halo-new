@@ -216,6 +216,11 @@ export interface EarlyAccessRecord {
   phone?: string;
   reason: EarlyAccessReason;
   communicationPreference: CommunicationPreference;
+  // Optional context from the waitlist modal's "about you" step. None of
+  // this is required or verified — it only shapes early outreach.
+  name?: string;
+  areaId?: string;
+  interests?: string[];
   submittedAt: string;
 }
 

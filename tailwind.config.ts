@@ -9,40 +9,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Halo brand palette — sourced from HALO_PROJECT_MEMORY.md §4
-        // (the locked "ae halo" system), which outranks any other palette
-        // per the explicit conflict-resolution order given for this build.
-        paper: "#F8F2E7",
-        "paper-deep": "#EBE0CD",
-        surface: "#FFFFFF",
-        border: "#E9E4DB",
-        ink: "#2A1E11",
-        "ink-soft": "#6E5A40",
-        "ink-faint": "#93826B",
-        accent: "#C2531F", // "terra" — primary action / the "ae" flourish
-        "accent-soft": "#F3E2D8",
-        "accent-ink": "#7A2E22", // "maroon" — headings/accents, and accent's hover/pressed shade
-        gold: "#BE9A4E", // contribution / Halo Points highlight
-        "gold-soft": "#F5EDD9",
+        // Halo brand palette — the dark cinematic "ae halo" system from the
+        // product owner's own reference build (extracted 2026-07-18; see
+        // public/assets/halo/vadodara/ASSET_SOURCES.md). This supersedes
+        // the earlier light/editorial palette. Token *names* are kept
+        // stable from the previous pass so existing components re-theme
+        // without a rewrite; only the values changed.
+        paper: "#0C0804", // page background (near-black, warm)
+        "paper-deep": "#0A0603", // deeper background (fixed backdrop, footer)
+        surface: "#160D06", // elevated dark surface (cards, inputs, secondary buttons)
+        "panel-cream": "#F5EDE0", // the rare light-card-on-dark case (interactive demo panels)
+        border: "#2E2013",
+        ink: "#F0E4CC", // primary text — cream, not literal "ink" color, kept as the role name
+        "ink-soft": "#C9BBA0",
+        "ink-faint": "#8C7F68",
+        accent: "#C2531F", // terracotta — primary action / the "ae" flourish
+        "accent-soft": "#2A160C",
+        "accent-ink": "#A1421A", // accent's hover/pressed shade
+        gold: "#D4A443", // contribution / heritage highlight
+        "gold-soft": "#2E2311",
         sand: "#CBB488", // muted UI accents
-        good: "#2F6B4F",
-        "good-soft": "#E6F0EA",
-        warn: "#8A6D1F",
-        "warn-soft": "#F3ECD8",
-        // Gap-filling addition (memory file has no equivalent): a distinct
-        // tone for active-request/no-result moments, kept clearly apart
-        // from terra so "primary action" and "no result yet" never read as
-        // the same color (docs/HALO_ASSET_AUDIT.md §2).
-        coral: "#AD4A3C",
-        "coral-soft": "#F1DEDA",
+        good: "#4C9172",
+        "good-soft": "#132119",
+        warn: "#C9A227",
+        "warn-soft": "#241D0A",
+        coral: "#D2604B", // active-request / no-result moments
+        "coral-soft": "#2B140E",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
         serif: ["var(--font-serif)", "ui-serif", "Georgia", "serif"],
-        // Reserved for a 2-5 word flourish only (e.g. the "ae" in the
-        // wordmark) — never for controls or paragraphs. No file loaded yet;
-        // wire via next/font when the wordmark component needs it.
+        display: ["var(--font-display)", "Georgia", "serif"], // Bodoni Moda — major statements only
         script: ["var(--font-script)", "cursive"],
+        gu: ["var(--font-gu)", "sans-serif"], // Mukta Vaani — Gujarati text
       },
       borderRadius: {
         halo: "14px",
@@ -52,8 +51,8 @@ const config: Config = {
         prose: "44rem",
       },
       boxShadow: {
-        card: "0 1px 2px rgba(31,27,22,0.04), 0 8px 24px -16px rgba(31,27,22,0.18)",
-        focus: "0 0 0 3px rgba(194,83,31,0.22)",
+        card: "0 1px 2px rgba(0,0,0,0.2), 0 8px 24px -16px rgba(0,0,0,0.6)",
+        focus: "0 0 0 3px rgba(194,83,31,0.35)",
       },
     },
   },
