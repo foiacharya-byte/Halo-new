@@ -1,3 +1,5 @@
+import IphoneFrame from "@/components/ui/iphone-frame";
+import { Chat } from "@/components/ui/chat";
 import { Avatar } from "./Avatar";
 import { Reveal } from "./Reveal";
 
@@ -8,8 +10,8 @@ const CONTACTS = [
 ];
 
 const CHAT_LINES = [
-  { mine: false, text: "Anyone know a good tailor nearby?" },
-  { mine: true, text: "Try the one near Karelibaug, used them last month." },
+  { id: "c1", name: "Society Group", message: "Anyone know a good tailor nearby?" },
+  { id: "c2", name: "You", message: "Try the one near Karelibaug, used them last month." },
 ];
 
 export function ScenePassItOn() {
@@ -23,43 +25,27 @@ export function ScenePassItOn() {
         </Reveal>
 
         <div className="mt-10 grid grid-cols-1 items-center gap-10 sm:grid-cols-2">
-          <Reveal className="flex items-center justify-center gap-6">
-            <div className="relative w-56 shrink-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/halo/matched/04_scene_pass_it_on/phone_frame.svg" alt="" className="w-full" aria-hidden />
-              <div className="absolute inset-x-[19%] inset-y-[8%] bottom-[13%] flex flex-col justify-start gap-2 overflow-hidden pt-3">
+          <Reveal className="flex items-center justify-center gap-5">
+            <IphoneFrame className="w-40 shrink-0 sm:w-44">
+              <div className="flex h-full flex-col bg-paper px-3 pb-3 pt-10">
                 <p className="text-[9px] font-semibold uppercase tracking-wide text-ink-faint">My trusted contacts</p>
-                {CONTACTS.map((c) => (
-                  <div key={c.name} className="flex items-center gap-2 rounded-lg bg-paper p-1.5">
-                    <Avatar name={c.name} size={28} />
-                    <div className="min-w-0">
-                      <p className="truncate text-[10px] font-medium text-ink">{c.name}</p>
-                      <p className="truncate text-[9px] text-ink-faint">{c.area}</p>
+                <div className="mt-2 flex flex-col gap-2">
+                  {CONTACTS.map((c) => (
+                    <div key={c.name} className="flex items-center gap-2 rounded-lg bg-surface p-1.5 shadow-card">
+                      <Avatar name={c.name} size={26} />
+                      <div className="min-w-0">
+                        <p className="truncate text-[10px] font-medium text-ink">{c.name}</p>
+                        <p className="truncate text-[9px] text-ink-faint">{c.area}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            </IphoneFrame>
 
-            <div className="hidden w-48 shrink-0 overflow-hidden rounded-[28px] border border-border bg-paper shadow-card sm:block">
-              <div className="flex items-center gap-2 bg-accent px-3 py-2.5">
-                <Avatar name="Trusted Circle" size={24} />
-                <p className="text-[11px] font-medium text-white">Trusted Circle</p>
-              </div>
-              <div className="flex flex-col gap-2 p-3">
-                {CHAT_LINES.map((l, i) => (
-                  <p
-                    key={i}
-                    className={
-                      "w-fit max-w-[85%] rounded-2xl px-2.5 py-1.5 text-[10px] leading-snug " +
-                      (l.mine ? "ml-auto bg-accent-soft text-ink" : "border border-border bg-surface text-ink-soft")
-                    }
-                  >
-                    {l.text}
-                  </p>
-                ))}
-              </div>
-            </div>
+            <IphoneFrame className="hidden w-44 shrink-0 sm:block">
+              <Chat messages={CHAT_LINES} currentUser="You" headerLabel="Trusted Circle" />
+            </IphoneFrame>
           </Reveal>
 
           <Reveal delay={0.1}>
