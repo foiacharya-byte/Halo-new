@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces } from "next/font/google";
+import { Fraunces, Caveat } from "next/font/google";
 import "./globals.css";
 import { HaloHeader } from "@/components/HaloHeader";
 import { HaloFooter } from "@/components/HaloFooter";
@@ -16,6 +16,15 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+// Script accent, reserved strictly for the "ae" flourish in the wordmark
+// (HaloWordmark) — never for controls, headings or paragraphs, per
+// HALO_PROJECT_MEMORY.md §4.
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-script",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Halo — Vadodara's local directory",
@@ -26,14 +35,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FBF9F5",
+  themeColor: "#F8F2E7",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={fraunces.variable}>
+    <html lang="en" className={`${fraunces.variable} ${caveat.variable}`}>
       <body className="min-h-screen bg-paper text-ink antialiased">
         <a
           href="#main"

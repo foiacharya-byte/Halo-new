@@ -18,8 +18,8 @@ const FRAGMENTS = [
 
 export function SceneReality() {
   return (
-    <section id="reality" className="py-16 sm:py-20" aria-labelledby="reality-heading">
-      <div className="mx-auto grid max-w-content gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
+    <section id="reality" className="py-12 sm:py-16" aria-labelledby="reality-heading">
+      <div className="mx-auto grid max-w-content grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:items-center lg:gap-16">
         <Reveal>
           <div>
             <h2 id="reality-heading" className="font-serif text-2xl text-ink sm:text-[28px]">
@@ -54,7 +54,7 @@ export function SceneReality() {
           </div>
           <div className="relative mx-auto mt-4 h-24 w-24">
             <PassingLineGather className="h-24 w-24" />
-            <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-serif text-sm text-marigold">
+            <span className="pointer-events-none absolute inset-0 flex items-center justify-center font-serif text-sm text-gold">
               halo!
             </span>
           </div>

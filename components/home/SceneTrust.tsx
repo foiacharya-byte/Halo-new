@@ -16,9 +16,9 @@ const EVIDENCE_ROWS = [
 
 export function SceneTrust() {
   return (
-    <section id="trust" className="py-16 sm:py-20" aria-labelledby="trust-heading">
+    <section id="trust" className="py-12 sm:py-16" aria-labelledby="trust-heading">
       <div className="mx-auto max-w-content px-4 sm:px-6">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-16">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center lg:gap-16">
           <Reveal>
             <div>
               <h2 id="trust-heading" className="font-serif text-2xl text-ink sm:text-[28px]">

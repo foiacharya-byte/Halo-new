@@ -36,13 +36,13 @@ export function SocialLinks({ socials, className, ...props }: SocialLinksProps) 
 
   return (
     <div
-      className={cn("flex items-center justify-center gap-0", className)}
+      className={cn("flex flex-wrap items-center justify-center gap-0", className)}
       {...props}
     >
       {socials.map((social, index) => (
         <div
           className={cn(
-            "relative cursor-pointer px-5 py-2 transition-opacity duration-200",
+            "relative cursor-pointer px-3 py-2 transition-opacity duration-200 sm:px-5",
             hoveredSocial && hoveredSocial !== social.name
               ? "opacity-50"
               : "opacity-100"

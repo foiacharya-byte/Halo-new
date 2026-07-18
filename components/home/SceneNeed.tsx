@@ -19,7 +19,7 @@ const LINE_LOCALITIES = ["Gotri", "Akota", "Manjalpur", "Sama"];
 
 export function SceneNeed() {
   return (
-    <section id="need" className="pt-14 pb-16 sm:pt-20" aria-labelledby="hero-heading">
+    <section id="need" className="pt-10 pb-6 sm:pt-16 sm:pb-8" aria-labelledby="hero-heading">
       <Reveal>
         <div className="mx-auto max-w-2xl text-center">
           <Eyebrow>Vadodara&rsquo;s trusted local answers</Eyebrow>

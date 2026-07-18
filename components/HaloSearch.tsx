@@ -73,13 +73,13 @@ export function HaloSearch({
           placeholder={placeholder}
           className={
             "min-w-0 flex-1 bg-transparent text-ink placeholder:text-ink-faint focus:outline-none " +
-            (isHero ? "px-1 py-2 text-base" : "px-1 py-1.5 text-[15px]")
+            (isHero ? "px-1 py-2 text-[15px] sm:text-base" : "px-1 py-1.5 text-[15px]")
           }
         />
         <button
           type="submit"
           disabled={loading || !q.trim()}
-          className="shrink-0 rounded-[10px] bg-accent px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-ink disabled:opacity-50"
+          className="shrink-0 rounded-[10px] bg-accent px-3 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-ink disabled:opacity-50 sm:px-4"
         >
           {loading ? "Searching…" : "Search Halo"}
         </button>

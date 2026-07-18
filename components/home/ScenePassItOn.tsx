@@ -19,7 +19,7 @@ const CHAT_LINES = [
 
 export function ScenePassItOn() {
   return (
-    <section id="pass-it-on" className="py-16 sm:py-20" aria-labelledby="pass-it-on-heading">
+    <section id="pass-it-on" className="py-12 sm:py-16" aria-labelledby="pass-it-on-heading">
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <Reveal>
           <div className="mx-auto max-w-xl text-center">
@@ -29,7 +29,7 @@ export function ScenePassItOn() {
           </div>
         </Reveal>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
           <Reveal>
             <div className="rounded-halo border border-border bg-surface p-5">
               <p className="text-xs font-semibold uppercase tracking-wide text-ink-faint">
@@ -38,7 +38,7 @@ export function ScenePassItOn() {
               <div className="mt-3 divide-y divide-border">
                 {CONTACT_ROWS.map((c) => (
                   <div key={c.label} className="flex items-center gap-3 py-2.5">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-marigold-soft text-sm text-marigold" aria-hidden>
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gold-soft text-sm text-gold" aria-hidden>
                       {c.label[0]}
                     </span>
                     <div className="min-w-0">
@@ -64,7 +64,7 @@ export function ScenePassItOn() {
                       "w-fit max-w-[90%] rounded-halo px-3 py-2 text-sm " +
                       (l.from === "group"
                         ? "bg-paper text-ink-soft"
-                        : "ml-auto bg-marigold-soft text-ink")
+                        : "ml-auto bg-gold-soft text-ink")
                     }
                   >
                     {l.text}
@@ -88,7 +88,7 @@ export function ScenePassItOn() {
             </Button>
           </div>
           <p className="mx-auto mt-4 max-w-md text-center text-sm text-ink-faint">
-            Verified trusted contact: <span className="font-medium text-marigold">+3 Halo Points</span>.
+            Verified trusted contact: <span className="font-medium text-gold">+3 Halo Points</span>.
             Helps a real request succeed: additional points, once verified.
           </p>
         </Reveal>

@@ -10,7 +10,7 @@ const STEPS = [
 
 export function SceneHowItWorks() {
   return (
-    <section id="how-it-works" className="py-16 sm:py-20" aria-labelledby="how-it-works-heading">
+    <section id="how-it-works" className="py-12 sm:py-16" aria-labelledby="how-it-works-heading">
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <Reveal>
           <h2 id="how-it-works-heading" className="text-center font-serif text-2xl text-ink sm:text-[28px]">
@@ -24,11 +24,11 @@ export function SceneHowItWorks() {
           </div>
         </Reveal>
 
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {STEPS.map((s, i) => (
             <Reveal key={s.n} delay={0.05 * i}>
               <div className="h-full rounded-halo border border-border bg-surface p-5">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-forest text-sm font-medium text-white">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-sm font-medium text-white">
                   {s.n}
                 </span>
                 <p className="mt-3 font-serif text-base text-ink">{s.label}</p>

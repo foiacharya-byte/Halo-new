@@ -9,14 +9,14 @@ import { Reveal } from "./Reveal";
 
 export function SceneSearchFirst() {
   return (
-    <section id="search-first" className="py-16 sm:py-20" aria-labelledby="search-first-heading">
+    <section id="search-first" className="py-12 sm:py-16" aria-labelledby="search-first-heading">
       <div className="mx-auto max-w-content px-4 sm:px-6">
         <Reveal>
           <h2 id="search-first-heading" className="sr-only">
             Search first, or post a request
           </h2>
         </Reveal>
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           <Reveal>
             <div className="h-full rounded-halo border border-border bg-surface p-6 sm:p-8">
               <h3 className="font-serif text-xl text-ink">

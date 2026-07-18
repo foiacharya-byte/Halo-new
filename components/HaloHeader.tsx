@@ -1,35 +1,51 @@
-import Link from "next/link";
+"use client";
 
-// Compact light header. The logo sits on a matching light surface (no white
-// rectangle) until a transparent vector exists.
+import Link from "next/link";
+import { useState } from "react";
+import { HaloWordmark } from "./HaloWordmark";
+import { Button } from "./ui";
+
+// Sticky, compact header. Nav matches the pre-launch spec: logo, How it
+// works, For businesses, About us, Join Halo, mobile menu. "For businesses"
+// still points at the existing self-serve /business — it is not yet
+// unlinked, since /business/invite/:token (the spec's replacement entry
+// point) doesn't exist until Phase 4 (docs/HALO_PAGE_STATES.md §2).
+
+const NAV_LINKS = [
+  { href: "/#how-it-works", label: "How it works" },
+  { href: "/business", label: "For businesses" },
+  { href: "/#reality", label: "About us" },
+];
 
 export function HaloHeader() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-paper/90 backdrop-blur">
       <div className="mx-auto flex h-14 max-w-content items-center justify-between px-4 sm:px-6">
-        <Link href="/" className="flex items-center gap-2" aria-label="Halo — Vadodara's local directory">
-          <span
-            className="flex h-7 w-7 items-center justify-center rounded-full bg-accent text-sm font-semibold text-white"
-            aria-hidden
-          >
-            h
-          </span>
-          <span className="font-serif text-lg tracking-tight text-ink">Halo</span>
+        <Link href="/" aria-label="Halo — Vadodara's trusted local answers">
+          <HaloWordmark size="compact" />
         </Link>
 
-        <nav className="hidden items-center gap-1 text-sm sm:flex" aria-label="Primary">
-          <Link href="/search" className="rounded-lg px-3 py-2 text-ink-soft hover:bg-surface hover:text-ink">
-            Browse
-          </Link>
-          <Link href="/add" className="rounded-lg px-3 py-2 text-ink-soft hover:bg-surface hover:text-ink">
-            Add a trusted number
-          </Link>
-          <Link href="/business" className="rounded-lg px-3 py-2 text-ink-soft hover:bg-surface hover:text-ink">
-            For businesses
-          </Link>
+        <nav className="hidden items-center gap-1 text-sm lg:flex" aria-label="Primary">
+          {NAV_LINKS.map((l) => (
+            <Link key={l.href} href={l.href} className="rounded-lg px-3 py-2 text-ink-soft hover:bg-surface hover:text-ink">
+              {l.label}
+            </Link>
+          ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:hidden">
+        <div className="hidden items-center gap-2 lg:flex">
+          <Button href="/search" variant="ghost" size="sm">
+            <SearchGlyph />
+            <span className="sr-only">Search</span>
+          </Button>
+          <Button href="/#join" size="sm">
+            Join Halo
+          </Button>
+        </div>
+
+        <div className="flex items-center gap-2 lg:hidden">
           <Link
             href="/search"
             aria-label="Search Halo"
@@ -37,8 +53,40 @@ export function HaloHeader() {
           >
             <SearchGlyph />
           </Link>
+          <button
+            type="button"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            onClick={() => setOpen((v) => !v)}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface"
+          >
+            <MenuGlyph open={open} />
+          </button>
         </div>
       </div>
+
+      {open && (
+        <nav id="mobile-nav" className="border-t border-border bg-paper px-4 pb-4 pt-2 lg:hidden" aria-label="Primary">
+          <div className="flex flex-col">
+            {NAV_LINKS.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="rounded-lg px-2 py-3 text-[15px] text-ink-soft hover:bg-surface hover:text-ink"
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+          <div className="mt-2">
+            <Button href="/#join" full onClick={() => setOpen(false)}>
+              Join Halo
+            </Button>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
@@ -48,6 +96,21 @@ function SearchGlyph() {
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
       <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
       <path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function MenuGlyph({ open }: { open: boolean }) {
+  if (open) {
+    return (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    );
+  }
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
     </svg>
   );
 }

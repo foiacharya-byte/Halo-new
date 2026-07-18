@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SocialLinks } from "@/components/ui/social-links";
+import { HaloWordmark } from "./HaloWordmark";
 
 const haloSocials = [
   { name: "Instagram", image: "/social/instagram.svg" },
@@ -14,13 +15,8 @@ export function HaloFooter() {
       <div className="mx-auto max-w-content px-4 py-10 sm:px-6">
         <div className="flex flex-col gap-8 sm:flex-row sm:justify-between">
           <div className="max-w-xs">
-            <div className="flex items-center gap-2">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-semibold text-white">
-                h
-              </span>
-              <span className="font-serif text-base text-ink">Halo</span>
-            </div>
-            <p className="mt-3 text-sm text-ink-soft">
+            <HaloWordmark size="full" />
+            <p className="mt-4 text-sm text-ink-soft">
               A simple local directory for Vadodara, strengthened by real experiences from people
               who have used these services.
             </p>
