@@ -14,8 +14,6 @@ export function ScenePoints() {
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
           <Reveal>
             <div className="relative">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/halo/matched/07_scene_halo_points/points_confetti.svg" alt="" className="pointer-events-none absolute -left-6 -top-6 h-16 w-16" aria-hidden />
               <div className="flex items-center gap-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/assets/halo/matched/07_scene_halo_points/points_medal.svg" alt="" className="h-12 w-12" aria-hidden />

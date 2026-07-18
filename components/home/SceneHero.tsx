@@ -11,11 +11,11 @@ const EXAMPLE_QUERIES = [
 const LOCALITIES = ["Gotri", "Akota", "Manjalpur", "Sama"];
 
 const TICKER_ITEMS = [
-  { icon: "🟣", text: "Live in Vadodara" },
-  { icon: "🩷", text: "AC technician in Gotri answered 18m ago" },
-  { icon: "🟠", text: "Maid request in Sama answered 32m ago" },
-  { icon: "🔵", text: "New contact passed on in Manjalpur 1h ago" },
-  { icon: "🟢", text: "Gym recommendation added in Akota 1h ago" },
+  { text: "Live in Vadodara" },
+  { text: "AC technician in Gotri answered 18m ago" },
+  { text: "Maid request in Sama answered 32m ago" },
+  { text: "New contact passed on in Manjalpur 1h ago" },
+  { text: "Gym recommendation added in Akota 1h ago" },
 ];
 
 export function SceneHero() {
@@ -41,13 +41,6 @@ export function SceneHero() {
         </div>
 
         <div className="relative mx-auto max-w-content px-4 pb-10 pt-14 sm:px-6 sm:pt-20">
-          <div className="absolute -top-2 left-1/2 hidden -translate-x-1/2 sm:block" aria-hidden>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/halo/matched/01_scene_hero/sun_doodle.svg" alt="" className="h-14 w-14 -translate-x-40" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/halo/matched/01_scene_hero/birds_doodle.svg" alt="" className="h-10 w-24 translate-x-24 -translate-y-10" />
-          </div>
-
           {/* Mobile: photo is a normal block above the text, never
               underneath it, so the search bar and buttons stay fully
               legible on plain paper. */}
@@ -107,7 +100,7 @@ export function SceneHero() {
               key={i}
               className="flex shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-border bg-surface px-3.5 py-1.5 text-xs text-ink-soft"
             >
-              <span aria-hidden>{t.icon}</span>
+              <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
               {t.text}
             </span>
           ))}

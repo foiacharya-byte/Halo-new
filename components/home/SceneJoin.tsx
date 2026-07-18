@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { submitEarlyAccessAction } from "@/app/actions";
+import { Avatar } from "./Avatar";
 import { Reveal } from "./Reveal";
 
-const AVATARS = Array.from({ length: 6 }, (_, i) => `join_avatar_0${i + 1}.svg`);
+const BUILDERS = ["Priya", "Manan", "Devika", "Ketan", "Meera", "Arjun"];
 
 // Inline capture bar, matching the reference structure directly (a single
 // WhatsApp-number-or-email field + button on the page itself, not a modal).
@@ -37,40 +38,33 @@ export function SceneJoin() {
   }
 
   return (
-    <section id="join" className="relative overflow-hidden py-16 sm:py-20">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/assets/halo/matched/08_scene_join/join_lilac_blob.svg"
-        alt=""
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 opacity-70"
-        aria-hidden
-      />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/assets/halo/matched/08_scene_join/join_orbit_line.svg" alt="" className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2" aria-hidden />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/assets/halo/matched/08_scene_join/join_sparkles.svg" alt="" className="pointer-events-none absolute right-[15%] top-10 h-12 w-12" aria-hidden />
+    <section id="join" className="py-16 sm:py-20">
+      <div className="relative mx-auto max-w-2xl overflow-hidden rounded-[32px] border border-border bg-lilac-soft px-6 py-14 text-center sm:px-12">
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{ background: "radial-gradient(120% 90% at 50% 0%, rgba(255,255,255,0.55), transparent 65%)" }}
+          aria-hidden
+        />
 
-      <div className="relative mx-auto max-w-2xl px-4 text-center sm:px-6">
         <Reveal>
-          <h2 className="font-serif text-2xl text-ink sm:text-[28px]">
+          <h2 className="relative font-serif text-2xl text-ink sm:text-[28px]">
             Let&rsquo;s build Vadodara&rsquo;s most trusted network. Together.
           </h2>
-          <p className="mt-2 text-sm text-ink-soft">Be an early builder. Be a Halo.</p>
-          <div className="mt-5 flex justify-center -space-x-2">
-            {AVATARS.map((a) => (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img key={a} src={`/assets/halo/matched/08_scene_join/${a}`} alt="" className="h-10 w-10 rounded-full border-2 border-paper" aria-hidden />
+          <p className="relative mt-2 text-sm text-ink-soft">Be an early builder. Be a Halo.</p>
+          <div className="relative mt-5 flex justify-center -space-x-2">
+            {BUILDERS.map((n) => (
+              <Avatar key={n} name={n} size={40} className="border-2 border-lilac-soft" />
             ))}
           </div>
         </Reveal>
 
         <Reveal delay={0.1}>
           {done ? (
-            <p className="mt-8 rounded-full bg-accent-soft px-6 py-3 text-sm font-medium text-accent">
+            <p className="relative mt-8 rounded-full bg-surface px-6 py-3 text-sm font-medium text-accent">
               You&rsquo;re on the list — we&rsquo;ll be in touch.
             </p>
           ) : (
-            <form onSubmit={submit} className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            <form onSubmit={submit} className="relative mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <input
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
@@ -86,11 +80,13 @@ export function SceneJoin() {
               </button>
             </form>
           )}
-          {error && <p className="mt-3 text-xs text-coral">{error}</p>}
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs text-ink-faint">
-            <span>✓ It&rsquo;s free</span>
-            <span>✓ Verified community</span>
-            <span>✓ Privacy protected</span>
+          {error && <p className="relative mt-3 text-xs text-coral">{error}</p>}
+          <div className="relative mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-ink-faint">
+            <span>It&rsquo;s free</span>
+            <span aria-hidden>·</span>
+            <span>Verified community</span>
+            <span aria-hidden>·</span>
+            <span>Privacy protected</span>
           </div>
         </Reveal>
       </div>

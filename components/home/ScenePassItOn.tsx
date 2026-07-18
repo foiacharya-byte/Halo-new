@@ -1,9 +1,10 @@
+import { Avatar } from "./Avatar";
 import { Reveal } from "./Reveal";
 
 const CONTACTS = [
-  { file: "contact_avatar_01.svg", name: "Electrician Rakesh", area: "Gotri" },
-  { file: "contact_avatar_02.svg", name: "AC repair Ketan", area: "Alkapuri" },
-  { file: "contact_avatar_03.svg", name: "Tiffin Aunty", area: "Sama" },
+  { name: "Electrician Rakesh", area: "Gotri" },
+  { name: "AC repair Ketan", area: "Alkapuri" },
+  { name: "Tiffin Aunty", area: "Sama" },
 ];
 
 const CHAT_LINES = [
@@ -22,16 +23,15 @@ export function ScenePassItOn() {
         </Reveal>
 
         <div className="mt-10 grid grid-cols-1 items-center gap-10 sm:grid-cols-2">
-          <Reveal className="flex justify-center gap-6">
+          <Reveal className="flex items-center justify-center gap-6">
             <div className="relative w-56 shrink-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/halo/matched/04_scene_pass_it_on/phone_frame.svg" alt="" className="w-full" aria-hidden />
               <div className="absolute inset-x-[19%] inset-y-[8%] bottom-[13%] flex flex-col justify-start gap-2 overflow-hidden pt-3">
                 <p className="text-[9px] font-semibold uppercase tracking-wide text-ink-faint">My trusted contacts</p>
                 {CONTACTS.map((c) => (
-                  <div key={c.file} className="flex items-center gap-2 rounded-lg bg-paper p-1.5">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`/assets/halo/matched/04_scene_pass_it_on/${c.file}`} alt="" className="h-7 w-7 shrink-0 rounded-full" aria-hidden />
+                  <div key={c.name} className="flex items-center gap-2 rounded-lg bg-paper p-1.5">
+                    <Avatar name={c.name} size={28} />
                     <div className="min-w-0">
                       <p className="truncate text-[10px] font-medium text-ink">{c.name}</p>
                       <p className="truncate text-[9px] text-ink-faint">{c.area}</p>
@@ -41,16 +41,18 @@ export function ScenePassItOn() {
               </div>
             </div>
 
-            <div className="relative hidden w-48 shrink-0 sm:block">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/halo/matched/04_scene_pass_it_on/whatsapp_group_shell.svg" alt="" className="w-full" aria-hidden />
-              <div className="absolute inset-x-3 top-10 flex flex-col gap-2">
+            <div className="hidden w-48 shrink-0 overflow-hidden rounded-[28px] border border-border bg-paper shadow-card sm:block">
+              <div className="flex items-center gap-2 bg-accent px-3 py-2.5">
+                <Avatar name="Trusted Circle" size={24} />
+                <p className="text-[11px] font-medium text-white">Trusted Circle</p>
+              </div>
+              <div className="flex flex-col gap-2 p-3">
                 {CHAT_LINES.map((l, i) => (
                   <p
                     key={i}
                     className={
-                      "w-fit max-w-[85%] rounded-full px-2.5 py-1.5 text-[10px] leading-snug " +
-                      (l.mine ? "ml-auto bg-accent-soft text-ink" : "bg-paper text-ink-soft")
+                      "w-fit max-w-[85%] rounded-2xl px-2.5 py-1.5 text-[10px] leading-snug " +
+                      (l.mine ? "ml-auto bg-accent-soft text-ink" : "border border-border bg-surface text-ink-soft")
                     }
                   >
                     {l.text}

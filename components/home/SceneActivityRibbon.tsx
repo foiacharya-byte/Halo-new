@@ -1,9 +1,11 @@
+import { Avatar } from "./Avatar";
+
 const ACTIVITY = [
-  { avatar: "activity_avatar_01.svg", text: "Meera passed on AC technician in Gotri", time: "5m ago" },
-  { avatar: "activity_avatar_02.svg", text: "Yash posted a request for maid in Sama", time: "12m ago" },
-  { avatar: "activity_avatar_03.svg", text: "Dhruv confirmed contact for laptop repair in Akota", time: "18m ago" },
-  { avatar: "activity_avatar_04.svg", text: "Kavyo earned 3 Halo Points for a verified contact", time: "27m ago" },
-  { avatar: "activity_avatar_05.svg", text: "Nilesh's request for gym in Akota was answered", time: "32m ago" },
+  { name: "Meera", text: "Meera passed on AC technician in Gotri", time: "5m ago" },
+  { name: "Yash", text: "Yash posted a request for maid in Sama", time: "12m ago" },
+  { name: "Dhruv", text: "Dhruv confirmed contact for laptop repair in Akota", time: "18m ago" },
+  { name: "Kavyo", text: "Kavyo earned 3 Halo Points for a verified contact", time: "27m ago" },
+  { name: "Nilesh", text: "Nilesh's request for gym in Akota was answered", time: "32m ago" },
 ];
 
 // Illustrative preview — no live activity feed exists yet. Real area names
@@ -20,8 +22,7 @@ export function SceneActivityRibbon() {
       <div className="flex w-max animate-[marquee_40s_linear_infinite] gap-10 px-4 motion-reduce:animate-none sm:px-6">
         {[...ACTIVITY, ...ACTIVITY].map((a, i) => (
           <div key={i} className="flex shrink-0 items-center gap-2.5 whitespace-nowrap">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`/assets/halo/matched/09_scene_footer/${a.avatar}`} alt="" className="h-8 w-8 rounded-full border-2 border-white/40" aria-hidden />
+            <Avatar name={a.name} size={32} className="border-2 border-white/40" />
             <span className="text-sm text-white">
               {a.text} <span className="text-white/60">· {a.time}</span>
             </span>

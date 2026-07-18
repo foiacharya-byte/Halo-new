@@ -1,9 +1,9 @@
 import { Reveal } from "./Reveal";
 
-const BUBBLES: { file: string; text: string; time: string; className: string }[] = [
-  { file: "message_bubble_01.svg", text: "Any good AC technician?", time: "10:32 AM", className: "left-0 top-0" },
-  { file: "message_bubble_02.svg", text: "Does anyone know a reliable maid?", time: "11:05 AM", className: "left-8 top-24 sm:left-16" },
-  { file: "message_bubble_03.svg", text: "Need a gym in Akota under ₹20k", time: "11:19 AM", className: "left-2 top-48 sm:left-4" },
+const BUBBLES: { text: string; time: string; className: string }[] = [
+  { text: "Any good AC technician?", time: "10:32 AM", className: "left-0 top-0" },
+  { text: "Does anyone know a reliable maid?", time: "11:05 AM", className: "left-8 top-24 sm:left-16" },
+  { text: "Need a gym in Akota under ₹20k", time: "11:19 AM", className: "left-2 top-48 sm:left-4" },
 ];
 
 export function SceneReality() {
@@ -26,26 +26,18 @@ export function SceneReality() {
 
         <div className="relative h-[380px] sm:h-[420px]">
           {BUBBLES.map((b) => (
-            <div key={b.file} className={`absolute w-60 ${b.className}`}>
-              <div className="relative">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`/assets/halo/matched/02_scene_reality/${b.file}`} alt="" className="w-full" aria-hidden />
-                {/* The bubble SVG bakes in its own placeholder text-line
-                    bars; an opaque patch matching the bubble's white
-                    interior hides them so only the real coded text shows. */}
-                <p className="absolute inset-x-[6%] inset-y-[13%] bottom-[24%] flex items-center rounded bg-white px-4 text-[13px] leading-snug text-ink">
-                  {b.text}
-                </p>
-              </div>
-              <span className="mt-1 block text-right text-[11px] text-ink-faint">{b.time}</span>
+            <div key={b.text} className={`absolute w-60 ${b.className}`}>
+              <p className="relative w-fit max-w-full rounded-2xl rounded-bl-md border border-border bg-surface px-4 py-3 text-[13px] leading-snug text-ink shadow-card">
+                {b.text}
+              </p>
+              <span className="mt-1 block text-[11px] text-ink-faint">{b.time}</span>
             </div>
           ))}
 
           {/* The "answer" — visually distinct from the scattered questions
-              above it, coded (no matching SVG variant exists for this one). */}
+              above it. */}
           <div className="absolute left-16 top-[280px] w-60 sm:left-24">
-            <p className="flex w-fit items-center gap-2 rounded-full bg-accent px-4 py-2.5 text-[13px] text-white shadow-card">
-              <span aria-hidden>📱</span>
+            <p className="w-fit max-w-full rounded-2xl rounded-br-md bg-accent px-4 py-3 text-[13px] text-white shadow-card">
               I have one number, I&rsquo;ll share.
             </p>
             <span className="mt-1 block text-[11px] text-ink-faint">11:21 AM</span>

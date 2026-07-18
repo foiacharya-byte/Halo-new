@@ -1,3 +1,4 @@
+import { Avatar } from "./Avatar";
 import { Reveal } from "./Reveal";
 
 const EVIDENCE = [
@@ -34,8 +35,7 @@ export function SceneTrust() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/assets/halo/matched/05_scene_trust/trust_card_back_02.svg" alt="" className="pointer-events-none absolute -right-3 -top-3 -z-10 h-full w-full opacity-40" aria-hidden />
               <div className="flex items-center gap-3">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/assets/halo/matched/05_scene_trust/provider_portrait_placeholder.svg" alt="" className="h-12 w-12 shrink-0 rounded-full" aria-hidden />
+                <Avatar name="Rakesh Refrigeration" size={48} />
                 <div>
                   <p className="font-medium text-ink">Rakesh Refrigeration</p>
                   <p className="text-xs text-ink-faint">AC repair · Gotri</p>

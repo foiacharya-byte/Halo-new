@@ -1,3 +1,4 @@
+import { Avatar } from "./Avatar";
 import { Reveal } from "./Reveal";
 
 // Mirrors the real /search behaviour (strong-result vs. no-result — see
@@ -14,8 +15,7 @@ export function SceneSearchFirst() {
               <h3 className="font-serif text-xl text-ink">Search first. Get answers instantly when we have them.</h3>
               <div className="mt-5 space-y-3">
                 <div className="flex items-center gap-3 rounded-lg border border-border bg-paper p-3">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/assets/halo/matched/03_scene_search_or_request/result_avatar_01.svg" alt="" className="h-10 w-10 shrink-0 rounded-full" aria-hidden />
+                  <Avatar name="AC repair Gotri" size={40} />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium text-ink">AC repair · Gotri</p>
                     <p className="truncate text-xs text-ink-faint">Category and area confirmed · updated recently</p>
@@ -24,8 +24,7 @@ export function SceneSearchFirst() {
                   <img src="/assets/halo/matched/03_scene_search_or_request/search_success_check.svg" alt="" className="h-6 w-6 shrink-0" aria-hidden />
                 </div>
                 <div className="flex items-center gap-3 rounded-lg border border-border bg-paper p-3">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/assets/halo/matched/03_scene_search_or_request/result_avatar_02.svg" alt="" className="h-10 w-10 shrink-0 rounded-full" aria-hidden />
+                  <Avatar name="Tailor Karelibaug" size={40} />
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-medium text-ink">Tailor · Karelibaug</p>
                     <p className="truncate text-xs text-ink-faint">Community-vouched · used within 3 months</p>
@@ -43,8 +42,6 @@ export function SceneSearchFirst() {
 
           <Reveal delay={0.1}>
             <div className="relative h-full overflow-hidden rounded-halo border border-coral/30 bg-coral-soft p-6 sm:p-8">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/assets/halo/matched/03_scene_search_or_request/coral_sparkles.svg" alt="" className="absolute right-4 top-4 h-10 w-10" aria-hidden />
               <div className="flex items-start gap-3">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/assets/halo/matched/03_scene_search_or_request/no_result_question.svg" alt="" className="h-12 w-12 shrink-0" aria-hidden />
@@ -55,8 +52,9 @@ export function SceneSearchFirst() {
                 Vadodara may pass on a number they&rsquo;d personally vouch for.
               </p>
               <div className="mt-5 flex items-center gap-3 rounded-lg border border-dashed border-coral/40 bg-surface/70 p-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/assets/halo/matched/03_scene_search_or_request/request_avatar_stack.svg" alt="" className="h-9 shrink-0" aria-hidden />
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-coral-soft font-serif text-lg text-coral" aria-hidden>
+                  &ldquo;
+                </span>
                 <div>
                   <p className="text-sm text-ink">&ldquo;Classical music teacher for kids in Manjalpur&rdquo;</p>
                   <p className="mt-1 text-xs text-ink-faint">We don&rsquo;t have a strong enough answer yet.</p>
