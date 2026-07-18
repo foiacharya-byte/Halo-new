@@ -1,11 +1,11 @@
-// The Halo wordmark. Real logo file, extracted from the product owner's
-// own reference build (public/assets/halo/vadodara/supplied/logo-ae-halo.png
-// — see ASSET_SOURCES.md). Two sizes: "full" for hero/footer brand moments,
-// "compact" for the header.
+// The Halo wordmark. No logo image was supplied for the approved light
+// design (the matched-assets pack is explicit that text stays coded, not
+// baked into images), so this is a coded text wordmark, not a placeholder
+// standing in for a missing file.
 
 const SIZES = {
-  full: "h-16 sm:h-20",
-  compact: "h-9 sm:h-10",
+  full: "text-4xl sm:text-5xl",
+  compact: "text-xl",
 };
 
 export function HaloWordmark({
@@ -16,11 +16,8 @@ export function HaloWordmark({
   className?: string;
 }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src="/assets/halo/vadodara/supplied/logo-ae-halo.png"
-      alt="ae halo"
-      className={`${SIZES[size]} w-auto ${className ?? ""}`}
-    />
+    <span className={`font-serif font-medium tracking-tight text-ink ${SIZES[size]} ${className ?? ""}`}>
+      halo<span className="text-coral">!</span>
+    </span>
   );
 }

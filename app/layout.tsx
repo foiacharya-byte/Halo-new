@@ -1,29 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Bodoni_Moda, Playfair_Display, DM_Sans, Mukta_Vaani } from "next/font/google";
+import { Fraunces, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { HaloHeader } from "@/components/HaloHeader";
 import { HaloFooter } from "@/components/HaloFooter";
 import { MotionProvider } from "@/components/home/MotionProvider";
 import { WaitlistProvider } from "@/components/home/WaitlistProvider";
 
-// Dark cinematic "ae halo" type system, matching the product owner's own
-// reference build (see docs/HALO_ASSET_AUDIT.md and
-// public/assets/halo/vadodara/ASSET_SOURCES.md). Bodoni Moda carries major
-// display statements; Playfair Display carries secondary emphasis/quotes;
-// DM Sans is the interface/body sans; Mukta Vaani renders Gujarati text.
-const bodoniModa = Bodoni_Moda({
-  subsets: ["latin"],
-  variable: "--font-display",
-  style: ["normal", "italic"],
-  weight: ["400", "500"],
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
+// Type system for the approved light scroll-story design (reverted from an
+// unapproved dark exploration — see public/assets/halo/matched/README_FIRST.md).
+// Fraunces carries headlines; DM Sans carries interface/body text.
+const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-serif",
   style: ["normal", "italic"],
-  weight: ["400", "500", "600"],
+  axes: ["opsz", "SOFT", "WONK"],
   display: "swap",
 });
 
@@ -34,34 +24,24 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const muktaVaani = Mukta_Vaani({
-  subsets: ["gujarati", "latin"],
-  variable: "--font-gu",
-  weight: ["400", "500", "600"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   title: {
-    default: "ae halo! — Vadodara deserves a place of its own",
-    template: "%s · ae halo!",
+    default: "Halo — What do you need in Vadodara?",
+    template: "%s · Halo",
   },
   description:
-    "For what Vadodara trusts, loves, recommends, returns to, creates and celebrates. Built with Barodians, shaped by trust.",
+    "Ask. Search. Get trusted answers from real people in Vadodara — verified, not scraped.",
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0C0804",
+  themeColor: "#F5F1E8",
   width: "device-width",
   initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${bodoniModa.variable} ${playfair.variable} ${dmSans.variable} ${muktaVaani.variable}`}
-    >
+    <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
       <body className="min-h-screen bg-paper text-ink antialiased">
         <a
           href="#main"

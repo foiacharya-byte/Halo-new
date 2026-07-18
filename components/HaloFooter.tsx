@@ -1,87 +1,81 @@
+import Link from "next/link";
 import { HaloWordmark } from "./HaloWordmark";
 import { WaitlistTrigger } from "./home/WaitlistProvider";
 
-// Real contact details from the product owner's reference build
-// (halovadodara@gmail.com, instagram.com/halovadodara) — not invented.
-
 const FOOTER_LINKS = [
-  { href: "#why", label: "Why Halo" },
-  { href: "#work", label: "For Business" },
-  { href: "#vision", label: "The Mission" },
-  { href: "#gallery", label: "Vadodara" },
+  { href: "/search", label: "Browse the directory" },
+  { href: "/add", label: "Add a trusted number" },
+  { href: "/business", label: "For businesses" },
+  { href: "/submissions", label: "Your submissions" },
+  { href: "/guidelines", label: "Contribution guidelines" },
+  { href: "/privacy", label: "Privacy & data rights" },
 ];
 
 export function HaloFooter() {
   return (
-    <footer id="footer" className="relative overflow-hidden bg-paper-deep/80 py-16 sm:py-20">
-      <div
+    <footer className="relative mt-8 border-t border-border bg-paper-deep/60 pt-10">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/assets/halo/matched/09_scene_footer/footer_wave_line.svg"
+        alt=""
         aria-hidden
-        className="pointer-events-none absolute inset-x-[clamp(24px,5vw,80px)] top-0 h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent"
+        className="pointer-events-none absolute -top-3 left-0 h-6 w-full opacity-60"
       />
-      <div className="relative mx-auto max-w-content px-4 sm:px-6">
-        <p className="font-gu mb-8 text-center text-[clamp(32px,6vw,64px)] font-medium leading-none text-accent opacity-90 sm:mb-12">
-          વડોદરા, હવે પોતાનું.
-        </p>
-
-        <div className="mx-auto mb-10 h-px max-w-content bg-ink/10 sm:mb-14" />
-
-        <div className="mx-auto max-w-lg text-center">
-          <HaloWordmark size="full" className="mx-auto" />
-          <p className="mt-5 font-serif text-lg italic text-ink-soft sm:text-xl">
-            Built for Vadodara, with Vadodara.
-          </p>
-          <p className="mt-2 text-[10.5px] font-semibold uppercase tracking-[0.28em] text-accent">
-            Homegrown
-          </p>
-          <div className="mt-7 flex items-center justify-center gap-3.5">
-            <a
-              href="mailto:halovadodara@gmail.com"
-              aria-label="Email halovadodara@gmail.com"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-accent text-white transition-transform hover:-translate-y-0.5"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <path d="m22 6-10 7L2 6" />
-              </svg>
-            </a>
-            <a
-              href="https://www.instagram.com/halovadodara/"
-              target="_blank"
-              rel="noopener"
-              aria-label="Instagram"
-              className="flex h-11 w-11 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
-              style={{ background: "linear-gradient(45deg,#F9A03F 0%,#DB3D6E 48%,#8B3AB0 100%)" }}
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <rect x="2" y="2" width="20" height="20" rx="5" />
-                <circle cx="12" cy="12" r="4" />
-                <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
-              </svg>
-            </a>
+      <div className="mx-auto max-w-content px-4 pb-10 sm:px-6">
+        <div className="flex flex-col gap-8 sm:flex-row sm:justify-between">
+          <div className="max-w-xs">
+            <HaloWordmark size="full" />
+            <p className="mt-3 text-sm text-ink-soft">
+              A simple local directory for Vadodara, strengthened by real experiences from people who
+              have used these services.
+            </p>
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href="mailto:halovadodara@gmail.com"
+                aria-label="Email halovadodara@gmail.com"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-accent text-white transition-transform hover:-translate-y-0.5"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m22 6-10 7L2 6" />
+                </svg>
+              </a>
+              <a
+                href="https://www.instagram.com/halovadodara/"
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-white transition-transform hover:-translate-y-0.5"
+                style={{ background: "linear-gradient(45deg,#F9A03F 0%,#DB3D6E 48%,#8B3AB0 100%)" }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+                  <rect x="2" y="2" width="20" height="20" rx="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
+                </svg>
+              </a>
+            </div>
           </div>
+
+          <nav className="grid grid-cols-2 gap-x-10 gap-y-2 text-sm" aria-label="Footer">
+            {FOOTER_LINKS.map((l) => (
+              <Link key={l.href} href={l.href} className="text-ink-soft transition-colors hover:text-ink">
+                {l.label}
+              </Link>
+            ))}
+            <WaitlistTrigger className="text-left font-medium text-accent transition-colors hover:text-accent-ink">
+              Join Halo →
+            </WaitlistTrigger>
+          </nav>
         </div>
 
-        <nav
-          className="mx-auto mt-12 flex max-w-2xl flex-wrap items-center justify-center gap-x-8 gap-y-3 sm:mt-16"
-          aria-label="Footer"
-        >
-          {FOOTER_LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm text-ink-soft transition-colors hover:text-ink">
-              {l.label}
-            </a>
-          ))}
-          <WaitlistTrigger className="text-sm font-medium text-accent transition-colors hover:text-ink">
-            Join Waitlist →
-          </WaitlistTrigger>
-        </nav>
-
-        <div className="mx-auto mt-12 h-px max-w-content bg-ink/10 sm:mt-16" />
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center">
-          <p className="text-[13px] tracking-wide text-ink-soft">
-            Made in Vadodara · {new Date().getFullYear()}
+        <div className="mt-8 border-t border-border pt-6 text-xs text-ink-faint">
+          <p>
+            Halo is a directory. It connects people with local services; it does not transact,
+            deliver, or guarantee outcomes. Listings show what was independently verified and what
+            was not.
           </p>
-          <span className="text-ink-faint">·</span>
-          <p className="font-serif text-[13px] italic text-ink-faint">Vadodara deserves a place of its own.</p>
+          <p className="mt-2">© {new Date().getFullYear()} Halo · Vadodara</p>
         </div>
       </div>
     </footer>
