@@ -13,10 +13,22 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+# Windows defaults to cp1252 for file IO + console; force UTF-8 so reading the
+# (UTF-8) datasets and printing emoji never crashes. PYTHONUTF8 propagates to
+# every child stage too.
+os.environ.setdefault("PYTHONUTF8", "1")
+os.environ.setdefault("PYTHONIOENCODING", "utf-8")
+for _stream in (sys.stdout, sys.stderr):
+    try:
+        _stream.reconfigure(encoding="utf-8")  # type: ignore[attr-defined]
+    except Exception:  # noqa: BLE001
+        pass
 
 ROOT = Path(__file__).resolve().parents[1]
 PROC = ROOT / "data" / "processed"
@@ -51,7 +63,7 @@ CSV_EXPORTS = {
 
 def run(label: str, script: str, extra: list[str]) -> bool:
     print(f"\n▶ {label}")
-    res = subprocess.run([sys.executable, str(ROOT / script), *extra])
+    res = subprocess.run([sys.executable, str(ROOT / script), *extra], env=os.environ)
     ok = res.returncode == 0
     print(("✅" if ok else "❌") + f" {label}")
     return ok
@@ -80,7 +92,8 @@ def export_csvs() -> list[str]:
 def dataset_counts() -> dict[str, int]:
     counts = {}
     for f in sorted(PROC.glob("*.validated.json")):
-        counts[f.stem.replace(".validated", "")] = len(json.loads(f.read_text()))
+        counts[f.stem.replace(".validated", "")] = len(
+            json.loads(f.read_text(encoding="utf-8")))
     return counts
 
 

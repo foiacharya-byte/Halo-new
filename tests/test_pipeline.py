@@ -126,12 +126,12 @@ class TestOsmResilience(unittest.TestCase):
         from scripts.extract import services_osm as osm
         from halo import config
         self.osm = osm
-        self._orig = (osm.geocode, osm._overpass, config.network_allowed)
+        self._orig = (osm.geocode, osm._overpass_around, config.network_allowed)
         osm.config.network_allowed = lambda: True   # pretend we're online
 
     def tearDown(self):
         from halo import config
-        self.osm.geocode, self.osm._overpass, config.network_allowed = self._orig
+        self.osm.geocode, self.osm._overpass_around, config.network_allowed = self._orig
 
     def _ledger_status(self):
         from halo import provenance
@@ -141,7 +141,7 @@ class TestOsmResilience(unittest.TestCase):
         osm = self.osm
         osm.geocode = lambda loc: (((22.3, 73.2), "ok") if loc == "Karelibaug"
                                    else (None, "empty"))
-        osm._overpass = lambda loc, lat, lon: ([{
+        osm._overpass_around = lambda loc, lat, lon: ([{
             "locality": loc, "name": "Real Shop", "category": "food",
             "coordinates": {"lat": lat, "lon": lon},
             "source_link": "https://www.openstreetmap.org/node/1", "is_demo": False,

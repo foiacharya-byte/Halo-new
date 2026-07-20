@@ -21,6 +21,9 @@
       "https://overpass.openstreetmap.ru/api/interpreter"
     ],
     "radius_m": 1500,
+    "city_query": "Vadodara, Gujarat, India",
+    "overpass_timeout_seconds": 180,
+    "deep_city_scrape": true,
     "nominatim_min_delay_seconds": 1.0,
     "overpass_min_delay_seconds": 3.0,
     "self_host_note": "For city-scale nightly runs, self-host Overpass (docker: wiktorn/overpass-api) and Nominatim, then point overpass_url/nominatim_url at localhost. This removes rate limits and is the polite way to pull thousands of POIs."

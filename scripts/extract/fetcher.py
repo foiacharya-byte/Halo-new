@@ -126,6 +126,9 @@ class Fetcher:
         if min_delay:
             delay = max(delay, float(min_delay))
 
+        # 429 = rate-limited (back off, will re-try). 5xx = server overloaded
+        # (very common on public Overpass) — retry with backoff, don't ban the host.
+        transient = {429, 500, 502, 503, 504}
         for attempt in range(self.max_retries):
             self._throttle(host, delay)
             req = urllib.request.Request(url, headers={"User-Agent": self.ua})
@@ -134,16 +137,18 @@ class Fetcher:
                     body = resp.read().decode("utf-8", errors="replace")
                     status = resp.status
             except urllib.error.HTTPError as e:  # noqa: PERF203
+                if e.code in transient and attempt < self.max_retries - 1:
+                    time.sleep(self.backoff_base * (2 ** attempt))  # 4s, 8s, 16s
+                    continue
                 if e.code in (403, 429):
-                    self._blocked_hosts.add(host)     # stop hammering
-                    if e.code == 429 and attempt < self.max_retries - 1:
-                        time.sleep(self.backoff_base * (2 ** attempt))
-                        self._blocked_hosts.discard(host)
-                        continue
-                    return FetchResult(ok=False, status=e.code, blocked=True,
-                                       reason=f"http_{e.code}")
-                return FetchResult(ok=False, status=e.code, reason=f"http_{e.code}")
+                    self._blocked_hosts.add(host)     # rate/auth block -> stop hammering
+                return FetchResult(ok=False, status=e.code,
+                                   blocked=e.code in (403, 429), reason=f"http_{e.code}")
             except Exception as exc:  # noqa: BLE001
+                # timeouts/connection resets are transient too -> retry a couple times
+                if attempt < self.max_retries - 1:
+                    time.sleep(self.backoff_base * (2 ** attempt))
+                    continue
                 return FetchResult(ok=False, reason=f"error:{exc}")
 
             if any(m in body.lower()[:4000] for m in CAPTCHA_MARKERS):

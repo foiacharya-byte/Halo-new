@@ -219,6 +219,20 @@ python3 scripts/query/ask.py "closest areas to Manjalpur"
 Answers label whether distances came from real OSM coords or approximate demo
 centroids, so nothing looks more precise than it is.
 
+## 8d. Deep city-wide scraping (OSM)
+
+`osm.deep_city_scrape: true` makes the services extractor pull the **whole city**,
+not 90 flaky per-locality calls:
+1. geocode Vadodara once → bounding box;
+2. query Overpass over that bbox in ~9 category chunks (shop, food, health,
+   finance/education, office, craft, healthcare, tourism, leisure), pulling
+   **nodes + ways + relations** (many shops are polygons);
+3. assign each POI to its **nearest geocoded locality**.
+This returns thousands of real businesses in a handful of requests. Overpass
+timeout is `osm.overpass_timeout_seconds` (180s), transient `5xx`/timeouts are
+retried with backoff, and mirrors are tried in turn. Set `deep_city_scrape:false`
+to use the per-locality fallback.
+
 ## 9. Run the services step
 
 ```bash

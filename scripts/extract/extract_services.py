@@ -102,8 +102,13 @@ def main() -> None:
 
     if args.live:
         if "osm" in want:
-            from scripts.extract.services_osm import fetch_localities
-            raw.extend(fetch_localities(localities))
+            from halo import config
+            if config.get("osm", "deep_city_scrape", default=True):
+                from scripts.extract.services_osm import fetch_city_services
+                raw.extend(fetch_city_services(localities))   # whole-city, deep
+            else:
+                from scripts.extract.services_osm import fetch_localities
+                raw.extend(fetch_localities(localities))
         if "directories" in want:
             from scripts.extract.directory_client import fetch_directories
             raw.extend(fetch_directories(localities))
