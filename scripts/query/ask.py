@@ -144,25 +144,18 @@ def answer_news(q: str, toks: list[str], idx: dict) -> str | None:
 
 def summarise_service(doc: dict) -> str:
     demo = " _(demo data — not a real listing)_" if doc.get("is_demo") else ""
-    head = f"**{doc['name']}** — {doc.get('category','service')} in {doc.get('locality','')}{demo}"
+    corr = " ✓ 2+ sources" if doc.get("corroborated") else ""
+    head = f"**{doc['name']}** — {doc.get('category','service')} in {doc.get('locality','')}{corr}{demo}"
     parts = []
-    if doc.get("description_summary"):
+    # Halo's OWN synthesised summary (built from >=1 source), leads the entry
+    if doc.get("halo_summary"):
+        parts.append(doc["halo_summary"])
+    elif doc.get("description_summary"):
         parts.append(doc["description_summary"])
-    if doc.get("halo_rating") is not None:
-        star = " · ⭐ Halo 5★" if doc.get("halo_five_star") else ""
-        parts.append(f"Halo rating **{doc['halo_rating']}/5**{star} "
-                     f"(from {doc.get('rating_count')} reviews, ext {doc.get('rating_score')})")
-    if doc.get("address"):
-        parts.append(f"📍 {doc['address']}")
     if doc.get("opening_hours"):
         parts.append(f"🕑 {doc['opening_hours']}")
     if doc.get("website"):
         parts.append(f"🌐 {doc['website']}")
-    attrs = doc.get("attributes", {})
-    extra = ", ".join(f"{k}: {v}" for k, v in attrs.items()
-                      if k in ("cuisine", "brand", "operator", "wheelchair"))
-    if extra:
-        parts.append(extra)
     if doc.get("permanently_closed"):
         parts.append("⚠️ reported permanently closed on a source")
     parts.append("contact withheld until the owner claims & consents (DPDP)")

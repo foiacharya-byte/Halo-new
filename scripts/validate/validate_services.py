@@ -46,6 +46,51 @@ FIVE_STAR_MIN_RATING = 4.8
 FIVE_STAR_MIN_REVIEWS = 50
 
 
+CATEGORY_WORD = {
+    "food": "eatery", "restaurant": "restaurant", "cafe": "café", "health": "healthcare provider",
+    "hospital": "hospital", "clinic": "clinic", "pharmacy": "pharmacy", "electrician": "electrical service",
+    "grocery": "grocery store", "salon": "salon", "auto": "automotive service", "finance": "bank/ATM",
+    "education": "educational institution", "hospitality": "hotel", "temple": "temple",
+    "office": "office", "hardware": "hardware store", "electronics": "electronics store",
+    "museum": "museum", "heritage": "heritage site", "park": "park", "fort": "fort",
+}
+SOURCE_NAME = {"src.osm.overpass": "OpenStreetMap", "src.wikidata": "Wikidata",
+               "src.seed.curated": "curated seed"}
+
+
+def _human_sources(source_ids: list[str], platforms: list[str]) -> str:
+    names = []
+    for s in source_ids:
+        names.append(SOURCE_NAME.get(s, s.replace("src.", "").split(".")[0].title()))
+    names = sorted(set(names))
+    if len(names) >= 2:
+        return ", ".join(names[:-1]) + " and " + names[-1]
+    return names[0] if names else "an open source"
+
+
+def build_summary(r: dict) -> str:
+    """Halo's OWN sentence, synthesised from the merged fields (not copied verbatim)."""
+    name = r["name"]
+    cat = CATEGORY_WORD.get(r.get("category", ""), (r.get("category") or "place").replace("_", " "))
+    loc = r.get("locality") or "Vadodara"
+    art = "an" if cat[:1].lower() in "aeiou" else "a"
+    s = f"{name} is {art} {cat} in {loc}."
+    desc = (r.get("description_summary") or "").strip()
+    if desc and desc.lower() not in name.lower():
+        s += f" {desc[0].upper() + desc[1:]}."
+    if r.get("opening_hours"):
+        s += f" Open {r['opening_hours']}."
+    if r.get("halo_rating") is not None:
+        s += f" Halo rates it {r['halo_rating']}/5"
+        s += " (a top-rated pick)." if r.get("halo_five_star") else "."
+    if r.get("website"):
+        s += f" More at {r['website']}."
+    n_src = len(set(r.get("source_ids", [])))
+    s += (f" Details combined from {_human_sources(r.get('source_ids', []), r.get('source_platforms', []))}"
+          + (" (2+ sources agree)." if n_src >= 2 else "."))
+    return s
+
+
 def key_for(r: dict) -> str:
     pk = phone_key(r["phone_numbers"][0]) if r.get("phone_numbers") else None
     return f"ph:{pk}" if pk else f"nm:{norm_name(r['name'])}|{norm_name(r.get('locality',''))}"
@@ -70,6 +115,15 @@ def merge_pair(a: dict, b: dict) -> dict:
     # keep the freshest activity (smallest days-since)
     da, db = a.get("_last_review_days"), b.get("_last_review_days")
     a["_last_review_days"] = min([x for x in (da, db) if x is not None], default=None)
+    # combine the DETAIL from both sources (prefer whichever has it / the longer text)
+    for f in ("website", "opening_hours", "address"):
+        if not a.get(f) and b.get(f):
+            a[f] = b[f]
+    if len(b.get("description_summary", "")) > len(a.get("description_summary", "")):
+        a["description_summary"] = b["description_summary"]
+    a["attributes"] = {**b.get("attributes", {}), **a.get("attributes", {})}
+    if not a.get("coordinates") and b.get("coordinates"):
+        a["coordinates"] = b["coordinates"]
     return a
 
 
@@ -119,10 +173,16 @@ def compute_halo(r: dict) -> None:
 def main() -> None:
     records = json.loads(SERVICES.read_text(encoding="utf-8"))
     deduped, merged = dedupe(records)
+    multi = 0
     for r in deduped:
         compute_halo(r)
         r["needs_review"] = True
         r["last_updated"] = now_iso()
+        n_src = len(set(r.get("source_ids", [])))
+        r["corroborated"] = n_src >= 2          # 2+ independent sources agree
+        r["confidence"] = round(min(0.9, 0.5 + 0.2 * n_src), 2)
+        r["halo_summary"] = build_summary(r)    # Halo's OWN sentence from the sources
+        multi += r["corroborated"]
     # rank best-first for the report
     deduped.sort(key=lambda r: (r.get("halo_rating") or -1), reverse=True)
     for r in deduped:
@@ -133,6 +193,7 @@ def main() -> None:
     lines = ["# Services — validation report", f"_Generated {now_iso()}_", "",
              f"- raw listings: **{len(records)}**",
              f"- after phone+name dedupe: **{len(deduped)}** ({merged} merged)",
+             f"- corroborated by 2+ sources: **{multi}**",
              f"- halo 5★ flagged: **{sum(1 for r in deduped if r['halo_five_star'])}**",
              "", "## Ranked (demo data — not real listings)",
              "| name | locality | cat | ext★ | reviews | halo★ | 5★ | closed | demo |",
