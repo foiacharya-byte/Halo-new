@@ -19,11 +19,19 @@ each feed URL in halo_config.json is current for the publisher's Vadodara sectio
 from __future__ import annotations
 
 import json
+import re
 import sys
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
+from html import unescape
 from pathlib import Path
+
+
+def _clean(text: str) -> str:
+    """Strip HTML tags/entities that RSS descriptions often embed (TOI etc.)."""
+    text = re.sub(r"<[^>]+>", " ", text or "")
+    return re.sub(r"\s+", " ", unescape(text)).strip()
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
@@ -69,8 +77,8 @@ def _parse_rss(xml_text: str, source_id: str, lo: str, hi: str) -> list[dict]:
         if not _in_window(date, lo, hi):
             continue
         out.append({
-            "title": (get("title") or "").strip(),
-            "summary": (get("description") or get("summary") or "").strip()[:500],
+            "title": _clean(get("title")),
+            "summary": _clean(get("description") or get("summary"))[:500],
             "date": date, "link": link.strip(), "source_id": source_id,
             "source_platform": source_id, "is_demo": False,
         })
@@ -106,6 +114,16 @@ def fetch_news() -> list[dict]:
     lo = config.get("news", "date_from", default="2025-01-01")
     hi = config.get("news", "date_to", default="2026-12-31")
     feeds = config.get("news", "feeds", default=[])
+    require_rel = bool(config.get("news", "require_relevance", default=True))
+    rel_terms = [t.lower() for t in config.get("news", "relevance_terms",
+                                               default=["vadodara", "baroda"])]
+
+    def relevant(item: dict) -> bool:
+        if not require_rel:
+            return True
+        blob = f"{item.get('title','')} {item.get('summary','')}".lower()
+        return any(t in blob for t in rel_terms)
+
     fetcher = Fetcher()
     out: list[dict] = []
     for feed in feeds:
@@ -121,6 +139,9 @@ def fetch_news() -> list[dict]:
             items = _parse_json(res.text, sid, lo, hi)
         else:  # rss/atom (and html-as-feed best effort)
             items = _parse_rss(res.text, sid, lo, hi)
-        provenance.record(sid, "usable", f"{len(items)} items in {lo}..{hi}", records=len(items))
-        out.extend(items)
+        kept = [it for it in items if relevant(it)]
+        provenance.record(sid, "usable",
+                          f"{len(kept)}/{len(items)} Vadodara-relevant items in {lo}..{hi}",
+                          records=len(kept))
+        out.extend(kept)
     return out

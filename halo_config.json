@@ -52,10 +52,12 @@
     "_note": "Prefer RSS/JSON. HTML crawling only where robots.txt allows (allow_html_crawl is a HINT; the fetcher still checks robots at run time).",
     "date_from": "2025-01-01",
     "date_to": "2026-12-31",
+    "require_relevance": true,
+    "relevance_terms": ["vadodara", "baroda"],
     "feeds": [
-      {"source_id": "src.toi.vadodara", "url": "https://timesofindia.indiatimes.com/rssfeeds/-2128838597.cms", "type": "rss", "allow_html_crawl": false},
-      {"source_id": "src.indianexpress.gujarat", "url": "https://indianexpress.com/section/cities/ahmedabad/feed/", "type": "rss", "allow_html_crawl": false},
-      {"source_id": "src.gujaratsamachar", "url": "https://www.gujaratsamachar.com/rss/vadodara", "type": "rss", "allow_html_crawl": true}
+      {"source_id": "src.googlenews.vadodara", "url": "https://news.google.com/rss/search?q=Vadodara+OR+Baroda&hl=en-IN&gl=IN&ceid=IN:en", "type": "rss", "allow_html_crawl": false},
+      {"source_id": "src.googlenews.vadodara.civic", "url": "https://news.google.com/rss/search?q=Vadodara+(VMC+OR+ward+OR+flood+OR+civic+OR+crime)&hl=en-IN&gl=IN&ceid=IN:en", "type": "rss", "allow_html_crawl": false},
+      {"source_id": "src.toi.vadodara", "url": "https://timesofindia.indiatimes.com/rssfeeds/3947067.cms", "type": "rss", "allow_html_crawl": false}
     ]
   },
 

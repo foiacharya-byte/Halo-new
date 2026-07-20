@@ -5,13 +5,14 @@ Honesty rule: we NEVER fabricate a translation. If no real engine is available w
 return the original text with translated=False, so the record is clearly marked
 needs_translation rather than silently mangled.
 
-Engines tried (config.translate.engine = "auto"):
+Engines tried (config.translate.engine = "auto"), lightest first:
   1. LibreTranslate — open-source MT via HTTP. Set translate.libretranslate_url
-     (self-host recommended: `docker run -p 5000:5000 libretranslate/libretranslate`,
-     then url="http://localhost:5000/translate"). Public instances may need a key.
-  2. Argos Translate — fully OFFLINE neural MT. `pip install argostranslate`, then
-     the gu->en model is auto-downloaded on first use (needs network once).
-  3. none — keep original, flag needs_translation.
+     (self-host: `docker run -p 5000:5000 libretranslate/libretranslate`).
+  2. deep-translator — TINY dependency, no torch:  pip install deep-translator
+     (RECOMMENDED easy option — uses Google Translate's public endpoint).
+  3. Argos Translate — fully OFFLINE neural MT, but HEAVY (pulls PyTorch). Only
+     if you want offline: pip install argostranslate (model auto-downloads once).
+  4. none — keep original, flag needs_translation.
 
 translate() returns (text, engine, ok):
   ok=True  -> text is English, engine names how
@@ -43,6 +44,15 @@ def _try_libretranslate(text: str, src: str) -> str | None:
                      "Content-Type": "application/x-www-form-urlencoded"})
         with urllib.request.urlopen(req, timeout=30) as resp:
             return json.loads(resp.read().decode("utf-8")).get("translatedText") or None
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _try_deep_translator(text: str, src: str) -> str | None:
+    """deep-translator (tiny, no torch): pip install deep-translator."""
+    try:
+        from deep_translator import GoogleTranslator
+        return GoogleTranslator(source=src, target="en").translate(text[:4900])
     except Exception:  # noqa: BLE001
         return None
 
@@ -91,6 +101,10 @@ def translate(text: str, src_lang: str) -> tuple[str, str, bool]:
         out = _try_libretranslate(text, src_lang)
         if out:
             return out, "libretranslate", True
+    if engine in ("auto", "deep", "deep_translator"):
+        out = _try_deep_translator(text, src_lang)
+        if out:
+            return out, "deep_translator", True
     if engine in ("auto", "argos"):
         out = _try_argos(text, src_lang)
         if out:

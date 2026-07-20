@@ -30,14 +30,36 @@ ZONES = {"north", "south", "east", "west", "central"}
 # category synonyms -> canonical category used in the index
 CATEGORY_SYNONYMS = {
     "food": "food", "restaurant": "food", "restaurants": "food", "cafe": "food",
-    "eat": "food", "dining": "food", "tiffin": "food",
+    "cafes": "food", "eat": "food", "dining": "food", "tiffin": "food", "bakery": "food",
+    "bakeries": "food", "sweet": "food", "sweets": "food",
     "electrician": "electrician", "ac": "electrician", "appliance": "electrician",
     "repair": "electrician", "electrical": "electrician",
-    "health": "health", "clinic": "health", "doctor": "health", "dental": "health",
-    "dentist": "health", "hospital": "health", "pharmacy": "health",
-    "grocery": "grocery", "salon": "salon", "auto": "auto",
-    "electronics": "electronics", "hardware": "hardware",
+    "health": "health", "healthcare": "health", "medical": "health", "clinic": "health",
+    "clinics": "health", "doctor": "health", "doctors": "health", "dental": "health",
+    "dentist": "health", "hospital": "health", "hospitals": "health", "pharmacy": "health",
+    "pharmacies": "health", "chemist": "health",
+    "grocery": "grocery", "groceries": "grocery", "supermarket": "grocery",
+    "salon": "salon", "salons": "salon", "beauty": "salon", "parlour": "salon",
+    "auto": "auto", "car": "auto", "garage": "auto",
+    "electronics": "electronics", "mobile": "electronics", "hardware": "hardware",
+    "bank": "finance", "banks": "finance", "atm": "finance", "finance": "finance",
+    "school": "education", "schools": "education", "college": "education",
+    "education": "education", "hotel": "hospitality", "hotels": "hospitality",
 }
+
+
+def resolve_locality(toks: list[str], idx: dict) -> str | None:
+    """Return the canonical AREA name mentioned in the query (matches aliases too)."""
+    docs, qn = idx["docs"], " ".join(toks)
+    best = None
+    for k, d in docs.items():
+        if not k.startswith("area:"):
+            continue
+        for nm in [d["name"], *d.get("aliases", [])]:
+            nl = nm.lower()
+            if re.search(rf"\b{re.escape(nl)}\b", qn) and (best is None or len(nl) > len(best[1])):
+                best = (d["name"], nl)
+    return best[0] if best else None
 
 
 def load_index() -> dict:
@@ -138,35 +160,59 @@ def summarise_service(doc: dict) -> str:
     return f"{head}\n  {body}\n  {cite(doc)}"
 
 
+def _nearest_in_category(cat: str, area_name: str, idx: dict) -> list[str]:
+    """Service keys in `cat` ranked by distance to the area's centroid."""
+    geo, docs = idx.get("geo", {}), idx["docs"]
+    acoord = next((v for k, v in geo.items()
+                   if k.startswith("area:") and docs[k]["name"].lower() == area_name.lower()), None)
+    cat_keys = idx["category"].get(cat, [])
+    if not acoord:
+        return cat_keys[:6]
+    scored = [( _haversine(acoord[0], acoord[1], geo[k][0], geo[k][1]), k)
+              for k in cat_keys if k in geo]
+    scored.sort()
+    return [k for _, k in scored[:12]]
+
+
 def answer_service(q: str, toks: list[str], idx: dict) -> str | None:
     if "category" not in idx or not idx["category"]:
         return None
-    cat = next((CATEGORY_SYNONYMS[t] for t in toks if t in CATEGORY_SYNONYMS), None)
-    loc = next((l for l in idx.get("locality", {}) if l in " ".join(toks)), None)
+    tset = set(toks) | {t[:-1] for t in toks if len(t) > 3 and t.endswith("s")}
+    cat = next((CATEGORY_SYNONYMS[t] for t in tset if t in CATEGORY_SYNONYMS), None)
+    loc = resolve_locality(toks, idx)          # canonical AREA name (or None)
     if not cat and not loc:
         return None
 
     docs = idx["docs"]
+    loc_keys = set(idx.get("locality", {}).get(loc.lower(), [])) if loc else set()
+    widened = ""
     if cat and loc:
-        keys = [k for k in idx["category"].get(cat, []) if k in set(idx["locality"].get(loc, []))]
-        scope = f"{cat} in {loc.title()}"
+        keys = [k for k in idx["category"].get(cat, []) if k in loc_keys]
+        scope = f"{cat} in {loc}"
+        if not keys:                            # none tagged there -> nearest in that category
+            keys = _nearest_in_category(cat, loc, idx)
+            widened = f" _(none mapped exactly in {loc} yet — showing the nearest)_"
     elif cat:
         keys = idx["category"].get(cat, [])
         scope = cat
     else:
-        keys = idx["locality"].get(loc, [])
-        scope = f"services in {loc.title()}"
+        keys = list(loc_keys)
+        scope = f"services in {loc}"
 
     if not keys:
-        return f"No {scope} in the dataset yet."
-    want_5star = "5" in "".join(toks) or "five" in toks or "best" in toks or "top" in toks
+        return f"No {scope} in the dataset yet — try a live run or a nearby area."
     cand = [docs[k] for k in keys]
-    if want_5star:
+    have_ratings = any(d.get("halo_rating") is not None for d in cand)
+    if "best" in tset or "top" in tset or "5" in "".join(toks) or "five" in tset:
         five = [d for d in cand if d.get("halo_five_star")]
         cand = five or cand
-    cand.sort(key=lambda d: (d.get("halo_five_star", False), d.get("halo_rating") or -1), reverse=True)
-    top = cand[:3]
-    header = f"Top {scope} by Halo rating:"
+    cand.sort(key=lambda d: (d.get("halo_five_star", False), d.get("halo_rating") or -1,
+                             bool(d.get("phone_numbers"))), reverse=True)
+    top = cand[:6]
+    scope_cap = scope[0].upper() + scope[1:] if scope else scope
+    header = (f"Top {scope} by Halo rating" if have_ratings
+              else f"{scope_cap} — {len(cand)} found (OSM has no star ratings; "
+                   f"listed by mapping completeness)") + f":{widened}"
     return header + "\n\n" + "\n\n".join(summarise_service(d) for d in top)
 
 

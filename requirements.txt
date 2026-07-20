@@ -25,8 +25,10 @@
 #             # system CA roots. If live fetch shows an SSL reason:  pip install certifi
 certifi
 
-# OPTIONAL — Gujarati->English translation for history/books (offline, free).
-#   pip install argostranslate      # gu->en model auto-downloads on first use
-# Or self-host LibreTranslate and set HALO_LIBRETRANSLATE_URL. Without either,
-# Gujarati text is kept VERBATIM and flagged needs_translation (never fabricated).
-# argostranslate
+# OPTIONAL — Gujarati->English translation for history/books.
+#   EASY & LIGHT (recommended):  pip install deep-translator   # tiny, no torch
+#   OFFLINE but HEAVY:           pip install argostranslate     # pulls PyTorch (~slow)
+#   OR self-host LibreTranslate and set HALO_LIBRETRANSLATE_URL.
+# Without any engine, Gujarati text is kept VERBATIM and flagged
+# needs_translation (never fabricated). deep-translator is auto-detected.
+# deep-translator

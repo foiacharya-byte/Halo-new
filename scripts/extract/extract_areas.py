@@ -106,6 +106,11 @@ def main() -> None:
     records = build_seed()
     if args.live:
         records = merge(records, parse_census_live())
+        try:
+            from scripts.extract.areas_osm import fetch_osm_areas
+            records = merge(records, fetch_osm_areas())   # grow beyond the seed 90
+        except Exception as exc:  # noqa: BLE001
+            print(f"[areas] OSM place expansion skipped: {exc}")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")

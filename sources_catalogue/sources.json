@@ -151,6 +151,16 @@
         "notes": "Authoritative PIN codes per locality/post office."
       },
       {
+        "id": "src.osm.places",
+        "name": "OpenStreetMap — place nodes (suburbs/neighbourhoods/villages)",
+        "url_example": "https://overpass-api.de/api/interpreter",
+        "trust_level": "medium",
+        "access_method": "json_api",
+        "update_frequency": "weekly",
+        "respect_robots": true,
+        "notes": "Grows the AREA list beyond the curated seed with real OSM place=* nodes (name + coordinates)."
+      },
+      {
         "id": "src.osm.nominatim",
         "name": "OpenStreetMap — Nominatim geocoder (locality -> lat/lon)",
         "url_example": "https://nominatim.openstreetmap.org/search",
