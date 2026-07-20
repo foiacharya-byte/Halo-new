@@ -50,6 +50,8 @@ def main() -> None:
     pin_idx: dict[str, list] = defaultdict(list)
     tag_idx: dict[str, list] = defaultdict(list)
     mood_idx: dict[str, list] = defaultdict(list)
+    category_idx: dict[str, list] = defaultdict(list)   # service category -> keys
+    locality_idx: dict[str, list] = defaultdict(list)   # service locality -> keys
     docs: dict[str, dict] = {}
 
     for entity, fname in DATASETS.items():
@@ -70,6 +72,11 @@ def main() -> None:
                     zone_idx[r["zone_group"].lower()].append(key)
                 for pin in r.get("pin_codes", []):
                     pin_idx[pin].append(key)
+            if entity == "service":
+                if r.get("category"):
+                    category_idx[r["category"].lower()].append(key)
+                if r.get("locality"):
+                    locality_idx[r["locality"].lower()].append(key)
             for tag in r.get("tags", []):
                 tag_idx[tag.lower()].append(key)
             for mood in r.get("best_for_mood", []):
@@ -81,11 +88,13 @@ def main() -> None:
         "pin": dict(pin_idx),
         "tag": dict(tag_idx),
         "mood": dict(mood_idx),
+        "category": dict(category_idx),
+        "locality": dict(locality_idx),
         "docs": docs,
     }
     (PROC / "index.json").write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
-    print(f"[index] {len(docs)} docs · {len(text_idx)} tokens · "
-          f"{len(zone_idx)} zones · {len(pin_idx)} pins -> data/processed/index.json")
+    print(f"[index] {len(docs)} docs · {len(text_idx)} tokens · {len(zone_idx)} zones · "
+          f"{len(pin_idx)} pins · {len(category_idx)} categories -> data/processed/index.json")
 
 
 if __name__ == "__main__":

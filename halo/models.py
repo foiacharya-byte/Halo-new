@@ -61,6 +61,8 @@ class Service(Envelope):
     halo_rating: Optional[float] = None    # our computed score (validate step)
     halo_five_star: bool = False           # our high-trust badge
     permanently_closed: bool = False
+    coordinates: Optional[dict] = None   # {"lat","lon"} — only when a source provides it
+    is_demo: bool = False                # True = placeholder fixture, never a real listing
     source_platforms: list[str] = field(default_factory=list)
     last_seen: str = field(default_factory=now_iso)
 

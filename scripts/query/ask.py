@@ -25,6 +25,18 @@ INDEX = ROOT / "data" / "processed" / "index.json"
 
 ZONES = {"north", "south", "east", "west", "central"}
 
+# category synonyms -> canonical category used in the index
+CATEGORY_SYNONYMS = {
+    "food": "food", "restaurant": "food", "restaurants": "food", "cafe": "food",
+    "eat": "food", "dining": "food", "tiffin": "food",
+    "electrician": "electrician", "ac": "electrician", "appliance": "electrician",
+    "repair": "electrician", "electrical": "electrician",
+    "health": "health", "clinic": "health", "doctor": "health", "dental": "health",
+    "dentist": "health", "hospital": "health", "pharmacy": "health",
+    "grocery": "grocery", "salon": "salon", "auto": "auto",
+    "electronics": "electronics", "hardware": "hardware",
+}
+
 
 def load_index() -> dict:
     if not INDEX.exists():
@@ -70,6 +82,56 @@ def summarise_area(doc: dict) -> str:
     return f"{line}\n  {cite(doc)}"
 
 
+def summarise_service(doc: dict) -> str:
+    demo = " _(demo data — not a real listing)_" if doc.get("is_demo") else ""
+    head = f"**{doc['name']}** — {doc.get('category','service')} in {doc.get('locality','')}{demo}"
+    parts = []
+    if doc.get("halo_rating") is not None:
+        star = " · ⭐ Halo 5★" if doc.get("halo_five_star") else ""
+        parts.append(f"Halo rating **{doc['halo_rating']}/5**{star} "
+                     f"(from {doc.get('rating_count')} reviews, ext {doc.get('rating_score')})")
+    else:
+        parts.append("no rating signals yet — not scored")
+    if doc.get("permanently_closed"):
+        parts.append("⚠️ reported permanently closed on a source")
+    # NEVER print the phone: consent gate
+    parts.append("contact withheld until the owner claims & consents (DPDP)")
+    body = "\n  ".join(parts)
+    return f"{head}\n  {body}\n  {cite(doc)}"
+
+
+def answer_service(q: str, toks: list[str], idx: dict) -> str | None:
+    if "category" not in idx or not idx["category"]:
+        return None
+    cat = next((CATEGORY_SYNONYMS[t] for t in toks if t in CATEGORY_SYNONYMS), None)
+    loc = next((l for l in idx.get("locality", {}) if l in " ".join(toks)), None)
+    if not cat and not loc:
+        return None
+
+    docs = idx["docs"]
+    if cat and loc:
+        keys = [k for k in idx["category"].get(cat, []) if k in set(idx["locality"].get(loc, []))]
+        scope = f"{cat} in {loc.title()}"
+    elif cat:
+        keys = idx["category"].get(cat, [])
+        scope = cat
+    else:
+        keys = idx["locality"].get(loc, [])
+        scope = f"services in {loc.title()}"
+
+    if not keys:
+        return f"No {scope} in the dataset yet."
+    want_5star = "5" in "".join(toks) or "five" in toks or "best" in toks or "top" in toks
+    cand = [docs[k] for k in keys]
+    if want_5star:
+        five = [d for d in cand if d.get("halo_five_star")]
+        cand = five or cand
+    cand.sort(key=lambda d: (d.get("halo_five_star", False), d.get("halo_rating") or -1), reverse=True)
+    top = cand[:3]
+    header = f"Top {scope} by Halo rating:"
+    return header + "\n\n" + "\n\n".join(summarise_service(d) for d in top)
+
+
 def answer(q: str, idx: dict) -> str:
     toks = tokenize(q)
     docs = idx["docs"]
@@ -93,6 +155,11 @@ def answer(q: str, idx: dict) -> str:
             return f"No area indexed for PIN {pin_match.group(1)}."
         names = ", ".join(sorted(docs[k]["name"] for k in keys))
         return f"PIN **{pin_match.group(1)}** covers: {names}."
+
+    # Intent: SERVICE search — a category and/or a locality is mentioned.
+    svc = answer_service(q, toks, idx)
+    if svc is not None:
+        return svc
 
     # Intent: free-text — score docs by token overlap in the text index,
     # then boost an exact name match so "Karelibaug" beats "Karelibaug Water Tank Rd".

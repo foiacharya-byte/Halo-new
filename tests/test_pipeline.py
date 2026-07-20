@@ -54,6 +54,49 @@ class TestPipeline(unittest.TestCase):
         self.assertEqual(r.returncode, 0, msg=r.stderr)
         self.assertIn("Alkapuri", r.stdout)
 
+    def test_variant_merge(self):
+        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_areas.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/validate/validate_areas.py")], check=True)
+        names = {a["name"] for a in json.loads(
+            (ROOT / "data/processed/areas.validated.json").read_text())}
+        # spelling variants must have folded into one canonical record
+        self.assertIn("Bhayli", names)
+        self.assertNotIn("Bhayali", names)
+        self.assertNotIn("Bhaili", names)
+
+
+class TestServices(unittest.TestCase):
+    def setUp(self):
+        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_services.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/validate/validate_services.py")], check=True)
+        self.svc = {s["name"]: s for s in json.loads(
+            (ROOT / "data/processed/services.validated.json").read_text())}
+
+    def test_demo_is_flagged_and_no_consent(self):
+        for s in self.svc.values():
+            self.assertTrue(s["is_demo"], "fixture records must be marked demo")
+            self.assertFalse(s["contact_consent"], "phones must never be auto-published")
+            self.assertEqual(s["source_ids"], ["src.seed.curated"],
+                             "demo must not claim a real source")
+
+    def test_cross_platform_dedupe(self):
+        # the two 'AC Care' copies (same phone) must collapse to one, both platforms kept
+        ac = self.svc.get("Demo AC Care Services")
+        self.assertIsNotNone(ac)
+        self.assertEqual(sorted(ac["source_platforms"]), ["demo_dir_A", "demo_dir_B"])
+        self.assertEqual(ac["rating_count"], 310)  # 220 + 90 summed across platforms
+
+    def test_five_star_thresholds(self):
+        # high rating but only 12 reviews must NOT earn the badge
+        self.assertFalse(self.svc["Demo Blue Ocean Restaurant"]["halo_five_star"])
+        # strong + many reviews + recent does
+        self.assertTrue(self.svc["Demo AC Care Services"]["halo_five_star"])
+
+    def test_closed_penalised(self):
+        cafe = self.svc["Demo Old Town Cafe"]
+        self.assertTrue(cafe["permanently_closed"])
+        self.assertLess(cafe["halo_rating"], 2.0)  # closed + stale crushes the score
+
 
 if __name__ == "__main__":
     unittest.main()

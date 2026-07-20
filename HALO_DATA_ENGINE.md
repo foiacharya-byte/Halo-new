@@ -138,10 +138,31 @@ Everything above runs offline against the **committed seed**. Live fetching is o
 
 ## 8. Roadmap (data-engine specific)
 
-1. ✅ Scaffold, schema, areas extractor + validator + index + query (this commit).
-2. Services extractor (open directories) → dedupe by phone+name → Halo_rating.
-3. News extractor (RSS first — cheapest, cleanest) → event clustering.
-4. Trip-spot extractor (tourism portals/blogs) → mood tagging.
-5. Geocode areas from OpenStreetMap/Nominatim (open) to fill `coordinates`.
-6. Wire the query layer into the front-end once datasets are broad enough.
-7. Nightly (news) / weekly (directories) scheduled refresh via free CI.
+1. ✅ Scaffold, schema, areas extractor + validator + index + query.
+2. ✅ Areas expanded to 90 places (localities + taluka villages) with
+   `taluka`/`status`/`zone_group`, alias-merge for spelling variants, and
+   honest `src.seed.curated` provenance (status `single_source_needs_review`).
+3. ✅ Services extractor: real OpenStreetMap (Nominatim→Overpass) client +
+   dedupe by phone+name + `halo_rating`/`halo_five_star`. Runs on Karelibaug &
+   Alkapuri; `--all` scales to every locality.
+   ⚠️ **Network note:** the OSM client is real, but *this* sandbox's network
+   policy blocks `nominatim`/`overpass` (403 at the gateway), so the extractor
+   falls back to a clearly-labelled **demo fixture** (`is_demo:true`, fake
+   phones, `src.seed.curated`). Run `--live` where OSM is reachable to get real
+   records with real provenance.
+4. Promotion path: corroborate seed places against catalogued village/locality
+   sources → lift `status` to `multi_source` / `confirmed_official`.
+5. News extractor (RSS first — cheapest, cleanest) → event clustering.
+6. Trip-spot extractor (tourism portals/blogs) → mood tagging.
+7. Geocode areas from OpenStreetMap/Nominatim (open) to fill `coordinates`.
+8. Nightly (news) / weekly (directories) scheduled refresh via free CI.
+
+## 9. Run the services step
+
+```bash
+python3 scripts/extract/extract_services.py            # demo, Karelibaug + Alkapuri
+python3 scripts/extract/extract_services.py --live     # real OSM if reachable
+python3 scripts/extract/extract_services.py --all --live   # every locality
+python3 scripts/validate/validate_services.py          # dedupe + halo_rating
+python3 scripts/query/ask.py "best 5-star electrician in Alkapuri"
+```
