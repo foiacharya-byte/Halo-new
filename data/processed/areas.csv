@@ -1,91 +1,91 @@
 id,name,type,taluka,zone_group,pin_codes,aliases,status,confidence,needs_review,source_ids,last_updated
-area:alkapuri:632f2245,Alkapuri,locality,Vadodara,West,390005; 390007,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sayajigunj:b887a142,Sayajigunj,locality,Vadodara,Central,390005; 390020,Sayaji Gunj,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:fatehgunj:9e9a3f04,Fatehgunj,locality,Vadodara,North,390002,Fateh Gunj,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:karelibaug:e37910b3,Karelibaug,locality,Vadodara,East,390018,Kareli Baug; Karelibag,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:harni:8a56789a,Harni,locality,Vadodara,East,390022,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sama:27605661,Sama,locality,Vadodara,North,390008; 390024,Sama-Savli,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:gotri:3d7ddfe3,Gotri,locality,Vadodara,West,390021,Gotri Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:akota:9ca50389,Akota,locality,Vadodara,West,390020,Akota Gardens,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:manjalpur:9449d96c,Manjalpur,locality,Vadodara,South,390011,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:nizampura:8e262396,Nizampura,locality,Vadodara,North,390002,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:subhanpura:74de97a3,Subhanpura,locality,Vadodara,West,390023,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:vasna:79c9af8c,Vasna,locality,Vadodara,West,390007; 390015,Vasna Road; Vasna-Bhayli,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:tandalja:804f8902,Tandalja,locality,Vadodara,West,390012,Tandalja Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:old-padra-road:0453df14,Old Padra Road,locality,Vadodara,West,390007; 390015,OP Road; O P Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:ellora-park:e119f7a9,Ellora Park,locality,Vadodara,West,390023,Ellorapark,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:race-course:94a9e3ed,Race Course,locality,Vadodara,Central,390007,Racecourse,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:makarpura:a36baf2c,Makarpura,locality,Vadodara,South,390009; 390010; 390013,Makarpura GIDC,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:gorwa:d9d70451,Gorwa,locality,Vadodara,North,390016,BIDC Gorwa,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:chhani:4234dcfd,Chhani,locality,Vadodara,North,391740,Chani; Chhani Jakat Naka,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:ajwa-road:476950d0,Ajwa Road,locality,Vadodara,East,390019,Ajwa,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:dandia-bazar:b0e76c5d,Dandia Bazar,locality,Vadodara,Central,390001,Dandiya Bazar,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:mandvi:7367a821,Mandvi,locality,Vadodara,Central,390001,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:raopura:ff7458bf,Raopura,locality,Vadodara,Central,390001,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:wadi:167f8059,Wadi,locality,Vadodara,Central,390017,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:pratapnagar:a2858aa8,Pratapnagar,locality,Vadodara,South,390004,Pratap Nagar,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:bapod:b26c09ad,Bapod,locality,Vadodara,East,390019,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:vemali:2cbe45c7,Vemali,locality,Vadodara,East,390025,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:diwalipura:17b2f4d0,Diwalipura,locality,Vadodara,West,390015,Diwali Pura; Divalipura,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:waghodia-road:41939138,Waghodia Road,locality,Vadodara,East,390019,Vaghodia Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:atladara:f6e616da,Atladara,locality,Vadodara,West,390012,Sun Pharma Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:manisha:6183722d,Manisha,locality,Vadodara,West,390015,Manisha Circle,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:vadsar:d4221106,Vadsar,locality,Vadodara,South,390010,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:tarsali:11e0f785,Tarsali,locality,Vadodara,South,390009,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:vadiwadi:61c8752c,Vadiwadi,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:pratapgunj:8351adaa,Pratapgunj,locality,Vadodara,,,Pratap Gunj,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:fatehpura:c59f80ba,Fatehpura,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:amit-nagar:23df0907,Amit Nagar,locality,Vadodara,,,Amitnagar,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:nagarwada:37fb25f4,Nagarwada,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:panigate:8ccdcaa8,Panigate,locality,Vadodara,,,Pani Gate,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:yakutpura:71f9f9f7,Yakutpura,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:navapura:febfd367,Navapura,locality,Vadodara,,,Nava Pura,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:salatwada:9f85fdd0,Salatwada,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:kothi:4c4aff27,Kothi,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sursagar:8beef959,Sursagar,locality,Vadodara,,,Sur Sagar,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:warasiya:0a4f4855,Warasiya,locality,Vadodara,,,Warsiya,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:kishanwadi:5ea8e56e,Kishanwadi,locality,Vadodara,,,Kishan Wadi,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:jetalpur-road:8f58ecc4,Jetalpur Road,locality,Vadodara,,,Jetalpur,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:new-vip-road:d344705c,New VIP Road,locality,Vadodara,,,VIP Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sardar-estate:35c2caba,Sardar Estate,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:productivity-road:ef523670,Productivity Road,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:karelibaug-water-tank-road:3b9dff17,Karelibaug Water Tank Road,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:nizampura-road:b4d3f809,Nizampura Road,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sama-savli-road:5afcbd54,Sama Savli Road,locality,Vadodara,,,Sama-Savli Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:kalali:4bad7a0b,Kalali,locality,Vadodara,,,Kalali Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:vadi:ac926114,Vadi,locality,Vadodara,,,Vadi Wadi,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sevasi:07caca15,Sevasi,village,Vadodara,,,Sevasi Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:bhayli:d977fe8c,Bhayli,village,Vadodara,,,Bhaili; Bhayali,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sindhrot:888fdc73,Sindhrot,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:angadh:473171fe,Angadh,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:undera:bb74db83,Undera,village,Vadodara,,,Vundera,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:vadadala:c3f1a717,Vadadala,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:jaspur:f8c4b853,Jaspur,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:fajalpur:a1d6934f,Fajalpur,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sokhda:404c0c02,Sokhda,village,Vadodara,,,Sokhada,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:por:ad5cd74d,Por,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:maneja:d77956d9,Maneja,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:kapurai:560759d7,Kapurai,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:dashrath:c52e63c0,Dashrath,village,Vadodara,,,Dasrath,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sherkhi:6c7cc6a6,Sherkhi,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:karachiya:9ee922f6,Karachiya,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:bill:8b8ac2ee,Bill,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sayar:9f5728e8,Sayar,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:sanhalim:eafe1d37,Sanhalim,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:ankhol:a71dd9a3,Ankhol,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:nandesari:c1715974,Nandesari,village,Savli,,,Nandesari GIDC,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:koyali:347cdb4f,Koyali,village,Savli,,,Koyali Refinery,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:ranoli:23a47125,Ranoli,village,Savli,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:bajwa:a7d6aa7a,Bajwa,village,Savli,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:manjusar:f438a713,Manjusar,village,Savli,,,Manjusar GIDC,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:por-ramangamdi:cb729566,Por Ramangamdi,village,Vadodara,,,Ramangamdi,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:itola:641df9c1,Itola,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:vemardi:2976f9b1,Vemardi,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:dodka:649a7cab,Dodka,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:vasna-kotaria:abd88f96,Vasna Kotaria,village,Vadodara,,,Kotaria,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:samiyala:cd836002,Samiyala,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:kotna:cab863a0,Kotna,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:ajod:e03cca32,Ajod,village,,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:karachiya-sim:2989d8b3,Karachiya Sim,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:ekalbara:cb4605ff,Ekalbara,village,Padra,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
-area:dabhoi-road:fa32417f,Dabhoi Road,village,,,,Dabhoi,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T11:54:49+00:00
+area:alkapuri:632f2245,Alkapuri,locality,Vadodara,West,390005; 390007,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sayajigunj:b887a142,Sayajigunj,locality,Vadodara,Central,390005; 390020,Sayaji Gunj,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:fatehgunj:9e9a3f04,Fatehgunj,locality,Vadodara,North,390002,Fateh Gunj,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:karelibaug:e37910b3,Karelibaug,locality,Vadodara,East,390018,Kareli Baug; Karelibag,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:harni:8a56789a,Harni,locality,Vadodara,East,390022,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sama:27605661,Sama,locality,Vadodara,North,390008; 390024,Sama-Savli,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:gotri:3d7ddfe3,Gotri,locality,Vadodara,West,390021,Gotri Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:akota:9ca50389,Akota,locality,Vadodara,West,390020,Akota Gardens,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:manjalpur:9449d96c,Manjalpur,locality,Vadodara,South,390011,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:nizampura:8e262396,Nizampura,locality,Vadodara,North,390002,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:subhanpura:74de97a3,Subhanpura,locality,Vadodara,West,390023,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:vasna:79c9af8c,Vasna,locality,Vadodara,West,390007; 390015,Vasna Road; Vasna-Bhayli,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:tandalja:804f8902,Tandalja,locality,Vadodara,West,390012,Tandalja Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:old-padra-road:0453df14,Old Padra Road,locality,Vadodara,West,390007; 390015,OP Road; O P Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:ellora-park:e119f7a9,Ellora Park,locality,Vadodara,West,390023,Ellorapark,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:race-course:94a9e3ed,Race Course,locality,Vadodara,Central,390007,Racecourse,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:makarpura:a36baf2c,Makarpura,locality,Vadodara,South,390009; 390010; 390013,Makarpura GIDC,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:gorwa:d9d70451,Gorwa,locality,Vadodara,North,390016,BIDC Gorwa,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:chhani:4234dcfd,Chhani,locality,Vadodara,North,391740,Chani; Chhani Jakat Naka,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:ajwa-road:476950d0,Ajwa Road,locality,Vadodara,East,390019,Ajwa,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:dandia-bazar:b0e76c5d,Dandia Bazar,locality,Vadodara,Central,390001,Dandiya Bazar,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:mandvi:7367a821,Mandvi,locality,Vadodara,Central,390001,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:raopura:ff7458bf,Raopura,locality,Vadodara,Central,390001,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:wadi:167f8059,Wadi,locality,Vadodara,Central,390017,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:pratapnagar:a2858aa8,Pratapnagar,locality,Vadodara,South,390004,Pratap Nagar,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:bapod:b26c09ad,Bapod,locality,Vadodara,East,390019,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:vemali:2cbe45c7,Vemali,locality,Vadodara,East,390025,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:diwalipura:17b2f4d0,Diwalipura,locality,Vadodara,West,390015,Diwali Pura; Divalipura,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:waghodia-road:41939138,Waghodia Road,locality,Vadodara,East,390019,Vaghodia Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:atladara:f6e616da,Atladara,locality,Vadodara,West,390012,Sun Pharma Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:manisha:6183722d,Manisha,locality,Vadodara,West,390015,Manisha Circle,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:vadsar:d4221106,Vadsar,locality,Vadodara,South,390010,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:tarsali:11e0f785,Tarsali,locality,Vadodara,South,390009,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:vadiwadi:61c8752c,Vadiwadi,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:pratapgunj:8351adaa,Pratapgunj,locality,Vadodara,,,Pratap Gunj,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:fatehpura:c59f80ba,Fatehpura,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:amit-nagar:23df0907,Amit Nagar,locality,Vadodara,,,Amitnagar,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:nagarwada:37fb25f4,Nagarwada,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:panigate:8ccdcaa8,Panigate,locality,Vadodara,,,Pani Gate,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:yakutpura:71f9f9f7,Yakutpura,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:navapura:febfd367,Navapura,locality,Vadodara,,,Nava Pura,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:salatwada:9f85fdd0,Salatwada,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:kothi:4c4aff27,Kothi,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sursagar:8beef959,Sursagar,locality,Vadodara,,,Sur Sagar,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:warasiya:0a4f4855,Warasiya,locality,Vadodara,,,Warsiya,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:kishanwadi:5ea8e56e,Kishanwadi,locality,Vadodara,,,Kishan Wadi,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:jetalpur-road:8f58ecc4,Jetalpur Road,locality,Vadodara,,,Jetalpur,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:new-vip-road:d344705c,New VIP Road,locality,Vadodara,,,VIP Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sardar-estate:35c2caba,Sardar Estate,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:productivity-road:ef523670,Productivity Road,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:karelibaug-water-tank-road:3b9dff17,Karelibaug Water Tank Road,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:nizampura-road:b4d3f809,Nizampura Road,locality,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sama-savli-road:5afcbd54,Sama Savli Road,locality,Vadodara,,,Sama-Savli Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:kalali:4bad7a0b,Kalali,locality,Vadodara,,,Kalali Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:vadi:ac926114,Vadi,locality,Vadodara,,,Vadi Wadi,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sevasi:07caca15,Sevasi,village,Vadodara,,,Sevasi Road,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:bhayli:d977fe8c,Bhayli,village,Vadodara,,,Bhaili; Bhayali,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sindhrot:888fdc73,Sindhrot,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:angadh:473171fe,Angadh,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:undera:bb74db83,Undera,village,Vadodara,,,Vundera,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:vadadala:c3f1a717,Vadadala,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:jaspur:f8c4b853,Jaspur,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:fajalpur:a1d6934f,Fajalpur,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sokhda:404c0c02,Sokhda,village,Vadodara,,,Sokhada,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:por:ad5cd74d,Por,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:maneja:d77956d9,Maneja,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:kapurai:560759d7,Kapurai,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:dashrath:c52e63c0,Dashrath,village,Vadodara,,,Dasrath,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sherkhi:6c7cc6a6,Sherkhi,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:karachiya:9ee922f6,Karachiya,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:bill:8b8ac2ee,Bill,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sayar:9f5728e8,Sayar,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:sanhalim:eafe1d37,Sanhalim,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:ankhol:a71dd9a3,Ankhol,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:nandesari:c1715974,Nandesari,village,Savli,,,Nandesari GIDC,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:koyali:347cdb4f,Koyali,village,Savli,,,Koyali Refinery,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:ranoli:23a47125,Ranoli,village,Savli,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:bajwa:a7d6aa7a,Bajwa,village,Savli,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:manjusar:f438a713,Manjusar,village,Savli,,,Manjusar GIDC,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:por-ramangamdi:cb729566,Por Ramangamdi,village,Vadodara,,,Ramangamdi,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:itola:641df9c1,Itola,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:vemardi:2976f9b1,Vemardi,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:dodka:649a7cab,Dodka,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:vasna-kotaria:abd88f96,Vasna Kotaria,village,Vadodara,,,Kotaria,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:samiyala:cd836002,Samiyala,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:kotna:cab863a0,Kotna,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:ajod:e03cca32,Ajod,village,,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:karachiya-sim:2989d8b3,Karachiya Sim,village,Vadodara,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:ekalbara:cb4605ff,Ekalbara,village,Padra,,,,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00
+area:dabhoi-road:fa32417f,Dabhoi Road,village,,,,Dabhoi,single_source_needs_review,0.4,True,src.seed.curated,2026-07-20T13:48:13+00:00

@@ -33,7 +33,8 @@ from halo.util import make_id, normalize_phone, now_iso  # noqa: E402
 OUT = ROOT / "data" / "processed" / "services.json"
 DEMO = ROOT / "data" / "seed" / "services_demo.json"
 AREAS = ROOT / "data" / "processed" / "areas.validated.json"
-DEFAULT_LOCALITIES = ["Karelibaug", "Alkapuri"]
+DEFAULT_LOCALITIES = ["Karelibaug", "Alkapuri", "Manjalpur", "Gotri",
+                      "Sayajigunj", "Fatehgunj"]
 
 
 def load_demo(localities: list[str]) -> list[dict]:
@@ -101,9 +102,8 @@ def main() -> None:
 
     if args.live:
         if "osm" in want:
-            from scripts.extract.services_osm import fetch_locality
-            for loc in localities:
-                raw.extend(fetch_locality(loc))
+            from scripts.extract.services_osm import fetch_localities
+            raw.extend(fetch_localities(localities))
         if "directories" in want:
             from scripts.extract.directory_client import fetch_directories
             raw.extend(fetch_directories(localities))

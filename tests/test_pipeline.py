@@ -112,6 +112,46 @@ class TestInfra(unittest.TestCase):
         self.assertIn("src.test.demo", md)
 
 
+class TestOsmResilience(unittest.TestCase):
+    """One geocode miss must NOT blank the whole OSM source (simulated, no network)."""
+
+    def setUp(self):
+        from scripts.extract import services_osm as osm
+        from halo import config
+        self.osm = osm
+        self._orig = (osm.geocode, osm._overpass, config.network_allowed)
+        osm.config.network_allowed = lambda: True   # pretend we're online
+
+    def tearDown(self):
+        from halo import config
+        self.osm.geocode, self.osm._overpass, config.network_allowed = self._orig
+
+    def _ledger_status(self):
+        from halo import provenance
+        return provenance._read().get("src.osm.overpass", {}).get("status")
+
+    def test_one_locality_ok_others_empty_is_not_blocked(self):
+        osm = self.osm
+        osm.geocode = lambda loc: (((22.3, 73.2), "ok") if loc == "Karelibaug"
+                                   else (None, "empty"))
+        osm._overpass = lambda loc, lat, lon: ([{
+            "locality": loc, "name": "Real Shop", "category": "food",
+            "coordinates": {"lat": lat, "lon": lon},
+            "source_link": "https://www.openstreetmap.org/node/1", "is_demo": False,
+        }], "ok")
+        records = osm.fetch_localities(["Karelibaug", "Alkapuri"])
+        self.assertEqual(len(records), 1, "the working locality must still yield POIs")
+        self.assertIn(self._ledger_status(), ("usable", "partial"))
+        self.assertNotEqual(self._ledger_status(), "blocked")
+
+    def test_all_network_errors_is_blocked(self):
+        osm = self.osm
+        osm.geocode = lambda loc: (None, "error")
+        records = osm.fetch_localities(["Karelibaug", "Alkapuri"])
+        self.assertEqual(records, [])
+        self.assertEqual(self._ledger_status(), "blocked")
+
+
 class TestNews(unittest.TestCase):
     def setUp(self):
         subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_areas.py")], check=True)
