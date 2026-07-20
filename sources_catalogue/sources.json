@@ -233,6 +233,16 @@
     ],
     "services": [
       {
+        "id": "src.wikidata",
+        "name": "Wikidata SPARQL (structured places near Vadodara)",
+        "url_example": "https://query.wikidata.org/sparql",
+        "trust_level": "medium",
+        "access_method": "json_api",
+        "update_frequency": "weekly",
+        "respect_robots": true,
+        "notes": "CC0. Items with coordinates within radius of Vadodara: label + description + type + website. Adds descriptions/facts OSM lacks. No key."
+      },
+      {
         "id": "src.justdial.vadodara",
         "name": "Justdial — Vadodara category listings",
         "url_example": "https://www.justdial.com/Vadodara",

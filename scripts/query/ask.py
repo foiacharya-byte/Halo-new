@@ -146,15 +146,25 @@ def summarise_service(doc: dict) -> str:
     demo = " _(demo data — not a real listing)_" if doc.get("is_demo") else ""
     head = f"**{doc['name']}** — {doc.get('category','service')} in {doc.get('locality','')}{demo}"
     parts = []
+    if doc.get("description_summary"):
+        parts.append(doc["description_summary"])
     if doc.get("halo_rating") is not None:
         star = " · ⭐ Halo 5★" if doc.get("halo_five_star") else ""
         parts.append(f"Halo rating **{doc['halo_rating']}/5**{star} "
                      f"(from {doc.get('rating_count')} reviews, ext {doc.get('rating_score')})")
-    else:
-        parts.append("no rating signals yet — not scored")
+    if doc.get("address"):
+        parts.append(f"📍 {doc['address']}")
+    if doc.get("opening_hours"):
+        parts.append(f"🕑 {doc['opening_hours']}")
+    if doc.get("website"):
+        parts.append(f"🌐 {doc['website']}")
+    attrs = doc.get("attributes", {})
+    extra = ", ".join(f"{k}: {v}" for k, v in attrs.items()
+                      if k in ("cuisine", "brand", "operator", "wheelchair"))
+    if extra:
+        parts.append(extra)
     if doc.get("permanently_closed"):
         parts.append("⚠️ reported permanently closed on a source")
-    # NEVER print the phone: consent gate
     parts.append("contact withheld until the owner claims & consents (DPDP)")
     body = "\n  ".join(parts)
     return f"{head}\n  {body}\n  {cite(doc)}"
@@ -345,8 +355,11 @@ def answer_area_profile(q: str, toks: list[str], idx: dict) -> str | None:
     area = find_area_doc(toks, idx)
     if not area:
         return None
-    # trigger on an explicit ask, or a bare/short area query ("Gotri")
-    if not (AREA_TRIGGERS & set(toks) or len(toks) <= 3):
+    # fire on an explicit ask ("tell me about X") OR when the query is JUST the
+    # area name — NOT when a category is present ("food in X" is a service query).
+    name_toks = set(tokenize(area["name"]))
+    is_just_area = set(toks) <= name_toks
+    if not (AREA_TRIGGERS & set(toks) or is_just_area):
         return None
 
     docs = idx["docs"]

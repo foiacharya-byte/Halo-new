@@ -52,23 +52,26 @@ OSM_CATEGORY = {
     "furniture": "shopping", "hotel": "hospitality", "guest_house": "hospitality",
 }
 
-# Each chunk = one Overpass query over the city bbox (node+way+relation).
-# Broadened for maximum legitimate depth — every business/institution key OSM has.
+# Each tile query unions ALL of these. Broadened to capture EVERYTHING named in
+# OSM (we keep only named features, so this is businesses/institutions, not noise).
 FILTERS = [
-    '["shop"]',                       # all retail
-    '["amenity"~"restaurant|cafe|fast_food|bar|pub|food_court|ice_cream|bakery|marketplace|nightclub"]',
-    '["amenity"~"pharmacy|hospital|clinic|doctors|dentist|veterinary|nursing_home"]',
-    '["amenity"~"bank|atm|bureau_de_change|fuel|charging_station|car_wash|car_rental"]',
-    '["amenity"~"school|college|university|kindergarten|driving_school|language_school|training|library"]',
-    '["amenity"~"cinema|theatre|community_centre|social_facility|place_of_worship|courthouse|police|fire_station|post_office|townhall"]',
-    '["office"]',                     # professionals: lawyers, CAs, IT, estate agents...
-    '["craft"]',                      # electricians, plumbers, carpenters, tailors...
-    '["healthcare"]',                 # clinics/labs/physio not tagged as amenity
-    '["tourism"]',                    # hotels, guest houses, museums, attractions
-    '["leisure"~"fitness_centre|sports_centre|stadium|park|garden|swimming_pool|water_park"]',
-    '["historic"]',                   # monuments, forts, heritage
-    '["building"~"commercial|retail|industrial|office|hotel|hospital|supermarket"]',
+    '["shop"]',            # all retail (every shop value)
+    '["amenity"]',         # all amenities — food, health, finance, education, civic…
+    '["office"]',          # professionals: lawyers, CAs, IT, estate agents, insurance…
+    '["craft"]',           # electricians, plumbers, carpenters, tailors, mechanics…
+    '["healthcare"]',      # clinics/labs/physio not tagged as amenity
+    '["tourism"]',         # hotels, guest houses, museums, attractions
+    '["leisure"]',         # gyms, parks, sports, gardens
+    '["historic"]',        # monuments, forts, heritage
+    '["club"]',            # associations, clubs
+    '["building"~"commercial|retail|industrial|office|hotel|hospital|supermarket|school|university"]',
 ]
+
+# OSM tags worth keeping per POI (rich detail OSM actually has).
+RICH_TAGS = ["website", "contact:website", "opening_hours", "cuisine", "brand",
+             "operator", "contact:email", "email", "wheelchair", "level",
+             "addr:full", "description", "stars", "internet_access", "smoking",
+             "takeaway", "delivery", "outdoor_seating", "air_conditioning"]
 
 _fetcher: Fetcher | None = None
 
@@ -181,18 +184,28 @@ def _element_to_poi(el: dict, coords: dict[str, tuple[float, float]]) -> dict | 
         return None
     raw_cat = (tags.get("shop") or tags.get("amenity") or tags.get("office")
                or tags.get("craft") or tags.get("healthcare") or tags.get("tourism")
-               or tags.get("leisure") or "")
+               or tags.get("leisure") or tags.get("club") or "")
     # prefer OSM's own suburb if it names a known area, else nearest centroid
     suburb = tags.get("addr:suburb")
     locality = suburb if (suburb in coords) else nearest_locality(lat, lon, coords)
+    # harvest the rich detail OSM actually has
+    attrs = {}
+    for t in RICH_TAGS:
+        if tags.get(t):
+            attrs[t.replace("contact:", "").replace("addr:", "")] = tags[t]
+    desc_bits = [tags.get("description", ""), tags.get("cuisine", ""),
+                 tags.get("brand", "")]
     return {
         "locality": locality, "name": name,
         "category": OSM_CATEGORY.get(raw_cat, raw_cat or "other"),
-        "description": tags.get("description", ""),
-        "address": ", ".join(filter(None, [
+        "description": " · ".join(b for b in desc_bits if b),
+        "address": tags.get("addr:full") or ", ".join(filter(None, [
             tags.get("addr:housenumber"), tags.get("addr:street"),
             tags.get("addr:suburb"), locality])),
         "phone": tags.get("phone") or tags.get("contact:phone", ""),
+        "website": tags.get("website") or tags.get("contact:website", ""),
+        "opening_hours": tags.get("opening_hours", ""),
+        "attributes": attrs,
         "external_rating": None, "review_count": None, "last_review_days": None,
         "permanently_closed": tags.get("disused") == "yes",
         "source_platform": "openstreetmap",

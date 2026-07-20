@@ -62,11 +62,14 @@ def to_service(raw: dict) -> dict:
         rating_count=raw.get("review_count"),
         permanently_closed=bool(raw.get("permanently_closed")),
         coordinates=raw.get("coordinates"),
+        website=raw.get("website", ""),
+        opening_hours=raw.get("opening_hours", ""),
+        attributes=raw.get("attributes", {}) or {},
         is_demo=bool(raw.get("is_demo", False)),
         source_platforms=[raw.get("source_platform", "unknown")],
         last_seen=now_iso(),
         source_links=[raw["source_link"]] if raw.get("source_link") else [],
-        source_ids=["src.osm.overpass"] if not raw.get("is_demo") else ["src.seed.curated"],
+        source_ids=[raw.get("source_id", "src.osm.overpass")] if not raw.get("is_demo") else ["src.seed.curated"],
         confidence=0.5 if not raw.get("is_demo") else 0.2,
         needs_review=True,
     )
@@ -91,8 +94,8 @@ def main() -> None:
     ap.add_argument("--live", action="store_true", help="try live sources first")
     ap.add_argument("--all", action="store_true", help="every locality (default: 2)")
     ap.add_argument("--locality", help="single locality name")
-    ap.add_argument("--source", default="osm,directories",
-                    help="comma list of live sources to try: osm,directories")
+    ap.add_argument("--source", default="osm,wikidata,directories",
+                    help="comma list of live sources: osm,wikidata,directories")
     args = ap.parse_args()
 
     from halo import config, provenance  # noqa: E402
@@ -108,6 +111,9 @@ def main() -> None:
             else:
                 from scripts.extract.services_osm import fetch_localities
                 raw.extend(fetch_localities(localities))
+        if "wikidata" in want:
+            from scripts.extract.wikidata_client import fetch_wikidata_places
+            raw.extend(fetch_wikidata_places())        # rich structured places
         if "directories" in want:
             from scripts.extract.directory_client import fetch_directories
             raw.extend(fetch_directories(localities))

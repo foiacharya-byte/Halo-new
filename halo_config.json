@@ -61,6 +61,13 @@
     ]
   },
 
+  "wikidata": {
+    "_note": "Wikidata SPARQL (CC0, open). Pulls every item with coordinates within radius_km of Vadodara — with English label, description, type and website. Adds descriptions/facts OSM lacks.",
+    "center_lat": 22.3072,
+    "center_lon": 73.1812,
+    "radius_km": 25,
+    "limit": 2000
+  },
   "govdata": {
     "_note": "data.gov.in — India's OFFICIAL Open Government Data API (the legitimate route to registries/census/statistics). Get a FREE key: register at https://data.gov.in -> profile -> 'Generate API Key'. Put it in HALO_DATAGOV_KEY (env) or api_key below. Then find Vadodara/Gujarat datasets on data.gov.in, copy each resource UUID into resource_ids, and run:  python scripts/extract/extract_govdata.py . Raw rows are saved to data/processed/govdata_<id>.json for inspection/mapping.",
     "api_base": "https://api.data.gov.in/resource/",
