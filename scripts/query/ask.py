@@ -370,6 +370,55 @@ def answer_area_profile(q: str, toks: list[str], idx: dict) -> str | None:
     return "\n".join(out)
 
 
+TRIP_TRIGGERS = {"trip", "trips", "visit", "tourist", "tourism", "weekend",
+                 "picnic", "getaway", "outing", "spot", "spots", "sightseeing",
+                 "explore", "nearby", "day"}
+MOOD_WORDS = {"peaceful", "spiritual", "adventure", "family", "picnic", "scenic",
+              "heritage", "culture", "fun", "romantic", "relax", "relaxing"}
+MOOD_ALIAS = {"relax": "peaceful", "relaxing": "peaceful", "romantic": "peaceful",
+              "culture": "heritage", "religious": "spiritual", "temple": "spiritual"}
+
+
+def answer_trips(q: str, toks: list[str], idx: dict) -> str | None:
+    if not (TRIP_TRIGGERS & set(toks) or MOOD_WORDS & set(toks)):
+        return None
+    docs = idx["docs"]
+    trips = [docs[k] for k in docs if k.startswith("trip_spot:")]
+    if not trips:
+        return None
+    tset = set(toks) | {t[:-1] for t in toks if len(t) > 3 and t.endswith("s")}
+    moods = {MOOD_ALIAS.get(t, t) for t in tset if t in MOOD_WORDS or t in MOOD_ALIAS}
+    rm = re.search(r"within\s+(\d+(?:\.\d+)?)\s*km", q.lower())
+    max_km = float(rm.group(1)) if rm else None
+    typ = next((t for t in ("temple", "fort", "heritage", "museum", "lake_dam",
+                            "hill", "park", "picnic", "attraction") if t in tset), None)
+
+    cand = trips
+    if moods:
+        m = [t for t in cand if moods & set(t.get("best_for_mood", []))]
+        cand = m or cand
+    if typ:
+        cand = [t for t in cand if t.get("type") == typ] or cand
+    if max_km is not None:
+        cand = [t for t in cand if (t.get("distance_km") or 1e9) <= max_km]
+    cand.sort(key=lambda t: t.get("distance_km") or 1e9)
+    if not cand:
+        return "No trip spots match that yet — try a live run or widen the distance."
+
+    head = "Trip ideas around Vadodara"
+    if moods:
+        head += f" ({', '.join(sorted(moods))})"
+    if max_km:
+        head += f" within {max_km:.0f} km"
+    lines = []
+    for t in cand[:6]:
+        demo = " _(demo)_" if t.get("is_demo") else ""
+        lines.append(f"- **{t['name']}** — {t.get('type','')}, ~{t.get('distance_km')} km · "
+                     f"{', '.join(t.get('best_for_mood', []))}{demo}\n"
+                     f"  {t.get('description_summary') or t.get('how_to_reach','')}")
+    return head + ":\n" + "\n".join(lines)
+
+
 def answer(q: str, idx: dict) -> str:
     toks = tokenize(q)
     docs = idx["docs"]
@@ -393,6 +442,11 @@ def answer(q: str, idx: dict) -> str:
             return f"No area indexed for PIN {pin_match.group(1)}."
         names = ", ".join(sorted(docs[k]["name"] for k in keys))
         return f"PIN **{pin_match.group(1)}** covers: {names}."
+
+    # Intent: TRIPS — mood/tourist words ("peaceful weekend trip", "temples nearby").
+    trips = answer_trips(q, toks, idx)
+    if trips is not None:
+        return trips
 
     # Intent: NEAR-ME — proximity words ("near", "within N km of", "closest").
     near = answer_near(q, toks, idx)

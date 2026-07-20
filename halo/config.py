@@ -41,6 +41,8 @@ def load() -> dict:
         cfg["osm"]["nominatim_url"] = env["HALO_NOMINATIM_URL"]
     if env.get("HALO_OVERPASS_URL"):
         cfg["osm"]["overpass_url"] = env["HALO_OVERPASS_URL"]
+    if env.get("HALO_DATAGOV_KEY"):
+        cfg.setdefault("govdata", {})["api_key"] = env["HALO_DATAGOV_KEY"]
 
     # bake the real contact email into the UA string if left as a placeholder
     ua = cfg["runtime"]["user_agent"]

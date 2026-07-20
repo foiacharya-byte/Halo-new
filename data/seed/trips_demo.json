@@ -1,0 +1,23 @@
+{
+  "_readme": "DEMO trip spots for offline use (sandbox blocks OSM). is_demo=true; distances are approximate. A live run replaces these with real OSM spots + precise distances/coordinates.",
+  "records": [
+    {"name": "Sursagar Lake", "distance_km": 2, "type": "lake_dam",
+     "best_for_mood": ["peaceful", "scenic"], "description": "central city lake",
+     "how_to_reach": "~2 km from city centre"},
+    {"name": "Laxmi Vilas Palace", "distance_km": 3, "type": "heritage",
+     "best_for_mood": ["heritage", "culture"], "description": "Gaekwad palace",
+     "how_to_reach": "~3 km from city centre"},
+    {"name": "Sindhrot Riverside", "distance_km": 15, "type": "lake_dam",
+     "best_for_mood": ["peaceful", "picnic"], "description": "riverside picnic spot",
+     "how_to_reach": "~15 km west via Sindhrot road"},
+    {"name": "Ajwa Nimeta Garden", "distance_km": 20, "type": "park",
+     "best_for_mood": ["family", "peaceful", "picnic"], "description": "garden & musical fountain",
+     "how_to_reach": "~20 km east via Ajwa road"},
+    {"name": "Champaner-Pavagadh", "distance_km": 47, "type": "fort",
+     "best_for_mood": ["heritage", "adventure", "spiritual"], "description": "UNESCO heritage + hill temple",
+     "how_to_reach": "~47 km via Halol"},
+    {"name": "Kabirvad", "distance_km": 55, "type": "temple",
+     "best_for_mood": ["spiritual", "peaceful"], "description": "island banyan & shrine on Narmada",
+     "how_to_reach": "~55 km via Shuklatirth"}
+  ]
+}

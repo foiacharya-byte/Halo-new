@@ -224,8 +224,33 @@ def _overpass_query(body: str) -> tuple[list[dict], str]:
     return [], "error"
 
 
+def _grid_tiles(bbox: tuple[float, float, float, float], grid: int):
+    """Yield (s,w,n,e) sub-tiles covering the city bbox in a grid x grid mesh."""
+    s, w, n, e = bbox
+    for i in range(grid):
+        for j in range(grid):
+            ts = s + (n - s) * i / grid
+            tn = s + (n - s) * (i + 1) / grid
+            tw = w + (e - w) * j / grid
+            te = w + (e - w) * (j + 1) / grid
+            yield (ts, tw, tn, te)
+
+
+def _tile_query(s: float, w: float, n: float, e: float, timeout: int) -> str:
+    """One request per tile: every FILTER unioned over node+way+relation."""
+    parts = []
+    for filt in FILTERS:
+        for typ in ("node", "way", "relation"):
+            parts.append(f"{typ}{filt}({s},{w},{n},{e});")
+    return f"[out:json][timeout:{timeout}];({''.join(parts)});out center tags;"
+
+
 def fetch_city_services(fallback_localities: list[str]) -> list[dict]:
-    """DEEP: pull the whole city bbox by category chunks; assign nearest locality."""
+    """
+    DEEP: tile the whole city into grid x grid cells and scrape EVERY category in
+    each tile (one request per tile). Small tile queries never 504, and together
+    they cover the entire city — area by area — with nothing skipped.
+    """
     if not config.network_allowed():
         provenance.record("src.osm.overpass", "network_disabled",
                           "allow_network=false (sandbox); using fixtures")
@@ -236,43 +261,44 @@ def fetch_city_services(fallback_localities: list[str]) -> list[dict]:
         print("[osm] city bbox geocode failed — falling back to per-locality mode")
         return fetch_localities(fallback_localities)
 
-    s, w, n, e = bbox
+    grid = max(1, int(config.get("osm", "grid", default=4)))
     timeout = int(config.get("osm", "overpass_timeout_seconds", default=180))
     coords = load_area_coords()
+    tiles = list(_grid_tiles(bbox, grid))
     by_id: dict[str, dict] = {}
-    ok_chunks = err_chunks = 0
+    ok_tiles = err_tiles = 0
 
-    print(f"[osm] deep city scrape · bbox=({s:.3f},{w:.3f},{n:.3f},{e:.3f}) · "
-          f"{len(FILTERS)} category chunks")
-    for filt in FILTERS:
-        body = (f"[out:json][timeout:{timeout}];("
-                f'node{filt}({s},{w},{n},{e});'
-                f'way{filt}({s},{w},{n},{e});'
-                f'relation{filt}({s},{w},{n},{e}););out center tags;')
-        elements, status = _overpass_query(body)
+    print(f"[osm] deep city scrape · {grid}x{grid} = {len(tiles)} tiles · "
+          f"all {len(FILTERS)} categories per tile")
+    for idx, (s, w, n, e) in enumerate(tiles, 1):
+        elements, status = _overpass_query(_tile_query(s, w, n, e, timeout))
         if status != "ok":
-            err_chunks += 1
+            err_tiles += 1
+            print(f"[osm]   tile {idx}/{len(tiles)}: FAILED (kept going)")
             continue
-        ok_chunks += 1
+        ok_tiles += 1
         added = 0
         for el in elements:
             poi = _element_to_poi(el, coords)
             if poi:
-                by_id[f"{el['type']}/{el['id']}"] = poi
-                added += 1
-        print(f"[osm]   {filt}: {added} POIs (running total {len(by_id)})")
+                key = f"{el['type']}/{el['id']}"
+                if key not in by_id:
+                    added += 1
+                by_id[key] = poi
+        print(f"[osm]   tile {idx}/{len(tiles)}: +{added} new (total {len(by_id)})")
 
     records = list(by_id.values())
-    if ok_chunks and records:
-        status = "usable" if err_chunks == 0 else "partial"
-    elif err_chunks and not records:
+    if ok_tiles and records:
+        status = "usable" if err_tiles == 0 else "partial"
+    elif err_tiles and not records:
         status = "blocked"
     else:
         status = "partial"
     provenance.record("src.osm.overpass", status,
-                      f"deep city scrape: {len(records)} POIs from {ok_chunks}/"
-                      f"{len(FILTERS)} chunks (errors={err_chunks})", records=len(records))
-    print(f"[osm] deep scrape aggregate: {status} — {len(records)} POIs")
+                      f"deep tiled scrape: {len(records)} POIs from {ok_tiles}/"
+                      f"{len(tiles)} tiles (failed={err_tiles})", records=len(records))
+    print(f"[osm] deep scrape aggregate: {status} — {len(records)} POIs "
+          f"({ok_tiles}/{len(tiles)} tiles ok)")
     if status == "blocked":
         blocked_hint()
     return records

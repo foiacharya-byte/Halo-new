@@ -195,6 +195,32 @@ class TestGeocodeNearMe(unittest.TestCase):
         self.assertIn("Top categories", r.stdout)
 
 
+class TestTrips(unittest.TestCase):
+    def setUp(self):
+        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_trips.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/validate/validate_trips.py")], check=True)
+        self.spots = json.loads(
+            (ROOT / "data/processed/trip_spots.validated.json").read_text(encoding="utf-8"))
+
+    def test_spots_have_distance_and_mood(self):
+        self.assertGreater(len(self.spots), 3)
+        for s in self.spots:
+            self.assertIsNotNone(s["distance_km"])
+            self.assertTrue(s["best_for_mood"])
+        # sorted nearest first
+        dists = [s["distance_km"] for s in self.spots]
+        self.assertEqual(dists, sorted(dists))
+
+    def test_grid_tiles_cover_bbox(self):
+        from scripts.extract.services_osm import _grid_tiles
+        tiles = list(_grid_tiles((22.0, 73.0, 22.4, 73.4), 4))
+        self.assertEqual(len(tiles), 16)                 # 4x4
+        # tiles stay within the bbox
+        for s, w, n, e in tiles:
+            self.assertGreaterEqual(s, 22.0)
+            self.assertLessEqual(e, 73.4)
+
+
 class TestNews(unittest.TestCase):
     def setUp(self):
         subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_areas.py")], check=True)

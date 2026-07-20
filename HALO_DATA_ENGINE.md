@@ -253,6 +253,23 @@ scaffolded as candidates. Halo will **not** defeat CAPTCHAs/logins/anti-bot on
 directories, and never scrapes citizen-login/personal-data pages — that's illegal
 and breaks the project's trust posture. We go as deep as open, permitted data allows.
 
+## 8f. Tourist spots, grid-tiling & government data
+
+- **Grid-tiling (deeper, no timeouts):** `osm.grid` (default 4) splits the city
+  into `grid×grid` tiles; each tile is ONE Overpass request unioning every
+  category. Small tile queries never `504`, and together they cover the whole
+  city area-by-area. Raise `grid` to 6–8 for exhaustive pulls.
+- **Trip spots:** `extract_trips.py` pulls temples/forts/dams/hills/parks within
+  `osm.trips_radius_km` (60 km) from OSM into the TRIP_SPOT entity, each tagged
+  with type + mood + distance. Ask:
+  ```bash
+  python3 scripts/query/ask.py "peaceful picnic spot within 30 km"
+  python3 scripts/query/ask.py "temples to visit nearby"
+  ```
+- **Government data (registry depth):** `extract_govdata.py` uses the official
+  data.gov.in JSON API. Get a free key → `HALO_DATAGOV_KEY`, add dataset UUIDs to
+  `govdata.resource_ids`, run it; rows land in `data/processed/govdata_*.json`.
+
 ## 9. Run the services step
 
 ```bash
