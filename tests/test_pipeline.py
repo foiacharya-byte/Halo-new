@@ -184,6 +184,16 @@ class TestGeocodeNearMe(unittest.TestCase):
         self.assertEqual(r.returncode, 0, msg=r.stderr)
         self.assertRegex(r.stdout, r"\d+\.\d+ km", "near-me answer must show distances in km")
 
+    def test_area_profile(self):
+        # full pipeline so services are assigned to localities
+        subprocess.run([sys.executable, str(ROOT / "scripts/run_pipeline.py")], check=True)
+        r = subprocess.run([sys.executable, str(ROOT / "scripts/query/ask.py"),
+                            "tell me about Karelibaug"], capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, msg=r.stderr)
+        self.assertIn("area profile", r.stdout)
+        self.assertIn("Businesses & services", r.stdout)
+        self.assertIn("Top categories", r.stdout)
+
 
 class TestNews(unittest.TestCase):
     def setUp(self):

@@ -19,6 +19,7 @@ import json
 import math
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -252,6 +253,123 @@ def answer_near(q: str, toks: list[str], idx: dict) -> str | None:
     return head + "\n" + "\n".join(lines) + note
 
 
+AREA_TRIGGERS = {"about", "tell", "overview", "details", "detail", "info",
+                 "information", "area", "profile", "describe", "know"}
+
+# group granular OSM categories into human sections for the profile
+DISPLAY_GROUPS = [
+    ("🍽️ Food & dining", {"food", "restaurant", "cafe", "bar", "pub", "bakery", "fast_food"}),
+    ("🏥 Health & medical", {"health", "healthcare", "pharmacy", "hospital", "clinic",
+                             "doctors", "dentist", "veterinary", "nursing_home"}),
+    ("🎓 Education", {"education", "school", "college", "university", "kindergarten",
+                     "driving_school", "language_school", "library"}),
+    ("🏦 Finance", {"finance", "bank", "atm", "bureau_de_change", "insurance"}),
+    ("🛍️ Shopping & retail", {"shopping", "clothes", "supermarket", "grocery", "convenience",
+                              "electronics", "hardware", "furniture", "jewelry", "mobile_phone",
+                              "shoes", "books", "gift"}),
+    ("💼 Professionals & offices", {"office", "lawyer", "accountant", "estate_agent", "company",
+                                    "it", "professional", "consulting", "financial"}),
+    ("🔧 Home services & trades", {"electrician", "craft", "plumber", "carpenter", "tailor",
+                                   "painter", "hvac"}),
+    ("🚗 Auto", {"auto", "car", "car_repair", "motorcycle", "tyres", "fuel", "car_wash"}),
+    ("💇 Beauty & salon", {"salon", "beauty", "hairdresser"}),
+    ("🏨 Hospitality & tourism", {"hospitality", "hotel", "guest_house", "tourism",
+                                  "attraction", "museum", "gallery", "guesthouse"}),
+    ("🛕 Places & landmarks", {"historic", "park", "leisure", "place_of_worship",
+                               "monument", "garden", "attraction", "theatre", "cinema"}),
+]
+
+
+def find_area_doc(toks: list[str], idx: dict) -> dict | None:
+    """Longest area name (or alias) that appears in the query wins."""
+    docs, qn = idx["docs"], " ".join(toks)
+    best = None
+    for k, d in docs.items():
+        if not k.startswith("area:"):
+            continue
+        for nm in [d["name"], *d.get("aliases", [])]:
+            nl = nm.lower()
+            if re.search(rf"\b{re.escape(nl)}\b", qn) and (best is None or len(nl) > best[1]):
+                best = (d, len(nl))
+    return best[0] if best else None
+
+
+def answer_area_profile(q: str, toks: list[str], idx: dict) -> str | None:
+    """Deep 'tell me about <area>' — meta + service counts by category + places + news."""
+    area = find_area_doc(toks, idx)
+    if not area:
+        return None
+    # trigger on an explicit ask, or a bare/short area query ("Gotri")
+    if not (AREA_TRIGGERS & set(toks) or len(toks) <= 3):
+        return None
+
+    docs = idx["docs"]
+    name = area["name"]
+    svc_keys = idx.get("locality", {}).get(name.lower(), [])
+    svcs = [docs[k] for k in svc_keys]
+    cats = Counter(s.get("category", "other") for s in svcs)
+
+    # --- header / meta ---
+    out = [f"# {name} — area profile"]
+    meta = [f"a {area.get('type','locality')} of Vadodara"]
+    if area.get("taluka"):
+        meta.append(f"{area['taluka']} taluka")
+    if area.get("zone_group"):
+        meta.append(f"{area['zone_group']} zone")
+    line = ", ".join(meta) + "."
+    if area.get("pin_codes"):
+        line += f" PIN {', '.join(area['pin_codes'])} (indicative)."
+    c = area.get("coordinates")
+    if c:
+        src = area.get("coordinates_source", "")
+        line += f" 📍 {c['lat']:.4f}, {c['lon']:.4f}" + (" (approx)" if src == "demo_fixture" else "")
+    out.append(line)
+    out.append(f"_Status: {area.get('status','?')} · confidence {area.get('confidence')}._")
+
+    # --- businesses & services ---
+    if svcs:
+        out.append(f"\n## Businesses & services\n**{len(svcs)}** mapped across "
+                   f"**{len(cats)}** categories (OpenStreetMap open data):")
+        for label, keys in DISPLAY_GROUPS:
+            n = sum(v for k, v in cats.items() if k in keys)
+            if n:
+                out.append(f"- {label}: **{n}**")
+        top = cats.most_common(10)
+        out.append("\n**Top categories:** " + ", ".join(f"{k} ({v})" for k, v in top))
+        # a few named standouts (rated first, else any named)
+        rated = sorted([s for s in svcs if s.get("halo_rating") is not None],
+                       key=lambda s: s["halo_rating"], reverse=True)[:5]
+        picks = rated or [s for s in svcs if s.get("name")][:5]
+        if picks:
+            out.append("\n**Some places here:** " + ", ".join(
+                f"{s['name']} ({s.get('category')})" for s in picks))
+    else:
+        out.append("\n## Businesses & services\nNone mapped to this area yet — run the "
+                   "live pipeline (`--live`) to populate from OpenStreetMap.")
+
+    # --- landmarks / tourism ---
+    landmark_cats = {"historic", "attraction", "museum", "place_of_worship", "park",
+                     "hotel", "hospitality", "tourism", "gallery", "monument"}
+    landmarks = [s["name"] for s in svcs if s.get("category") in landmark_cats][:8]
+    if landmarks:
+        out.append("\n## Landmarks & places of interest\n" + ", ".join(landmarks))
+
+    # --- news mentioning this area ---
+    news = [docs[k] for k in docs if k.startswith("news_event:")
+            and name in docs[k].get("locations_involved", [])]
+    news.sort(key=lambda e: e.get("date", ""), reverse=True)
+    if news:
+        out.append("\n## Recent news mentioning this area")
+        for e in news[:4]:
+            st = "✅" if e.get("status") == "confirmed" else "🟡"
+            demo = " _(demo)_" if e.get("is_demo") else ""
+            out.append(f"- {st} {e.get('date','')} — {e.get('title','')}{demo}")
+
+    out.append("\n_Counts reflect what is mapped in OpenStreetMap (open data), not an "
+               "official VMC business registry. Coverage grows every run._")
+    return "\n".join(out)
+
+
 def answer(q: str, idx: dict) -> str:
     toks = tokenize(q)
     docs = idx["docs"]
@@ -285,6 +403,13 @@ def answer(q: str, idx: dict) -> str:
     news = answer_news(q, toks, idx)
     if news is not None:
         return news
+
+    # Intent: AREA PROFILE — "tell me about Gotri" / "Gotri area" / bare "Gotri".
+    # (Before service search so an explicit area ask gets the full profile, while
+    #  "best food in Gotri" — no area-trigger word — still routes to service.)
+    prof = answer_area_profile(q, toks, idx)
+    if prof is not None:
+        return prof
 
     # Intent: SERVICE search — a category and/or a locality is mentioned.
     svc = answer_service(q, toks, idx)

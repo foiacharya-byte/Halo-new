@@ -233,6 +233,26 @@ timeout is `osm.overpass_timeout_seconds` (180s), transient `5xx`/timeouts are
 retried with backoff, and mirrors are tried in turn. Set `deep_city_scrape:false`
 to use the per-locality fallback.
 
+## 8e. Area profiles ("tell me about Gotri")
+
+Ask about any area and the query layer builds a **deep profile** from the datasets:
+```bash
+python3 scripts/query/ask.py "tell me about Gotri"
+python3 scripts/query/ask.py "Alkapuri area overview"
+```
+It reports: area meta (taluka, zone, PIN, coordinates, status); **service counts
+grouped by category** (food, health, education, finance, shopping, professionals,
+trades, auto, salon, hospitality, landmarks) plus top raw categories; a few named
+places; and recent **news** mentioning the area. Counts come from OpenStreetMap
+open data (honestly labelled — not an official VMC registry) and grow each run.
+
+**Depth & limits (important):** deeper coverage than OSM (every registered shop,
+professionals, VMC records) needs the catalogued `government_open_data` sources
+(data.gov.in JSON API, Gujarat/VMC public pages, Gujarat Tourism). These are
+scaffolded as candidates. Halo will **not** defeat CAPTCHAs/logins/anti-bot on
+directories, and never scrapes citizen-login/personal-data pages — that's illegal
+and breaks the project's trust posture. We go as deep as open, permitted data allows.
+
 ## 9. Run the services step
 
 ```bash

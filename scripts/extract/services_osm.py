@@ -53,16 +53,21 @@ OSM_CATEGORY = {
 }
 
 # Each chunk = one Overpass query over the city bbox (node+way+relation).
+# Broadened for maximum legitimate depth — every business/institution key OSM has.
 FILTERS = [
-    '["shop"]',
-    '["amenity"~"restaurant|cafe|fast_food|bar|pub|food_court|ice_cream|bakery|marketplace"]',
-    '["amenity"~"pharmacy|hospital|clinic|doctors|dentist|veterinary"]',
-    '["amenity"~"bank|atm|fuel|school|college|university|cinema|library|marketplace"]',
-    '["office"]',
-    '["craft"]',
-    '["healthcare"]',
-    '["tourism"~"hotel|guest_house|museum|attraction|gallery"]',
-    '["leisure"~"fitness_centre|sports_centre|stadium|park"]',
+    '["shop"]',                       # all retail
+    '["amenity"~"restaurant|cafe|fast_food|bar|pub|food_court|ice_cream|bakery|marketplace|nightclub"]',
+    '["amenity"~"pharmacy|hospital|clinic|doctors|dentist|veterinary|nursing_home"]',
+    '["amenity"~"bank|atm|bureau_de_change|fuel|charging_station|car_wash|car_rental"]',
+    '["amenity"~"school|college|university|kindergarten|driving_school|language_school|training|library"]',
+    '["amenity"~"cinema|theatre|community_centre|social_facility|place_of_worship|courthouse|police|fire_station|post_office|townhall"]',
+    '["office"]',                     # professionals: lawyers, CAs, IT, estate agents...
+    '["craft"]',                      # electricians, plumbers, carpenters, tailors...
+    '["healthcare"]',                 # clinics/labs/physio not tagged as amenity
+    '["tourism"]',                    # hotels, guest houses, museums, attractions
+    '["leisure"~"fitness_centre|sports_centre|stadium|park|garden|swimming_pool|water_park"]',
+    '["historic"]',                   # monuments, forts, heritage
+    '["building"~"commercial|retail|industrial|office|hotel|hospital|supermarket"]',
 ]
 
 _fetcher: Fetcher | None = None

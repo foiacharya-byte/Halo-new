@@ -1,8 +1,50 @@
 {
   "_readme": "Phase 1 — Source catalogue. We list candidate OPEN sources BEFORE fetching anything. trust_level: high=official/govt, medium=major news/big directory, low=small blog. access_method: how we would read it. update_frequency: how often it changes. respect_robots: we honour robots.txt and only automate sources that permit it. Each source has an id referenced by dataset records in source_links[].",
   "generated_for": "Vadodara (Baroda), Gujarat, India",
-  "schema_version": 2,
+  "schema_version": 3,
   "categories": {
+    "government_open_data": [
+      {
+        "id": "src.data.gov.in.vadodara",
+        "name": "data.gov.in — Open Government Data (Vadodara datasets)",
+        "url_example": "https://api.data.gov.in/",
+        "trust_level": "high",
+        "access_method": "json_api",
+        "update_frequency": "monthly",
+        "respect_robots": true,
+        "notes": "CANDIDATE. India's official open-data portal has a documented JSON API (free API key). Best legitimate source for registries/statistics. Enable by adding an API key + dataset ids to halo_config."
+      },
+      {
+        "id": "src.gujarat.opendata",
+        "name": "Gujarat State Open Data Portal",
+        "url_example": "https://gujaratindia.gov.in/",
+        "trust_level": "high",
+        "access_method": "http_get_html",
+        "update_frequency": "monthly",
+        "respect_robots": true,
+        "notes": "CANDIDATE. State datasets/notifications. Verify robots/terms before crawling."
+      },
+      {
+        "id": "src.vmc.portal",
+        "name": "Vadodara Municipal Corporation (VMC) portal",
+        "url_example": "https://vmc.gov.in/",
+        "trust_level": "high",
+        "access_method": "http_get_html",
+        "update_frequency": "monthly",
+        "respect_robots": true,
+        "notes": "CANDIDATE. Zones/wards, tenders, notices, some property-tax/tenement search. LEGAL NOTE: use only pages that VMC's robots.txt/terms permit automated access to; property-tax/citizen-login areas are personal-data and NOT to be scraped. Public reference pages only."
+      },
+      {
+        "id": "src.gujarattourism.official",
+        "name": "Gujarat Tourism — official attractions (Vadodara & nearby)",
+        "url_example": "https://www.gujarattourism.com/",
+        "trust_level": "high",
+        "access_method": "http_get_html",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "CANDIDATE. Feeds the TRIP_SPOT entity (temples, palaces, dams, hills within 10-50 km). Robots-respecting HTML."
+      }
+    ],
     "internal": [
       {
         "id": "src.seed.curated",
