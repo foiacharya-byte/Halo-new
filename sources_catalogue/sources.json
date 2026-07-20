@@ -1,0 +1,165 @@
+{
+  "_readme": "Phase 1 — Source catalogue. We list candidate OPEN sources BEFORE fetching anything. trust_level: high=official/govt, medium=major news/big directory, low=small blog. access_method: how we would read it. update_frequency: how often it changes. respect_robots: we honour robots.txt and only automate sources that permit it. Each source has an id referenced by dataset records in source_links[].",
+  "generated_for": "Vadodara (Baroda), Gujarat, India",
+  "schema_version": 1,
+  "categories": {
+    "areas_wards_villages": [
+      {
+        "id": "src.census2011.vadodara",
+        "name": "Census 2011 — Vadodara city / district ward & population tables",
+        "url_example": "https://www.census2011.co.in/census/city/336-vadodara.html",
+        "trust_level": "high",
+        "access_method": "http_get_html_table",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "Ward-level names + population. Static (2011) but authoritative baseline."
+      },
+      {
+        "id": "src.vmc.official",
+        "name": "Vadodara Municipal Corporation (VMC) — zones & wards",
+        "url_example": "https://vmc.gov.in/",
+        "trust_level": "high",
+        "access_method": "http_get_html",
+        "update_frequency": "monthly",
+        "respect_robots": true,
+        "notes": "Official zone/ward structure. Post-2021 reconstitution: 4 zones, 19 wards. Confirm current count at time of use."
+      },
+      {
+        "id": "src.vuda.dp_villages",
+        "name": "VUDA — Development Plan village/locality maps",
+        "url_example": "https://vudaonline.co.in/",
+        "trust_level": "high",
+        "access_method": "pdf_parse",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "Named villages/localities inside the urban development authority boundary."
+      },
+      {
+        "id": "src.localbodydata.vadodara",
+        "name": "LocalBodyData — VMC ward numbers + LGD codes",
+        "url_example": "https://localbodydata.com/",
+        "trust_level": "medium",
+        "access_method": "http_get_html_table",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "Cross-reference ward numbers and Local Government Directory (LGD) codes."
+      },
+      {
+        "id": "src.pincode.indiapost",
+        "name": "India Post — PIN code directory (Vadodara)",
+        "url_example": "https://www.indiapost.gov.in/vas/pages/findpincode.aspx",
+        "trust_level": "high",
+        "access_method": "http_get_html",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "Authoritative PIN codes per locality/post office."
+      }
+    ],
+    "services": [
+      {
+        "id": "src.justdial.vadodara",
+        "name": "Justdial — Vadodara category listings",
+        "url_example": "https://www.justdial.com/Vadodara",
+        "trust_level": "medium",
+        "access_method": "http_get_html_cards",
+        "update_frequency": "weekly",
+        "respect_robots": true,
+        "notes": "Large directory. HEAVY anti-bot + robots restrictions — only use where permitted; treat phone numbers as leads (no auto-publish)."
+      },
+      {
+        "id": "src.sulekha.vadodara",
+        "name": "Sulekha — Vadodara services",
+        "url_example": "https://www.sulekha.com/vadodara",
+        "trust_level": "medium",
+        "access_method": "http_get_html_cards",
+        "update_frequency": "weekly",
+        "respect_robots": true,
+        "notes": "Services/professionals. Same consent rule: numbers are leads, not public contacts."
+      },
+      {
+        "id": "src.osm.overpass",
+        "name": "OpenStreetMap — Overpass API (shops/amenities in Vadodara)",
+        "url_example": "https://overpass-api.de/api/interpreter",
+        "trust_level": "medium",
+        "access_method": "json_api",
+        "update_frequency": "weekly",
+        "respect_robots": true,
+        "notes": "OPEN, license-friendly (ODbL, attribution required). Best first source for names + coordinates + category. Rarely has ratings."
+      },
+      {
+        "id": "src.chamber.pdf",
+        "name": "Chamber-of-commerce / trade-body member PDFs",
+        "url_example": "https://www.gcci.org/",
+        "trust_level": "medium",
+        "access_method": "pdf_parse",
+        "update_frequency": "monthly",
+        "respect_robots": true,
+        "notes": "Member firm lists as structured PDF tables."
+      }
+    ],
+    "news_events": [
+      {
+        "id": "src.toi.vadodara",
+        "name": "Times of India — Vadodara city section",
+        "url_example": "https://timesofindia.indiatimes.com/city/vadodara",
+        "trust_level": "medium",
+        "access_method": "rss_or_html",
+        "update_frequency": "daily",
+        "respect_robots": true,
+        "notes": "Prefer RSS where available (cheapest, cleanest). Major-source corroboration for event 'confirmed' status."
+      },
+      {
+        "id": "src.indianexpress.gujarat",
+        "name": "Indian Express — Gujarat / Vadodara",
+        "url_example": "https://indianexpress.com/section/cities/ahmedabad/",
+        "trust_level": "medium",
+        "access_method": "rss_or_html",
+        "update_frequency": "daily",
+        "respect_robots": true,
+        "notes": "Second independent major source for cross-validation."
+      },
+      {
+        "id": "src.gujaratsamachar",
+        "name": "Gujarat Samachar — Vadodara (Gujarati)",
+        "url_example": "https://www.gujaratsamachar.com/",
+        "trust_level": "medium",
+        "access_method": "http_get_html",
+        "update_frequency": "daily",
+        "respect_robots": true,
+        "notes": "Gujarati-language coverage; useful for hyperlocal events national press misses."
+      }
+    ],
+    "travel_nearby": [
+      {
+        "id": "src.gujarattourism",
+        "name": "Gujarat Tourism — official portal",
+        "url_example": "https://www.gujarattourism.com/",
+        "trust_level": "high",
+        "access_method": "http_get_html",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "Official descriptions + how-to-reach for regional spots."
+      },
+      {
+        "id": "src.vadodara.district",
+        "name": "Vadodara District — tourism / places of interest",
+        "url_example": "https://vadodara.nic.in/tourist-places/",
+        "trust_level": "high",
+        "access_method": "http_get_html",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "Government district page; authoritative for nearby attractions."
+      },
+      {
+        "id": "src.travelblogs.generic",
+        "name": "Travel blogs / guides (Vadodara & nearby)",
+        "url_example": "",
+        "trust_level": "low",
+        "access_method": "http_get_html",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "Mood/vibe descriptions. Low trust — must be corroborated by >=1 higher-trust source before a trip_spot is accepted."
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Area",
+  "type": "object",
+  "required": ["id", "name", "type", "source_ids", "last_updated"],
+  "properties": {
+    "id": {"type": "string"},
+    "name": {"type": "string"},
+    "type": {"type": "string", "enum": ["ward", "locality", "village"]},
+    "parent_zone": {"type": ["string", "null"]},
+    "ward_number": {"type": ["string", "null"]},
+    "pin_codes": {"type": "array", "items": {"type": "string"}},
+    "coordinates": {
+      "type": ["object", "null"],
+      "properties": {"lat": {"type": "number"}, "lon": {"type": "number"}}
+    },
+    "aliases": {"type": "array", "items": {"type": "string"}},
+    "source_links": {"type": "array", "items": {"type": "string"}},
+    "source_ids": {"type": "array", "items": {"type": "string"}},
+    "last_updated": {"type": "string"},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "needs_review": {"type": "boolean"},
+    "takedown": {"type": "boolean"}
+  }
+}

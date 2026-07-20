@@ -1,0 +1,37 @@
+id,name,type,parent_zone,ward_number,pin_codes,confidence,needs_review,last_updated
+area:alkapuri:632f2245,Alkapuri,locality,West,,390005; 390007,1.0,False,2026-07-20T11:24:32+00:00
+area:sayajigunj:b887a142,Sayajigunj,locality,Central,,390005; 390020,1.0,False,2026-07-20T11:24:32+00:00
+area:fatehgunj:9e9a3f04,Fatehgunj,locality,North,,390002,1.0,False,2026-07-20T11:24:32+00:00
+area:karelibaug:e37910b3,Karelibaug,locality,East,,390018,1.0,False,2026-07-20T11:24:32+00:00
+area:harni:8a56789a,Harni,locality,East,,390022,1.0,False,2026-07-20T11:24:32+00:00
+area:sama:27605661,Sama,locality,North,,390008; 390024,1.0,False,2026-07-20T11:24:32+00:00
+area:gotri:3d7ddfe3,Gotri,locality,West,,390021,1.0,False,2026-07-20T11:24:32+00:00
+area:akota:9ca50389,Akota,locality,West,,390020,1.0,False,2026-07-20T11:24:32+00:00
+area:manjalpur:9449d96c,Manjalpur,locality,South,,390011,1.0,False,2026-07-20T11:24:32+00:00
+area:nizampura:8e262396,Nizampura,locality,North,,390002,1.0,False,2026-07-20T11:24:32+00:00
+area:subhanpura:74de97a3,Subhanpura,locality,West,,390023,1.0,False,2026-07-20T11:24:32+00:00
+area:vasna:79c9af8c,Vasna,locality,West,,390007; 390015,1.0,False,2026-07-20T11:24:32+00:00
+area:tandalja:804f8902,Tandalja,locality,West,,390012,1.0,False,2026-07-20T11:24:32+00:00
+area:old-padra-road:0453df14,Old Padra Road,locality,West,,390007; 390015,1.0,False,2026-07-20T11:24:32+00:00
+area:ellora-park:e119f7a9,Ellora Park,locality,West,,390023,1.0,False,2026-07-20T11:24:32+00:00
+area:race-course:94a9e3ed,Race Course,locality,Central,,390007,1.0,False,2026-07-20T11:24:32+00:00
+area:makarpura:a36baf2c,Makarpura,locality,South,,390009; 390010; 390013,1.0,False,2026-07-20T11:24:32+00:00
+area:gorwa:d9d70451,Gorwa,locality,North,,390016,1.0,False,2026-07-20T11:24:32+00:00
+area:chhani:4234dcfd,Chhani,locality,North,,391740,1.0,False,2026-07-20T11:24:32+00:00
+area:ajwa-road:476950d0,Ajwa Road,locality,East,,390019,1.0,False,2026-07-20T11:24:32+00:00
+area:dandia-bazar:b0e76c5d,Dandia Bazar,locality,Central,,390001,1.0,False,2026-07-20T11:24:32+00:00
+area:mandvi:7367a821,Mandvi,locality,Central,,390001,1.0,False,2026-07-20T11:24:32+00:00
+area:raopura:ff7458bf,Raopura,locality,Central,,390001,1.0,False,2026-07-20T11:24:32+00:00
+area:wadi:167f8059,Wadi,locality,Central,,390017,1.0,False,2026-07-20T11:24:32+00:00
+area:pratapnagar:a2858aa8,Pratapnagar,locality,South,,390004,1.0,False,2026-07-20T11:24:32+00:00
+area:bapod:b26c09ad,Bapod,locality,East,,390019,1.0,False,2026-07-20T11:24:32+00:00
+area:vemali:2cbe45c7,Vemali,locality,East,,390025,1.0,False,2026-07-20T11:24:32+00:00
+area:diwalipura:17b2f4d0,Diwalipura,locality,West,,390015,1.0,False,2026-07-20T11:24:32+00:00
+area:waghodia-road:41939138,Waghodia Road,locality,East,,390019,1.0,False,2026-07-20T11:24:32+00:00
+area:manisha:6183722d,Manisha,locality,West,,390015,1.0,False,2026-07-20T11:24:32+00:00
+area:sun-pharma-road:fee24746,Sun Pharma Road,locality,West,,390012,1.0,False,2026-07-20T11:24:32+00:00
+area:atladara:f6e616da,Atladara,locality,West,,390012,1.0,False,2026-07-20T11:24:32+00:00
+area:sevasi:07caca15,Sevasi,village,West,,391101,1.0,False,2026-07-20T11:24:32+00:00
+area:bhayli:d977fe8c,Bhayli,village,West,,391410,1.0,False,2026-07-20T11:24:32+00:00
+area:vadsar:d4221106,Vadsar,locality,South,,390010,1.0,False,2026-07-20T11:24:32+00:00
+area:tarsali:11e0f785,Tarsali,locality,South,,390009,1.0,False,2026-07-20T11:24:32+00:00

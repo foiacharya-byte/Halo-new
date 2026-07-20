@@ -1,0 +1,908 @@
+[
+  {
+    "id": "area:alkapuri:632f2245",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Alkapuri",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390005",
+      "390007"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:sayajigunj:b887a142",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sayajigunj",
+    "type": "locality",
+    "parent_zone": "Central",
+    "ward_number": null,
+    "pin_codes": [
+      "390005",
+      "390020"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Sayaji Gunj"
+    ]
+  },
+  {
+    "id": "area:fatehgunj:9e9a3f04",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Fatehgunj",
+    "type": "locality",
+    "parent_zone": "North",
+    "ward_number": null,
+    "pin_codes": [
+      "390002"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Fateh Gunj"
+    ]
+  },
+  {
+    "id": "area:karelibaug:e37910b3",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Karelibaug",
+    "type": "locality",
+    "parent_zone": "East",
+    "ward_number": null,
+    "pin_codes": [
+      "390018"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Kareli Baug",
+      "Karelibag"
+    ]
+  },
+  {
+    "id": "area:harni:8a56789a",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Harni",
+    "type": "locality",
+    "parent_zone": "East",
+    "ward_number": null,
+    "pin_codes": [
+      "390022"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:sama:27605661",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sama",
+    "type": "locality",
+    "parent_zone": "North",
+    "ward_number": null,
+    "pin_codes": [
+      "390008",
+      "390024"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Sama-Savli"
+    ]
+  },
+  {
+    "id": "area:gotri:3d7ddfe3",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Gotri",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390021"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:akota:9ca50389",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Akota",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390020"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Akota Gardens"
+    ]
+  },
+  {
+    "id": "area:manjalpur:9449d96c",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Manjalpur",
+    "type": "locality",
+    "parent_zone": "South",
+    "ward_number": null,
+    "pin_codes": [
+      "390011"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:nizampura:8e262396",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Nizampura",
+    "type": "locality",
+    "parent_zone": "North",
+    "ward_number": null,
+    "pin_codes": [
+      "390002"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:subhanpura:74de97a3",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Subhanpura",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390023"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:vasna:79c9af8c",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Vasna",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390007",
+      "390015"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Vasna Road"
+    ]
+  },
+  {
+    "id": "area:tandalja:804f8902",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Tandalja",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390012"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:old-padra-road:0453df14",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Old Padra Road",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390007",
+      "390015"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "OP Road"
+    ]
+  },
+  {
+    "id": "area:ellora-park:e119f7a9",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Ellora Park",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390023"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Ellorapark"
+    ]
+  },
+  {
+    "id": "area:race-course:94a9e3ed",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Race Course",
+    "type": "locality",
+    "parent_zone": "Central",
+    "ward_number": null,
+    "pin_codes": [
+      "390007"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Racecourse"
+    ]
+  },
+  {
+    "id": "area:makarpura:a36baf2c",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Makarpura",
+    "type": "locality",
+    "parent_zone": "South",
+    "ward_number": null,
+    "pin_codes": [
+      "390009",
+      "390010",
+      "390013"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:gorwa:d9d70451",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Gorwa",
+    "type": "locality",
+    "parent_zone": "North",
+    "ward_number": null,
+    "pin_codes": [
+      "390016"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:chhani:4234dcfd",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Chhani",
+    "type": "locality",
+    "parent_zone": "North",
+    "ward_number": null,
+    "pin_codes": [
+      "391740"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Chani"
+    ]
+  },
+  {
+    "id": "area:ajwa-road:476950d0",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Ajwa Road",
+    "type": "locality",
+    "parent_zone": "East",
+    "ward_number": null,
+    "pin_codes": [
+      "390019"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Ajwa"
+    ]
+  },
+  {
+    "id": "area:dandia-bazar:b0e76c5d",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Dandia Bazar",
+    "type": "locality",
+    "parent_zone": "Central",
+    "ward_number": null,
+    "pin_codes": [
+      "390001"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Dandiya Bazar"
+    ]
+  },
+  {
+    "id": "area:mandvi:7367a821",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Mandvi",
+    "type": "locality",
+    "parent_zone": "Central",
+    "ward_number": null,
+    "pin_codes": [
+      "390001"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:raopura:ff7458bf",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Raopura",
+    "type": "locality",
+    "parent_zone": "Central",
+    "ward_number": null,
+    "pin_codes": [
+      "390001"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:wadi:167f8059",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Wadi",
+    "type": "locality",
+    "parent_zone": "Central",
+    "ward_number": null,
+    "pin_codes": [
+      "390017"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:pratapnagar:a2858aa8",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Pratapnagar",
+    "type": "locality",
+    "parent_zone": "South",
+    "ward_number": null,
+    "pin_codes": [
+      "390004"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Pratap Nagar"
+    ]
+  },
+  {
+    "id": "area:bapod:b26c09ad",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Bapod",
+    "type": "locality",
+    "parent_zone": "East",
+    "ward_number": null,
+    "pin_codes": [
+      "390019"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:vemali:2cbe45c7",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Vemali",
+    "type": "locality",
+    "parent_zone": "East",
+    "ward_number": null,
+    "pin_codes": [
+      "390025"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:diwalipura:17b2f4d0",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Diwalipura",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390015"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Diwali Pura"
+    ]
+  },
+  {
+    "id": "area:waghodia-road:41939138",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Waghodia Road",
+    "type": "locality",
+    "parent_zone": "East",
+    "ward_number": null,
+    "pin_codes": [
+      "390019"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Waghodia"
+    ]
+  },
+  {
+    "id": "area:manisha:6183722d",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Manisha",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390015"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Manisha Circle"
+    ]
+  },
+  {
+    "id": "area:sun-pharma-road:fee24746",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sun Pharma Road",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390012"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Atladara"
+    ]
+  },
+  {
+    "id": "area:atladara:f6e616da",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Atladara",
+    "type": "locality",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390012"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:sevasi:07caca15",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sevasi",
+    "type": "village",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "391101"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:bhayli:d977fe8c",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Bhayli",
+    "type": "village",
+    "parent_zone": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "391410"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:vadsar:d4221106",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Vadsar",
+    "type": "locality",
+    "parent_zone": "South",
+    "ward_number": null,
+    "pin_codes": [
+      "390010"
+    ],
+    "coordinates": null,
+    "aliases": []
+  },
+  {
+    "id": "area:tarsali:11e0f785",
+    "source_links": [
+      "https://www.census2011.co.in/census/city/336-vadodara.html",
+      "https://vmc.gov.in/"
+    ],
+    "source_ids": [
+      "src.census2011.vadodara",
+      "src.vmc.official"
+    ],
+    "last_updated": "2026-07-20T11:24:37+00:00",
+    "confidence": 0.55,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Tarsali",
+    "type": "locality",
+    "parent_zone": "South",
+    "ward_number": null,
+    "pin_codes": [
+      "390009"
+    ],
+    "coordinates": null,
+    "aliases": []
+  }
+]

@@ -1,0 +1,21 @@
+# Halo Vadodara — Data Engine
+#
+# The CORE pipeline (extract areas -> validate -> index -> query) uses the Python
+# STANDARD LIBRARY ONLY. You need nothing installed to run it:
+#
+#     python3 scripts/run_pipeline.py
+#     python3 scripts/query/ask.py "tell me about Alkapuri"
+#
+# The packages below are OPTIONAL and only needed when you turn on richer live
+# extraction for later phases. Install them only when you reach that phase:
+#
+#   beautifulsoup4     # robust HTML card/table parsing (services, ward maps)
+#   lxml               # fast HTML/XML backend for bs4 and feed parsing
+#   feedparser         # news RSS/Atom (Phase: news_events) — cheapest news path
+#   pdfplumber         # PDF tables (VUDA village maps, chamber member lists)
+#
+# Kept commented so `pip install -r requirements.txt` stays a no-op until needed.
+# beautifulsoup4>=4.12
+# lxml>=5.0
+# feedparser>=6.0
+# pdfplumber>=0.11

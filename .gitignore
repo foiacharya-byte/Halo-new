@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Raw fetch cache is an audit trail, not source-of-truth — don't commit the dumps.
+data/raw/*
+!data/raw/.gitkeep
+
+# Processed datasets ARE the deliverable and ARE committed (areas.*.json, csv,
+# index.json, reports, CHANGELOG). Nothing under data/processed/ is ignored.
