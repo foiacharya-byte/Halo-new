@@ -14,6 +14,7 @@ It returns a FetchResult (never raises) so extractors can fall back cleanly.
 """
 from __future__ import annotations
 
+import ssl
 import sys
 import time
 import urllib.request
@@ -29,6 +30,19 @@ from halo import config  # noqa: E402
 RAW_DIR = ROOT / "data" / "raw"
 CAPTCHA_MARKERS = ("captcha", "are you a robot", "unusual traffic",
                    "verify you are human", "access denied", "cf-challenge")
+
+
+def _ssl_context() -> ssl.SSLContext | None:
+    """
+    Prefer certifi's CA bundle if installed — fixes the common Windows
+    'SSL: CERTIFICATE_VERIFY_FAILED' where Python can't find the system roots.
+    Falls back to the default context (None) when certifi isn't present.
+    """
+    try:
+        import certifi  # optional dependency
+        return ssl.create_default_context(cafile=certifi.where())
+    except Exception:  # noqa: BLE001
+        return None
 
 
 @dataclass
@@ -52,6 +66,7 @@ class Fetcher:
         self.default_delay = float(config.get("runtime", "default_delay_seconds", default=2.0))
         self.max_retries = int(config.get("runtime", "max_retries", default=3))
         self.backoff_base = float(config.get("runtime", "backoff_base_seconds", default=4.0))
+        self._ssl = _ssl_context()
 
     # -- robots ------------------------------------------------------------
     def _robots(self, url: str) -> urllib.robotparser.RobotFileParser | None:
@@ -115,7 +130,7 @@ class Fetcher:
             self._throttle(host, delay)
             req = urllib.request.Request(url, headers={"User-Agent": self.ua})
             try:
-                with urllib.request.urlopen(req, timeout=timeout) as resp:
+                with urllib.request.urlopen(req, timeout=timeout, context=self._ssl) as resp:
                     body = resp.read().decode("utf-8", errors="replace")
                     status = resp.status
             except urllib.error.HTTPError as e:  # noqa: PERF203

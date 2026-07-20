@@ -19,3 +19,8 @@
 # lxml>=5.0
 # feedparser>=6.0
 # pdfplumber>=0.11
+#
+# certifi     # OPTIONAL but recommended on WINDOWS: fixes live OSM/RSS failing
+#             # with 'SSL: CERTIFICATE_VERIFY_FAILED' when Python can't find the
+#             # system CA roots. If live fetch shows an SSL reason:  pip install certifi
+certifi
