@@ -152,6 +152,32 @@ class TestOsmResilience(unittest.TestCase):
         self.assertEqual(self._ledger_status(), "blocked")
 
 
+class TestGeocodeNearMe(unittest.TestCase):
+    def setUp(self):
+        for s in ("scripts/extract/extract_areas.py", "scripts/validate/validate_areas.py",
+                  "scripts/extract/geocode_areas.py", "scripts/index/build_index.py"):
+            subprocess.run([sys.executable, str(ROOT / s)], check=True)
+
+    def test_coords_backfilled_and_flagged(self):
+        areas = json.loads((ROOT / "data/processed/areas.validated.json").read_text())
+        withc = [a for a in areas if a.get("coordinates")]
+        self.assertGreater(len(withc), 5, "geocode should fill several localities")
+        for a in withc:
+            self.assertIn(a["coordinates_source"], ("demo_fixture", "openstreetmap"))
+            self.assertIsNotNone(a["coordinates"]["lat"])
+
+    def test_index_has_geo(self):
+        idx = json.loads((ROOT / "data/processed/index.json").read_text())
+        self.assertIn("geo", idx)
+        self.assertTrue(any(k.startswith("area:") for k in idx["geo"]))
+
+    def test_near_me_query(self):
+        r = subprocess.run([sys.executable, str(ROOT / "scripts/query/ask.py"),
+                            "areas near Alkapuri"], capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, msg=r.stderr)
+        self.assertRegex(r.stdout, r"\d+\.\d+ km", "near-me answer must show distances in km")
+
+
 class TestNews(unittest.TestCase):
     def setUp(self):
         subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_areas.py")], check=True)

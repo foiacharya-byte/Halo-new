@@ -5,7 +5,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -18,7 +18,11 @@
       "390005",
       "390007"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.3105,
+      "lon": 73.173
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -28,7 +32,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -41,7 +45,11 @@
       "390005",
       "390020"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.314,
+      "lon": 73.19
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Sayaji Gunj"
     ],
@@ -53,7 +61,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -65,7 +73,11 @@
     "pin_codes": [
       "390002"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.322,
+      "lon": 73.193
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Fateh Gunj"
     ],
@@ -77,7 +89,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -89,7 +101,11 @@
     "pin_codes": [
       "390018"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.326,
+      "lon": 73.202
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Kareli Baug",
       "Karelibag"
@@ -102,7 +118,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -114,7 +130,11 @@
     "pin_codes": [
       "390022"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.335,
+      "lon": 73.22
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -124,7 +144,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -137,7 +157,11 @@
       "390008",
       "390024"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.343,
+      "lon": 73.199
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Sama-Savli"
     ],
@@ -149,7 +173,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -161,7 +185,11 @@
     "pin_codes": [
       "390021"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.317,
+      "lon": 73.147
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Gotri Road"
     ],
@@ -173,7 +201,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -185,7 +213,11 @@
     "pin_codes": [
       "390020"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.293,
+      "lon": 73.172
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Akota Gardens"
     ],
@@ -197,7 +229,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -209,7 +241,11 @@
     "pin_codes": [
       "390011"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.274,
+      "lon": 73.187
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -219,7 +255,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -231,7 +267,11 @@
     "pin_codes": [
       "390002"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.332,
+      "lon": 73.187
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -241,7 +281,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -253,7 +293,11 @@
     "pin_codes": [
       "390023"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.323,
+      "lon": 73.165
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -263,7 +307,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -276,7 +320,11 @@
       "390007",
       "390015"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.296,
+      "lon": 73.156
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Vasna Road",
       "Vasna-Bhayli"
@@ -289,7 +337,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -301,7 +349,11 @@
     "pin_codes": [
       "390012"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.298,
+      "lon": 73.16
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Tandalja Road"
     ],
@@ -313,7 +365,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -326,7 +378,11 @@
       "390007",
       "390015"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.29,
+      "lon": 73.165
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "OP Road",
       "O P Road"
@@ -339,7 +395,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -351,7 +407,11 @@
     "pin_codes": [
       "390023"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.318,
+      "lon": 73.178
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Ellorapark"
     ],
@@ -363,7 +423,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -375,7 +435,11 @@
     "pin_codes": [
       "390007"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.311,
+      "lon": 73.186
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Racecourse"
     ],
@@ -387,7 +451,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -401,7 +465,11 @@
       "390010",
       "390013"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.256,
+      "lon": 73.193
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Makarpura GIDC"
     ],
@@ -413,7 +481,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -425,7 +493,11 @@
     "pin_codes": [
       "390016"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.33,
+      "lon": 73.165
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "BIDC Gorwa"
     ],
@@ -437,7 +509,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -450,6 +522,7 @@
       "391740"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Chani",
       "Chhani Jakat Naka"
@@ -462,7 +535,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -474,7 +547,11 @@
     "pin_codes": [
       "390019"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.33,
+      "lon": 73.23
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Ajwa"
     ],
@@ -486,7 +563,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -499,6 +576,7 @@
       "390001"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Dandiya Bazar"
     ],
@@ -510,7 +588,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -523,6 +601,7 @@
       "390001"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -532,7 +611,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -545,6 +624,7 @@
       "390001"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -554,7 +634,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -567,6 +647,7 @@
       "390017"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -576,7 +657,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -588,7 +669,11 @@
     "pin_codes": [
       "390004"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.287,
+      "lon": 73.202
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Pratap Nagar"
     ],
@@ -600,7 +685,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -613,6 +698,7 @@
       "390019"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -622,7 +708,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -635,6 +721,7 @@
       "390025"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -644,7 +731,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -656,7 +743,11 @@
     "pin_codes": [
       "390015"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.305,
+      "lon": 73.165
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Diwali Pura",
       "Divalipura"
@@ -669,7 +760,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -681,7 +772,11 @@
     "pin_codes": [
       "390019"
     ],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.323,
+      "lon": 73.226
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Vaghodia Road"
     ],
@@ -693,7 +788,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -706,6 +801,7 @@
       "390012"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Sun Pharma Road"
     ],
@@ -717,7 +813,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -730,6 +826,7 @@
       "390015"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Manisha Circle"
     ],
@@ -741,7 +838,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -754,6 +851,7 @@
       "390010"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -763,7 +861,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -776,6 +874,7 @@
       "390009"
     ],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -785,7 +884,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -795,7 +894,11 @@
     "zone_group": null,
     "ward_number": null,
     "pin_codes": [],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.307,
+      "lon": 73.171
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -805,7 +908,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -816,6 +919,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Pratap Gunj"
     ],
@@ -827,7 +931,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -838,6 +942,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -847,7 +952,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -858,6 +963,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Amitnagar"
     ],
@@ -869,7 +975,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -880,6 +986,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -889,7 +996,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -900,6 +1007,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Pani Gate"
     ],
@@ -911,7 +1019,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -922,6 +1030,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -931,7 +1040,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -942,6 +1051,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Nava Pura"
     ],
@@ -953,7 +1063,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -964,6 +1074,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -973,7 +1084,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -984,6 +1095,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -993,7 +1105,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1004,6 +1116,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Sur Sagar"
     ],
@@ -1015,7 +1128,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1026,6 +1139,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Warsiya"
     ],
@@ -1037,7 +1151,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1048,6 +1162,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Kishan Wadi"
     ],
@@ -1059,7 +1174,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1070,6 +1185,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Jetalpur"
     ],
@@ -1081,7 +1197,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1092,6 +1208,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "VIP Road"
     ],
@@ -1103,7 +1220,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1114,6 +1231,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1123,7 +1241,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1134,6 +1252,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1143,7 +1262,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1154,6 +1273,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1163,7 +1283,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1174,6 +1294,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1183,7 +1304,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1194,6 +1315,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Sama-Savli Road"
     ],
@@ -1205,7 +1327,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1216,6 +1338,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Kalali Road"
     ],
@@ -1227,7 +1350,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1238,6 +1361,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Vadi Wadi"
     ],
@@ -1249,7 +1373,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1260,6 +1384,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Sevasi Road"
     ],
@@ -1271,7 +1396,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1281,7 +1406,11 @@
     "zone_group": null,
     "ward_number": null,
     "pin_codes": [],
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.301,
+      "lon": 73.125
+    },
+    "coordinates_source": "demo_fixture",
     "aliases": [
       "Bhaili",
       "Bhayali"
@@ -1294,7 +1423,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1305,6 +1434,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1314,7 +1444,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1325,6 +1455,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1334,7 +1465,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1345,6 +1476,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Vundera"
     ],
@@ -1356,7 +1488,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1367,6 +1499,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1376,7 +1509,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1387,6 +1520,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1396,7 +1530,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1407,6 +1541,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1416,7 +1551,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1427,6 +1562,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Sokhada"
     ],
@@ -1438,7 +1574,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1449,6 +1585,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1458,7 +1595,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1469,6 +1606,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1478,7 +1616,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1489,6 +1627,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1498,7 +1637,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1509,6 +1648,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Dasrath"
     ],
@@ -1520,7 +1660,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1531,6 +1671,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1540,7 +1681,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1551,6 +1692,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1560,7 +1702,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1571,6 +1713,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1580,7 +1723,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1591,6 +1734,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1600,7 +1744,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1611,6 +1755,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1620,7 +1765,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1631,6 +1776,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1640,7 +1786,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1651,6 +1797,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Nandesari GIDC"
     ],
@@ -1662,7 +1809,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1673,6 +1820,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Koyali Refinery"
     ],
@@ -1684,7 +1832,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1695,6 +1843,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1704,7 +1853,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1715,6 +1864,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1724,7 +1874,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1735,6 +1885,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Manjusar GIDC"
     ],
@@ -1746,7 +1897,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1757,6 +1908,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Ramangamdi"
     ],
@@ -1768,7 +1920,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1779,6 +1931,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1788,7 +1941,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1799,6 +1952,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1808,7 +1962,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1819,6 +1973,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1828,7 +1983,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1839,6 +1994,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Kotaria"
     ],
@@ -1850,7 +2006,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1861,6 +2017,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1870,7 +2027,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1881,6 +2038,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1890,7 +2048,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1901,6 +2059,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1910,7 +2069,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1921,6 +2080,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1930,7 +2090,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1941,6 +2101,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [],
     "status": "single_source_needs_review"
   },
@@ -1950,7 +2111,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T13:48:13+00:00",
+    "last_updated": "2026-07-20T13:55:12+00:00",
     "confidence": 0.4,
     "needs_review": true,
     "takedown": false,
@@ -1961,6 +2122,7 @@
     "ward_number": null,
     "pin_codes": [],
     "coordinates": null,
+    "coordinates_source": null,
     "aliases": [
       "Dabhoi"
     ],

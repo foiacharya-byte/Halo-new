@@ -1,5 +1,5 @@
 # News — validation report
-_Generated 2026-07-20T13:48:14+00:00_
+_Generated 2026-07-20T13:55:12+00:00_
 
 - articles: **4**
 - clusters (distinct events): **3**

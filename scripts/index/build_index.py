@@ -52,6 +52,7 @@ def main() -> None:
     mood_idx: dict[str, list] = defaultdict(list)
     category_idx: dict[str, list] = defaultdict(list)   # service category -> keys
     locality_idx: dict[str, list] = defaultdict(list)   # service locality -> keys
+    geo: dict[str, list] = {}                           # key -> [lat, lon] for near-me
     docs: dict[str, dict] = {}
 
     for entity, fname in DATASETS.items():
@@ -63,6 +64,9 @@ def main() -> None:
                 continue
             key = f"{entity}:{r['id']}"
             docs[key] = r
+            c = r.get("coordinates")
+            if c and c.get("lat") is not None and c.get("lon") is not None:
+                geo[key] = [c["lat"], c["lon"]]
             name = r.get("name") or r.get("title", "")
             summary = r.get("description_summary") or r.get("short_summary", "")
             for tok in tokenize(name, summary, " ".join(r.get("aliases", []))):
@@ -90,6 +94,7 @@ def main() -> None:
         "mood": dict(mood_idx),
         "category": dict(category_idx),
         "locality": dict(locality_idx),
+        "geo": geo,
         "docs": docs,
     }
     (PROC / "index.json").write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")

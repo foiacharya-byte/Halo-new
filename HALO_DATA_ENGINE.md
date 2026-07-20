@@ -185,6 +185,26 @@ showing each source as 🟢 usable · 🟡 partial · 🔴 blocked · ⛔ robots
 from. The Fetcher obeys `robots.txt` + `Crawl-delay`, throttles per host, and on
 `403/429/CAPTCHA` backs off and stops that source.
 
+## 8c. Coordinates & "near me" search
+
+`scripts/extract/geocode_areas.py` back-fills each locality's `coordinates`:
+- **Live** (`HALO_ALLOW_NETWORK=1`): OSM Nominatim → `coordinates_source:
+  "openstreetmap"`. One miss is skipped and logged; the ledger records the
+  aggregate (usable/partial/blocked).
+- **Sandbox**: approximate centroids from `data/seed/area_coords_demo.json` →
+  `coordinates_source: "demo_fixture"`, `needs_review` stays true. A live run
+  replaces them with real OSM coords.
+
+The index gains a `geo` map (`key → [lat, lon]`) and the query layer answers
+proximity questions with a haversine (straight-line) distance:
+```bash
+python3 scripts/query/ask.py "areas near Alkapuri"
+python3 scripts/query/ask.py "within 3 km of Karelibaug"
+python3 scripts/query/ask.py "closest areas to Manjalpur"
+```
+Answers label whether distances came from real OSM coords or approximate demo
+centroids, so nothing looks more precise than it is.
+
 ## 9. Run the services step
 
 ```bash

@@ -41,6 +41,7 @@ class Area(Envelope):
     ward_number: Optional[str] = None
     pin_codes: list[str] = field(default_factory=list)  # INDICATIVE until India Post-verified
     coordinates: Optional[dict] = None  # {"lat": float, "lon": float} or None (never guessed)
+    coordinates_source: Optional[str] = None  # openstreetmap | demo_fixture | None
     aliases: list[str] = field(default_factory=list)
     # status: confirmed_official (>=1 official src) | multi_source (>=2 independent)
     #       | single_source_needs_review (default for curated seed)

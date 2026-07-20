@@ -16,6 +16,7 @@ Usage:
 from __future__ import annotations
 
 import json
+import math
 import re
 import sys
 from pathlib import Path
@@ -168,6 +169,89 @@ def answer_service(q: str, toks: list[str], idx: dict) -> str | None:
     return header + "\n\n" + "\n\n".join(summarise_service(d) for d in top)
 
 
+NEAR_TRIGGERS = {"near", "nearest", "closest", "around", "within", "nearby"}
+
+
+def _haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Great-circle distance in km (straight-line, not road distance)."""
+    dlat, dlon = math.radians(lat2 - lat1), math.radians(lon2 - lon1)
+    a = (math.sin(dlat / 2) ** 2
+         + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2)
+    return 2 * 6371.0 * math.asin(math.sqrt(a))
+
+
+def _resolve_origin(q: str, toks: list[str], idx: dict):
+    """Find the point to search FROM: an explicit lat,lon or a named area with coords."""
+    geo, docs = idx.get("geo", {}), idx["docs"]
+    m = re.search(r"(-?\d{1,2}\.\d+)\s*,\s*(-?\d{2,3}\.\d+)", q)
+    if m:
+        return (float(m.group(1)), float(m.group(2))), "your point"
+    qn = " ".join(toks)
+    best = None
+    for key, (lat, lon) in geo.items():
+        if not key.startswith("area:"):
+            continue
+        name = (docs[key].get("name") or "").lower()
+        if name and name in qn and (best is None or len(name) > len(best[2])):
+            best = ((lat, lon), docs[key]["name"], name)
+    return (best[0], best[1]) if best else (None, None)
+
+
+def answer_near(q: str, toks: list[str], idx: dict) -> str | None:
+    if not (set(toks) & NEAR_TRIGGERS):
+        return None
+    geo, docs = idx.get("geo", {}), idx["docs"]
+    if not geo:
+        return "I have no coordinates yet — run the geocode step first (near-me needs lat/lon)."
+    origin, label = _resolve_origin(q, toks, idx)
+    if origin is None:
+        return ('Tell me where to search from, e.g. "near Alkapuri" or '
+                '"within 3 km of Karelibaug". (I don\'t have your live GPS location.)')
+
+    rm = re.search(r"within\s+(\d+(?:\.\d+)?)\s*km", q.lower())
+    radius = float(rm.group(1)) if rm else None
+    cat = next((CATEGORY_SYNONYMS[t] for t in toks if t in CATEGORY_SYNONYMS), None)
+
+    if cat:
+        cand = [k for k in idx.get("category", {}).get(cat, []) if k in geo]
+        kind = f"{cat} places"
+        if not cand:                       # offline: demo services have no coords
+            cand = [k for k in geo if k.startswith("area:")]
+            kind = f"areas (no live {cat} coordinates yet — a live run adds service coords)"
+    else:
+        cand = [k for k in geo if k.startswith("area:")]
+        kind = "areas"
+
+    olat, olon = origin
+    scored = []
+    for k in cand:
+        lat, lon = geo[k]
+        d = _haversine(olat, olon, lat, lon)
+        if d < 0.01:                       # skip the origin itself
+            continue
+        if radius is None or d <= radius:
+            scored.append((d, k))
+    scored.sort()
+    top = scored[:6]
+    if not top:
+        return (f"Nothing within {radius} km of {label}." if radius
+                else f"No {kind} found near {label}.")
+
+    approx = any(docs[k].get("coordinates_source") == "demo_fixture" for _, k in top)
+    head = (f"Nearest {kind} to **{label}**"
+            + (f" (within {radius} km)" if radius else "") + ":")
+    lines = []
+    for d, k in top:
+        doc = docs[k]
+        nm = doc.get("name") or doc.get("title", "")
+        tag = " _(approx demo coords)_" if doc.get("coordinates_source") == "demo_fixture" else ""
+        lines.append(f"- **{nm}** — {d:.1f} km{tag}")
+    note = ("\n\n_Distances are straight-line from "
+            + ("approximate demo centroids" if approx else "OSM coordinates")
+            + " — not road distance._")
+    return head + "\n" + "\n".join(lines) + note
+
+
 def answer(q: str, idx: dict) -> str:
     toks = tokenize(q)
     docs = idx["docs"]
@@ -191,6 +275,11 @@ def answer(q: str, idx: dict) -> str:
             return f"No area indexed for PIN {pin_match.group(1)}."
         names = ", ".join(sorted(docs[k]["name"] for k in keys))
         return f"PIN **{pin_match.group(1)}** covers: {names}."
+
+    # Intent: NEAR-ME — proximity words ("near", "within N km of", "closest").
+    near = answer_near(q, toks, idx)
+    if near is not None:
+        return near
 
     # Intent: NEWS — a news tag or "what happened / news / event" is mentioned.
     news = answer_news(q, toks, idx)

@@ -67,6 +67,16 @@
         "notes": "Authoritative PIN codes per locality/post office."
       },
       {
+        "id": "src.osm.nominatim",
+        "name": "OpenStreetMap — Nominatim geocoder (locality -> lat/lon)",
+        "url_example": "https://nominatim.openstreetmap.org/search",
+        "trust_level": "medium",
+        "access_method": "json_api",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "Geocodes AREA localities to coordinates for near-me search (ODbL). Self-host for bulk runs. In the sandbox, coordinates come from a labelled demo fixture instead."
+      },
+      {
         "id": "src.census.villages",
         "name": "Census 2011 — Vadodara district/taluka village directory",
         "url_example": "https://www.censusindia.gov.in/",

@@ -26,6 +26,7 @@ CHANGELOG = PROC / "CHANGELOG.md"
 STAGES = [
     ("extract areas", "scripts/extract/extract_areas.py", []),
     ("validate areas", "scripts/validate/validate_areas.py", []),
+    ("geocode areas", "scripts/extract/geocode_areas.py", []),
     ("extract services", "scripts/extract/extract_services.py", []),
     ("validate services", "scripts/validate/validate_services.py", []),
     ("extract news", "scripts/extract/extract_news.py", []),
@@ -36,7 +37,8 @@ STAGES = [
 CSV_EXPORTS = {
     "areas.validated.json": ("areas.csv",
         ["id", "name", "type", "taluka", "zone_group", "pin_codes", "aliases",
-         "status", "confidence", "needs_review", "source_ids", "last_updated"]),
+         "status", "confidence", "needs_review", "coordinates_source",
+         "source_ids", "last_updated"]),
     "services.validated.json": ("services.csv",
         ["id", "name", "category", "locality", "rating_score", "rating_count",
          "halo_rating", "halo_five_star", "permanently_closed", "contact_consent",

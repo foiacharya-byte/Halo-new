@@ -1,8 +1,8 @@
 id,name,category,locality,rating_score,rating_count,halo_rating,halo_five_star,permanently_closed,contact_consent,is_demo,source_platforms,last_seen
-service:demo-ac-care-services:6c1dedc5,Demo AC Care Services,electrician,Alkapuri,4.87,310,4.87,True,False,False,True,demo_dir_A; demo_dir_B,2026-07-20T13:48:13+00:00
-service:demo-spark-electricals:002ac84c,Demo Spark Electricals,electrician,Karelibaug,4.85,160,4.85,True,False,False,True,demo_dir_A; demo_dir_B,2026-07-20T13:48:13+00:00
-service:demo-green-leaf-restaurant:904e4163,Demo Green Leaf Restaurant,food,Karelibaug,4.85,300,4.85,True,False,False,True,demo_dir_A,2026-07-20T13:48:13+00:00
-service:demo-sunrise-clinic:17c88fbc,Demo Sunrise Clinic,health,Alkapuri,4.95,60,3.96,True,False,False,True,demo_dir_A,2026-07-20T13:48:13+00:00
-service:demo-city-dental-care:d5635b7c,Demo City Dental Care,health,Karelibaug,4.6,25,2.88,False,False,False,True,demo_dir_B,2026-07-20T13:48:13+00:00
-service:demo-blue-ocean-restaurant:27236863,Demo Blue Ocean Restaurant,food,Alkapuri,5.0,12,2.8,False,False,False,True,demo_dir_A,2026-07-20T13:48:13+00:00
-service:demo-old-town-cafe:6f682c0b,Demo Old Town Cafe,food,Karelibaug,4.2,500,1.01,False,True,False,True,demo_dir_A,2026-07-20T13:48:13+00:00
+service:demo-ac-care-services:6c1dedc5,Demo AC Care Services,electrician,Alkapuri,4.87,310,4.87,True,False,False,True,demo_dir_A; demo_dir_B,2026-07-20T13:55:12+00:00
+service:demo-spark-electricals:002ac84c,Demo Spark Electricals,electrician,Karelibaug,4.85,160,4.85,True,False,False,True,demo_dir_A; demo_dir_B,2026-07-20T13:55:12+00:00
+service:demo-green-leaf-restaurant:904e4163,Demo Green Leaf Restaurant,food,Karelibaug,4.85,300,4.85,True,False,False,True,demo_dir_A,2026-07-20T13:55:12+00:00
+service:demo-sunrise-clinic:17c88fbc,Demo Sunrise Clinic,health,Alkapuri,4.95,60,3.96,True,False,False,True,demo_dir_A,2026-07-20T13:55:12+00:00
+service:demo-city-dental-care:d5635b7c,Demo City Dental Care,health,Karelibaug,4.6,25,2.88,False,False,False,True,demo_dir_B,2026-07-20T13:55:12+00:00
+service:demo-blue-ocean-restaurant:27236863,Demo Blue Ocean Restaurant,food,Alkapuri,5.0,12,2.8,False,False,False,True,demo_dir_A,2026-07-20T13:55:12+00:00
+service:demo-old-town-cafe:6f682c0b,Demo Old Town Cafe,food,Karelibaug,4.2,500,1.01,False,True,False,True,demo_dir_A,2026-07-20T13:55:12+00:00

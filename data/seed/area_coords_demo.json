@@ -1,0 +1,29 @@
+{
+  "_readme": "APPROXIMATE, DEMO-ONLY locality centroids for Vadodara. These are rough points used SOLELY so 'near me' search is demonstrable offline in this sandbox (which blocks OSM). Every area filled from here gets coordinates_source='demo_fixture' and keeps needs_review=true. On a live run (HALO_ALLOW_NETWORK=1) these are REPLACED by real OpenStreetMap/Nominatim geocodes with coordinates_source='openstreetmap'. Do NOT treat these as precise or authoritative.",
+  "coords": {
+    "Alkapuri": [22.3105, 73.1730],
+    "Sayajigunj": [22.3140, 73.1900],
+    "Fatehgunj": [22.3220, 73.1930],
+    "Karelibaug": [22.3260, 73.2020],
+    "Harni": [22.3350, 73.2200],
+    "Sama": [22.3430, 73.1990],
+    "Gotri": [22.3170, 73.1470],
+    "Akota": [22.2930, 73.1720],
+    "Manjalpur": [22.2740, 73.1870],
+    "Nizampura": [22.3320, 73.1870],
+    "Subhanpura": [22.3230, 73.1650],
+    "Vasna": [22.2960, 73.1560],
+    "Tandalja": [22.2980, 73.1600],
+    "Old Padra Road": [22.2900, 73.1650],
+    "Ellora Park": [22.3180, 73.1780],
+    "Race Course": [22.3110, 73.1860],
+    "Makarpura": [22.2560, 73.1930],
+    "Gorwa": [22.3300, 73.1650],
+    "Waghodia Road": [22.3230, 73.2260],
+    "Ajwa Road": [22.3300, 73.2300],
+    "Diwalipura": [22.3050, 73.1650],
+    "Vadiwadi": [22.3070, 73.1710],
+    "Pratapnagar": [22.2870, 73.2020],
+    "Bhayli": [22.3010, 73.1250]
+  }
+}
