@@ -5,7 +5,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:43:39+00:00",
+    "last_updated": "2026-07-20T11:54:50+00:00",
     "confidence": 0.2,
     "needs_review": true,
     "takedown": false,
@@ -28,7 +28,7 @@
     "source_platforms": [
       "demo_dir_A"
     ],
-    "last_seen": "2026-07-20T11:43:39+00:00",
+    "last_seen": "2026-07-20T11:54:50+00:00",
     "_last_review_days": 20
   },
   {
@@ -37,7 +37,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:43:39+00:00",
+    "last_updated": "2026-07-20T11:54:50+00:00",
     "confidence": 0.2,
     "needs_review": true,
     "takedown": false,
@@ -60,7 +60,7 @@
     "source_platforms": [
       "demo_dir_B"
     ],
-    "last_seen": "2026-07-20T11:43:39+00:00",
+    "last_seen": "2026-07-20T11:54:50+00:00",
     "_last_review_days": 60
   },
   {
@@ -69,7 +69,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:43:39+00:00",
+    "last_updated": "2026-07-20T11:54:50+00:00",
     "confidence": 0.2,
     "needs_review": true,
     "takedown": false,
@@ -92,7 +92,7 @@
     "source_platforms": [
       "demo_dir_A"
     ],
-    "last_seen": "2026-07-20T11:43:39+00:00",
+    "last_seen": "2026-07-20T11:54:50+00:00",
     "_last_review_days": 5
   },
   {
@@ -101,7 +101,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:43:39+00:00",
+    "last_updated": "2026-07-20T11:54:50+00:00",
     "confidence": 0.2,
     "needs_review": true,
     "takedown": false,
@@ -124,7 +124,7 @@
     "source_platforms": [
       "demo_dir_B"
     ],
-    "last_seen": "2026-07-20T11:43:39+00:00",
+    "last_seen": "2026-07-20T11:54:50+00:00",
     "_last_review_days": 40
   },
   {
@@ -133,7 +133,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:43:39+00:00",
+    "last_updated": "2026-07-20T11:54:50+00:00",
     "confidence": 0.2,
     "needs_review": true,
     "takedown": false,
@@ -156,7 +156,7 @@
     "source_platforms": [
       "demo_dir_A"
     ],
-    "last_seen": "2026-07-20T11:43:39+00:00",
+    "last_seen": "2026-07-20T11:54:50+00:00",
     "_last_review_days": 420
   },
   {
@@ -165,7 +165,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:43:39+00:00",
+    "last_updated": "2026-07-20T11:54:50+00:00",
     "confidence": 0.2,
     "needs_review": true,
     "takedown": false,
@@ -188,7 +188,7 @@
     "source_platforms": [
       "demo_dir_A"
     ],
-    "last_seen": "2026-07-20T11:43:39+00:00",
+    "last_seen": "2026-07-20T11:54:50+00:00",
     "_last_review_days": 10
   },
   {
@@ -197,7 +197,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:43:39+00:00",
+    "last_updated": "2026-07-20T11:54:50+00:00",
     "confidence": 0.2,
     "needs_review": true,
     "takedown": false,
@@ -220,7 +220,7 @@
     "source_platforms": [
       "demo_dir_A"
     ],
-    "last_seen": "2026-07-20T11:43:39+00:00",
+    "last_seen": "2026-07-20T11:54:50+00:00",
     "_last_review_days": 15
   },
   {
@@ -229,7 +229,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:43:39+00:00",
+    "last_updated": "2026-07-20T11:54:50+00:00",
     "confidence": 0.2,
     "needs_review": true,
     "takedown": false,
@@ -252,7 +252,7 @@
     "source_platforms": [
       "demo_dir_B"
     ],
-    "last_seen": "2026-07-20T11:43:39+00:00",
+    "last_seen": "2026-07-20T11:54:50+00:00",
     "_last_review_days": 30
   },
   {
@@ -261,7 +261,7 @@
     "source_ids": [
       "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:43:39+00:00",
+    "last_updated": "2026-07-20T11:54:50+00:00",
     "confidence": 0.2,
     "needs_review": true,
     "takedown": false,
@@ -284,7 +284,7 @@
     "source_platforms": [
       "demo_dir_A"
     ],
-    "last_seen": "2026-07-20T11:43:39+00:00",
+    "last_seen": "2026-07-20T11:54:50+00:00",
     "_last_review_days": 25
   }
 ]

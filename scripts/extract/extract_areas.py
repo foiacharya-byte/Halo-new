@@ -63,7 +63,7 @@ def build_seed() -> list[dict]:
 
 # --- optional live parse of the Census 2011 city table ----------------------
 def parse_census_live() -> list[dict]:
-    from scripts.extract.http import fetch  # local import so offline needs nothing
+    from scripts.extract.fetcher import fetch  # local import so offline needs nothing
 
     url = "https://www.census2011.co.in/census/city/336-vadodara.html"
     html = fetch(url, cache_key="census2011_vadodara.html")

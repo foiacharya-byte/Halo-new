@@ -1,0 +1,48 @@
+{
+  "_readme": "Central config for Halo's real-world extractors. THE KEY SWITCH is runtime.allow_network. It is FALSE here because this Claude sandbox blocks external APIs. On YOUR OWN machine/server with internet, set it true (edit this file) OR run with the env var HALO_ALLOW_NETWORK=1 — then every client below hits the real open APIs. Nothing else needs to change.",
+
+  "runtime": {
+    "allow_network": false,
+    "user_agent": "HaloVadodaraBot/0.2 (+https://halo.local; open-city-data; contact: CONTACT_EMAIL)",
+    "contact_email": "you@example.com",
+    "default_delay_seconds": 2.0,
+    "max_retries": 3,
+    "backoff_base_seconds": 4.0
+  },
+
+  "osm": {
+    "_note": "OpenStreetMap: geocode with Nominatim, then Overpass for POIs around each locality. Data is ODbL (attribution required — we store the node URL). Please self-host or use a mirror for heavy runs; the public servers are shared goodwill infrastructure.",
+    "nominatim_url": "https://nominatim.openstreetmap.org/search",
+    "overpass_url": "https://overpass-api.de/api/interpreter",
+    "overpass_mirrors": [
+      "https://overpass.kumi.systems/api/interpreter",
+      "https://overpass.openstreetmap.ru/api/interpreter"
+    ],
+    "radius_m": 1500,
+    "nominatim_min_delay_seconds": 1.0,
+    "overpass_min_delay_seconds": 3.0,
+    "self_host_note": "For city-scale nightly runs, self-host Overpass (docker: wiktorn/overpass-api) and Nominatim, then point overpass_url/nominatim_url at localhost. This removes rate limits and is the polite way to pull thousands of POIs."
+  },
+
+  "news": {
+    "_note": "Prefer RSS/JSON. HTML crawling only where robots.txt allows (allow_html_crawl is a HINT; the fetcher still checks robots at run time).",
+    "date_from": "2025-01-01",
+    "date_to": "2026-12-31",
+    "feeds": [
+      {"source_id": "src.toi.vadodara", "url": "https://timesofindia.indiatimes.com/rssfeeds/-2128838597.cms", "type": "rss", "allow_html_crawl": false},
+      {"source_id": "src.indianexpress.gujarat", "url": "https://indianexpress.com/section/cities/ahmedabad/feed/", "type": "rss", "allow_html_crawl": false},
+      {"source_id": "src.gujaratsamachar", "url": "https://www.gujaratsamachar.com/rss/vadodara", "type": "rss", "allow_html_crawl": true}
+    ]
+  },
+
+  "directories": {
+    "_note": "Local business directories. The crawler ALWAYS fetches robots.txt first and honours User-agent/Disallow/Crawl-delay. base_url is a template with {locality},{category},{page}. selectors are regex fallbacks; swap for a real HTML parser (bs4) when you enable a source. Every source starts enabled=false — turn one on only after you have read its robots.txt and terms.",
+    "per_host_crawl_delay_seconds": 5.0,
+    "max_pages_per_query": 20,
+    "sources": [
+      {"source_id": "src.justdial.vadodara", "base_url": "https://www.justdial.com/Vadodara/{category}/{locality}/page-{page}", "page_param": "page", "enabled": false},
+      {"source_id": "src.sulekha.vadodara", "base_url": "https://www.sulekha.com/{category}/vadodara?page={page}", "page_param": "page", "enabled": false},
+      {"source_id": "src.vadodaraonline", "base_url": "https://www.vadodaraonline.in/{category}?loc={locality}&page={page}", "page_param": "page", "enabled": false}
+    ]
+  }
+}

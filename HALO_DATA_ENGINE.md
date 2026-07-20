@@ -157,6 +157,34 @@ Everything above runs offline against the **committed seed**. Live fetching is o
 7. Geocode areas from OpenStreetMap/Nominatim (open) to fill `coordinates`.
 8. Nightly (news) / weekly (directories) scheduled refresh via free CI.
 
+## 8b. Going live outside this sandbox (the one switch)
+
+Everything is built to pull **real** data on a normal internet-connected machine.
+This sandbox blocks external APIs, so the clients sit behind a single switch.
+
+**To go live on your own machine/server:**
+```bash
+# option A — env var (great for CI/servers)
+HALO_ALLOW_NETWORK=1 python3 scripts/run_pipeline.py --live
+
+# option B — edit halo_config.json: "runtime": { "allow_network": true }
+```
+When on, the real clients run:
+- **OSM** (`services_osm.py`): Nominatim geocode → Overpass POIs around each
+  locality. For city-scale nightly runs, **self-host** Overpass/Nominatim and set
+  `HALO_OVERPASS_URL` / `HALO_NOMINATIM_URL` (or the config) to `localhost`.
+- **News** (`news_client.py`): RSS/JSON feeds in `halo_config.json` (HTML only if
+  robots allows), swept across the `date_from..date_to` window (2025–26).
+- **Directories** (`directory_client.py`): each source starts `enabled:false`.
+  Turn one on only after reading its `robots.txt`/terms; replace the stub
+  `parse_cards()` with real selectors.
+
+**Honesty is automatic.** Every run rewrites `data/processed/source_status.md`
+showing each source as 🟢 usable · 🟡 partial · 🔴 blocked · ⛔ robots_disallowed ·
+🌐 network_disabled · 🧪 fixture — so the dataset always says where it really came
+from. The Fetcher obeys `robots.txt` + `Crawl-delay`, throttles per host, and on
+`403/429/CAPTCHA` backs off and stops that source.
+
 ## 9. Run the services step
 
 ```bash

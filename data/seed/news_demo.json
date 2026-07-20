@@ -1,0 +1,21 @@
+{
+  "_readme": "CLEARLY-FAKE demo news. NOT real reporting. is_demo=true on every record. Exists only to demonstrate tagging, location matching, sentiment and event clustering offline, because this sandbox blocks live RSS/JSON feeds. Two records intentionally describe the SAME demo event from two 'sources' so clustering -> status=confirmed can be shown. Real feeds replace these when allow_network=true.",
+  "records": [
+    {"title": "Demo: Heavy rain floods low-lying areas of Sama and Nizampura",
+     "summary": "sample flood report affecting Sama and Nizampura after monsoon downpour",
+     "date": "2025-07-28", "link": "https://example.com/demo/flood-a",
+     "source_id": "src.toi.vadodara", "source_platform": "src.toi.vadodara"},
+    {"title": "Demo: Waterlogging hits Sama, Nizampura as monsoon rain lashes Vadodara",
+     "summary": "sample second-source flood report, same event, Sama Nizampura",
+     "date": "2025-07-28", "link": "https://example.com/demo/flood-b",
+     "source_id": "src.indianexpress.gujarat", "source_platform": "src.indianexpress.gujarat"},
+    {"title": "Demo: VMC approves new ward boundaries; Harni, Bapod affected",
+     "summary": "sample civic story on ward reconstitution touching Harni and Bapod",
+     "date": "2026-02-11", "link": "https://example.com/demo/civic-a",
+     "source_id": "src.toi.vadodara", "source_platform": "src.toi.vadodara"},
+    {"title": "Demo: Theft reported near Alkapuri market, police investigating",
+     "summary": "sample crime brief in Alkapuri",
+     "date": "2026-05-03", "link": "https://example.com/demo/crime-a",
+     "source_id": "src.gujaratsamachar", "source_platform": "src.gujaratsamachar"}
+  ]
+}

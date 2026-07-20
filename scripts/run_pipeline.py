@@ -28,6 +28,8 @@ STAGES = [
     ("validate areas", "scripts/validate/validate_areas.py", []),
     ("extract services", "scripts/extract/extract_services.py", []),
     ("validate services", "scripts/validate/validate_services.py", []),
+    ("extract news", "scripts/extract/extract_news.py", []),
+    ("validate news", "scripts/validate/validate_news.py", []),
 ]
 
 # validated dataset -> csv columns (order matters for humans)
@@ -39,6 +41,9 @@ CSV_EXPORTS = {
         ["id", "name", "category", "locality", "rating_score", "rating_count",
          "halo_rating", "halo_five_star", "permanently_closed", "contact_consent",
          "is_demo", "source_platforms", "last_seen"]),
+    "news_events.validated.json": ("news_events.csv",
+        ["id", "date", "status", "tags", "locations_involved", "sentiment",
+         "is_demo", "source_ids", "title", "last_updated"]),
 }
 
 
@@ -94,12 +99,25 @@ def write_changelog(live: bool, counts: dict[str, int]) -> None:
 def main() -> None:
     live = "--live" in sys.argv
     args = ["--live"] if live else []
+
+    # fresh source ledger each run, so source_status reflects THIS run's reality
+    ledger = PROC / "source_status.json"
+    if ledger.exists():
+        ledger.unlink()
+
     for label, script, extra in STAGES:
         run(label, script, extra + (args if "extract" in script else []))
     export_csvs()
     run("build index", "scripts/index/build_index.py", [])
+
+    # honest source-status report (usable / partial / blocked / network_disabled / fixture)
+    sys.path.insert(0, str(ROOT))
+    from halo import provenance  # noqa: E402
+    (PROC / "source_status.md").write_text(provenance.render_markdown(), encoding="utf-8")
+    print("🧭 source status -> data/processed/source_status.md")
+
     write_changelog(live, dataset_counts())
-    print("\n✨ pipeline complete. Try: python3 scripts/query/ask.py \"tell me about Harni\"")
+    print("\n✨ pipeline complete. Try: python3 scripts/query/ask.py \"what floods happened in Sama\"")
 
 
 if __name__ == "__main__":

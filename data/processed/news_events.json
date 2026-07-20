@@ -1,0 +1,109 @@
+[
+  {
+    "id": "news:demo-heavy-rain-floods-low-lying-areas-of-sama-and-nizampura:81d78c0b",
+    "source_links": [
+      "https://example.com/demo/flood-a"
+    ],
+    "source_ids": [
+      "src.toi.vadodara"
+    ],
+    "last_updated": "2026-07-20T11:54:50+00:00",
+    "confidence": 0.5,
+    "needs_review": true,
+    "takedown": false,
+    "title": "Demo: Heavy rain floods low-lying areas of Sama and Nizampura",
+    "short_summary": "sample flood report affecting Sama and Nizampura after monsoon downpour",
+    "date": "2025-07-28",
+    "tags": [
+      "flood"
+    ],
+    "locations_involved": [
+      "Nizampura",
+      "Sama"
+    ],
+    "sentiment": "negative",
+    "status": "reported",
+    "cluster_id": null,
+    "is_demo": true
+  },
+  {
+    "id": "news:demo-waterlogging-hits-sama-nizampura-as-monsoon-rain-lashes-vadodara:9116d97c",
+    "source_links": [
+      "https://example.com/demo/flood-b"
+    ],
+    "source_ids": [
+      "src.indianexpress.gujarat"
+    ],
+    "last_updated": "2026-07-20T11:54:50+00:00",
+    "confidence": 0.5,
+    "needs_review": true,
+    "takedown": false,
+    "title": "Demo: Waterlogging hits Sama, Nizampura as monsoon rain lashes Vadodara",
+    "short_summary": "sample second-source flood report, same event, Sama Nizampura",
+    "date": "2025-07-28",
+    "tags": [
+      "flood"
+    ],
+    "locations_involved": [
+      "Nizampura",
+      "Sama"
+    ],
+    "sentiment": "negative",
+    "status": "reported",
+    "cluster_id": null,
+    "is_demo": true
+  },
+  {
+    "id": "news:demo-vmc-approves-new-ward-boundaries-harni-bapod-affected:5d87e8c3",
+    "source_links": [
+      "https://example.com/demo/civic-a"
+    ],
+    "source_ids": [
+      "src.toi.vadodara"
+    ],
+    "last_updated": "2026-07-20T11:54:50+00:00",
+    "confidence": 0.5,
+    "needs_review": true,
+    "takedown": false,
+    "title": "Demo: VMC approves new ward boundaries; Harni, Bapod affected",
+    "short_summary": "sample civic story on ward reconstitution touching Harni and Bapod",
+    "date": "2026-02-11",
+    "tags": [
+      "civic"
+    ],
+    "locations_involved": [
+      "Bapod",
+      "Harni"
+    ],
+    "sentiment": "positive",
+    "status": "reported",
+    "cluster_id": null,
+    "is_demo": true
+  },
+  {
+    "id": "news:demo-theft-reported-near-alkapuri-market-police-investigating:9d35b55c",
+    "source_links": [
+      "https://example.com/demo/crime-a"
+    ],
+    "source_ids": [
+      "src.gujaratsamachar"
+    ],
+    "last_updated": "2026-07-20T11:54:50+00:00",
+    "confidence": 0.5,
+    "needs_review": true,
+    "takedown": false,
+    "title": "Demo: Theft reported near Alkapuri market, police investigating",
+    "short_summary": "sample crime brief in Alkapuri",
+    "date": "2026-05-03",
+    "tags": [
+      "crime"
+    ],
+    "locations_involved": [
+      "Alkapuri"
+    ],
+    "sentiment": "negative",
+    "status": "reported",
+    "cluster_id": null,
+    "is_demo": true
+  }
+]

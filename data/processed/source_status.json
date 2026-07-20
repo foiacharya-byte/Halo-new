@@ -1,0 +1,23 @@
+{
+  "src.seed.curated": {
+    "attempts": 5,
+    "records": 9,
+    "status": "fixture",
+    "note": "served 9 demo service records (network disabled)",
+    "last_checked": "2026-07-20T11:54:50+00:00"
+  },
+  "src.news.feeds": {
+    "attempts": 3,
+    "records": 4,
+    "status": "fixture",
+    "note": "served 4 demo news records (network disabled)",
+    "last_checked": "2026-07-20T11:54:50+00:00"
+  },
+  "src.test.demo": {
+    "attempts": 1,
+    "records": 3,
+    "status": "usable",
+    "note": "unit test",
+    "last_checked": "2026-07-20T11:54:49+00:00"
+  }
+}

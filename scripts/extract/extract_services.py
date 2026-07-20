@@ -87,24 +87,37 @@ def target_localities(args) -> list[str]:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Extract Vadodara SERVICES.")
-    ap.add_argument("--live", action="store_true", help="try live OpenStreetMap first")
+    ap.add_argument("--live", action="store_true", help="try live sources first")
     ap.add_argument("--all", action="store_true", help="every locality (default: 2)")
     ap.add_argument("--locality", help="single locality name")
+    ap.add_argument("--source", default="osm,directories",
+                    help="comma list of live sources to try: osm,directories")
     args = ap.parse_args()
 
+    from halo import provenance  # noqa: E402
     localities = target_localities(args)
-    records: list[dict] = []
-    for loc in localities:
-        raw: list[dict] = []
-        if args.live:
-            from scripts.extract.services_osm import fetch_locality
-            raw = fetch_locality(loc)
-        if not raw:
-            raw = load_demo([loc])
-            tag = "demo fixture" if not args.live else "demo (OSM blocked)"
-            print(f"[services] {loc}: {len(raw)} via {tag}")
-        records.extend(to_service(r) for r in raw)
+    want = set(args.source.split(","))
+    raw: list[dict] = []
 
+    if args.live:
+        if "osm" in want:
+            from scripts.extract.services_osm import fetch_locality
+            for loc in localities:
+                raw.extend(fetch_locality(loc))
+        if "directories" in want:
+            from scripts.extract.directory_client import fetch_directories
+            raw.extend(fetch_directories(localities))
+
+    if not raw:
+        raw = load_demo(localities)
+        provenance.record("src.seed.curated", "fixture",
+                          f"served {len(raw)} demo service records "
+                          f"({'network disabled' if not args.live else 'live sources returned nothing'})",
+                          records=len(raw))
+        print(f"[services] {len(raw)} via labelled demo fixture "
+              f"({'sandbox: network disabled' if not args.live else 'live blocked/empty'})")
+
+    records = [to_service(r) for r in raw]
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
     demo_n = sum(1 for r in records if r["is_demo"])

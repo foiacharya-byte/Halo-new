@@ -98,5 +98,41 @@ class TestServices(unittest.TestCase):
         self.assertLess(cafe["halo_rating"], 2.0)  # closed + stale crushes the score
 
 
+class TestInfra(unittest.TestCase):
+    def test_network_gate_off_by_default(self):
+        from halo import config
+        config.load.cache_clear()
+        self.assertFalse(config.network_allowed(),
+                         "sandbox config must keep allow_network=false")
+
+    def test_ledger_roundtrip(self):
+        from halo import provenance
+        provenance.record("src.test.demo", "usable", "unit test", records=3)
+        md = provenance.render_markdown()
+        self.assertIn("src.test.demo", md)
+
+
+class TestNews(unittest.TestCase):
+    def setUp(self):
+        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_areas.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/validate/validate_areas.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_news.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/validate/validate_news.py")], check=True)
+        self.events = json.loads((ROOT / "data/processed/news_events.validated.json").read_text())
+
+    def test_flood_event_confirmed_by_two_sources(self):
+        floods = [e for e in self.events if "flood" in e["tags"]]
+        self.assertTrue(floods)
+        self.assertTrue(all(e["status"] == "confirmed" for e in floods),
+                        "two flood articles from two sources must cluster -> confirmed")
+        # they must share one cluster_id
+        self.assertEqual(len({e["cluster_id"] for e in floods}), 1)
+
+    def test_locations_and_demo_flag(self):
+        flood = next(e for e in self.events if "flood" in e["tags"])
+        self.assertIn("Sama", flood["locations_involved"])
+        self.assertTrue(all(e["is_demo"] for e in self.events))
+
+
 if __name__ == "__main__":
     unittest.main()

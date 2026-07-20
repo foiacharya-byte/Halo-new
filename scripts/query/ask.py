@@ -82,6 +82,42 @@ def summarise_area(doc: dict) -> str:
     return f"{line}\n  {cite(doc)}"
 
 
+NEWS_TAGS = {"flood", "crime", "civic", "politics", "development", "traffic"}
+NEWS_TRIGGERS = {"news", "happened", "event", "events", "flooding"}
+
+
+def summarise_news(doc: dict) -> str:
+    demo = " _(demo data — not real reporting)_" if doc.get("is_demo") else ""
+    st = doc.get("status", "reported")
+    badge = "✅ confirmed by 2+ sources" if st == "confirmed" else "🟡 reported (single source)"
+    loc = ", ".join(doc.get("locations_involved", [])) or "Vadodara"
+    tags = ", ".join(doc.get("tags", [])) or "general"
+    return (f"**{doc.get('title','')}**{demo}\n"
+            f"  {doc.get('date','')} · {badge} · tags: {tags} · areas: {loc}\n"
+            f"  {doc.get('short_summary','')}\n  {cite(doc)}")
+
+
+def answer_news(q: str, toks: list[str], idx: dict) -> str | None:
+    tagset = set(toks) & NEWS_TAGS
+    if not (tagset or set(toks) & NEWS_TRIGGERS):
+        return None
+    docs = idx["docs"]
+    news_keys = [k for k in docs if k.startswith("news_event:")]
+    if not news_keys:
+        return None
+    cand = [docs[k] for k in news_keys]
+    if tagset:
+        cand = [d for d in cand if tagset & set(d.get("tags", []))] or cand
+    loc = next((l for l in idx.get("locality", {}) if l in " ".join(toks)), None)
+    if loc:
+        cand = [d for d in cand
+                if any(loc == x.lower() for x in d.get("locations_involved", []))] or cand
+    # confirmed first, then most recent
+    cand.sort(key=lambda d: (d.get("status") == "confirmed", d.get("date", "")), reverse=True)
+    top = cand[:4]
+    return "Vadodara news/events:\n\n" + "\n\n".join(summarise_news(d) for d in top)
+
+
 def summarise_service(doc: dict) -> str:
     demo = " _(demo data — not a real listing)_" if doc.get("is_demo") else ""
     head = f"**{doc['name']}** — {doc.get('category','service')} in {doc.get('locality','')}{demo}"
@@ -155,6 +191,11 @@ def answer(q: str, idx: dict) -> str:
             return f"No area indexed for PIN {pin_match.group(1)}."
         names = ", ".join(sorted(docs[k]["name"] for k in keys))
         return f"PIN **{pin_match.group(1)}** covers: {names}."
+
+    # Intent: NEWS — a news tag or "what happened / news / event" is mentioned.
+    news = answer_news(q, toks, idx)
+    if news is not None:
+        return news
 
     # Intent: SERVICE search — a category and/or a locality is mentioned.
     svc = answer_service(q, toks, idx)
