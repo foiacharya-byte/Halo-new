@@ -270,6 +270,30 @@ and breaks the project's trust posture. We go as deep as open, permitted data al
   data.gov.in JSON API. Get a free key → `HALO_DATAGOV_KEY`, add dataset UUIDs to
   `govdata.resource_ids`, run it; rows land in `data/processed/govdata_*.json`.
 
+## 8g. No demo data + History/knowledge (books, Gujarati, translation)
+
+**No demo data:** `runtime.use_fixtures` is **false** by default — when a live
+source returns nothing, the extractor writes **0 rows** and records the honest
+reason. Demo fixtures are opt-in only (`HALO_USE_FIXTURES=1`) for offline dev.
+
+**History extractor** (`extract_history.py`) pulls Vadodara history/knowledge from
+open sources: **en.wikipedia + gu.wikipedia** (MediaWiki API) and **Archive.org**
+public-domain books. Each paragraph becomes a HISTORY doc with period + tags +
+source link, keeping the **original text** verbatim.
+
+**Gujarati → English translation** (`halo/translate.py`) — real engines, never
+faked:
+- **LibreTranslate** (set `HALO_LIBRETRANSLATE_URL`, self-host recommended), or
+- **Argos Translate** offline (`pip install argostranslate`, gu→en model
+  auto-downloads once).
+- If neither is available, the Gujarati original is kept and flagged
+  `needs_translation` — nothing is fabricated.
+
+```bash
+HALO_ALLOW_NETWORK=1 python3 scripts/extract/extract_history.py --live
+python3 scripts/query/ask.py "history of Vadodara and the Gaekwad dynasty"
+```
+
 ## 9. Run the services step
 
 ```bash

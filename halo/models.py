@@ -90,9 +90,26 @@ class TripSpot(Envelope):
     how_to_reach: str = ""
 
 
+@dataclass
+class HistoryDoc(Envelope):
+    """History / knowledge extracted from books, articles, encyclopaedias."""
+    title: str = ""
+    summary: str = ""                # English (translated if source was not English)
+    original_text: str = ""         # verbatim source text (any language)
+    original_language: str = "en"   # en | gu | hi | ...
+    translated: bool = False        # was original_text machine-translated to summary?
+    translation_engine: str = ""    # libretranslate | argos | none
+    needs_translation: bool = False # original is non-English and not yet translated
+    period: str = ""                # e.g. "Gaekwad era", "1721", "British Raj"
+    tags: list[str] = field(default_factory=list)
+    source_type: str = "wiki"       # wiki | book | article | wikisource
+    topic: str = "history"          # history | culture | geography | governance | ...
+
+
 ENTITY_CLASSES = {
     "area": Area,
     "service": Service,
     "news_event": NewsEvent,
     "trip_spot": TripSpot,
+    "history_doc": HistoryDoc,
 }

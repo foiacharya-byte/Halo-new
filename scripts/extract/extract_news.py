@@ -103,13 +103,18 @@ def main() -> None:
         from scripts.extract.news_client import fetch_news
         raw = fetch_news()
     if not raw:
-        recs = json.loads(DEMO.read_text(encoding="utf-8"))["records"]
-        raw = [{**r, "is_demo": True} for r in recs]
-        provenance.record("src.news.feeds", "fixture",
-                          f"served {len(raw)} demo news records "
-                          f"({'network disabled' if not args.live else 'feeds empty/blocked'})",
-                          records=len(raw))
-        print(f"[news] {len(raw)} via labelled demo fixture")
+        from halo import config
+        if config.use_fixtures():
+            recs = json.loads(DEMO.read_text(encoding="utf-8"))["records"]
+            raw = [{**r, "is_demo": True} for r in recs]
+            provenance.record("src.news.feeds", "fixture",
+                              f"served {len(raw)} demo news records (use_fixtures=on)",
+                              records=len(raw))
+            print(f"[news] {len(raw)} via labelled demo fixture (use_fixtures=on)")
+        else:
+            provenance.record("src.news.feeds", "empty",
+                              "no live feed items and fixtures disabled -> 0 rows")
+            print("[news] 0 live items; fixtures disabled -> 0 rows (no demo data)")
 
     area_names = load_area_names()
     events = [to_event(r, area_names) for r in raw]

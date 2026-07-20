@@ -4,6 +4,7 @@ Sanity tests (stdlib unittest, no deps). Run: python3 -m unittest -v
 These lock in the non-negotiables so a future change can't silently break them.
 """
 import json
+import os
 import subprocess
 import sys
 import unittest
@@ -13,6 +14,16 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from halo.util import normalize_phone, phone_key, slugify, make_id  # noqa: E402
+
+# demo/sample data is OFF by default now (no demo data in live datasets); the
+# offline tests below opt back in so there's something to exercise the logic on.
+FIX_ENV = {**os.environ, "HALO_USE_FIXTURES": "1"}
+
+
+def _run(script: str, *args, fixtures: bool = False):
+    env = FIX_ENV if fixtures else os.environ
+    return subprocess.run([sys.executable, str(ROOT / script), *args],
+                          capture_output=True, text=True, env=env)
 
 
 class TestUtil(unittest.TestCase):
@@ -67,7 +78,8 @@ class TestPipeline(unittest.TestCase):
 
 class TestServices(unittest.TestCase):
     def setUp(self):
-        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_services.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_services.py")],
+                       check=True, env=FIX_ENV)
         subprocess.run([sys.executable, str(ROOT / "scripts/validate/validate_services.py")], check=True)
         self.svc = {s["name"]: s for s in json.loads(
             (ROOT / "data/processed/services.validated.json").read_text())}
@@ -186,7 +198,8 @@ class TestGeocodeNearMe(unittest.TestCase):
 
     def test_area_profile(self):
         # full pipeline so services are assigned to localities
-        subprocess.run([sys.executable, str(ROOT / "scripts/run_pipeline.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/run_pipeline.py")],
+                       check=True, env=FIX_ENV)
         r = subprocess.run([sys.executable, str(ROOT / "scripts/query/ask.py"),
                             "tell me about Karelibaug"], capture_output=True, text=True)
         self.assertEqual(r.returncode, 0, msg=r.stderr)
@@ -195,9 +208,41 @@ class TestGeocodeNearMe(unittest.TestCase):
         self.assertIn("Top categories", r.stdout)
 
 
+class TestNoDemoByDefault(unittest.TestCase):
+    def test_services_empty_without_fixtures(self):
+        # default (no HALO_USE_FIXTURES, network off) must write ZERO demo rows
+        r = _run("scripts/extract/extract_services.py")
+        self.assertEqual(r.returncode, 0, msg=r.stderr)
+        rows = json.loads((ROOT / "data/processed/services.json").read_text(encoding="utf-8"))
+        self.assertEqual(rows, [], "no demo data may enter services when fixtures are off")
+
+    def test_fixtures_opt_in_still_flagged_demo(self):
+        r = _run("scripts/extract/extract_services.py", fixtures=True)
+        self.assertEqual(r.returncode, 0, msg=r.stderr)
+        rows = json.loads((ROOT / "data/processed/services.json").read_text(encoding="utf-8"))
+        self.assertTrue(rows and all(x["is_demo"] for x in rows))
+
+
+class TestTranslate(unittest.TestCase):
+    def test_english_passthrough(self):
+        from halo import translate
+        txt, eng, ok = translate.translate("Vadodara is a city", "en")
+        self.assertTrue(ok)
+        self.assertEqual(txt, "Vadodara is a city")
+
+    def test_gujarati_without_engine_keeps_original(self):
+        from halo import translate
+        original = "વડોદરા એક શહેર છે"
+        txt, eng, ok = translate.translate(original, "gu")
+        self.assertFalse(ok, "no engine in sandbox -> must NOT fabricate a translation")
+        self.assertEqual(txt, original, "original text must be kept verbatim")
+        self.assertEqual(eng, "none")
+
+
 class TestTrips(unittest.TestCase):
     def setUp(self):
-        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_trips.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_trips.py")],
+                       check=True, env=FIX_ENV)
         subprocess.run([sys.executable, str(ROOT / "scripts/validate/validate_trips.py")], check=True)
         self.spots = json.loads(
             (ROOT / "data/processed/trip_spots.validated.json").read_text(encoding="utf-8"))
@@ -225,7 +270,8 @@ class TestNews(unittest.TestCase):
     def setUp(self):
         subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_areas.py")], check=True)
         subprocess.run([sys.executable, str(ROOT / "scripts/validate/validate_areas.py")], check=True)
-        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_news.py")], check=True)
+        subprocess.run([sys.executable, str(ROOT / "scripts/extract/extract_news.py")],
+                       check=True, env=FIX_ENV)
         subprocess.run([sys.executable, str(ROOT / "scripts/validate/validate_news.py")], check=True)
         self.events = json.loads((ROOT / "data/processed/news_events.validated.json").read_text())
 

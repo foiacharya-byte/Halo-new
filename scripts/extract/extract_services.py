@@ -95,14 +95,13 @@ def main() -> None:
                     help="comma list of live sources to try: osm,directories")
     args = ap.parse_args()
 
-    from halo import provenance  # noqa: E402
+    from halo import config, provenance  # noqa: E402
     localities = target_localities(args)
     want = set(args.source.split(","))
     raw: list[dict] = []
 
     if args.live:
         if "osm" in want:
-            from halo import config
             if config.get("osm", "deep_city_scrape", default=True):
                 from scripts.extract.services_osm import fetch_city_services
                 raw.extend(fetch_city_services(localities))   # whole-city, deep
@@ -114,13 +113,16 @@ def main() -> None:
             raw.extend(fetch_directories(localities))
 
     if not raw:
-        raw = load_demo(localities)
-        provenance.record("src.seed.curated", "fixture",
-                          f"served {len(raw)} demo service records "
-                          f"({'network disabled' if not args.live else 'live sources returned nothing'})",
-                          records=len(raw))
-        print(f"[services] {len(raw)} via labelled demo fixture "
-              f"({'sandbox: network disabled' if not args.live else 'live blocked/empty'})")
+        if config.use_fixtures():
+            raw = load_demo(localities)
+            provenance.record("src.seed.curated", "fixture",
+                              f"served {len(raw)} demo service records (use_fixtures=on)",
+                              records=len(raw))
+            print(f"[services] {len(raw)} via labelled demo fixture (use_fixtures=on)")
+        else:
+            provenance.record("src.osm.overpass", "empty",
+                              "no live POIs and fixtures disabled -> 0 rows (no demo data)")
+            print("[services] 0 real POIs; fixtures disabled -> writing 0 rows (no demo data)")
 
     records = [to_service(r) for r in raw]
     OUT.parent.mkdir(parents=True, exist_ok=True)

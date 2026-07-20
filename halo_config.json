@@ -7,7 +7,22 @@
     "contact_email": "you@example.com",
     "default_delay_seconds": 2.0,
     "max_retries": 3,
-    "backoff_base_seconds": 4.0
+    "backoff_base_seconds": 4.0,
+    "use_fixtures": false,
+    "_use_fixtures_note": "OFF by default so NO demo/placeholder data ever enters the datasets. When a live source returns nothing, the extractor records the honest failure and writes zero rows (never demo). Set true (or HALO_USE_FIXTURES=1) ONLY for offline development against the labelled sample fixtures."
+  },
+  "translate": {
+    "_note": "Gujarati->English translation for history/books/articles. engine: 'auto' tries LibreTranslate (if libretranslate_url set) then Argos Translate (offline, if installed: pip install argostranslate + gu->en model), else keeps the original text flagged needs_translation (never fabricates). Self-host LibreTranslate for bulk.",
+    "engine": "auto",
+    "libretranslate_url": "",
+    "libretranslate_api_key": ""
+  },
+  "history": {
+    "_note": "Sources for Vadodara history/knowledge. MediaWiki API is open JSON (no key). gu.* pages are translated gu->en. Archive.org supplies public-domain books.",
+    "wiki_pages_en": ["Vadodara", "Vadodara district", "Gaekwad", "Baroda State", "Laxmi Vilas Palace, Vadodara", "Maharaja Sayajirao Gaekwad III"],
+    "wiki_pages_gu": ["વડોદરા", "ગાયકવાડ"],
+    "archive_query": "Vadodara OR Baroda history",
+    "archive_max_items": 25
   },
 
   "osm": {

@@ -56,11 +56,18 @@ def main() -> None:
         from scripts.extract.trips_osm import fetch_trip_spots
         raw = fetch_trip_spots()
     if not raw:
-        recs = json.loads(DEMO.read_text(encoding="utf-8"))["records"]
-        raw = [{**r, "is_demo": True} for r in recs]
-        provenance.record("src.osm.trips", "fixture",
-                          f"served {len(raw)} demo trip spots", records=len(raw))
-        print(f"[trips] {len(raw)} via labelled demo fixture")
+        from halo import config
+        if config.use_fixtures():
+            recs = json.loads(DEMO.read_text(encoding="utf-8"))["records"]
+            raw = [{**r, "is_demo": True} for r in recs]
+            provenance.record("src.osm.trips", "fixture",
+                              f"served {len(raw)} demo trip spots (use_fixtures=on)",
+                              records=len(raw))
+            print(f"[trips] {len(raw)} via labelled demo fixture (use_fixtures=on)")
+        else:
+            provenance.record("src.osm.trips", "empty",
+                              "no live spots and fixtures disabled -> 0 rows")
+            print("[trips] 0 live spots; fixtures disabled -> 0 rows (no demo data)")
 
     spots = [to_spot(r) for r in raw]
     OUT.parent.mkdir(parents=True, exist_ok=True)

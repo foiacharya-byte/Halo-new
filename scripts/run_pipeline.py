@@ -45,6 +45,8 @@ STAGES = [
     ("validate news", "scripts/validate/validate_news.py", []),
     ("extract trips", "scripts/extract/extract_trips.py", []),
     ("validate trips", "scripts/validate/validate_trips.py", []),
+    ("extract history", "scripts/extract/extract_history.py", []),
+    ("validate history", "scripts/validate/validate_history.py", []),
 ]
 
 # validated dataset -> csv columns (order matters for humans)
@@ -63,6 +65,10 @@ CSV_EXPORTS = {
     "trip_spots.validated.json": ("trip_spots.csv",
         ["id", "name", "distance_km", "type", "best_for_mood", "how_to_reach",
          "is_demo", "source_ids", "last_updated"]),
+    "history.validated.json": ("history.csv",
+        ["id", "title", "period", "topic", "tags", "original_language",
+         "translated", "translation_engine", "needs_translation", "source_type",
+         "source_ids", "last_updated"]),
 }
 
 

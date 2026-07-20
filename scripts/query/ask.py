@@ -419,6 +419,42 @@ def answer_trips(q: str, toks: list[str], idx: dict) -> str | None:
     return head + ":\n" + "\n".join(lines)
 
 
+HISTORY_TRIGGERS = {"history", "historical", "heritage", "past", "founded",
+                    "origin", "ancient", "gaekwad", "gaikwad", "baroda", "dynasty",
+                    "maharaja", "story"}
+
+
+def answer_history(q: str, toks: list[str], idx: dict) -> str | None:
+    if not (HISTORY_TRIGGERS & set(toks)):
+        return None
+    docs = idx["docs"]
+    hist = [docs[k] for k in docs if k.startswith("history_doc:")]
+    if not hist:
+        return None
+    # rank by keyword overlap with the query
+    qset = set(toks)
+    scored = []
+    for d in hist:
+        text = (d.get("summary", "") + " " + d.get("title", "")).lower()
+        score = sum(1 for t in qset if t in text) + len(qset & set(d.get("tags", [])))
+        scored.append((score, d))
+    scored.sort(key=lambda s: s[0], reverse=True)
+    top = [d for sc, d in scored if sc > 0][:5] or [d for _, d in scored[:3]]
+
+    out = ["## Vadodara — history & heritage"]
+    for d in top:
+        period = f" · _{d['period']}_" if d.get("period") else ""
+        flag = " ⚠️_original Gujarati awaiting translation_" if d.get("needs_translation") else ""
+        eng = (f" _(translated via {d['translation_engine']})_"
+               if d.get("translated") else "")
+        out.append(f"\n**{d.get('title','')}**{period}{eng}{flag}\n{d.get('summary','')}")
+        if d.get("source_links"):
+            out.append(f"  _source: {d['source_links'][0]}_")
+    out.append("\n_History is compiled from open sources (Wikipedia, Archive.org "
+               "books); Gujarati text is machine-translated with the original kept for review._")
+    return "\n".join(out)
+
+
 def answer(q: str, idx: dict) -> str:
     toks = tokenize(q)
     docs = idx["docs"]
@@ -442,6 +478,11 @@ def answer(q: str, idx: dict) -> str:
             return f"No area indexed for PIN {pin_match.group(1)}."
         names = ", ".join(sorted(docs[k]["name"] for k in keys))
         return f"PIN **{pin_match.group(1)}** covers: {names}."
+
+    # Intent: HISTORY — "history of Vadodara", "Gaekwad", "heritage story".
+    hist = answer_history(q, toks, idx)
+    if hist is not None:
+        return hist
 
     # Intent: TRIPS — mood/tourist words ("peaceful weekend trip", "temples nearby").
     trips = answer_trips(q, toks, idx)

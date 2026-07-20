@@ -45,6 +45,48 @@
         "notes": "CANDIDATE. Feeds the TRIP_SPOT entity (temples, palaces, dams, hills within 10-50 km). Robots-respecting HTML."
       }
     ],
+    "history_knowledge": [
+      {
+        "id": "src.wiki.en",
+        "name": "English Wikipedia (MediaWiki API)",
+        "url_example": "https://en.wikipedia.org/w/api.php",
+        "trust_level": "medium",
+        "access_method": "json_api",
+        "update_frequency": "weekly",
+        "respect_robots": true,
+        "notes": "Open JSON API, no key. Plain-text extracts of Vadodara/Gaekwad/Baroda pages -> HISTORY docs (CC-BY-SA, attribution kept via source link)."
+      },
+      {
+        "id": "src.wiki.gu",
+        "name": "Gujarati Wikipedia (MediaWiki API)",
+        "url_example": "https://gu.wikipedia.org/w/api.php",
+        "trust_level": "medium",
+        "access_method": "json_api",
+        "update_frequency": "weekly",
+        "respect_robots": true,
+        "notes": "Gujarati text; machine-translated gu->en (LibreTranslate/Argos) with the original kept verbatim for review (needs_translation flag if no engine)."
+      },
+      {
+        "id": "src.archive.books",
+        "name": "Archive.org — public-domain books (Vadodara/Baroda)",
+        "url_example": "https://archive.org/advancedsearch.php",
+        "trust_level": "medium",
+        "access_method": "json_api",
+        "update_frequency": "monthly",
+        "respect_robots": true,
+        "notes": "Open API. Book title/year/language/description with a details link. Full-text OCR + translation is a future step."
+      },
+      {
+        "id": "src.wikisource",
+        "name": "Wikisource (Gujarati/English source texts)",
+        "url_example": "https://gu.wikisource.org/w/api.php",
+        "trust_level": "medium",
+        "access_method": "json_api",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "CANDIDATE. Digitised primary texts; same translate pipeline."
+      }
+    ],
     "internal": [
       {
         "id": "src.seed.curated",

@@ -30,6 +30,7 @@ DATASETS = {
     "service": "services.validated.json",
     "news_event": "news_events.validated.json",
     "trip_spot": "trip_spots.validated.json",
+    "history_doc": "history.validated.json",
 }
 
 STOP = {"the", "a", "an", "of", "in", "and", "road", "society", "near"}
@@ -68,7 +69,8 @@ def main() -> None:
             if c and c.get("lat") is not None and c.get("lon") is not None:
                 geo[key] = [c["lat"], c["lon"]]
             name = r.get("name") or r.get("title", "")
-            summary = r.get("description_summary") or r.get("short_summary", "")
+            summary = (r.get("description_summary") or r.get("short_summary")
+                       or r.get("summary", ""))
             for tok in tokenize(name, summary, " ".join(r.get("aliases", []))):
                 text_idx[tok].add(key)
             if entity == "area":

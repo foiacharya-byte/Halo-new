@@ -24,3 +24,9 @@
 #             # with 'SSL: CERTIFICATE_VERIFY_FAILED' when Python can't find the
 #             # system CA roots. If live fetch shows an SSL reason:  pip install certifi
 certifi
+
+# OPTIONAL — Gujarati->English translation for history/books (offline, free).
+#   pip install argostranslate      # gu->en model auto-downloads on first use
+# Or self-host LibreTranslate and set HALO_LIBRETRANSLATE_URL. Without either,
+# Gujarati text is kept VERBATIM and flagged needs_translation (never fabricated).
+# argostranslate

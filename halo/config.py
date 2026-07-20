@@ -43,6 +43,10 @@ def load() -> dict:
         cfg["osm"]["overpass_url"] = env["HALO_OVERPASS_URL"]
     if env.get("HALO_DATAGOV_KEY"):
         cfg.setdefault("govdata", {})["api_key"] = env["HALO_DATAGOV_KEY"]
+    if env.get("HALO_USE_FIXTURES") in ("1", "true", "True"):
+        cfg["runtime"]["use_fixtures"] = True
+    if env.get("HALO_LIBRETRANSLATE_URL"):
+        cfg.setdefault("translate", {})["libretranslate_url"] = env["HALO_LIBRETRANSLATE_URL"]
 
     # bake the real contact email into the UA string if left as a placeholder
     ua = cfg["runtime"]["user_agent"]
@@ -52,6 +56,10 @@ def load() -> dict:
 
 def network_allowed() -> bool:
     return bool(load()["runtime"]["allow_network"])
+
+
+def use_fixtures() -> bool:
+    return bool(load()["runtime"].get("use_fixtures", False))
 
 
 def user_agent() -> str:
