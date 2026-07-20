@@ -1,8 +1,20 @@
 {
   "_readme": "Phase 1 — Source catalogue. We list candidate OPEN sources BEFORE fetching anything. trust_level: high=official/govt, medium=major news/big directory, low=small blog. access_method: how we would read it. update_frequency: how often it changes. respect_robots: we honour robots.txt and only automate sources that permit it. Each source has an id referenced by dataset records in source_links[].",
   "generated_for": "Vadodara (Baroda), Gujarat, India",
-  "schema_version": 1,
+  "schema_version": 2,
   "categories": {
+    "internal": [
+      {
+        "id": "src.seed.curated",
+        "name": "Halo curated seed — hand-entered real place names, pending source attribution",
+        "url_example": "",
+        "trust_level": "seed",
+        "access_method": "curated_manual",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "NOT a verification. A real Vadodara place name entered by hand from general/open knowledge. Records carrying only this source stay status=single_source_needs_review until a live extractor corroborates them against a catalogued directory/census source."
+      }
+    ],
     "areas_wards_villages": [
       {
         "id": "src.census2011.vadodara",
@@ -53,6 +65,66 @@
         "update_frequency": "static",
         "respect_robots": true,
         "notes": "Authoritative PIN codes per locality/post office."
+      },
+      {
+        "id": "src.census.villages",
+        "name": "Census 2011 — Vadodara district/taluka village directory",
+        "url_example": "https://www.censusindia.gov.in/",
+        "trust_level": "high",
+        "access_method": "http_get_html_table",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "CANDIDATE (not yet fetched). Official village list per taluka — the promotion path to status=confirmed_official for villages."
+      },
+      {
+        "id": "src.mapsofindia.villages",
+        "name": "MapsofIndia — Vadodara taluka/district village list",
+        "url_example": "https://www.mapsofindia.com/villages/gujarat/vadodara/",
+        "trust_level": "medium",
+        "access_method": "http_get_html_table",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "CANDIDATE. Village names per taluka; corroborates census."
+      },
+      {
+        "id": "src.villageinfo.vadodara",
+        "name": "VillageInfo / vlist — Vadodara villages",
+        "url_example": "https://villageinfo.in/gujarat/vadodara.html",
+        "trust_level": "medium",
+        "access_method": "http_get_html_table",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "CANDIDATE. Village + LGD-style tables."
+      },
+      {
+        "id": "src.commonfloor.vadodara",
+        "name": "CommonFloor — Vadodara locality list",
+        "url_example": "https://www.commonfloor.com/vadodara-property/localities",
+        "trust_level": "medium",
+        "access_method": "http_get_html_cards",
+        "update_frequency": "monthly",
+        "respect_robots": true,
+        "notes": "CANDIDATE. City locality names (property portal)."
+      },
+      {
+        "id": "src.proptiger.vadodara",
+        "name": "PropTiger / Housing — Vadodara localities",
+        "url_example": "https://www.proptiger.com/vadodara/localities",
+        "trust_level": "medium",
+        "access_method": "http_get_html_cards",
+        "update_frequency": "monthly",
+        "respect_robots": true,
+        "notes": "CANDIDATE. Second independent locality list for multi_source promotion."
+      },
+      {
+        "id": "src.arealist.vadodara",
+        "name": "\"Complete List of Areas in Vadodara\" directory pages",
+        "url_example": "",
+        "trust_level": "low",
+        "access_method": "http_get_html",
+        "update_frequency": "static",
+        "respect_robots": true,
+        "notes": "CANDIDATE. Low trust — corroborate with a higher-trust source before promotion."
       }
     ],
     "services": [

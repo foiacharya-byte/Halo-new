@@ -31,8 +31,8 @@ STAGES = [
 # validated dataset -> csv columns (order matters for humans)
 CSV_EXPORTS = {
     "areas.validated.json": ("areas.csv",
-        ["id", "name", "type", "parent_zone", "ward_number", "pin_codes",
-         "confidence", "needs_review", "last_updated"]),
+        ["id", "name", "type", "taluka", "zone_group", "pin_codes", "aliases",
+         "status", "confidence", "needs_review", "source_ids", "last_updated"]),
 }
 
 

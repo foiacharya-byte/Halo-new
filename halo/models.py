@@ -35,12 +35,16 @@ class Envelope:
 @dataclass
 class Area(Envelope):
     name: str = ""
-    type: str = ""                   # ward | locality | village
-    parent_zone: Optional[str] = None   # North/South/East/West VMC zone
+    type: str = ""                   # ward | locality | village | census_town
+    taluka: Optional[str] = None     # Vadodara | Savli | Waghodia | Padra | ...
+    zone_group: Optional[str] = None    # VMC zone (North/South/East/West/Central) — INDICATIVE
     ward_number: Optional[str] = None
-    pin_codes: list[str] = field(default_factory=list)
-    coordinates: Optional[dict] = None  # {"lat": float, "lon": float} or None
+    pin_codes: list[str] = field(default_factory=list)  # INDICATIVE until India Post-verified
+    coordinates: Optional[dict] = None  # {"lat": float, "lon": float} or None (never guessed)
     aliases: list[str] = field(default_factory=list)
+    # status: confirmed_official (>=1 official src) | multi_source (>=2 independent)
+    #       | single_source_needs_review (default for curated seed)
+    status: str = "single_source_needs_review"
 
 
 @dataclass

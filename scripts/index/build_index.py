@@ -66,8 +66,8 @@ def main() -> None:
             for tok in tokenize(name, summary, " ".join(r.get("aliases", []))):
                 text_idx[tok].add(key)
             if entity == "area":
-                if r.get("parent_zone"):
-                    zone_idx[r["parent_zone"].lower()].append(key)
+                if r.get("zone_group"):
+                    zone_idx[r["zone_group"].lower()].append(key)
                 for pin in r.get("pin_codes", []):
                     pin_idx[pin].append(key)
             for tag in r.get("tags", []):

@@ -1,46 +1,41 @@
 [
   {
     "id": "area:alkapuri:632f2245",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Alkapuri",
     "type": "locality",
-    "parent_zone": "West",
+    "taluka": "Vadodara",
+    "zone_group": "West",
     "ward_number": null,
     "pin_codes": [
       "390005",
       "390007"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:sayajigunj:b887a142",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Sayajigunj",
     "type": "locality",
-    "parent_zone": "Central",
+    "taluka": "Vadodara",
+    "zone_group": "Central",
     "ward_number": null,
     "pin_codes": [
       "390005",
@@ -49,25 +44,23 @@
     "coordinates": null,
     "aliases": [
       "Sayaji Gunj"
-    ]
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:fatehgunj:9e9a3f04",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Fatehgunj",
     "type": "locality",
-    "parent_zone": "North",
+    "taluka": "Vadodara",
+    "zone_group": "North",
     "ward_number": null,
     "pin_codes": [
       "390002"
@@ -75,25 +68,23 @@
     "coordinates": null,
     "aliases": [
       "Fateh Gunj"
-    ]
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:karelibaug:e37910b3",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Karelibaug",
     "type": "locality",
-    "parent_zone": "East",
+    "taluka": "Vadodara",
+    "zone_group": "East",
     "ward_number": null,
     "pin_codes": [
       "390018"
@@ -102,49 +93,45 @@
     "aliases": [
       "Kareli Baug",
       "Karelibag"
-    ]
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:harni:8a56789a",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Harni",
     "type": "locality",
-    "parent_zone": "East",
+    "taluka": "Vadodara",
+    "zone_group": "East",
     "ward_number": null,
     "pin_codes": [
       "390022"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:sama:27605661",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Sama",
     "type": "locality",
-    "parent_zone": "North",
+    "taluka": "Vadodara",
+    "zone_group": "North",
     "ward_number": null,
     "pin_codes": [
       "390008",
@@ -153,49 +140,47 @@
     "coordinates": null,
     "aliases": [
       "Sama-Savli"
-    ]
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:gotri:3d7ddfe3",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Gotri",
     "type": "locality",
-    "parent_zone": "West",
+    "taluka": "Vadodara",
+    "zone_group": "West",
     "ward_number": null,
     "pin_codes": [
       "390021"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [
+      "Gotri Road"
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:akota:9ca50389",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Akota",
     "type": "locality",
-    "parent_zone": "West",
+    "taluka": "Vadodara",
+    "zone_group": "West",
     "ward_number": null,
     "pin_codes": [
       "390020"
@@ -203,97 +188,89 @@
     "coordinates": null,
     "aliases": [
       "Akota Gardens"
-    ]
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:manjalpur:9449d96c",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Manjalpur",
     "type": "locality",
-    "parent_zone": "South",
+    "taluka": "Vadodara",
+    "zone_group": "South",
     "ward_number": null,
     "pin_codes": [
       "390011"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:nizampura:8e262396",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Nizampura",
     "type": "locality",
-    "parent_zone": "North",
+    "taluka": "Vadodara",
+    "zone_group": "North",
     "ward_number": null,
     "pin_codes": [
       "390002"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:subhanpura:74de97a3",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Subhanpura",
     "type": "locality",
-    "parent_zone": "West",
+    "taluka": "Vadodara",
+    "zone_group": "West",
     "ward_number": null,
     "pin_codes": [
       "390023"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:vasna:79c9af8c",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Vasna",
     "type": "locality",
-    "parent_zone": "West",
+    "taluka": "Vadodara",
+    "zone_group": "West",
     "ward_number": null,
     "pin_codes": [
       "390007",
@@ -301,50 +278,49 @@
     ],
     "coordinates": null,
     "aliases": [
-      "Vasna Road"
-    ]
+      "Vasna Road",
+      "Vasna-Bhayli"
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:tandalja:804f8902",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Tandalja",
     "type": "locality",
-    "parent_zone": "West",
+    "taluka": "Vadodara",
+    "zone_group": "West",
     "ward_number": null,
     "pin_codes": [
       "390012"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [
+      "Tandalja Road"
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:old-padra-road:0453df14",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Old Padra Road",
     "type": "locality",
-    "parent_zone": "West",
+    "taluka": "Vadodara",
+    "zone_group": "West",
     "ward_number": null,
     "pin_codes": [
       "390007",
@@ -352,26 +328,25 @@
     ],
     "coordinates": null,
     "aliases": [
-      "OP Road"
-    ]
+      "OP Road",
+      "O P Road"
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:ellora-park:e119f7a9",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Ellora Park",
     "type": "locality",
-    "parent_zone": "West",
+    "taluka": "Vadodara",
+    "zone_group": "West",
     "ward_number": null,
     "pin_codes": [
       "390023"
@@ -379,25 +354,23 @@
     "coordinates": null,
     "aliases": [
       "Ellorapark"
-    ]
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:race-course:94a9e3ed",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Race Course",
     "type": "locality",
-    "parent_zone": "Central",
+    "taluka": "Vadodara",
+    "zone_group": "Central",
     "ward_number": null,
     "pin_codes": [
       "390007"
@@ -405,25 +378,23 @@
     "coordinates": null,
     "aliases": [
       "Racecourse"
-    ]
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:makarpura:a36baf2c",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Makarpura",
     "type": "locality",
-    "parent_zone": "South",
+    "taluka": "Vadodara",
+    "zone_group": "South",
     "ward_number": null,
     "pin_codes": [
       "390009",
@@ -431,75 +402,74 @@
       "390013"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [
+      "Makarpura GIDC"
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:gorwa:d9d70451",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Gorwa",
     "type": "locality",
-    "parent_zone": "North",
+    "taluka": "Vadodara",
+    "zone_group": "North",
     "ward_number": null,
     "pin_codes": [
       "390016"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [
+      "BIDC Gorwa"
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:chhani:4234dcfd",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Chhani",
     "type": "locality",
-    "parent_zone": "North",
+    "taluka": "Vadodara",
+    "zone_group": "North",
     "ward_number": null,
     "pin_codes": [
       "391740"
     ],
     "coordinates": null,
     "aliases": [
-      "Chani"
-    ]
+      "Chani",
+      "Chhani Jakat Naka"
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:ajwa-road:476950d0",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Ajwa Road",
     "type": "locality",
-    "parent_zone": "East",
+    "taluka": "Vadodara",
+    "zone_group": "East",
     "ward_number": null,
     "pin_codes": [
       "390019"
@@ -507,25 +477,23 @@
     "coordinates": null,
     "aliases": [
       "Ajwa"
-    ]
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:dandia-bazar:b0e76c5d",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Dandia Bazar",
     "type": "locality",
-    "parent_zone": "Central",
+    "taluka": "Vadodara",
+    "zone_group": "Central",
     "ward_number": null,
     "pin_codes": [
       "390001"
@@ -533,97 +501,89 @@
     "coordinates": null,
     "aliases": [
       "Dandiya Bazar"
-    ]
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:mandvi:7367a821",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Mandvi",
     "type": "locality",
-    "parent_zone": "Central",
+    "taluka": "Vadodara",
+    "zone_group": "Central",
     "ward_number": null,
     "pin_codes": [
       "390001"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:raopura:ff7458bf",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Raopura",
     "type": "locality",
-    "parent_zone": "Central",
+    "taluka": "Vadodara",
+    "zone_group": "Central",
     "ward_number": null,
     "pin_codes": [
       "390001"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:wadi:167f8059",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Wadi",
     "type": "locality",
-    "parent_zone": "Central",
+    "taluka": "Vadodara",
+    "zone_group": "Central",
     "ward_number": null,
     "pin_codes": [
       "390017"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:pratapnagar:a2858aa8",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Pratapnagar",
     "type": "locality",
-    "parent_zone": "South",
+    "taluka": "Vadodara",
+    "zone_group": "South",
     "ward_number": null,
     "pin_codes": [
       "390004"
@@ -631,125 +591,140 @@
     "coordinates": null,
     "aliases": [
       "Pratap Nagar"
-    ]
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:bapod:b26c09ad",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Bapod",
     "type": "locality",
-    "parent_zone": "East",
+    "taluka": "Vadodara",
+    "zone_group": "East",
     "ward_number": null,
     "pin_codes": [
       "390019"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:vemali:2cbe45c7",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Vemali",
     "type": "locality",
-    "parent_zone": "East",
+    "taluka": "Vadodara",
+    "zone_group": "East",
     "ward_number": null,
     "pin_codes": [
       "390025"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:diwalipura:17b2f4d0",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Diwalipura",
     "type": "locality",
-    "parent_zone": "West",
+    "taluka": "Vadodara",
+    "zone_group": "West",
     "ward_number": null,
     "pin_codes": [
       "390015"
     ],
     "coordinates": null,
     "aliases": [
-      "Diwali Pura"
-    ]
+      "Diwali Pura",
+      "Divalipura"
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:waghodia-road:41939138",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Waghodia Road",
     "type": "locality",
-    "parent_zone": "East",
+    "taluka": "Vadodara",
+    "zone_group": "East",
     "ward_number": null,
     "pin_codes": [
       "390019"
     ],
     "coordinates": null,
     "aliases": [
-      "Waghodia"
-    ]
+      "Vaghodia Road"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:atladara:f6e616da",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Atladara",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": "West",
+    "ward_number": null,
+    "pin_codes": [
+      "390012"
+    ],
+    "coordinates": null,
+    "aliases": [
+      "Sun Pharma Road"
+    ],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:manisha:6183722d",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Manisha",
     "type": "locality",
-    "parent_zone": "West",
+    "taluka": "Vadodara",
+    "zone_group": "West",
     "ward_number": null,
     "pin_codes": [
       "390015"
@@ -757,152 +732,1238 @@
     "coordinates": null,
     "aliases": [
       "Manisha Circle"
-    ]
-  },
-  {
-    "id": "area:sun-pharma-road:fee24746",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
     ],
-    "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
-    ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
-    "takedown": false,
-    "name": "Sun Pharma Road",
-    "type": "locality",
-    "parent_zone": "West",
-    "ward_number": null,
-    "pin_codes": [
-      "390012"
-    ],
-    "coordinates": null,
-    "aliases": [
-      "Atladara"
-    ]
-  },
-  {
-    "id": "area:atladara:f6e616da",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
-    "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
-    ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
-    "takedown": false,
-    "name": "Atladara",
-    "type": "locality",
-    "parent_zone": "West",
-    "ward_number": null,
-    "pin_codes": [
-      "390012"
-    ],
-    "coordinates": null,
-    "aliases": []
-  },
-  {
-    "id": "area:sevasi:07caca15",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
-    "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
-    ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
-    "takedown": false,
-    "name": "Sevasi",
-    "type": "village",
-    "parent_zone": "West",
-    "ward_number": null,
-    "pin_codes": [
-      "391101"
-    ],
-    "coordinates": null,
-    "aliases": []
-  },
-  {
-    "id": "area:bhayli:d977fe8c",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
-    "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
-    ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
-    "takedown": false,
-    "name": "Bhayli",
-    "type": "village",
-    "parent_zone": "West",
-    "ward_number": null,
-    "pin_codes": [
-      "391410"
-    ],
-    "coordinates": null,
-    "aliases": []
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:vadsar:d4221106",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Vadsar",
     "type": "locality",
-    "parent_zone": "South",
+    "taluka": "Vadodara",
+    "zone_group": "South",
     "ward_number": null,
     "pin_codes": [
       "390010"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
   },
   {
     "id": "area:tarsali:11e0f785",
-    "source_links": [
-      "https://www.census2011.co.in/census/city/336-vadodara.html",
-      "https://vmc.gov.in/"
-    ],
+    "source_links": [],
     "source_ids": [
-      "src.census2011.vadodara",
-      "src.vmc.official"
+      "src.seed.curated"
     ],
-    "last_updated": "2026-07-20T11:24:37+00:00",
-    "confidence": 1.0,
-    "needs_review": false,
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
     "takedown": false,
     "name": "Tarsali",
     "type": "locality",
-    "parent_zone": "South",
+    "taluka": "Vadodara",
+    "zone_group": "South",
     "ward_number": null,
     "pin_codes": [
       "390009"
     ],
     "coordinates": null,
-    "aliases": []
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:vadiwadi:61c8752c",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Vadiwadi",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:pratapgunj:8351adaa",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Pratapgunj",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Pratap Gunj"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:fatehpura:c59f80ba",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Fatehpura",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:amit-nagar:23df0907",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Amit Nagar",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Amitnagar"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:nagarwada:37fb25f4",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Nagarwada",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:panigate:8ccdcaa8",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Panigate",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Pani Gate"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:yakutpura:71f9f9f7",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Yakutpura",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:navapura:febfd367",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Navapura",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Nava Pura"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:salatwada:9f85fdd0",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Salatwada",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:kothi:4c4aff27",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Kothi",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:sursagar:8beef959",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sursagar",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Sur Sagar"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:warasiya:0a4f4855",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Warasiya",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Warsiya"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:kishanwadi:5ea8e56e",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Kishanwadi",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Kishan Wadi"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:jetalpur-road:8f58ecc4",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Jetalpur Road",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Jetalpur"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:new-vip-road:d344705c",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "New VIP Road",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "VIP Road"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:sardar-estate:35c2caba",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sardar Estate",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:productivity-road:ef523670",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Productivity Road",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:karelibaug-water-tank-road:3b9dff17",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Karelibaug Water Tank Road",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:nizampura-road:b4d3f809",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Nizampura Road",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:sama-savli-road:5afcbd54",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sama Savli Road",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Sama-Savli Road"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:kalali:4bad7a0b",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Kalali",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Kalali Road"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:vadi:ac926114",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Vadi",
+    "type": "locality",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Vadi Wadi"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:sevasi:07caca15",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sevasi",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Sevasi Road"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:bhayli:d977fe8c",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Bhayli",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Bhaili",
+      "Bhayali"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:sindhrot:888fdc73",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sindhrot",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:angadh:473171fe",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Angadh",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:undera:bb74db83",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Undera",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Vundera"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:vadadala:c3f1a717",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Vadadala",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:jaspur:f8c4b853",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Jaspur",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:fajalpur:a1d6934f",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Fajalpur",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:sokhda:404c0c02",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sokhda",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Sokhada"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:por:ad5cd74d",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Por",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:maneja:d77956d9",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Maneja",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:kapurai:560759d7",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Kapurai",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:dashrath:c52e63c0",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Dashrath",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Dasrath"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:sherkhi:6c7cc6a6",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sherkhi",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:karachiya:9ee922f6",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Karachiya",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:bill:8b8ac2ee",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Bill",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:sayar:9f5728e8",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sayar",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:sanhalim:eafe1d37",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Sanhalim",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:ankhol:a71dd9a3",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Ankhol",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:nandesari:c1715974",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Nandesari",
+    "type": "village",
+    "taluka": "Savli",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Nandesari GIDC"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:koyali:347cdb4f",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Koyali",
+    "type": "village",
+    "taluka": "Savli",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Koyali Refinery"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:ranoli:23a47125",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Ranoli",
+    "type": "village",
+    "taluka": "Savli",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:bajwa:a7d6aa7a",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Bajwa",
+    "type": "village",
+    "taluka": "Savli",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:manjusar:f438a713",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Manjusar",
+    "type": "village",
+    "taluka": "Savli",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Manjusar GIDC"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:por-ramangamdi:cb729566",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Por Ramangamdi",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Ramangamdi"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:itola:641df9c1",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Itola",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:vemardi:2976f9b1",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Vemardi",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:dodka:649a7cab",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Dodka",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:vasna-kotaria:abd88f96",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Vasna Kotaria",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Kotaria"
+    ],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:samiyala:cd836002",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Samiyala",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:kotna:cab863a0",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Kotna",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:ajod:e03cca32",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Ajod",
+    "type": "village",
+    "taluka": null,
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:karachiya-sim:2989d8b3",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Karachiya Sim",
+    "type": "village",
+    "taluka": "Vadodara",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:ekalbara:cb4605ff",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Ekalbara",
+    "type": "village",
+    "taluka": "Padra",
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [],
+    "status": "single_source_needs_review"
+  },
+  {
+    "id": "area:dabhoi-road:fa32417f",
+    "source_links": [],
+    "source_ids": [
+      "src.seed.curated"
+    ],
+    "last_updated": "2026-07-20T11:37:54+00:00",
+    "confidence": 0.4,
+    "needs_review": true,
+    "takedown": false,
+    "name": "Dabhoi Road",
+    "type": "village",
+    "taluka": null,
+    "zone_group": null,
+    "ward_number": null,
+    "pin_codes": [],
+    "coordinates": null,
+    "aliases": [
+      "Dabhoi"
+    ],
+    "status": "single_source_needs_review"
   }
 ]

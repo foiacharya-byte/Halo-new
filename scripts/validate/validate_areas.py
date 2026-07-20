@@ -2,15 +2,18 @@
 """
 Phase 3 — cross-validation & quality scoring for AREAS.
 
-Acceptance rule (from the spec):
-  Accept an area name only if it appears in >=2 independent sources
-  OR at least once in an OFFICIAL (trust_level=high) source.
+In plain language, this step does four things:
+  1. MERGE spelling variants. "Bhayli", "Bhayali" and "Bhaili" are the same place;
+     we fold them into one record using the aliases, and note the merge.
+  2. DECIDE A STATUS for each place, from how strong its sources are:
+       - confirmed_official          -> backed by an official (high-trust) source
+       - multi_source                -> named by >=2 independent sources
+       - single_source_needs_review  -> only our curated seed so far (default)
+  3. SCORE confidence (0..1) roughly in line with that status.
+  4. WRITE a human-readable report + a merge log the founder can skim.
 
-We also:
-  * dedupe by normalised name (folding aliases together),
-  * lift confidence for accepted records and clear needs_review only when an
-    official source backs it AND at least one PIN code is present,
-  * write a small human-readable report so the founder can see what passed/failed.
+We KEEP single-source places in the dataset (so coverage is real) but mark them
+needs_review=True, so nothing unverified can masquerade as confirmed.
 
 Reads:  data/processed/areas.json, sources_catalogue/sources.json
 Writes: data/processed/areas.validated.json, data/processed/areas.report.md
@@ -32,7 +35,7 @@ REPORT = ROOT / "data" / "processed" / "areas.report.md"
 
 
 def load_trust_map() -> dict[str, str]:
-    """id -> trust_level from the source catalogue."""
+    """id -> trust_level from the source catalogue (high/medium/low/seed)."""
     cat = json.loads(CATALOGUE.read_text(encoding="utf-8"))
     trust: dict[str, str] = {}
     for group in cat["categories"].values():
@@ -41,64 +44,103 @@ def load_trust_map() -> dict[str, str]:
     return trust
 
 
-def dedupe(records: list[dict]) -> list[dict]:
-    by_key: dict[str, dict] = {}
+def dedupe(records: list[dict]) -> tuple[list[dict], list[str]]:
+    """
+    Merge records whose name OR any alias normalises to the same key.
+    First occurrence wins as the canonical record; others fold in.
+    Returns (merged_records, merge_log_lines).
+    """
+    key_to_canonical: dict[str, dict] = {}
+    canonical_order: list[dict] = []
+    merges: list[str] = []
+
     for r in records:
-        key = norm_name(r["name"])
-        if key in by_key:
-            cur = by_key[key]
-            cur["source_ids"] = sorted(set(cur["source_ids"]) | set(r["source_ids"]))
-            cur["source_links"] = sorted(set(cur["source_links"]) | set(r["source_links"]))
-            cur["pin_codes"] = sorted(set(cur["pin_codes"]) | set(r["pin_codes"]))
-            cur["aliases"] = sorted(set(cur["aliases"]) | set(r["aliases"]) | {r["name"]} - {cur["name"]})
+        keys = {norm_name(r["name"])} | {norm_name(a) for a in r.get("aliases", [])}
+        hit = next((key_to_canonical[k] for k in keys if k in key_to_canonical), None)
+        if hit is None:
+            canonical_order.append(r)
+            for k in keys:
+                key_to_canonical[k] = r
         else:
-            by_key[key] = dict(r)
-    return list(by_key.values())
+            if norm_name(r["name"]) != norm_name(hit["name"]):
+                merges.append(f"- 🔁 merged **{r['name']}** into **{hit['name']}**")
+            hit["source_ids"] = sorted(set(hit["source_ids"]) | set(r["source_ids"]))
+            hit["source_links"] = sorted(set(hit["source_links"]) | set(r["source_links"]))
+            hit["pin_codes"] = sorted(set(hit.get("pin_codes", [])) | set(r.get("pin_codes", [])))
+            # collect variant spellings as aliases (minus the canonical name)
+            extra = set(hit.get("aliases", [])) | set(r.get("aliases", [])) | {r["name"]}
+            hit["aliases"] = sorted(extra - {hit["name"]})
+            hit["taluka"] = hit.get("taluka") or r.get("taluka")
+            hit["zone_group"] = hit.get("zone_group") or r.get("zone_group")
+            # register the new keys so a 3rd spelling also finds this canonical
+            for k in keys:
+                key_to_canonical.setdefault(k, hit)
+    return canonical_order, merges
 
 
-def validate(records: list[dict], trust: dict[str, str]) -> tuple[list[dict], list[str]]:
-    accepted, log = [], []
+def decide_status(source_ids: list[str], trust: dict[str, str]) -> str:
+    levels = [trust.get(s, "seed") for s in set(source_ids)]
+    if "high" in levels:
+        return "confirmed_official"
+    independent_real = [s for s in set(source_ids) if trust.get(s) in ("high", "medium", "low")]
+    if len(independent_real) >= 2:
+        return "multi_source"
+    return "single_source_needs_review"
+
+
+def score(records: list[dict], trust: dict[str, str]) -> list[str]:
+    log = []
+    conf_by_status = {
+        "confirmed_official": 0.9,
+        "multi_source": 0.7,
+        "single_source_needs_review": 0.4,
+    }
     for r in records:
-        sids = r.get("source_ids", [])
-        has_official = any(trust.get(s) == "high" for s in sids)
-        independent = len(set(sids))
-        ok = has_official or independent >= 2
-        if not ok:
-            log.append(f"- ❌ **{r['name']}** — only {independent} non-official source(s); held for review.")
-            continue
-        # scoring
-        r["confidence"] = round(min(1.0, 0.6 + 0.15 * independent + (0.15 if has_official else 0)), 2)
-        r["needs_review"] = not (has_official and bool(r.get("pin_codes")))
+        status = decide_status(r.get("source_ids", []), trust)
+        r["status"] = status
+        r["confidence"] = conf_by_status[status]
+        r["needs_review"] = status != "confirmed_official"
         r["last_updated"] = now_iso()
-        accepted.append(r)
-        flag = "✅" if not r["needs_review"] else "🟡"
-        log.append(f"- {flag} **{r['name']}** — {independent} src, official={has_official}, conf={r['confidence']}")
-    return accepted, log
+        icon = {"confirmed_official": "✅", "multi_source": "🟢",
+                "single_source_needs_review": "🟡"}[status]
+        log.append(f"- {icon} **{r['name']}** ({r['type']}) — {status}, conf={r['confidence']}")
+    return log
 
 
 def main() -> None:
     records = json.loads(AREAS.read_text(encoding="utf-8"))
     trust = load_trust_map()
-    deduped = dedupe(records)
-    accepted, log = validate(deduped, trust)
+    merged, merge_log = dedupe(records)
+    score_log = score(merged, trust)
 
-    OUT.write_text(json.dumps(accepted, indent=2, ensure_ascii=False), encoding="utf-8")
+    OUT.write_text(json.dumps(merged, indent=2, ensure_ascii=False), encoding="utf-8")
+
+    counts: dict[str, int] = {}
+    for r in merged:
+        counts[r["status"]] = counts.get(r["status"], 0) + 1
 
     report = [
         "# Areas — validation report",
         f"_Generated {now_iso()}_",
         "",
         f"- input records: **{len(records)}**",
-        f"- after dedupe: **{len(deduped)}**",
-        f"- accepted: **{len(accepted)}**  ·  held for review: **{len(deduped) - len(accepted)}**",
+        f"- after variant-merge: **{len(merged)}**  ({len(records) - len(merged)} merged)",
         "",
-        "Legend: ✅ verified-ready · 🟡 accepted but needs human review · ❌ held",
+        "## Status breakdown",
+        *[f"- **{k}**: {v}" for k, v in sorted(counts.items())],
         "",
-        *log,
+        "## Merges (spelling variants folded together)",
+        *(merge_log or ["- (none)"]),
+        "",
+        "## All records",
+        "Legend: ✅ confirmed_official · 🟢 multi_source · 🟡 single_source_needs_review",
+        "",
+        *score_log,
     ]
     REPORT.write_text("\n".join(report) + "\n", encoding="utf-8")
-    print(f"[validate-areas] accepted {len(accepted)}/{len(deduped)} -> {OUT.relative_to(ROOT)}")
-    print(f"[validate-areas] report -> {REPORT.relative_to(ROOT)}")
+    print(f"[validate-areas] {len(records)} -> {len(merged)} after merge "
+          f"({len(records) - len(merged)} merged) -> {OUT.relative_to(ROOT)}")
+    print(f"[validate-areas] status: {counts}")
 
 
 if __name__ == "__main__":

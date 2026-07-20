@@ -43,15 +43,30 @@ def cite(doc: dict) -> str:
     return f"source: {src} · updated {fresh}"
 
 
+STATUS_NOTE = {
+    "confirmed_official": "verified against an official source",
+    "multi_source": "named by multiple sources (still cross-checking details)",
+    "single_source_needs_review": "from our curated seed — a real place name, "
+                                  "but attributes are indicative and not yet source-verified",
+}
+
+
 def summarise_area(doc: dict) -> str:
-    bits = [f"**{doc['name']}** — a {doc.get('type','locality')} of Vadodara"]
-    if doc.get("parent_zone"):
-        bits.append(f"in the {doc['parent_zone']} zone")
+    typ = doc.get("type", "locality")
+    bits = [f"**{doc['name']}** — a {typ} of Vadodara"]
+    if doc.get("taluka"):
+        bits.append(f"({doc['taluka']} taluka)")
+    if doc.get("zone_group"):
+        bits.append(f"in the {doc['zone_group']} zone")
     line = " ".join(bits) + "."
     if doc.get("pin_codes"):
-        line += f" PIN: {', '.join(doc['pin_codes'])}."
-    if doc.get("needs_review"):
-        line += " _(zone/PIN not yet officially verified — treat as indicative.)_"
+        line += f" PIN: {', '.join(doc['pin_codes'])} (indicative)."
+    status = doc.get("status", "single_source_needs_review")
+    note = STATUS_NOTE.get(status, "")
+    confidence = doc.get("confidence")
+    line += f"\n  Status: **{status}** (confidence {confidence}) — {note}."
+    if doc.get("zone_group") or doc.get("pin_codes"):
+        line += "\n  _Zone/PIN shown are indicative until verified against VMC / India Post._"
     return f"{line}\n  {cite(doc)}"
 
 
@@ -79,11 +94,20 @@ def answer(q: str, idx: dict) -> str:
         names = ", ".join(sorted(docs[k]["name"] for k in keys))
         return f"PIN **{pin_match.group(1)}** covers: {names}."
 
-    # Intent: free-text — score docs by token overlap in the text index
-    scores: dict[str, int] = {}
+    # Intent: free-text — score docs by token overlap in the text index,
+    # then boost an exact name match so "Karelibaug" beats "Karelibaug Water Tank Rd".
+    qnorm = " ".join(toks)
+    scores: dict[str, float] = {}
     for t in toks:
         for key in idx["text"].get(t, []):
             scores[key] = scores.get(key, 0) + 1
+    for key in list(scores):
+        name = (docs[key].get("name") or docs[key].get("title", "")).lower()
+        name_toks = [w for w in re.split(r"[^a-z0-9]+", name) if len(w) > 1]
+        if name and name in qnorm:
+            scores[key] += 5                      # whole name appears in the query
+        if name_toks and all(w in toks for w in name_toks):
+            scores[key] += 3 / len(name_toks)     # fewer extra words = tighter match
     ranked = sorted(scores.items(), key=lambda kv: kv[1], reverse=True)[:3]
     if not ranked:
         return ("I don't have anything on that yet. Current coverage: areas. "
