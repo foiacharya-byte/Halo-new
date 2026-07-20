@@ -43,6 +43,7 @@ OSM_CATEGORY = {
 }
 
 _fetcher: Fetcher | None = None
+_warned_ua = False
 
 
 def _f() -> Fetcher:
@@ -52,18 +53,56 @@ def _f() -> Fetcher:
     return _fetcher
 
 
+def _respect_robots() -> bool:
+    return bool(config.get("osm", "respect_robots", default=False))
+
+
+def blocked_hint() -> None:
+    """Printed once when every OSM call fails — the concrete things to check."""
+    print(
+        "[osm] ── All OSM calls failed. Most common causes (exact per-call reason is\n"
+        "[osm]    printed above as 'failed — <reason>'):\n"
+        "[osm]    1) Placeholder contact  -> set HALO_CONTACT_EMAIL=you@realdomain.com\n"
+        "[osm]    2) No internet / proxy / firewall blocking *.openstreetmap.org\n"
+        "[osm]    3) SSL cert verify error (common on Windows) -> `pip install certifi`\n"
+        "[osm]       or ensure your system CA store is present\n"
+        "[osm]    4) Rate-limited (429) -> raise osm.*_min_delay_seconds and retry\n"
+        "[osm]    Tip: verify reachability first:\n"
+        "[osm]      curl \"https://nominatim.openstreetmap.org/search?q=Alkapuri,Vadodara&format=json&limit=1\"")
+
+
+def _warn_placeholder_ua() -> None:
+    """Nominatim can 403 a generic/placeholder identity — warn once so it's fixable."""
+    global _warned_ua
+    if _warned_ua:
+        return
+    _warned_ua = True
+    email = config.get("runtime", "contact_email", default="")
+    if (not email) or "example.com" in email:
+        print("[osm] ⚠ No real contact email set. Nominatim may 403 unidentified bulk use.\n"
+              "      Set one:  HALO_CONTACT_EMAIL=you@realdomain.com  (or edit "
+              "runtime.contact_email in halo_config.json).")
+
+
 # --- geocode: distinguish "no match" (empty) from "couldn't reach" (error) ---
 def geocode(locality: str) -> tuple[tuple[float, float] | None, str]:
     """Return (coords_or_None, status) where status in {'ok','empty','error'}."""
+    _warn_placeholder_ua()
     base = config.get("osm", "nominatim_url")
-    q = urllib.parse.urlencode({"q": f"{locality}, Vadodara, Gujarat, India",
-                                "format": "json", "limit": 1})
-    res = _f().get(f"{base}?{q}")
+    ndelay = float(config.get("osm", "nominatim_min_delay_seconds", default=1.0))
+    email = config.get("runtime", "contact_email", default="")
+    params = {"q": f"{locality}, Vadodara, Gujarat, India", "format": "json", "limit": 1}
+    if email and "example.com" not in email:
+        params["email"] = email          # Nominatim policy: identify bulk usage
+    q = urllib.parse.urlencode(params)
+    res = _f().get(f"{base}?{q}", respect_robots=_respect_robots(), min_delay=ndelay)
     if not res.ok:
+        print(f"[osm] {locality}: nominatim failed — {res.reason}")
         return None, "error"          # network / HTTP / blocked
     try:
         arr = json.loads(res.text)
     except Exception:  # noqa: BLE001
+        print(f"[osm] {locality}: nominatim returned unparseable body")
         return None, "error"
     if not arr:
         return None, "empty"          # healthy response, just no match
@@ -73,7 +112,9 @@ def geocode(locality: str) -> tuple[tuple[float, float] | None, str]:
 def _overpass(locality: str, lat: float, lon: float) -> tuple[list[dict], str]:
     """Return (records, status) where status in {'ok','empty','error'}."""
     radius = int(config.get("osm", "radius_m", default=1500))
-    overpass = config.get("osm", "overpass_url")
+    odelay = float(config.get("osm", "overpass_min_delay_seconds", default=3.0))
+    endpoints = [config.get("osm", "overpass_url")] + list(
+        config.get("osm", "overpass_mirrors", default=[]))
     query = f"""
     [out:json][timeout:25];
     (
@@ -82,8 +123,14 @@ def _overpass(locality: str, lat: float, lon: float) -> tuple[list[dict], str]:
     );
     out center 200;
     """
-    res = _f().get(f"{overpass}?{urllib.parse.urlencode({'data': query})}")
-    if not res.ok:
+    data = urllib.parse.urlencode({"data": query})
+    res = None
+    for ep in endpoints:                     # try primary, then mirrors
+        res = _f().get(f"{ep}?{data}", respect_robots=_respect_robots(), min_delay=odelay)
+        if res.ok:
+            break
+        print(f"[osm] {locality}: overpass {ep.split('/')[2]} failed — {res.reason}")
+    if not res or not res.ok:
         return [], "error"
     try:
         elements = json.loads(res.text).get("elements", [])
@@ -177,4 +224,6 @@ def fetch_localities(localities: list[str]) -> list[dict]:
         note += " · skipped: " + ", ".join(failed_localities[:12])
     provenance.record("src.osm.overpass", status, note, records=len(all_records))
     print(f"[osm] aggregate: {status} — {note}")
+    if status == "blocked":
+        blocked_hint()
     return all_records

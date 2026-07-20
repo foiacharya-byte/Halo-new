@@ -179,6 +179,20 @@ When on, the real clients run:
   Turn one on only after reading its `robots.txt`/terms; replace the stub
   `parse_cards()` with real selectors.
 
+**OSM APIs vs robots.txt.** Nominatim/Overpass are documented public **APIs**, so
+`osm.respect_robots` is `false` — robots.txt governs HTML crawlers, not API
+clients. We instead honour their usage policy: an identifying User-Agent + a real
+contact email, and the `*_min_delay_seconds` rate limits. **Set a real email**
+(`HALO_CONTACT_EMAIL=you@realdomain.com`) or Nominatim may 403 unidentified use.
+Directory/news HTML crawling still fully respects robots.txt.
+
+**If OSM shows 0 records / blocked**, the run now prints the *exact* per-call
+reason (`failed — <reason>`) plus a checklist. Quick triage:
+- `error:<... 403 ...>` → set `HALO_CONTACT_EMAIL`, or a proxy/firewall is blocking `*.openstreetmap.org`
+- `error:<... SSL ...>` (common on Windows) → `pip install certifi` / fix the system CA store
+- `http_429` → raise `osm.*_min_delay_seconds`, or self-host Overpass/Nominatim
+- verify reachability: `curl "https://nominatim.openstreetmap.org/search?q=Alkapuri,Vadodara&format=json&limit=1"`
+
 **Honesty is automatic.** Every run rewrites `data/processed/source_status.md`
 showing each source as 🟢 usable · 🟡 partial · 🔴 blocked · ⛔ robots_disallowed ·
 🌐 network_disabled · 🧪 fixture — so the dataset always says where it really came

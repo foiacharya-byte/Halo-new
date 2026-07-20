@@ -1,5 +1,5 @@
 # Areas — validation report
-_Generated 2026-07-20T13:55:12+00:00_
+_Generated 2026-07-20T14:26:50+00:00_
 
 - input records: **93**
 - after variant-merge: **90**  (3 merged)

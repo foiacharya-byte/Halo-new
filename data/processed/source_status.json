@@ -1,23 +1,37 @@
 {
   "src.osm.nominatim": {
-    "attempts": 1,
+    "attempts": 4,
     "records": 24,
     "status": "fixture",
     "note": "filled 24 area coords from demo fixture (approximate)",
-    "last_checked": "2026-07-20T13:55:12+00:00"
+    "last_checked": "2026-07-20T14:26:49+00:00"
   },
   "src.seed.curated": {
-    "attempts": 1,
+    "attempts": 5,
     "records": 9,
     "status": "fixture",
     "note": "served 9 demo service records (network disabled)",
-    "last_checked": "2026-07-20T13:55:12+00:00"
+    "last_checked": "2026-07-20T14:26:50+00:00"
   },
   "src.news.feeds": {
-    "attempts": 1,
+    "attempts": 3,
     "records": 4,
     "status": "fixture",
     "note": "served 4 demo news records (network disabled)",
-    "last_checked": "2026-07-20T13:55:12+00:00"
+    "last_checked": "2026-07-20T14:26:49+00:00"
+  },
+  "src.test.demo": {
+    "attempts": 1,
+    "records": 3,
+    "status": "usable",
+    "note": "unit test",
+    "last_checked": "2026-07-20T14:26:49+00:00"
+  },
+  "src.osm.overpass": {
+    "attempts": 2,
+    "records": 1,
+    "status": "partial",
+    "note": "1/2 localities usable, 1 POIs (empty=1, errors=0) · skipped: Alkapuri(no-data)",
+    "last_checked": "2026-07-20T14:26:49+00:00"
   }
 }

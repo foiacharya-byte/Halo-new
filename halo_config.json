@@ -12,6 +12,8 @@
 
   "osm": {
     "_note": "OpenStreetMap: geocode with Nominatim, then Overpass for POIs around each locality. Data is ODbL (attribution required — we store the node URL). Please self-host or use a mirror for heavy runs; the public servers are shared goodwill infrastructure.",
+    "_robots_note": "respect_robots is FALSE for OSM because Nominatim/Overpass are DOCUMENTED PUBLIC APIs with their own usage policies — robots.txt targets HTML crawlers, not API clients. We instead honour those policies: an identifying User-Agent + contact email, and the *_min_delay_seconds rate limits below. This is standard for every OSM client. Set a real contact email (runtime.contact_email or HALO_CONTACT_EMAIL) — Nominatim can 403 placeholder/absent identification.",
+    "respect_robots": false,
     "nominatim_url": "https://nominatim.openstreetmap.org/search",
     "overpass_url": "https://overpass-api.de/api/interpreter",
     "overpass_mirrors": [

@@ -80,26 +80,39 @@ class Fetcher:
             cd = None
         return max(self.default_delay, float(cd) if cd else 0.0)
 
-    def _throttle(self, url: str) -> None:
-        host = urlparse(url).netloc
-        wait = self._crawl_delay(url) - (time.time() - self._last_hit.get(host, 0.0))
+    def _throttle(self, host: str, delay: float) -> None:
+        wait = delay - (time.time() - self._last_hit.get(host, 0.0))
         if wait > 0:
             time.sleep(wait)
         self._last_hit[host] = time.time()
 
     # -- fetch -------------------------------------------------------------
-    def get(self, url: str, cache_key: str | None = None, timeout: int = 25) -> FetchResult:
+    def get(self, url: str, cache_key: str | None = None, timeout: int = 25,
+            respect_robots: bool = True, min_delay: float | None = None) -> FetchResult:
+        """
+        Fetch a URL. For crawlable HTML (directories, news pages) keep
+        respect_robots=True. For DOCUMENTED PUBLIC APIs (Nominatim, Overpass)
+        pass respect_robots=False: robots.txt governs crawlers of HTML pages, not
+        API clients — we instead honour the API's usage policy via min_delay
+        (rate limit) + an identifying User-Agent. Never raises.
+        """
         if not config.network_allowed():
             return FetchResult(ok=False, reason="network_disabled")
 
         host = urlparse(url).netloc
         if host in self._blocked_hosts:
             return FetchResult(ok=False, blocked=True, reason="host_blocked_earlier")
-        if not self._allowed(url):
+        if respect_robots and not self._allowed(url):
             return FetchResult(ok=False, reason="robots_disallowed")
 
+        delay = self.default_delay
+        if respect_robots:
+            delay = max(delay, self._crawl_delay(url))
+        if min_delay:
+            delay = max(delay, float(min_delay))
+
         for attempt in range(self.max_retries):
-            self._throttle(url)
+            self._throttle(host, delay)
             req = urllib.request.Request(url, headers={"User-Agent": self.ua})
             try:
                 with urllib.request.urlopen(req, timeout=timeout) as resp:

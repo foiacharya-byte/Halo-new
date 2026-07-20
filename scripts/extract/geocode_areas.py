@@ -56,11 +56,11 @@ def fill_from_demo(areas: list[dict]) -> int:
 
 
 def fill_from_osm(areas: list[dict], refresh: bool) -> int:
-    from scripts.extract.services_osm import geocode  # reuse the OSM client
+    from scripts.extract.services_osm import geocode, blocked_hint  # reuse the OSM client
     targets = [a for a in areas if refresh or not a.get("coordinates")]
     ok = empty = error = 0
     for a in targets:
-        coords, status = geocode(a["name"])
+        coords, status = geocode(a["name"])   # geocode() prints the precise reason
         if status == "ok":
             a["coordinates"] = {"lat": coords[0], "lon": coords[1]}
             a["coordinates_source"] = "openstreetmap"
@@ -68,10 +68,8 @@ def fill_from_osm(areas: list[dict], refresh: bool) -> int:
             ok += 1
         elif status == "empty":
             empty += 1
-            print(f"[geocode] {a['name']}: no Nominatim match — skipped")
         else:
             error += 1
-            print(f"[geocode] {a['name']}: network/HTTP error — skipped")
 
     total = len(targets)
     if ok > 0:
@@ -84,6 +82,8 @@ def fill_from_osm(areas: list[dict], refresh: bool) -> int:
                       f"{ok}/{total} areas geocoded (empty={empty}, errors={error})",
                       records=ok)
     print(f"[geocode] OSM aggregate: {agg} — {ok}/{total} geocoded")
+    if agg == "blocked":
+        blocked_hint()
     return ok
 
 

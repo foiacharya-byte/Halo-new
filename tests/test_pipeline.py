@@ -111,6 +111,13 @@ class TestInfra(unittest.TestCase):
         md = provenance.render_markdown()
         self.assertIn("src.test.demo", md)
 
+    def test_osm_apis_bypass_crawler_robots(self):
+        # OSM Nominatim/Overpass are APIs -> robots crawl rules must NOT gate them
+        from halo import config
+        config.load.cache_clear()
+        self.assertFalse(config.get("osm", "respect_robots", default=False),
+                         "OSM must use API usage-policy (rate limit + UA), not robots.txt")
+
 
 class TestOsmResilience(unittest.TestCase):
     """One geocode miss must NOT blank the whole OSM source (simulated, no network)."""
