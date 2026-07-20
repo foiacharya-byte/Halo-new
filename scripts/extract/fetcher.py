@@ -126,8 +126,10 @@ class Fetcher:
         if min_delay:
             delay = max(delay, float(min_delay))
 
-        # 429 = rate-limited (back off, will re-try). 5xx = server overloaded
-        # (very common on public Overpass) — retry with backoff, don't ban the host.
+        # 429 = rate-limited, 5xx = server overloaded — BOTH transient (common on
+        # public Overpass). Retry with backoff, honour Retry-After, and NEVER
+        # permanently ban the host for these (only a 403 is a real ban). This is
+        # what lets a tiled city scrape keep using the fast primary server.
         transient = {429, 500, 502, 503, 504}
         for attempt in range(self.max_retries):
             self._throttle(host, delay)
@@ -138,10 +140,14 @@ class Fetcher:
                     status = resp.status
             except urllib.error.HTTPError as e:  # noqa: PERF203
                 if e.code in transient and attempt < self.max_retries - 1:
-                    time.sleep(self.backoff_base * (2 ** attempt))  # 4s, 8s, 16s
+                    wait = self.backoff_base * (2 ** attempt)          # 5s,10s,20s
+                    ra = e.headers.get("Retry-After") if e.headers else None
+                    if ra and str(ra).isdigit():
+                        wait = max(wait, int(ra))                      # obey the server
+                    time.sleep(min(wait, 90))
                     continue
-                if e.code in (403, 429):
-                    self._blocked_hosts.add(host)     # rate/auth block -> stop hammering
+                if e.code == 403:
+                    self._blocked_hosts.add(host)     # only a real ban is permanent
                 return FetchResult(ok=False, status=e.code,
                                    blocked=e.code in (403, 429), reason=f"http_{e.code}")
             except Exception as exc:  # noqa: BLE001

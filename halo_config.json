@@ -6,8 +6,8 @@
     "user_agent": "HaloVadodaraBot/0.2 (+https://halo.local; open-city-data; contact: CONTACT_EMAIL)",
     "contact_email": "you@example.com",
     "default_delay_seconds": 2.0,
-    "max_retries": 3,
-    "backoff_base_seconds": 4.0,
+    "max_retries": 4,
+    "backoff_base_seconds": 5.0,
     "use_fixtures": false,
     "_use_fixtures_note": "OFF by default so NO demo/placeholder data ever enters the datasets. When a live source returns nothing, the extractor records the honest failure and writes zero rows (never demo). Set true (or HALO_USE_FIXTURES=1) ONLY for offline development against the labelled sample fixtures."
   },
@@ -44,7 +44,7 @@
     "trips_radius_km": 60,
     "trips_query": "Vadodara, Gujarat, India",
     "nominatim_min_delay_seconds": 1.0,
-    "overpass_min_delay_seconds": 3.0,
+    "overpass_min_delay_seconds": 6.0,
     "self_host_note": "For city-scale nightly runs, self-host Overpass (docker: wiktorn/overpass-api) and Nominatim, then point overpass_url/nominatim_url at localhost. This removes rate limits and is the polite way to pull thousands of POIs."
   },
 
